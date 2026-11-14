@@ -100,5 +100,16 @@ class CheckpointTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(state['status'],'failed')
         self.assertEqual(len(state['pairs']['delay']),2)
 
+    async def test_explicit_entry_source_changed_during_run_is_rejected(self):
+        experiment,_=await self.fixture(blocks=2)
+        entry=self.path.with_name('entry.py');entry.write_text('# configuration v1',encoding='utf-8')
+        def edit(done,total,name):
+            if done==1:entry.write_text('# configuration v2',encoding='utf-8')
+        with self.assertRaisesRegex(RuntimeError,'Source code changed'):
+            await experiment.run(edit,checkpoint=self.path,workload_version='v1',source_files=(p for p in [entry]))
+        state=json.loads(self.path.read_text(encoding='utf-8'))
+        self.assertEqual(state['status'],'failed')
+        self.assertEqual(len(state['pairs']['delay']),2)
+
 
 if __name__=='__main__':unittest.main()

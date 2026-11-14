@@ -13,9 +13,68 @@ class CLITests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory(dir=root);self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name)
 
-    def run_cli(self,*args):
-        return subprocess.run([sys.executable,'-m','awaitlab','demo',*args],capture_output=True,encoding='utf-8',
-            env={**os.environ,'PYTHONUTF8':'1'},timeout=20)
+    def run_cli(self,*args,command='demo',cwd=None):
+        env={**os.environ,'PYTHONUTF8':'1','PYTHONPATH':str(Path(__file__).resolve().parents[1])}
+        return subprocess.run([sys.executable,'-m','awaitlab',command,*args],capture_output=True,encoding='utf-8',
+            env=env,cwd=cwd,timeout=20)
+
+    def write_custom_module(self):
+        (self.root/'business.py').write_text('''from contextlib import asynccontextmanager
+from awaitlab import operation
+@operation('customer')
+async def fetch(i):return {'id':i}
+async def candidate(i):return {'id':i}
+@asynccontextmanager
+async def workload():yield fetch
+''',encoding='utf-8')
+        entry=self.root/'my_case.py'
+        entry.write_text('''from awaitlab import Arm,Experiment,Settings
+from business import workload,candidate
+experiment=Experiment(workload,[Arm('candidate','replacement','customer',replacements={'customer':candidate})],Settings(blocks=2,requests=3,concurrency=1,warmup=0))
+workload_version='customers-fixture-v1'
+title='User business case'
+''',encoding='utf-8')
+        return entry
+
+    def test_user_module_runs_from_its_project_and_resumes(self):
+        self.write_custom_module();path=self.root/'custom.json'
+        first=self.run_cli('my_case','--output',str(path),command='run',cwd=self.root)
+        self.assertEqual(first.returncode,0,first.stderr)
+        report=json.loads(path.read_text(encoding='utf-8'))
+        self.assertEqual(report['workload_module'],'my_case')
+        self.assertEqual(report['scenario'],'custom')
+        self.assertEqual(report['title'],'User business case')
+        self.assertNotIn('timer_calibration',report)
+        c=report['comparisons'][0]
+        self.assertTrue(c['output_equivalence'])
+        self.assertTrue(all(b['treatment']['replacement_calls']==3 for b in c['blocks']))
+        sources=report['run']['identity']['manifest']['sources']
+        self.assertIn(str(self.root/'business.py'),sources)
+        self.assertIn(str(self.root/'my_case.py'),sources)
+        resumed=self.run_cli('my_case','--output',str(path),'--resume',command='run',cwd=self.root)
+        self.assertEqual(resumed.returncode,0,resumed.stderr)
+        again=json.loads(path.read_text(encoding='utf-8'))
+        self.assertEqual(again['run']['resumed_pairs'],2)
+        self.assertEqual(again['comparisons'],report['comparisons'])
+
+    def test_config_module_change_rejects_resume_even_if_business_unchanged(self):
+        entry=self.write_custom_module();path=self.root/'custom.json'
+        first=self.run_cli('my_case','--output',str(path),command='run',cwd=self.root)
+        self.assertEqual(first.returncode,0,first.stderr);original=path.read_bytes()
+        entry.write_text(entry.read_text(encoding='utf-8')+'\n# changed configuration source\n',encoding='utf-8')
+        changed=self.run_cli('my_case','--output',str(path),'--resume',command='run',cwd=self.root)
+        self.assertEqual(changed.returncode,1)
+        self.assertIn('Checkpoint identity differs',changed.stderr)
+        self.assertEqual(path.read_bytes(),original)
+
+    def test_user_module_requires_explicit_external_data_version(self):
+        entry=self.write_custom_module()
+        entry.write_text(entry.read_text(encoding='utf-8').replace("workload_version='customers-fixture-v1'",''),encoding='utf-8')
+        path=self.root/'missing-version.json'
+        result=self.run_cli('my_case','--output',str(path),command='run',cwd=self.root)
+        self.assertEqual(result.returncode,1)
+        self.assertIn('nonempty workload_version',result.stderr)
+        self.assertFalse(path.exists());self.assertFalse(path.with_suffix('.checkpoint.json').exists())
 
     def test_output_html_cannot_overwrite_itself_with_json(self):
         path=self.root/'existing.html';path.write_text('keep previous report',encoding='utf-8')

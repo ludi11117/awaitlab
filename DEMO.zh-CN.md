@@ -22,6 +22,8 @@ python -m awaitlab demo --scenario sqlite-http
 
 可控并行案例保存在 artifacts/parallel-latest.html，适合补充解释“累计耗时高的组件不一定是端到端瓶颈”；该案例的等待是模拟 fixture，要与真实数据库实验明确区分。
 
+0.5 可补充一段业务接入演示：运行 `python -m awaitlab run examples.unique_case --output artifacts/unique-latest.json`。这是一个独立Python模块，通过模块级experiment和workload_version接入现有引擎。3000个整数事件ID、1000个不同ID，列表扫描改为保序哈希去重，当前约6.94ms → 0.24ms，已测完整输出一致。算法是标准已知算法；项目负责真实替换、结果核对、实验协议和可恢复运行。只要替换workload与候选代码，同一CLI也能运行用户业务。
+
 ## 值得讲清楚的技术点
 
 | 设计 | 解决的问题 | 应说明的边界 |

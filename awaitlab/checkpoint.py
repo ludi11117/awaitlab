@@ -12,10 +12,11 @@ def digest(value):
     return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
 
 
-def identity(workload,arms,settings,workload_version):
+def identity(workload,arms,settings,workload_version,source_files=()):
     if not workload_version or not isinstance(workload_version,str):
         raise ValueError('Checkpointing requires an explicit workload_version for data/config dependencies')
     paths=set(Path(__file__).parent.glob('*.py'))
+    paths.update(Path(path).resolve() for path in source_files)
     for func in [workload]+[f for arm in arms for f in arm.replacements.values()]:
         source=inspect.getsourcefile(inspect.unwrap(func))
         if source:paths.add(Path(source).resolve())

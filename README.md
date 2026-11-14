@@ -43,6 +43,27 @@ python examples/fastapi_tcp.py
 
 为有意义的异步操作添加标记；不要给每个几微秒函数都加标记。
 
+**0.5 支持直接从 CLI 运行自己的实验模块。** 完整可运行例子：
+
+```powershell
+python -m awaitlab run examples.unique_case --output artifacts/unique-latest.json
+python -m awaitlab run examples.unique_case --output artifacts/unique-latest.json --resume
+```
+
+例子对 3000 个整数事件 ID 做保序去重，比较列表扫描与哈希表，输出包含完整去重 ID 列表，没有人为 sleep。当前同一固定输入协议下均值约6.94ms → 0.24ms；这是提供的算法替换效果，不是工具发明或自动生成的优化。CPU工作会占用事件循环，本例设并发1，不冒充CPU并行测试。
+
+将 examples/unique_case.py 复制到自己的项目，保留模块级 `experiment = Experiment(...)`、非空 `workload_version`，可选 `title`；替换业务 factory 与候选实现即可。在模块所在目录运行，不必额外写 asyncio 启动脚本：
+
+```powershell
+# 在 D 盘自己的项目目录中，直接引用本仓库 SDK
+$env:PYTHONPATH='D:\CodexWork\projects\awaitlab'
+python -m awaitlab run perf_case --output artifacts/perf.json
+```
+
+`perf_case` 对应本地 perf_case.py，也可使用包内的点分模块名。模块按普通 Python 代码导入。实验设置由模块内 Settings 决定，CLI 的 blocks/requests/concurrency 参数用于 demo 子命令。入口模块、workload、replacement 和 SDK 已知源码会进入断点身份；配置源码变化后拒绝恢复，测量中变化也拒绝输出完成报告。外部数据与未自动覆盖的传递依赖仍需更新 workload_version。
+
+纯实现替换不运行额外定时器校准；包含等待干预的实验会测量名义等待与实际等待的偏差。以下为直接使用 Python API 的方式：
+
 ```python
 import asyncio
 from contextlib import asynccontextmanager
@@ -134,6 +155,8 @@ python -m awaitlab demo --scenario parallel --output artifacts/my-run.json --res
 ```
 
 SDK 方式：`await experiment.run(checkpoint='run.checkpoint.json', resume=True, workload_version='fixture-v1')`。断点绑定设置、运行环境、库源码、workload 与 replacement 所在的已知源码文件，以及显式工作负载版本。开始与结束均核对已知代码，检测运行期间的源码变化。
+
+使用SDK时可额外传入 `source_files=['perf_case.py']` 将入口/配置文件纳入核对；CLI run 会自动加入入口模块。
 
 外部数据、数据库状态、闭包配置和所有传递依赖无法自动完整指纹化，变更这些内容必须更新 workload_version；不要把文件哈希当作全环境可复现保证。断点不支持并发写入。同一路径不加 --resume 是重新运行，不复用旧配对。
 

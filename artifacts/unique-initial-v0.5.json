@@ -1,0 +1,1569 @@
+{
+  "schema_version": 4,
+  "library_version": "0.5.0",
+  "settings": {
+    "blocks": 10,
+    "requests": 12,
+    "concurrency": 1,
+    "warmup": 2,
+    "seed": 173,
+    "trace_requests": 2,
+    "max_records": 4096,
+    "min_gain_pct": 5.0,
+    "alpha": 0.05
+  },
+  "comparisons": [
+    {
+      "name": "ordered_hash_set",
+      "kind": "replacement",
+      "site": "events.unique",
+      "delay_ms": 0,
+      "control_mean_ms": 6.861675833333334,
+      "treatment_mean_ms": 0.2418833333333333,
+      "output_equivalence": true,
+      "effect": {
+        "mean_delta_ms": -6.6197925,
+        "ci95_delta_ms": [
+          -6.659547812500001,
+          -6.590371875
+        ],
+        "mean_change_pct": -96.47486504450869,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "descriptive_p95_change_pct": -96.45260859333142,
+      "blocks": [
+        {
+          "block": 0,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 6.798266666666667,
+              "p50_ms": 6.7766,
+              "p95_ms": 6.9254999999999995,
+              "max_ms": 7.0256
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 6.847175,
+              "p50_ms": 6.82125,
+              "p95_ms": 6.977679999999999,
+              "max_ms": 7.0769
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.04890833333333333,
+              "p50_ms": 0.045399999999999996,
+              "p95_ms": 0.06243999999999999,
+              "max_ms": 0.0741,
+              "total_ms": 0.5869,
+              "share_of_worker_cycle_pct": 0.7142848449664764,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 82.2856,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 145.83353587991095,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 81.4852,
+                "max_ms": 7.015,
+                "failed": 0,
+                "mean_ms": 6.7904333333333335
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 79.2461,
+                "max_ms": 6.8217,
+                "failed": 0,
+                "mean_ms": 6.603841666666667
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "events.unique",
+                "kind": "operation",
+                "start_ms": 0.2393,
+                "duration_ms": 6.5763,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0686,
+                "duration_ms": 6.7709,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": 3,
+                "request": 1,
+                "task": 1,
+                "name": "events.unique",
+                "kind": "operation",
+                "start_ms": 7.1067,
+                "duration_ms": 6.8217,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": null,
+                "request": 1,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 6.9326,
+                "duration_ms": 7.015,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.22677499999999998,
+              "p50_ms": 0.2257,
+              "p95_ms": 0.237795,
+              "max_ms": 0.2406
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.267275,
+              "p50_ms": 0.26595,
+              "p95_ms": 0.28066,
+              "max_ms": 0.2811
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.0405,
+              "p50_ms": 0.04,
+              "p95_ms": 0.043399999999999994,
+              "max_ms": 0.0456,
+              "total_ms": 0.486,
+              "share_of_worker_cycle_pct": 15.15293237302404,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 3.2566,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3684.8246637597495,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 2.6675999999999997,
+                "max_ms": 0.2367,
+                "failed": 0,
+                "mean_ms": 0.22229999999999997
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.5992000000000001,
+                "max_ms": 0.0644,
+                "failed": 0,
+                "mean_ms": 0.049933333333333337
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "events.unique",
+                "kind": "operation",
+                "start_ms": 0.1916,
+                "duration_ms": 0.0491,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0309,
+                "duration_ms": 0.2271,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": 3,
+                "request": 1,
+                "task": 1,
+                "name": "events.unique",
+                "kind": "operation",
+                "start_ms": 0.4729,
+                "duration_ms": 0.0493,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": null,
+                "request": 1,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.3116,
+                "duration_ms": 0.2259,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 1,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 6.907125,
+              "p50_ms": 6.777950000000001,
+              "p95_ms": 7.530365,
+              "max_ms": 7.9196
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 6.95915,
+              "p50_ms": 6.8238,
+              "p95_ms": 7.602155,
+              "max_ms": 7.9992
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.052024999999999995,
+              "p50_ms": 0.04635,
+              "p95_ms": 0.07178999999999999,
+              "max_ms": 0.0796,
+              "total_ms": 0.6243,
+              "share_of_worker_cycle_pct": 0.7475769310907223,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 83.6099,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 143.5236736319503,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 82.8001,
+                "max_ms": 7.912,
+                "failed": 0,
+                "mean_ms": 6.900008333333333
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 80.62169999999999,
+                "max_ms": 7.7212,
+                "failed": 0,
+                "mean_ms": 6.718474999999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.33496666666666663,
+              "p50_ms": 0.3357,
+              "p95_ms": 0.33993,
+              "max_ms": 0.3418
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.39950833333333335,
+              "p50_ms": 0.39964999999999995,
+              "p95_ms": 0.40870999999999996,
+              "max_ms": 0.4108
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.06454166666666666,
+              "p50_ms": 0.06415,
+              "p95_ms": 0.06844,
+              "max_ms": 0.0724,
+              "total_ms": 0.7745,
+              "share_of_worker_cycle_pct": 16.155274191193342,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 4.871,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 2463.559843974543,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 3.9462,
+                "max_ms": 0.3348,
+                "failed": 0,
+                "mean_ms": 0.32885000000000003
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.8972999999999998,
+                "max_ms": 0.0779,
+                "failed": 0,
+                "mean_ms": 0.07477499999999998
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 2,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 6.839108333333333,
+              "p50_ms": 6.79885,
+              "p95_ms": 7.050549999999999,
+              "max_ms": 7.193
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 6.888608333333334,
+              "p50_ms": 6.84505,
+              "p95_ms": 7.109299999999999,
+              "max_ms": 7.2512
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.049499999999999995,
+              "p50_ms": 0.046950000000000006,
+              "p95_ms": 0.059035000000000004,
+              "max_ms": 0.0592,
+              "total_ms": 0.594,
+              "share_of_worker_cycle_pct": 0.7185776517511397,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 82.7573,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 145.00231399526083,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 81.97749999999999,
+                "max_ms": 7.1847,
+                "failed": 0,
+                "mean_ms": 6.831458333333333
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 79.7307,
+                "max_ms": 6.9925,
+                "failed": 0,
+                "mean_ms": 6.644225
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.2379083333333333,
+              "p50_ms": 0.23470000000000002,
+              "p95_ms": 0.265845,
+              "max_ms": 0.2703
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.280625,
+              "p50_ms": 0.27635,
+              "p95_ms": 0.3128,
+              "max_ms": 0.3249
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.042716666666666674,
+              "p50_ms": 0.04085,
+              "p95_ms": 0.050859999999999995,
+              "max_ms": 0.0546,
+              "total_ms": 0.5126000000000001,
+              "share_of_worker_cycle_pct": 15.22197475872309,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 3.4252,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3503.4450543033986,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 2.8019000000000007,
+                "max_ms": 0.2654,
+                "failed": 0,
+                "mean_ms": 0.23349166666666674
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.6508999999999999,
+                "max_ms": 0.079,
+                "failed": 0,
+                "mean_ms": 0.05424166666666666
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 3,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 6.812966666666667,
+              "p50_ms": 6.78175,
+              "p95_ms": 6.980325,
+              "max_ms": 7.0983
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 6.86175,
+              "p50_ms": 6.82935,
+              "p95_ms": 7.042235,
+              "max_ms": 7.1722
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.04878333333333334,
+              "p50_ms": 0.04545,
+              "p95_ms": 0.06328499999999998,
+              "max_ms": 0.0739,
+              "total_ms": 0.5854,
+              "share_of_worker_cycle_pct": 0.7109459443047814,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 82.4234,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 145.58972330673086,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 81.6762,
+                "max_ms": 7.0898,
+                "failed": 0,
+                "mean_ms": 6.806349999999999
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 79.50380000000001,
+                "max_ms": 6.8983,
+                "failed": 0,
+                "mean_ms": 6.625316666666667
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.22645,
+              "p50_ms": 0.22544999999999998,
+              "p95_ms": 0.23315,
+              "max_ms": 0.2359
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.2677083333333333,
+              "p50_ms": 0.26575000000000004,
+              "p95_ms": 0.27972,
+              "max_ms": 0.2872
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.041258333333333334,
+              "p50_ms": 0.0401,
+              "p95_ms": 0.04656999999999999,
+              "max_ms": 0.0513,
+              "total_ms": 0.4951,
+              "share_of_worker_cycle_pct": 15.411673151750973,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 3.2801,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3658.425048016829,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 2.6639,
+                "max_ms": 0.2282,
+                "failed": 0,
+                "mean_ms": 0.22199166666666667
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.582,
+                "max_ms": 0.0507,
+                "failed": 0,
+                "mean_ms": 0.048499999999999995
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 4,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 6.839108333333333,
+              "p50_ms": 6.8354,
+              "p95_ms": 6.882210000000001,
+              "max_ms": 6.8832
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 6.895816666666668,
+              "p50_ms": 6.890750000000001,
+              "p95_ms": 6.944105,
+              "max_ms": 6.949
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.05670833333333333,
+              "p50_ms": 0.056249999999999994,
+              "p95_ms": 0.069135,
+              "max_ms": 0.0748,
+              "total_ms": 0.6805,
+              "share_of_worker_cycle_pct": 0.8223584830416507,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 83.0493,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 144.49248819676987,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 81.95060000000001,
+                "max_ms": 6.8724,
+                "failed": 0,
+                "mean_ms": 6.829216666666667
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 79.6408,
+                "max_ms": 6.6852,
+                "failed": 0,
+                "mean_ms": 6.636733333333333
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.23371666666666666,
+              "p50_ms": 0.2341,
+              "p95_ms": 0.24161,
+              "max_ms": 0.2448
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.2784666666666667,
+              "p50_ms": 0.27665,
+              "p95_ms": 0.29320999999999997,
+              "max_ms": 0.2986
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.044750000000000005,
+              "p50_ms": 0.0422,
+              "p95_ms": 0.056679999999999994,
+              "max_ms": 0.0602,
+              "total_ms": 0.537,
+              "share_of_worker_cycle_pct": 16.07014603782619,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 3.4193,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3509.49024654169,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 2.7498,
+                "max_ms": 0.2372,
+                "failed": 0,
+                "mean_ms": 0.22915
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.6038,
+                "max_ms": 0.0542,
+                "failed": 0,
+                "mean_ms": 0.05031666666666667
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 5,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 6.819933333333334,
+              "p50_ms": 6.8232,
+              "p95_ms": 6.88301,
+              "max_ms": 6.9291
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 6.8696166666666665,
+              "p50_ms": 6.86995,
+              "p95_ms": 6.93821,
+              "max_ms": 6.9942
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.04968333333333333,
+              "p50_ms": 0.046450000000000005,
+              "p95_ms": 0.06477000000000001,
+              "max_ms": 0.0651,
+              "total_ms": 0.5962,
+              "share_of_worker_cycle_pct": 0.7232329800061623,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 82.5382,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 145.3872267628807,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 81.74749999999999,
+                "max_ms": 6.9193,
+                "failed": 0,
+                "mean_ms": 6.812291666666666
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 79.5055,
+                "max_ms": 6.7281,
+                "failed": 0,
+                "mean_ms": 6.6254583333333334
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.23525,
+              "p50_ms": 0.2321,
+              "p95_ms": 0.25004499999999996,
+              "max_ms": 0.2578
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.27879166666666666,
+              "p50_ms": 0.27415,
+              "p95_ms": 0.302,
+              "max_ms": 0.302
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.043541666666666666,
+              "p50_ms": 0.041800000000000004,
+              "p95_ms": 0.05098499999999999,
+              "max_ms": 0.0583,
+              "total_ms": 0.5225,
+              "share_of_worker_cycle_pct": 15.617994320729338,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 3.4247,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3503.9565509387685,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 2.7632999999999996,
+                "max_ms": 0.2533,
+                "failed": 0,
+                "mean_ms": 0.23027499999999998
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.629,
+                "max_ms": 0.0765,
+                "failed": 0,
+                "mean_ms": 0.05241666666666667
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 6,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 6.853058333333333,
+              "p50_ms": 6.821949999999999,
+              "p95_ms": 7.06297,
+              "max_ms": 7.2294
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 6.908049999999999,
+              "p50_ms": 6.87325,
+              "p95_ms": 7.1350299999999995,
+              "max_ms": 7.3327
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.05499166666666667,
+              "p50_ms": 0.0485,
+              "p95_ms": 0.08806499999999998,
+              "max_ms": 0.1033,
+              "total_ms": 0.6599,
+              "share_of_worker_cycle_pct": 0.7960519490546055,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 83.0046,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 144.5703009230814,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 82.1283,
+                "max_ms": 7.2129,
+                "failed": 0,
+                "mean_ms": 6.844024999999999
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 79.7542,
+                "max_ms": 6.9985,
+                "failed": 0,
+                "mean_ms": 6.646183333333333
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.23129166666666667,
+              "p50_ms": 0.2281,
+              "p95_ms": 0.24478,
+              "max_ms": 0.2516
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.2736166666666667,
+              "p50_ms": 0.2682,
+              "p95_ms": 0.29411,
+              "max_ms": 0.3105
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.042325,
+              "p50_ms": 0.04005,
+              "p95_ms": 0.052739999999999995,
+              "max_ms": 0.0589,
+              "total_ms": 0.5079,
+              "share_of_worker_cycle_pct": 15.46872144728026,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 3.3331,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3600.252017641235,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 2.7123,
+                "max_ms": 0.2459,
+                "failed": 0,
+                "mean_ms": 0.226025
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.6124999999999999,
+                "max_ms": 0.0661,
+                "failed": 0,
+                "mean_ms": 0.05104166666666666
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 7,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 6.905433333333334,
+              "p50_ms": 6.8408,
+              "p95_ms": 7.312514999999999,
+              "max_ms": 7.5736
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 6.959208333333334,
+              "p50_ms": 6.88915,
+              "p95_ms": 7.373094999999999,
+              "max_ms": 7.6333
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.053774999999999996,
+              "p50_ms": 0.04975,
+              "p95_ms": 0.06921999999999999,
+              "max_ms": 0.0789,
+              "total_ms": 0.6453,
+              "share_of_worker_cycle_pct": 0.7727172032259416,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 83.5891,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 143.5593875277997,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 82.7597,
+                "max_ms": 7.565,
+                "failed": 0,
+                "mean_ms": 6.896641666666667
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 80.4893,
+                "max_ms": 7.3785,
+                "failed": 0,
+                "mean_ms": 6.707441666666667
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.22561666666666666,
+              "p50_ms": 0.2239,
+              "p95_ms": 0.23249,
+              "max_ms": 0.2337
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.26639166666666664,
+              "p50_ms": 0.26385000000000003,
+              "p95_ms": 0.27864,
+              "max_ms": 0.2815
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.040775,
+              "p50_ms": 0.03985,
+              "p95_ms": 0.04593,
+              "max_ms": 0.05,
+              "total_ms": 0.4893,
+              "share_of_worker_cycle_pct": 15.30640973503926,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 3.2481,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3694.4675348665373,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 2.6552000000000002,
+                "max_ms": 0.2278,
+                "failed": 0,
+                "mean_ms": 0.2212666666666667
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.5819000000000001,
+                "max_ms": 0.0505,
+                "failed": 0,
+                "mean_ms": 0.048491666666666676
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 8,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 6.833866666666666,
+              "p50_ms": 6.83045,
+              "p95_ms": 6.901590000000001,
+              "max_ms": 6.9435
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 6.881583333333334,
+              "p50_ms": 6.8805,
+              "p95_ms": 6.954905,
+              "max_ms": 6.9994
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.047716666666666664,
+              "p50_ms": 0.0449,
+              "p95_ms": 0.058644999999999996,
+              "max_ms": 0.062,
+              "total_ms": 0.5726,
+              "share_of_worker_cycle_pct": 0.6933966262609137,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 82.6728,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 145.15052109037072,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 81.9247,
+                "max_ms": 6.9356,
+                "failed": 0,
+                "mean_ms": 6.8270583333333335
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 79.6931,
+                "max_ms": 6.7498,
+                "failed": 0,
+                "mean_ms": 6.641091666666667
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.22955833333333334,
+              "p50_ms": 0.2278,
+              "p95_ms": 0.237305,
+              "max_ms": 0.24
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.27125,
+              "p50_ms": 0.268,
+              "p95_ms": 0.28547999999999996,
+              "max_ms": 0.2923
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.04169166666666666,
+              "p50_ms": 0.04045,
+              "p95_ms": 0.048174999999999996,
+              "max_ms": 0.0523,
+              "total_ms": 0.5003,
+              "share_of_worker_cycle_pct": 15.370199692780337,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 3.3268,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3607.0698569195624,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 2.6975999999999996,
+                "max_ms": 0.2311,
+                "failed": 0,
+                "mean_ms": 0.22479999999999997
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.598,
+                "max_ms": 0.0555,
+                "failed": 0,
+                "mean_ms": 0.049833333333333334
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 9,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 7.007891666666667,
+              "p50_ms": 6.8539,
+              "p95_ms": 7.66652,
+              "max_ms": 7.8379
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 7.063975,
+              "p50_ms": 6.90545,
+              "p95_ms": 7.732614999999999,
+              "max_ms": 7.9101
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.05608333333333334,
+              "p50_ms": 0.0542,
+              "p95_ms": 0.07021999999999999,
+              "max_ms": 0.0722,
+              "total_ms": 0.673,
+              "share_of_worker_cycle_pct": 0.7939344821199585,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 84.8864,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 141.36540128925247,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 83.9717,
+                "max_ms": 7.8224,
+                "failed": 0,
+                "mean_ms": 6.9976416666666665
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 81.5956,
+                "max_ms": 7.566,
+                "failed": 0,
+                "mean_ms": 6.799633333333333
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "treatment": {
+            "latency": {
+              "count": 12,
+              "mean_ms": 0.23729999999999998,
+              "p50_ms": 0.23615,
+              "p95_ms": 0.242635,
+              "max_ms": 0.2428
+            },
+            "worker_cycle": {
+              "count": 12,
+              "mean_ms": 0.281925,
+              "p50_ms": 0.27980000000000005,
+              "p95_ms": 0.29503999999999997,
+              "max_ms": 0.299
+            },
+            "output_check": {
+              "count": 12,
+              "mean_ms": 0.044625,
+              "p50_ms": 0.04165,
+              "p95_ms": 0.05809999999999999,
+              "max_ms": 0.0669,
+              "total_ms": 0.5355,
+              "share_of_worker_cycle_pct": 15.828677839851025,
+              "basis": "synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time"
+            },
+            "wall_ms": 3.4452,
+            "interventions": 0,
+            "replacement_calls": 12,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3483.106931382794,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 12,
+                "total_ms": 2.792,
+                "max_ms": 0.2383,
+                "failed": 0,
+                "mean_ms": 0.23266666666666666
+              },
+              {
+                "name": "events.unique",
+                "kind": "operation",
+                "count": 12,
+                "total_ms": 0.6193,
+                "max_ms": 0.0559,
+                "failed": 0,
+                "mean_ms": 0.05160833333333333
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "74d386a6fdf9800fe045d07cec0534e62c61bbdef2a0d88286212c2ad5b51d98"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        }
+      ],
+      "observed_gain": true,
+      "randomization": {
+        "pvalue": 0.001953125,
+        "exact": true,
+        "assignments": 1024,
+        "extreme_assignments": 2,
+        "seed": null,
+        "tie_tolerance": 6.770591666666666e-12,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "interpretation": "actual replacement under this workload; output equality is observed on tested request IDs only",
+      "holm_adjusted_p": 0.001953125,
+      "evidence_level": "supported_in_this_experiment",
+      "candidate_improvement": true
+    }
+  ],
+  "measurement_basis": {
+    "latency": "handler await including request trace; excludes its own output check",
+    "worker_cycle": "handler plus synchronous output check, excluding the outer worker scheduling loop",
+    "wall": "all workers, output checks and orchestration; excludes workload setup, warmup and teardown",
+    "interference": "output checks can change request pacing and delay other tasks even when outside the current request timer"
+  },
+  "evidence_policy": {
+    "family": [
+      "ordered_hash_set"
+    ],
+    "correction": "Holm, replacement arms only",
+    "alpha": 0.05,
+    "min_point_gain_pct": 5.0,
+    "scope": "exploratory within-workload support; not preregistered confirmation or a lower bound on the practical margin",
+    "monte_carlo_classification": "approximate p-values are reported but never classified as supported"
+  },
+  "run": {
+    "started_at": "2026-11-14T22:16:04.808508+00:00",
+    "completed_at": "2026-11-14T22:16:05.846086+00:00",
+    "identity": {
+      "digest": "b4ff2b4c9e7f2f2c6e15d242ed89458276a4288b4da2f2d5d7c8c00d43236a77",
+      "manifest": {
+        "checkpoint_schema": 1,
+        "workload_version": "synthetic-events-3000-values-1000-unique-v1",
+        "settings": {
+          "blocks": 10,
+          "requests": 12,
+          "concurrency": 1,
+          "warmup": 2,
+          "seed": 173,
+          "trace_requests": 2,
+          "max_records": 4096,
+          "min_gain_pct": 5.0,
+          "alpha": 0.05
+        },
+        "arms": [
+          {
+            "name": "ordered_hash_set",
+            "kind": "replacement",
+            "site": "events.unique",
+            "delay_ms": 0,
+            "replacement_names": {
+              "events.unique": "examples.unique_case.hash_unique"
+            }
+          }
+        ],
+        "sources": {
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__init__.py": "ab16a13b18c89a7970aa32bd41c015e498f0df328b96901934e5ed1e5eacb7a3",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__main__.py": "442a5a1dcfc2564e6f69f17efe343887dff0c6c83fc3b429e80bd3b644827531",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\asgi.py": "8ed2071ad0f182c52b9decadf92bd12efe64db254f7ab9a1056a96582bd82f3c",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\calibration.py": "26329df46ecb657107dfc85463ad39a3317bc7a803262a2cce16a00485acddce",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\checkpoint.py": "653cd689a48b8ed5700e41b2f438b91481c5b56cea2ae26390bafb5c77abd485",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\experiment.py": "382825a012fc791cf2d6ca4a17aa6548c97f9a8ea5c08996ece04f6f3fd9ce3c",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\local_http.py": "5ab04e5cc5dd5900600b90e256541ecba33151ce1909a36140733fcbce215520",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\ownership.py": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\report.py": "8ea27eb80d6a9dd34a37d34ac28a4658cdd5d30f814bcb78564355ebd3761430",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\scenarios.py": "90b3db36e70912b308881249129b11c7809daabf61a6e2fc7038458ed9a8b9c7",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_http_workload.py": "a2ea0cd73338f18f595789e3ba3610c4c1ad2a34b3efc85066c89b0cf9b675d1",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_workload.py": "287661efeb684b89c4097b3ebf9c342c97c79e6bd72482889ee9f519431ebdeb",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\statistics.py": "012b812e8253c98f926aa928e2f20e2f122dab46bef5e3e73c02cea2e43d232d",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\trace.py": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e",
+          "D:\\CodexWork\\projects\\awaitlab\\examples\\unique_case.py": "5c2e7d6c1809eb000789a0a406f2d3630c7a6a2122d885f8c518a9821e404769"
+        },
+        "python": "3.13.15",
+        "platform": "Windows-11-10.0.26200-SP0"
+      }
+    },
+    "resumed_pairs": 0
+  },
+  "method": "randomized paired closed-loop blocks; percentile bootstrap over block mean differences",
+  "limitations": [
+    "cooperative readiness delay does not simulate CPU work",
+    "delay sensitivity is not inverse speedup prediction",
+    "output hash agreement on tested inputs does not prove semantic equivalence",
+    "p95 changes are descriptive; no inferential tail-latency claim",
+    "replacement p-values use Holm; all conclusions remain exploratory and workload-specific",
+    "synchronous output checks affect closed-loop pacing and may delay other concurrent requests",
+    "explicitly instrumented parent spans are not a complete await/dependency graph"
+  ],
+  "timer_calibration": {
+    "sleep_samples": [
+      {
+        "requested_ms": 1,
+        "count": 7,
+        "mean_ms": 14.880757142857144,
+        "p50_ms": 15.6755,
+        "p95_ms": 15.75319,
+        "max_ms": 15.7609
+      },
+      {
+        "requested_ms": 4,
+        "count": 7,
+        "mean_ms": 15.796142857142858,
+        "p50_ms": 15.8127,
+        "p95_ms": 16.022360000000003,
+        "max_ms": 16.0283
+      },
+      {
+        "requested_ms": 8,
+        "count": 7,
+        "mean_ms": 15.66082857142857,
+        "p50_ms": 15.5142,
+        "p95_ms": 16.10302,
+        "max_ms": 16.1527
+      },
+      {
+        "requested_ms": 10,
+        "count": 7,
+        "mean_ms": 15.594257142857144,
+        "p50_ms": 15.7096,
+        "p95_ms": 16.09124,
+        "max_ms": 16.1873
+      },
+      {
+        "requested_ms": 12,
+        "count": 7,
+        "mean_ms": 15.967085714285714,
+        "p50_ms": 15.797,
+        "p95_ms": 17.29921,
+        "max_ms": 17.8222
+      },
+      {
+        "requested_ms": 20,
+        "count": 7,
+        "mean_ms": 31.33847142857143,
+        "p50_ms": 31.3972,
+        "p95_ms": 31.82949,
+        "max_ms": 31.9044
+      },
+      {
+        "requested_ms": 30,
+        "count": 7,
+        "mean_ms": 31.596328571428575,
+        "p50_ms": 31.8078,
+        "p95_ms": 32.30473,
+        "max_ms": 32.398
+      },
+      {
+        "requested_ms": 32,
+        "count": 7,
+        "mean_ms": 44.720014285714285,
+        "p50_ms": 46.7642,
+        "p95_ms": 47.14404,
+        "max_ms": 47.268
+      }
+    ],
+    "clock": {
+      "perf_counter": {
+        "implementation": "QueryPerformanceCounter()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 1e-07
+      },
+      "monotonic": {
+        "implementation": "QueryPerformanceCounter()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 1e-07
+      }
+    },
+    "note": "measured in an idle calibration; per-arm observed injection includes actual scheduling under load; no timer resolution changes requested"
+  },
+  "scenario": "custom",
+  "title": "按首次出现顺序去重：线性扫描列表与哈希表，真实算法替换",
+  "workload_module": "examples.unique_case",
+  "environment": {
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

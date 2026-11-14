@@ -126,7 +126,7 @@ class Experiment:
                 'operations':session.summaries(), 'trace':[asdict(r) for r in session.records],
                 'trace_dropped':session.dropped_records}
 
-    async def run(self, progress=None, *, checkpoint=None, resume=False, workload_version=None):
+    async def run(self, progress=None, *, checkpoint=None, resume=False, workload_version=None,source_files=()):
         rng=random.Random(self.settings.seed)
         pairs={arm.name:[] for arm in self.arms}
         total=len(self.arms)*self.settings.blocks
@@ -136,7 +136,8 @@ class Experiment:
             for arm in order:
                 sequence=[None,arm];rng.shuffle(sequence)
                 schedule.append({'block':block,'arm':arm.name,'order':['treatment' if x else 'control' for x in sequence]})
-        run_identity=checkpoints.identity(self.workload,self.arms,asdict(self.settings),workload_version) if checkpoint else None
+        source_files=tuple(source_files)
+        run_identity=checkpoints.identity(self.workload,self.arms,asdict(self.settings),workload_version,source_files) if checkpoint else None
         if resume and not checkpoint:raise ValueError('resume requires a checkpoint path')
         started_at=checkpoints.now()
         resumed_pairs=0
@@ -172,7 +173,7 @@ class Experiment:
                 done+=1
                 save('running')
                 if progress:progress(done,total,arm.name)
-            if checkpoint and run_identity!=checkpoints.identity(self.workload,self.arms,asdict(self.settings),workload_version):
+            if checkpoint and run_identity!=checkpoints.identity(self.workload,self.arms,asdict(self.settings),workload_version,source_files):
                 raise RuntimeError('Source code changed during measurement; paired data retained but no final report is verified')
         except BaseException as exc:
             save('interrupted' if isinstance(exc,(asyncio.CancelledError,KeyboardInterrupt)) else 'failed',type(exc).__name__)

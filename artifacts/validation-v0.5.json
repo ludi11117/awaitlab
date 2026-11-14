@@ -1,0 +1,163 @@
+{
+  "version": "0.5.0",
+  "date": "2026-11-15",
+  "unit_integration_tests": 49,
+  "unit_integration_passed": true,
+  "interval_layout_and_union_cases": 640,
+  "browser": {
+    "passed": true,
+    "checks": [
+      "standalone SQLite report",
+      "two real replacement arms",
+      "supported evidence grade",
+      "adjusted inference visible",
+      "workload provenance",
+      "actual fixture size",
+      "actual SQL",
+      "placebo not promoted",
+      "placebo neutral presentation",
+      "treatment timeline",
+      "real HTTP transport scope",
+      "library version",
+      "response, worker cycle and check separately shown",
+      "check cost matches recorded block mean",
+      "sampled request selector",
+      "HTTP and database spans both visible",
+      "sampled HTTP and operation coverage",
+      "uncovered window not called CPU time",
+      "no overlap hides nested spans",
+      "server parent linked to request",
+      "keyboard-accessible recorded parent",
+      "switch sampled request",
+      "preserve request across modes",
+      "mobile width",
+      "timer calibration",
+      "custom business report metadata",
+      "custom comparison and observer metrics",
+      "replacement-only case has no sleep calibration",
+      "custom business report mobile width",
+      "sampled block selector with replay fixture",
+      "empty sampling remains usable",
+      "legacy delay interpretation",
+      "legacy result not silently upgraded",
+      "legacy check cost not assumed zero",
+      "missing legacy values handled",
+      "no JavaScript exceptions",
+      "no network requests"
+    ]
+  },
+  "installation": {
+    "version": "0.5.0",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.5.0\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 17,
+    "wheel_sha256": "cdc0ac30c12965db2c6d4bf3e6c4fd65b4c5d50c09f66d58128b8bdea3ab5450",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.5\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.5\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only"
+  },
+  "custom_algorithm": {
+    "run": {
+      "started_at": "2026-11-14T22:17:17.354909+00:00",
+      "completed_at": "2026-11-14T22:17:18.712214+00:00",
+      "identity": {
+        "digest": "a23a92083872037384fa23378345789c90eb17a2a39d7a0e83982cba00e43af8",
+        "manifest": {
+          "checkpoint_schema": 1,
+          "workload_version": "synthetic-events-3000-values-1000-unique-v1",
+          "settings": {
+            "blocks": 10,
+            "requests": 12,
+            "concurrency": 1,
+            "warmup": 2,
+            "seed": 173,
+            "trace_requests": 2,
+            "max_records": 4096,
+            "min_gain_pct": 5.0,
+            "alpha": 0.05
+          },
+          "arms": [
+            {
+              "name": "ordered_hash_set",
+              "kind": "replacement",
+              "site": "events.unique",
+              "delay_ms": 0,
+              "replacement_names": {
+                "events.unique": "examples.unique_case.hash_unique"
+              }
+            }
+          ],
+          "sources": {
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__init__.py": "ab16a13b18c89a7970aa32bd41c015e498f0df328b96901934e5ed1e5eacb7a3",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__main__.py": "48b9b319e55aa30be9585720b13c0982d9d8da413268d69b37333f539349a183",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\asgi.py": "8ed2071ad0f182c52b9decadf92bd12efe64db254f7ab9a1056a96582bd82f3c",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\calibration.py": "26329df46ecb657107dfc85463ad39a3317bc7a803262a2cce16a00485acddce",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\checkpoint.py": "653cd689a48b8ed5700e41b2f438b91481c5b56cea2ae26390bafb5c77abd485",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\experiment.py": "382825a012fc791cf2d6ca4a17aa6548c97f9a8ea5c08996ece04f6f3fd9ce3c",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\local_http.py": "5ab04e5cc5dd5900600b90e256541ecba33151ce1909a36140733fcbce215520",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\ownership.py": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\report.py": "8ea27eb80d6a9dd34a37d34ac28a4658cdd5d30f814bcb78564355ebd3761430",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\scenarios.py": "90b3db36e70912b308881249129b11c7809daabf61a6e2fc7038458ed9a8b9c7",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_http_workload.py": "a2ea0cd73338f18f595789e3ba3610c4c1ad2a34b3efc85066c89b0cf9b675d1",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_workload.py": "287661efeb684b89c4097b3ebf9c342c97c79e6bd72482889ee9f519431ebdeb",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\statistics.py": "012b812e8253c98f926aa928e2f20e2f122dab46bef5e3e73c02cea2e43d232d",
+            "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\trace.py": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e",
+            "D:\\CodexWork\\projects\\awaitlab\\examples\\unique_case.py": "5a37ea87b38c8fa38c77a073071cdc044973d80f422be32ba61d16b26a10eb2b"
+          },
+          "python": "3.13.15",
+          "platform": "Windows-11-10.0.26200-SP0"
+        }
+      },
+      "resumed_pairs": 10
+    },
+    "settings": {
+      "blocks": 10,
+      "requests": 12,
+      "concurrency": 1,
+      "warmup": 2,
+      "seed": 173,
+      "trace_requests": 2,
+      "max_records": 4096,
+      "min_gain_pct": 5.0,
+      "alpha": 0.05
+    },
+    "comparison": {
+      "name": "ordered_hash_set",
+      "control_mean_ms": 6.936406666666666,
+      "treatment_mean_ms": 0.23611916666666666,
+      "effect": {
+        "mean_delta_ms": -6.7002875,
+        "ci95_delta_ms": [
+          -6.733009291666666,
+          -6.670358979166666
+        ],
+        "mean_change_pct": -96.59594400943428,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "output_equivalence": true,
+      "holm_adjusted_p": 0.001953125,
+      "evidence_level": "supported_in_this_experiment"
+    },
+    "limits": "standard known algorithm, synthetic integer events, one CPU worker, exploratory evidence"
+  },
+  "historical_data": "SQLite latest measured with0.4.0, allocation probe with0.4.1; no claim of new version remeasurement"
+}
