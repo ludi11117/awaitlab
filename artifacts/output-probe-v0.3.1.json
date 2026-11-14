@@ -1,0 +1,403 @@
+{
+  "plan": {
+    "version": "0.3.1",
+    "payload_sizes": [
+      32,
+      65536,
+      1048576
+    ],
+    "pairs": 7,
+    "requests": 40,
+    "concurrency": 4,
+    "sleep_seconds": 0.008,
+    "seed": 617,
+    "scope": "controlled immutable-output fixture; precomputed oracle removes fingerprint CPU only; not usable for unknown business outputs",
+    "sources": {
+      "experiment.py": "c1074f3501a64f53f5febe7e4208dd74250584f485c78c99201ebf81cd048a0a",
+      "trace.py": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b"
+    }
+  },
+  "cases": [
+    {
+      "payload_bytes": 32,
+      "pairs": [
+        {
+          "block": 0,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 15.554255000000001,
+            "wall_ms": 155.8833
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.818142499999999,
+            "wall_ms": 158.3838
+          }
+        },
+        {
+          "block": 1,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 15.646305000000002,
+            "wall_ms": 156.7615
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.6645075,
+            "wall_ms": 156.8283
+          }
+        },
+        {
+          "block": 2,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 15.516485,
+            "wall_ms": 155.5253
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.672149999999998,
+            "wall_ms": 156.8923
+          }
+        },
+        {
+          "block": 3,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 15.780067500000001,
+            "wall_ms": 158.1017
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.731987499999999,
+            "wall_ms": 157.4689
+          }
+        },
+        {
+          "block": 4,
+          "order": [
+            "precomputed_oracle",
+            "inline"
+          ],
+          "precomputed_oracle": {
+            "mean_ms": 15.691145,
+            "wall_ms": 157.0757
+          },
+          "inline": {
+            "mean_ms": 15.724612500000001,
+            "wall_ms": 157.5311
+          }
+        },
+        {
+          "block": 5,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 15.767904999999999,
+            "wall_ms": 158.0005
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.627279999999999,
+            "wall_ms": 156.4494
+          }
+        },
+        {
+          "block": 6,
+          "order": [
+            "precomputed_oracle",
+            "inline"
+          ],
+          "precomputed_oracle": {
+            "mean_ms": 15.6991475,
+            "wall_ms": 157.1851
+          },
+          "inline": {
+            "mean_ms": 15.399677500000001,
+            "wall_ms": 154.3712
+          }
+        }
+      ],
+      "oracle_minus_inline_effect": {
+        "mean_delta_ms": 0.07357892857142723,
+        "ci95_delta_ms": [
+          -0.03809453571428681,
+          0.19043039285714197
+        ],
+        "mean_change_pct": 0.470843551139577,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 7,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 617,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "all_expected_outputs_equal": true
+    },
+    {
+      "payload_bytes": 65536,
+      "pairs": [
+        {
+          "block": 0,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 15.37057,
+            "wall_ms": 157.2307
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.6143325,
+            "wall_ms": 156.32
+          }
+        },
+        {
+          "block": 1,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 15.504015,
+            "wall_ms": 158.5694
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.5062725,
+            "wall_ms": 155.2193
+          }
+        },
+        {
+          "block": 2,
+          "order": [
+            "precomputed_oracle",
+            "inline"
+          ],
+          "precomputed_oracle": {
+            "mean_ms": 15.614582500000001,
+            "wall_ms": 156.3153
+          },
+          "inline": {
+            "mean_ms": 15.3608125,
+            "wall_ms": 157.1532
+          }
+        },
+        {
+          "block": 3,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 15.447142500000002,
+            "wall_ms": 157.8847
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.5181375,
+            "wall_ms": 155.3431
+          }
+        },
+        {
+          "block": 4,
+          "order": [
+            "precomputed_oracle",
+            "inline"
+          ],
+          "precomputed_oracle": {
+            "mean_ms": 15.688970000000001,
+            "wall_ms": 157.0774
+          },
+          "inline": {
+            "mean_ms": 15.4142575,
+            "wall_ms": 157.409
+          }
+        },
+        {
+          "block": 5,
+          "order": [
+            "precomputed_oracle",
+            "inline"
+          ],
+          "precomputed_oracle": {
+            "mean_ms": 15.586577499999999,
+            "wall_ms": 156.0273
+          },
+          "inline": {
+            "mean_ms": 15.2425925,
+            "wall_ms": 155.725
+          }
+        },
+        {
+          "block": 6,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 15.407150000000001,
+            "wall_ms": 157.2689
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.552179999999998,
+            "wall_ms": 155.6818
+          }
+        }
+      ],
+      "oracle_minus_inline_effect": {
+        "mean_delta_ms": 0.19064464285714194,
+        "ci95_delta_ms": [
+          0.1028853660714274,
+          0.2726144464285698
+        ],
+        "mean_change_pct": 1.2385664541988861,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 7,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 617,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "all_expected_outputs_equal": true
+    },
+    {
+      "payload_bytes": 1048576,
+      "pairs": [
+        {
+          "block": 0,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 11.8158225,
+            "wall_ms": 159.4383
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.8047875,
+            "wall_ms": 158.2243
+          }
+        },
+        {
+          "block": 1,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 11.4771575,
+            "wall_ms": 153.388
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.029855000000001,
+            "wall_ms": 150.4637
+          }
+        },
+        {
+          "block": 2,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 10.5394875,
+            "wall_ms": 141.1737
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.584635,
+            "wall_ms": 156.0073
+          }
+        },
+        {
+          "block": 3,
+          "order": [
+            "precomputed_oracle",
+            "inline"
+          ],
+          "precomputed_oracle": {
+            "mean_ms": 15.905529999999999,
+            "wall_ms": 159.2504
+          },
+          "inline": {
+            "mean_ms": 12.4590525,
+            "wall_ms": 167.2973
+          }
+        },
+        {
+          "block": 4,
+          "order": [
+            "precomputed_oracle",
+            "inline"
+          ],
+          "precomputed_oracle": {
+            "mean_ms": 15.78492,
+            "wall_ms": 158.066
+          },
+          "inline": {
+            "mean_ms": 11.57099,
+            "wall_ms": 154.8906
+          }
+        },
+        {
+          "block": 5,
+          "order": [
+            "inline",
+            "precomputed_oracle"
+          ],
+          "inline": {
+            "mean_ms": 12.270587500000001,
+            "wall_ms": 163.6758
+          },
+          "precomputed_oracle": {
+            "mean_ms": 15.590452500000001,
+            "wall_ms": 156.0868
+          }
+        },
+        {
+          "block": 6,
+          "order": [
+            "precomputed_oracle",
+            "inline"
+          ],
+          "precomputed_oracle": {
+            "mean_ms": 15.651034999999998,
+            "wall_ms": 156.6953
+          },
+          "inline": {
+            "mean_ms": 12.06298,
+            "wall_ms": 161.3136
+          }
+        }
+      ],
+      "oracle_minus_inline_effect": {
+        "mean_delta_ms": 3.879305357142857,
+        "ci95_delta_ms": [
+          3.5260941874999987,
+          4.332834526785715
+        ],
+        "mean_change_pct": 33.03702357329641,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 7,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 617,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "all_expected_outputs_equal": true
+    }
+  ]
+}
