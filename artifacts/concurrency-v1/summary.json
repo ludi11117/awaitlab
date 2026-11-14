@@ -1,0 +1,376 @@
+{
+  "plan": {
+    "protocol": "sqlite-concurrency-v1",
+    "scenario_order": [
+      "sqlite",
+      "sqlite-http"
+    ],
+    "concurrency_order": [
+      1,
+      4,
+      8
+    ],
+    "blocks": 10,
+    "requests": 32,
+    "warmup": 4,
+    "seed": 173,
+    "library_version": "0.3.1",
+    "driver_sha256": "e910bc61fc2e9201833ca7c2a45dbfbdaa946294f0fd9ade6b142ba0e04c82cf",
+    "scope": "each case is exploratory; Holm covers replacement arms within a case, not the entire sweep"
+  },
+  "state": "complete",
+  "environment": {
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "cases": [
+    {
+      "name": "sqlite-c1",
+      "concurrency": 1,
+      "scenario": "sqlite",
+      "seconds": 5.989757999999711,
+      "process_rss_peak_mib": 37.13671875,
+      "memory_scope": "50ms samples of the whole benchmark process; includes imports, driver and prior cases; not isolated service memory",
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "control_mean_ms": 4.76186125,
+          "treatment_mean_ms": 0.7113287500000001,
+          "effect": {
+            "mean_delta_ms": -4.0505325,
+            "ci95_delta_ms": [
+              -4.1688139140625005,
+              -3.9247802109375
+            ],
+            "mean_change_pct": -85.06195975365725,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.00390625,
+          "evidence_level": "supported_in_this_experiment",
+          "output_equivalence": true
+        },
+        {
+          "name": "unchanged_lookup",
+          "control_mean_ms": 4.8390234375,
+          "treatment_mean_ms": 4.74374125,
+          "effect": {
+            "mean_delta_ms": -0.09528218750000006,
+            "ci95_delta_ms": [
+              -0.18270263281250004,
+              -0.006769375000000083
+            ],
+            "mean_change_pct": -1.9690375285560835,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.080078125,
+          "evidence_level": "below_practical_threshold",
+          "output_equivalence": true
+        }
+      ]
+    },
+    {
+      "name": "sqlite-c4",
+      "concurrency": 4,
+      "scenario": "sqlite",
+      "seconds": 3.3688132999996014,
+      "process_rss_peak_mib": 45.54296875,
+      "memory_scope": "50ms samples of the whole benchmark process; includes imports, driver and prior cases; not isolated service memory",
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "control_mean_ms": 7.9246578125,
+          "treatment_mean_ms": 1.418609375,
+          "effect": {
+            "mean_delta_ms": -6.5060484375000005,
+            "ci95_delta_ms": [
+              -7.2762090468750005,
+              -5.831973195312501
+            ],
+            "mean_change_pct": -82.0987933035752,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.00390625,
+          "evidence_level": "supported_in_this_experiment",
+          "output_equivalence": true
+        },
+        {
+          "name": "unchanged_lookup",
+          "control_mean_ms": 8.137185624999999,
+          "treatment_mean_ms": 7.7555,
+          "effect": {
+            "mean_delta_ms": -0.38168562500000014,
+            "ci95_delta_ms": [
+              -0.7915245000000002,
+              -0.0394842187500004
+            ],
+            "mean_change_pct": -4.6906343616807895,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.0859375,
+          "evidence_level": "below_practical_threshold",
+          "output_equivalence": true
+        }
+      ]
+    },
+    {
+      "name": "sqlite-c8",
+      "concurrency": 8,
+      "scenario": "sqlite",
+      "seconds": 2.8744932000008703,
+      "process_rss_peak_mib": 55.703125,
+      "memory_scope": "50ms samples of the whole benchmark process; includes imports, driver and prior cases; not isolated service memory",
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "control_mean_ms": 10.6006759375,
+          "treatment_mean_ms": 2.4464321875,
+          "effect": {
+            "mean_delta_ms": -8.154243750000001,
+            "ci95_delta_ms": [
+              -9.428788046875,
+              -7.088291054687501
+            ],
+            "mean_change_pct": -76.92192269696953,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.00390625,
+          "evidence_level": "supported_in_this_experiment",
+          "output_equivalence": true
+        },
+        {
+          "name": "unchanged_lookup",
+          "control_mean_ms": 9.553081562500001,
+          "treatment_mean_ms": 10.4232203125,
+          "effect": {
+            "mean_delta_ms": 0.87013875,
+            "ci95_delta_ms": [
+              -0.0067992812500002,
+              1.7026887734374998
+            ],
+            "mean_change_pct": 9.10846143526789,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.07421875,
+          "evidence_level": "no_observed_gain",
+          "output_equivalence": true
+        }
+      ]
+    },
+    {
+      "name": "sqlite-http-c1",
+      "concurrency": 1,
+      "scenario": "sqlite-http",
+      "seconds": 26.562682900000254,
+      "process_rss_peak_mib": 74.9609375,
+      "memory_scope": "50ms samples of the whole benchmark process; includes imports, driver and prior cases; not isolated service memory",
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "control_mean_ms": 5.44101875,
+          "treatment_mean_ms": 1.6466025000000002,
+          "effect": {
+            "mean_delta_ms": -3.7944162500000003,
+            "ci95_delta_ms": [
+              -4.057415828125,
+              -3.5327891953124997
+            ],
+            "mean_change_pct": -69.73723900510359,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.00390625,
+          "evidence_level": "supported_in_this_experiment",
+          "output_equivalence": true
+        },
+        {
+          "name": "unchanged_lookup",
+          "control_mean_ms": 5.584223124999999,
+          "treatment_mean_ms": 5.6109340625,
+          "effect": {
+            "mean_delta_ms": 0.026710937500000042,
+            "ci95_delta_ms": [
+              -0.3914404375000001,
+              0.39699876562499975
+            ],
+            "mean_change_pct": 0.47832862158423417,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.90234375,
+          "evidence_level": "no_observed_gain",
+          "output_equivalence": true
+        }
+      ]
+    },
+    {
+      "name": "sqlite-http-c4",
+      "concurrency": 4,
+      "scenario": "sqlite-http",
+      "seconds": 24.572733800000606,
+      "process_rss_peak_mib": 82.859375,
+      "memory_scope": "50ms samples of the whole benchmark process; includes imports, driver and prior cases; not isolated service memory",
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "control_mean_ms": 10.2756734375,
+          "treatment_mean_ms": 5.560775312500001,
+          "effect": {
+            "mean_delta_ms": -4.7148981249999995,
+            "ci95_delta_ms": [
+              -5.1878731015625,
+              -4.246999695312501
+            ],
+            "mean_change_pct": -45.884079069635185,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.00390625,
+          "evidence_level": "supported_in_this_experiment",
+          "output_equivalence": true
+        },
+        {
+          "name": "unchanged_lookup",
+          "control_mean_ms": 10.176331874999999,
+          "treatment_mean_ms": 9.858407812500001,
+          "effect": {
+            "mean_delta_ms": -0.31792406250000005,
+            "ci95_delta_ms": [
+              -0.6549487265624999,
+              0.06584472656249965
+            ],
+            "mean_change_pct": -3.1241518693099546,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.134765625,
+          "evidence_level": "below_practical_threshold",
+          "output_equivalence": true
+        }
+      ]
+    },
+    {
+      "name": "sqlite-http-c8",
+      "concurrency": 8,
+      "scenario": "sqlite-http",
+      "seconds": 22.017492299999503,
+      "process_rss_peak_mib": 92.40625,
+      "memory_scope": "50ms samples of the whole benchmark process; includes imports, driver and prior cases; not isolated service memory",
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "control_mean_ms": 15.815167812499999,
+          "treatment_mean_ms": 12.08598125,
+          "effect": {
+            "mean_delta_ms": -3.7291865625,
+            "ci95_delta_ms": [
+              -5.1842559140625,
+              -2.5761206015625016
+            ],
+            "mean_change_pct": -23.579810260075284,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.00390625,
+          "evidence_level": "supported_in_this_experiment",
+          "output_equivalence": true
+        },
+        {
+          "name": "unchanged_lookup",
+          "control_mean_ms": 15.6740625,
+          "treatment_mean_ms": 14.936571562500001,
+          "effect": {
+            "mean_delta_ms": -0.7374909375000002,
+            "ci95_delta_ms": [
+              -1.5931796015625002,
+              0.0878016953124986
+            ],
+            "mean_change_pct": -4.705167773192165,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.142578125,
+          "evidence_level": "below_practical_threshold",
+          "output_equivalence": true
+        }
+      ]
+    }
+  ]
+}

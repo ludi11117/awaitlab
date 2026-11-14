@@ -2,6 +2,7 @@ import asyncio
 from dataclasses import asdict, dataclass, field
 import hashlib
 import json
+import math
 import random
 import statistics
 import time
@@ -50,11 +51,12 @@ class Experiment:
         """workload() is a fresh async context manager yielding handler(request_id)."""
         self.workload,self.arms,self.settings=workload,list(arms),settings or Settings()
         self.settings.validate()
+        if not self.arms:raise ValueError('Need at least one experiment arm')
         names=[a.name for a in self.arms]
         if len(set(names))!=len(names) or 'control' in names:
             raise ValueError('Arm names must be unique; control is reserved')
         for arm in self.arms:
-            if arm.kind not in ('delay','replacement') or (arm.kind=='delay' and arm.delay_ms<=0):
+            if arm.kind not in ('delay','replacement') or (arm.kind=='delay' and (not math.isfinite(arm.delay_ms) or arm.delay_ms<=0)):
                 raise ValueError('Use positive cooperative delay or actual replacement arms')
             if arm.kind=='replacement' and arm.site not in arm.replacements:
                 raise ValueError('Replacement arm must replace its named site')

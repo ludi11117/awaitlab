@@ -1,0 +1,2237 @@
+{
+  "schema_version": 3,
+  "library_version": "0.3.1",
+  "settings": {
+    "blocks": 10,
+    "requests": 32,
+    "concurrency": 8,
+    "warmup": 4,
+    "seed": 173,
+    "trace_requests": 2,
+    "max_records": 4096,
+    "min_gain_pct": 5.0,
+    "alpha": 0.05
+  },
+  "comparisons": [
+    {
+      "name": "indexed_lookup",
+      "kind": "replacement",
+      "site": "customer.lookup",
+      "delay_ms": 0,
+      "control_mean_ms": 10.6006759375,
+      "treatment_mean_ms": 2.4464321875,
+      "output_equivalence": true,
+      "effect": {
+        "mean_delta_ms": -8.154243750000001,
+        "ci95_delta_ms": [
+          -9.428788046875,
+          -7.088291054687501
+        ],
+        "mean_change_pct": -76.92192269696953,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "descriptive_p95_change_pct": -75.75387975878178,
+      "blocks": [
+        {
+          "block": 0,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 10.27308125,
+              "p50_ms": 10.630849999999999,
+              "p95_ms": 12.244075,
+              "max_ms": 12.8118
+            },
+            "wall_ms": 42.6892,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 749.6041153265932,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 328.31149999999997,
+                "max_ms": 12.8011,
+                "failed": 0,
+                "mean_ms": 10.259734374999999
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 327.90549999999996,
+                "max_ms": 12.7858,
+                "failed": 0,
+                "mean_ms": 10.247046874999999
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "customer.lookup",
+                "kind": "operation",
+                "start_ms": 0.0526,
+                "duration_ms": 10.8331,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0496,
+                "duration_ms": 10.8532,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": 3,
+                "request": 1,
+                "task": 2,
+                "name": "customer.lookup",
+                "kind": "operation",
+                "start_ms": 0.0794,
+                "duration_ms": 12.7858,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0762,
+                "duration_ms": 12.8011,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.292453125,
+              "p50_ms": 2.20615,
+              "p95_ms": 3.3602950000000003,
+              "max_ms": 3.5901
+            },
+            "wall_ms": 9.8749,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3240.5391447001994,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 73.0356,
+                "max_ms": 3.5796,
+                "failed": 0,
+                "mean_ms": 2.2823625
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 72.7531,
+                "max_ms": 3.5685,
+                "failed": 0,
+                "mean_ms": 2.273534375
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "customer.lookup",
+                "kind": "operation",
+                "start_ms": 0.049,
+                "duration_ms": 2.4634,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0466,
+                "duration_ms": 2.4876,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": 3,
+                "request": 1,
+                "task": 2,
+                "name": "customer.lookup",
+                "kind": "operation",
+                "start_ms": 0.0696,
+                "duration_ms": 3.5685,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0671,
+                "duration_ms": 3.5796,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 1,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 9.728190625,
+              "p50_ms": 8.520299999999999,
+              "p95_ms": 14.197754999999999,
+              "max_ms": 14.4965
+            },
+            "wall_ms": 41.0755,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 779.05320689949,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 310.89660000000003,
+                "max_ms": 14.4877,
+                "failed": 0,
+                "mean_ms": 9.715518750000001
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 310.5287000000001,
+                "max_ms": 14.4807,
+                "failed": 0,
+                "mean_ms": 9.704021875000002
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.64963125,
+              "p50_ms": 2.70805,
+              "p95_ms": 3.822745,
+              "max_ms": 4.1101
+            },
+            "wall_ms": 11.3525,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 2818.7623871393967,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 84.3873,
+                "max_ms": 4.0968,
+                "failed": 0,
+                "mean_ms": 2.637103125
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 84.04949999999998,
+                "max_ms": 4.0856,
+                "failed": 0,
+                "mean_ms": 2.6265468749999994
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 2,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 8.881746875,
+              "p50_ms": 8.4,
+              "p95_ms": 10.811045,
+              "max_ms": 11.6321
+            },
+            "wall_ms": 36.6169,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 873.9134115667902,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 283.8424,
+                "max_ms": 11.6224,
+                "failed": 0,
+                "mean_ms": 8.870075
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 283.49879999999996,
+                "max_ms": 11.6132,
+                "failed": 0,
+                "mean_ms": 8.859337499999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.489671875,
+              "p50_ms": 2.3056,
+              "p95_ms": 3.84596,
+              "max_ms": 4.2028
+            },
+            "wall_ms": 10.5385,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3036.4852683019403,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 79.32570000000001,
+                "max_ms": 4.194,
+                "failed": 0,
+                "mean_ms": 2.4789281250000004
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 79.03030000000001,
+                "max_ms": 4.1856,
+                "failed": 0,
+                "mean_ms": 2.4696968750000003
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 3,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 14.258700000000001,
+              "p50_ms": 13.82915,
+              "p95_ms": 17.13412,
+              "max_ms": 29.7017
+            },
+            "wall_ms": 61.5895,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 519.5690823922909,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 455.9034,
+                "max_ms": 29.688,
+                "failed": 0,
+                "mean_ms": 14.24698125
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 455.5679,
+                "max_ms": 29.6716,
+                "failed": 0,
+                "mean_ms": 14.236496875
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.574540625,
+              "p50_ms": 2.5471,
+              "p95_ms": 3.486185,
+              "max_ms": 3.8747
+            },
+            "wall_ms": 11.0536,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 2894.984439458638,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 82.01970000000001,
+                "max_ms": 3.8609,
+                "failed": 0,
+                "mean_ms": 2.5631156250000005
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 81.71000000000001,
+                "max_ms": 3.847,
+                "failed": 0,
+                "mean_ms": 2.5534375000000002
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 4,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 10.396034375,
+              "p50_ms": 8.98115,
+              "p95_ms": 15.780814999999999,
+              "max_ms": 16.2511
+            },
+            "wall_ms": 43.6525,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 733.0622530210183,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 332.2104999999999,
+                "max_ms": 16.2394,
+                "failed": 0,
+                "mean_ms": 10.381578124999997
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 331.79200000000003,
+                "max_ms": 16.2276,
+                "failed": 0,
+                "mean_ms": 10.368500000000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.43401875,
+              "p50_ms": 2.3014,
+              "p95_ms": 3.4691249999999996,
+              "max_ms": 3.7018
+            },
+            "wall_ms": 10.5514,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3032.7729021741193,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 77.53189999999998,
+                "max_ms": 3.6925,
+                "failed": 0,
+                "mean_ms": 2.4228718749999993
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 77.2229,
+                "max_ms": 3.6843,
+                "failed": 0,
+                "mean_ms": 2.413215625
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 5,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 11.846146875,
+              "p50_ms": 11.6478,
+              "p95_ms": 14.148200000000001,
+              "max_ms": 14.6489
+            },
+            "wall_ms": 48.3999,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 661.1583908231215,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 378.6258000000001,
+                "max_ms": 14.6381,
+                "failed": 0,
+                "mean_ms": 11.832056250000003
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 378.2169,
+                "max_ms": 14.6292,
+                "failed": 0,
+                "mean_ms": 11.819278125
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.52380625,
+              "p50_ms": 2.49775,
+              "p95_ms": 3.602595,
+              "max_ms": 3.8439
+            },
+            "wall_ms": 10.7673,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 2971.961401651296,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 80.37549999999999,
+                "max_ms": 3.8364,
+                "failed": 0,
+                "mean_ms": 2.5117343749999996
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 80.04400000000001,
+                "max_ms": 3.8305,
+                "failed": 0,
+                "mean_ms": 2.5013750000000003
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 6,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 8.924903125,
+              "p50_ms": 8.6479,
+              "p95_ms": 10.716295,
+              "max_ms": 13.6703
+            },
+            "wall_ms": 37.6643,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 849.6109047559626,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 285.19989999999996,
+                "max_ms": 13.6585,
+                "failed": 0,
+                "mean_ms": 8.912496874999999
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 284.84509999999995,
+                "max_ms": 13.645,
+                "failed": 0,
+                "mean_ms": 8.901409374999998
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.385790625,
+              "p50_ms": 2.2611999999999997,
+              "p95_ms": 3.478945,
+              "max_ms": 3.507
+            },
+            "wall_ms": 10.2028,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3136.393931077743,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 75.9822,
+                "max_ms": 3.497,
+                "failed": 0,
+                "mean_ms": 2.37444375
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 75.67299999999999,
+                "max_ms": 3.4884,
+                "failed": 0,
+                "mean_ms": 2.3647812499999996
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 7,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 8.647575,
+              "p50_ms": 8.8641,
+              "p95_ms": 10.18728,
+              "max_ms": 10.3027
+            },
+            "wall_ms": 35.9607,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 889.860319737936,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 276.3023,
+                "max_ms": 10.2942,
+                "failed": 0,
+                "mean_ms": 8.634446875
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 275.92220000000003,
+                "max_ms": 10.2834,
+                "failed": 0,
+                "mean_ms": 8.622568750000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.4494625,
+              "p50_ms": 2.2846,
+              "p95_ms": 3.7741399999999996,
+              "max_ms": 3.8902
+            },
+            "wall_ms": 10.4436,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3064.0775211612854,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 78.0364,
+                "max_ms": 3.8829,
+                "failed": 0,
+                "mean_ms": 2.4386375
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 77.74109999999999,
+                "max_ms": 3.8773,
+                "failed": 0,
+                "mean_ms": 2.4294093749999996
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 8,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 13.72885625,
+              "p50_ms": 9.6177,
+              "p95_ms": 29.671555,
+              "max_ms": 30.4518
+            },
+            "wall_ms": 57.8271,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 553.3737642039805,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 438.8975,
+                "max_ms": 30.4338,
+                "failed": 0,
+                "mean_ms": 13.715546875
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 438.5176,
+                "max_ms": 30.4233,
+                "failed": 0,
+                "mean_ms": 13.703675
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.362,
+              "p50_ms": 2.3360000000000003,
+              "p95_ms": 3.566335,
+              "max_ms": 3.6121
+            },
+            "wall_ms": 10.15,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3152.7093596059112,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 75.25600000000001,
+                "max_ms": 3.605,
+                "failed": 0,
+                "mean_ms": 2.3517500000000005
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 74.9748,
+                "max_ms": 3.5988,
+                "failed": 0,
+                "mean_ms": 2.3429625
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 9,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 9.321525,
+              "p50_ms": 8.64125,
+              "p95_ms": 12.733694999999999,
+              "max_ms": 12.9236
+            },
+            "wall_ms": 39.2043,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 816.2369944113273,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 297.88300000000004,
+                "max_ms": 12.9141,
+                "failed": 0,
+                "mean_ms": 9.308843750000001
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 297.5226,
+                "max_ms": 12.9042,
+                "failed": 0,
+                "mean_ms": 9.29758125
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 2.302946875,
+              "p50_ms": 2.2403,
+              "p95_ms": 3.3869700000000003,
+              "max_ms": 3.5043
+            },
+            "wall_ms": 10.1897,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 3140.4261165686917,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 73.3377,
+                "max_ms": 3.4963,
+                "failed": 0,
+                "mean_ms": 2.291803125
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 73.03070000000001,
+                "max_ms": 3.4903,
+                "failed": 0,
+                "mean_ms": 2.2822093750000003
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        }
+      ],
+      "observed_gain": true,
+      "randomization": {
+        "pvalue": 0.001953125,
+        "exact": true,
+        "assignments": 1024,
+        "extreme_assignments": 2,
+        "seed": null,
+        "tie_tolerance": 1.1684159375e-11,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "interpretation": "actual replacement under this workload; output equality is observed on tested request IDs only",
+      "holm_adjusted_p": 0.00390625,
+      "evidence_level": "supported_in_this_experiment",
+      "candidate_improvement": true
+    },
+    {
+      "name": "unchanged_lookup",
+      "kind": "replacement",
+      "site": "customer.lookup",
+      "delay_ms": 0,
+      "control_mean_ms": 9.553081562500001,
+      "treatment_mean_ms": 10.4232203125,
+      "output_equivalence": true,
+      "effect": {
+        "mean_delta_ms": 0.87013875,
+        "ci95_delta_ms": [
+          -0.0067992812500002,
+          1.7026887734374998
+        ],
+        "mean_change_pct": 9.10846143526789,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "descriptive_p95_change_pct": 33.426258222063,
+      "blocks": [
+        {
+          "block": 0,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 9.983290625,
+              "p50_ms": 10.137699999999999,
+              "p95_ms": 11.44375,
+              "max_ms": 12.6775
+            },
+            "wall_ms": 40.941,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 781.612564421973,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 319.0599999999999,
+                "max_ms": 12.6685,
+                "failed": 0,
+                "mean_ms": 9.970624999999997
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 318.66409999999996,
+                "max_ms": 12.6581,
+                "failed": 0,
+                "mean_ms": 9.958253124999999
+              }
+            ],
+            "trace": [
+              {
+                "id": 4,
+                "parent": 3,
+                "request": 1,
+                "task": 1,
+                "name": "customer.lookup",
+                "kind": "operation",
+                "start_ms": 0.0973,
+                "duration_ms": 10.6155,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": null,
+                "request": 1,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0927,
+                "duration_ms": 10.6522,
+                "failed": false
+              },
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 2,
+                "name": "customer.lookup",
+                "kind": "operation",
+                "start_ms": 0.0626,
+                "duration_ms": 10.9939,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.059,
+                "duration_ms": 11.0126,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 11.205240625,
+              "p50_ms": 9.9453,
+              "p95_ms": 16.32562,
+              "max_ms": 17.8819
+            },
+            "wall_ms": 46.262,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 691.7124205611517,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 358.1074,
+                "max_ms": 17.8602,
+                "failed": 0,
+                "mean_ms": 11.19085625
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 357.6738,
+                "max_ms": 17.8433,
+                "failed": 0,
+                "mean_ms": 11.17730625
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "customer.lookup",
+                "kind": "operation",
+                "start_ms": 0.0565,
+                "duration_ms": 9.5303,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0534,
+                "duration_ms": 9.5463,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": 3,
+                "request": 1,
+                "task": 2,
+                "name": "customer.lookup",
+                "kind": "operation",
+                "start_ms": 0.0866,
+                "duration_ms": 10.3031,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.083,
+                "duration_ms": 10.3227,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 1,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 11.2546,
+              "p50_ms": 11.193950000000001,
+              "p95_ms": 16.356545,
+              "max_ms": 16.8794
+            },
+            "wall_ms": 46.6735,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 685.6138922514917,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 359.7146,
+                "max_ms": 16.8633,
+                "failed": 0,
+                "mean_ms": 11.24108125
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 359.3181000000001,
+                "max_ms": 16.8505,
+                "failed": 0,
+                "mean_ms": 11.228690625000002
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 9.78455,
+              "p50_ms": 8.32055,
+              "p95_ms": 15.372745,
+              "max_ms": 15.6192
+            },
+            "wall_ms": 41.3347,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 774.1679508983977,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 312.66579999999993,
+                "max_ms": 15.6056,
+                "failed": 0,
+                "mean_ms": 9.770806249999998
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 312.26969999999994,
+                "max_ms": 15.5927,
+                "failed": 0,
+                "mean_ms": 9.758428124999998
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 2,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 9.274665625,
+              "p50_ms": 9.458100000000002,
+              "p95_ms": 10.633944999999999,
+              "max_ms": 10.9407
+            },
+            "wall_ms": 38.5457,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 830.1833927000937,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 296.3772,
+                "max_ms": 10.9271,
+                "failed": 0,
+                "mean_ms": 9.2617875
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 296.0065000000001,
+                "max_ms": 10.9148,
+                "failed": 0,
+                "mean_ms": 9.250203125000002
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 9.351865625,
+              "p50_ms": 9.5599,
+              "p95_ms": 10.67972,
+              "max_ms": 10.9878
+            },
+            "wall_ms": 38.6218,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 828.5476078277035,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 298.8107,
+                "max_ms": 10.9699,
+                "failed": 0,
+                "mean_ms": 9.337834375
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 298.4011000000001,
+                "max_ms": 10.958,
+                "failed": 0,
+                "mean_ms": 9.325034375000003
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 3,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 9.697803125,
+              "p50_ms": 9.786950000000001,
+              "p95_ms": 11.212299999999999,
+              "max_ms": 11.4702
+            },
+            "wall_ms": 41.067,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 779.2144544281297,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 309.93980000000005,
+                "max_ms": 11.4597,
+                "failed": 0,
+                "mean_ms": 9.685618750000001
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 309.58600000000007,
+                "max_ms": 11.4509,
+                "failed": 0,
+                "mean_ms": 9.674562500000002
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 8.51390625,
+              "p50_ms": 8.2251,
+              "p95_ms": 10.918334999999999,
+              "max_ms": 11.6475
+            },
+            "wall_ms": 35.3962,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 904.0518473734469,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 272.0207,
+                "max_ms": 11.639,
+                "failed": 0,
+                "mean_ms": 8.500646875
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 271.6366999999999,
+                "max_ms": 11.6306,
+                "failed": 0,
+                "mean_ms": 8.488646874999997
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 4,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 10.397140625,
+              "p50_ms": 9.21535,
+              "p95_ms": 14.889714999999999,
+              "max_ms": 15.5328
+            },
+            "wall_ms": 42.8033,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 747.6059088902024,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 332.2961,
+                "max_ms": 15.5243,
+                "failed": 0,
+                "mean_ms": 10.384253125
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 331.915,
+                "max_ms": 15.5163,
+                "failed": 0,
+                "mean_ms": 10.37234375
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 11.891190625,
+              "p50_ms": 10.4129,
+              "p95_ms": 20.304584999999996,
+              "max_ms": 24.3854
+            },
+            "wall_ms": 52.3358,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 611.4361488694163,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 380.10749999999996,
+                "max_ms": 24.3739,
+                "failed": 0,
+                "mean_ms": 11.878359374999999
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 379.7525,
+                "max_ms": 24.3647,
+                "failed": 0,
+                "mean_ms": 11.867265625
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 5,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 10.11750625,
+              "p50_ms": 10.2827,
+              "p95_ms": 11.31826,
+              "max_ms": 12.4466
+            },
+            "wall_ms": 42.2335,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 757.692353226704,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 323.35619999999994,
+                "max_ms": 12.4345,
+                "failed": 0,
+                "mean_ms": 10.104881249999998
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 322.9932,
+                "max_ms": 12.4214,
+                "failed": 0,
+                "mean_ms": 10.0935375
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 11.880703125,
+              "p50_ms": 9.14925,
+              "p95_ms": 27.00339,
+              "max_ms": 27.512
+            },
+            "wall_ms": 55.6915,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 574.5939685589364,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 379.7263999999999,
+                "max_ms": 27.4954,
+                "failed": 0,
+                "mean_ms": 11.866449999999997
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 379.31679999999994,
+                "max_ms": 27.4758,
+                "failed": 0,
+                "mean_ms": 11.853649999999998
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 6,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 8.876259375,
+              "p50_ms": 8.9592,
+              "p95_ms": 10.03319,
+              "max_ms": 10.896
+            },
+            "wall_ms": 36.7398,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 870.9900434950653,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 283.62660000000005,
+                "max_ms": 10.8816,
+                "failed": 0,
+                "mean_ms": 8.863331250000002
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 283.26120000000003,
+                "max_ms": 10.8677,
+                "failed": 0,
+                "mean_ms": 8.851912500000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 10.3302875,
+              "p50_ms": 9.3235,
+              "p95_ms": 14.841475,
+              "max_ms": 15.4108
+            },
+            "wall_ms": 42.4064,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 754.6030787805614,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 330.1286,
+                "max_ms": 15.399,
+                "failed": 0,
+                "mean_ms": 10.31651875
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 329.73460000000006,
+                "max_ms": 15.389,
+                "failed": 0,
+                "mean_ms": 10.304206250000002
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 7,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 8.78854375,
+              "p50_ms": 8.57105,
+              "p95_ms": 10.325375,
+              "max_ms": 11.0807
+            },
+            "wall_ms": 36.6152,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 873.95398632262,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 280.77979999999997,
+                "max_ms": 11.0699,
+                "failed": 0,
+                "mean_ms": 8.774368749999999
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 280.36160000000007,
+                "max_ms": 11.0592,
+                "failed": 0,
+                "mean_ms": 8.761300000000002
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 10.19265,
+              "p50_ms": 8.914349999999999,
+              "p95_ms": 15.38926,
+              "max_ms": 15.952
+            },
+            "wall_ms": 41.7247,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 766.9318173647744,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 325.7585000000001,
+                "max_ms": 15.9421,
+                "failed": 0,
+                "mean_ms": 10.179953125000003
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 325.3905000000001,
+                "max_ms": 15.9319,
+                "failed": 0,
+                "mean_ms": 10.168453125000003
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 8,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 8.564234375,
+              "p50_ms": 8.5831,
+              "p95_ms": 9.65882,
+              "max_ms": 10.2852
+            },
+            "wall_ms": 35.2298,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 908.3219320007495,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 273.6506,
+                "max_ms": 10.2766,
+                "failed": 0,
+                "mean_ms": 8.55158125
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 273.28979999999996,
+                "max_ms": 10.2684,
+                "failed": 0,
+                "mean_ms": 8.540306249999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 12.01376875,
+              "p50_ms": 12.3285,
+              "p95_ms": 15.379265,
+              "max_ms": 15.7658
+            },
+            "wall_ms": 49.0962,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 651.7816042789461,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 384.03039999999993,
+                "max_ms": 15.7463,
+                "failed": 0,
+                "mean_ms": 12.000949999999998
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 383.6675000000001,
+                "max_ms": 15.7336,
+                "failed": 0,
+                "mean_ms": 11.989609375000002
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 9,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 8.576771875,
+              "p50_ms": 7.9281500000000005,
+              "p95_ms": 11.330285,
+              "max_ms": 11.4265
+            },
+            "wall_ms": 35.3631,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 904.8980434407616,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 274.04679999999996,
+                "max_ms": 11.4194,
+                "failed": 0,
+                "mean_ms": 8.563962499999999
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 273.66479999999996,
+                "max_ms": 11.414,
+                "failed": 0,
+                "mean_ms": 8.552024999999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 9.068040625,
+              "p50_ms": 9.12565,
+              "p95_ms": 10.164095000000001,
+              "max_ms": 10.2315
+            },
+            "wall_ms": 37.9103,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 844.0977781763795,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 289.7502,
+                "max_ms": 10.2244,
+                "failed": 0,
+                "mean_ms": 9.05469375
+              },
+              {
+                "name": "customer.lookup",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 289.3597,
+                "max_ms": 10.2178,
+                "failed": 0,
+                "mean_ms": 9.042490625
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "66c764de87303970fdb9789f3a19779a9846112cf501769de41b46c66448dd70"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        }
+      ],
+      "observed_gain": false,
+      "randomization": {
+        "pvalue": 0.07421875,
+        "exact": true,
+        "assignments": 1024,
+        "extreme_assignments": 76,
+        "seed": null,
+        "tie_tolerance": 3.4495343750000007e-12,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "interpretation": "actual replacement under this workload; output equality is observed on tested request IDs only",
+      "holm_adjusted_p": 0.07421875,
+      "evidence_level": "no_observed_gain",
+      "candidate_improvement": false
+    }
+  ],
+  "evidence_policy": {
+    "family": [
+      "indexed_lookup",
+      "unchanged_lookup"
+    ],
+    "correction": "Holm, replacement arms only",
+    "alpha": 0.05,
+    "min_point_gain_pct": 5.0,
+    "scope": "exploratory within-workload support; not preregistered confirmation or a lower bound on the practical margin",
+    "monte_carlo_classification": "approximate p-values are reported but never classified as supported"
+  },
+  "run": {
+    "started_at": "2026-11-14T21:46:32.063997+00:00",
+    "completed_at": "2026-11-14T21:46:34.931254+00:00",
+    "identity": {
+      "digest": "82444f2060297a6f802009072262b2a50a0fd8818bb494a69f3d96fceac8f536",
+      "manifest": {
+        "checkpoint_schema": 1,
+        "workload_version": "ff45d3baa212c998375b971e0f7dd0a22c8acec5613cd6d20f964dd9aa2d239e",
+        "settings": {
+          "blocks": 10,
+          "requests": 32,
+          "concurrency": 8,
+          "warmup": 4,
+          "seed": 173,
+          "trace_requests": 2,
+          "max_records": 4096,
+          "min_gain_pct": 5.0,
+          "alpha": 0.05
+        },
+        "arms": [
+          {
+            "name": "indexed_lookup",
+            "kind": "replacement",
+            "site": "customer.lookup",
+            "delay_ms": 0,
+            "replacement_names": {
+              "customer.lookup": "awaitlab.sqlite_workload.indexed_lookup"
+            }
+          },
+          {
+            "name": "unchanged_lookup",
+            "kind": "replacement",
+            "site": "customer.lookup",
+            "delay_ms": 0,
+            "replacement_names": {
+              "customer.lookup": "awaitlab.sqlite_workload.unchanged_lookup"
+            }
+          }
+        ],
+        "sources": {
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__init__.py": "05b9e6ac538ced3d9b408a55079d971dcaccaa8f1de415a5d4c5bbc641c1e35b",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__main__.py": "3042921ba0ef0c07a890ffc7a6fa875594826d1a67e76dec914e45226488aa00",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\asgi.py": "8ed2071ad0f182c52b9decadf92bd12efe64db254f7ab9a1056a96582bd82f3c",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\calibration.py": "26329df46ecb657107dfc85463ad39a3317bc7a803262a2cce16a00485acddce",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\checkpoint.py": "d92b9534bda79095371fc801eab43ed061a6c66b3d7271203681ae917ccd5298",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\experiment.py": "c1074f3501a64f53f5febe7e4208dd74250584f485c78c99201ebf81cd048a0a",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\local_http.py": "5ab04e5cc5dd5900600b90e256541ecba33151ce1909a36140733fcbce215520",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\ownership.py": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\report.py": "8ea27eb80d6a9dd34a37d34ac28a4658cdd5d30f814bcb78564355ebd3761430",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\scenarios.py": "90b3db36e70912b308881249129b11c7809daabf61a6e2fc7038458ed9a8b9c7",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_http_workload.py": "a2ea0cd73338f18f595789e3ba3610c4c1ad2a34b3efc85066c89b0cf9b675d1",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_workload.py": "287661efeb684b89c4097b3ebf9c342c97c79e6bd72482889ee9f519431ebdeb",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\statistics.py": "012b812e8253c98f926aa928e2f20e2f122dab46bef5e3e73c02cea2e43d232d",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\trace.py": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b"
+        },
+        "python": "3.13.15",
+        "platform": "Windows-11-10.0.26200-SP0"
+      }
+    },
+    "resumed_pairs": 0
+  },
+  "method": "randomized paired closed-loop blocks; percentile bootstrap over block mean differences",
+  "limitations": [
+    "cooperative readiness delay does not simulate CPU work",
+    "delay sensitivity is not inverse speedup prediction",
+    "output hash agreement on tested inputs does not prove semantic equivalence",
+    "p95 changes are descriptive; no inferential tail-latency claim",
+    "replacement p-values use Holm; all conclusions remain exploratory and workload-specific",
+    "explicitly instrumented parent spans are not a complete await/dependency graph"
+  ],
+  "scenario": "sqlite",
+  "title": "真实 SQLite：相同数据的全表扫描与索引查询，包含不改实现的对照 · 并发 8",
+  "environment": {
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "workload_evidence": {
+    "kind": "actual SQLite SELECT, no artificial sleep",
+    "rows": 50000,
+    "sqlite_version": "3.50.4",
+    "sql": "SELECT id, name, balance FROM customers WHERE email = ? ORDER BY id",
+    "fixture": {
+      "fixture_version": "sqlite-v1",
+      "rows": 50000,
+      "logical_data_sha256": "21b308f260c40f30a09bf79d10eabe2c520d53bc18f1ff5e4d6210ffadeb746b",
+      "files": {
+        "unindexed": {
+          "sha256": "dc0c26e83543cd0a68829a6173009c1764cdc5c8f911746789c7924c616aa13a",
+          "bytes": 2531328
+        },
+        "indexed": {
+          "sha256": "6f1dfc173e98fba561b104b1312f58be27bdc90785ffaf2d577d90024d013e84",
+          "bytes": 4108288
+        }
+      }
+    },
+    "query_plans": {
+      "unindexed": [
+        [
+          3,
+          0,
+          216,
+          "SCAN customers"
+        ]
+      ],
+      "indexed": [
+        [
+          4,
+          0,
+          62,
+          "SEARCH customers USING INDEX idx_customer_email (email=?)"
+        ]
+      ]
+    },
+    "connections": "fresh read-only connection per query",
+    "cache_policy": "both complete files read before each block; new connections have new SQLite page caches",
+    "thread_policy": "fresh executor per block, all configured workers primed before timing",
+    "limits": [
+      "read-only synthetic customer data",
+      "warm OS cache, not guaranteed cold-disk performance",
+      "connection setup and executor queueing are included in lookup latency"
+    ]
+  }
+}

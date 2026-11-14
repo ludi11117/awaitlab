@@ -4,6 +4,18 @@ const {chromium}=require(process.env.AWAITLAB_PLAYWRIGHT||'D:/CodexWork/cache/br
 const root=path.resolve(__dirname,'..'),temp='D:/CodexWork/temp/awaitlab/browser';
 fs.mkdirSync(temp,{recursive:true});process.env.TEMP=temp;process.env.TMP=temp;
 execFileSync('python',['-c',"import json;from awaitlab.report import write_report;from pathlib import Path;p=Path('artifacts');write_report(json.loads((p/'parallel-initial.json').read_text(encoding='utf-8')),p/'legacy-current-renderer.html')"],{cwd:root});
+execFileSync('python',['-c',`import json,copy
+from pathlib import Path
+from awaitlab.report import write_report
+r=json.loads(Path('artifacts/sqlite-http-latest.json').read_text(encoding='utf-8'))
+r['title']='UI fixture: replayed trace, no new measurement'
+for c in r['comparisons']:
+ for mode in ['control','treatment']:c['blocks'][1][mode]['trace']=copy.deepcopy(c['blocks'][0][mode]['trace'])
+write_report(r,Path('${temp}/trace-fixture.html'))
+for c in r['comparisons']:
+ for b in c['blocks']:
+  for mode in ['control','treatment']:b[mode]['trace']=[]
+write_report(r,Path('${temp}/empty-trace-fixture.html'))`],{cwd:root});
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.AWAITLAB_CHROMIUM||'D:/CodexWork/cache/ms-playwright/chromium-1243/chrome-win64/chrome.exe'});
  const page=await browser.newPage({viewport:{width:1440,height:1080}});
@@ -30,11 +42,24 @@ execFileSync('python',['-c',"import json;from awaitlab.report import write_repor
   await page.goto(pathToFileURL(path.join(root,'artifacts','sqlite-http-latest.html')).href);
   assert((await page.locator('.context').innerText()).includes('loopback TCP'));checks.push('real HTTP transport scope');
   assert((await page.locator('footer').innerText()).includes('0.3.0'));checks.push('library version');
+  assert.deepEqual(await page.locator('#trace-request option').evaluateAll(es=>es.map(e=>e.value)),['0','1']);checks.push('sampled request selector');
+  assert.equal(await page.locator('.bar').count(),3);assert.equal(await page.locator('.lane').count(),3);checks.push('HTTP and database spans both visible');
+  const boxes=await page.locator('.bar').evaluateAll(es=>es.map(e=>{const b=e.getBoundingClientRect();return {x:b.x,y:b.y,w:b.width,h:b.height};}));
+  for(let a=0;a<boxes.length;a++)for(let b=a+1;b<boxes.length;b++)assert(!(Math.min(boxes[a].x+boxes[a].w,boxes[b].x+boxes[b].w)>Math.max(boxes[a].x,boxes[b].x)&&Math.min(boxes[a].y+boxes[a].h,boxes[b].y+boxes[b].h)>Math.max(boxes[a].y,boxes[b].y)));
+  checks.push('no overlap hides nested spans');
+  await page.getByRole('button',{name:/http.server · #/}).click();assert((await page.locator('#span-detail').innerText()).includes('request'));checks.push('server parent linked to request');
+  await page.getByRole('button',{name:/customer.lookup · #/}).focus();await page.keyboard.press('Enter');assert((await page.locator('#span-detail').innerText()).includes('http.server'));checks.push('keyboard-accessible recorded parent');
+  await page.locator('#trace-request').selectOption('1');assert.equal(await page.locator('.timeline').getAttribute('data-request'),'1');checks.push('switch sampled request');
+  await page.locator('#trace-mode').selectOption('treatment');assert.equal(await page.locator('.timeline').getAttribute('data-request'),'1');checks.push('preserve request across modes');
   await page.setViewportSize({width:390,height:844});
   await page.screenshot({path:path.join(root,'artifacts','sqlite-http-mobile.png'),fullPage:true});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks.push('mobile width');
   await page.locator('.calibration summary').click();
   assert.equal(await page.locator('.calibration tbody tr').count(),8);checks.push('timer calibration');
+  await page.goto(pathToFileURL(path.join(temp,'trace-fixture.html')).href);
+  await page.locator('#trace-block').selectOption('1');assert.equal(await page.locator('.timeline').getAttribute('data-block'),'1');checks.push('sampled block selector with replay fixture');
+  await page.goto(pathToFileURL(path.join(temp,'empty-trace-fixture.html')).href);
+  assert.equal(await page.locator('.bar').count(),0);assert((await page.locator('body').innerText()).includes('此批次未采样该请求'));checks.push('empty sampling remains usable');
   await page.goto(pathToFileURL(path.join(root,'artifacts','legacy-current-renderer.html')).href);
   await page.locator('[data-arm="0"]').click();await page.getByRole('heading',{name:'测量对额外等待的敏感度'}).waitFor();checks.push('legacy delay interpretation');
   await page.locator('[data-arm="3"]').click();await page.getByRole('heading',{name:'历史报告：未按新版规则分级'}).waitFor();checks.push('legacy result not silently upgraded');

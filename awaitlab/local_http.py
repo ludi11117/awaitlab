@@ -30,7 +30,7 @@ async def serve_local(app):
         finally:
             server.should_exit=True
             try:await asyncio.wait_for(asyncio.shield(task),5)
-            except TimeoutError:
+            except asyncio.TimeoutError:
                 task.cancel();await asyncio.gather(task,return_exceptions=True)
                 raise RuntimeError('Local ASGI server did not shut down within the experiment deadline')
             except asyncio.CancelledError:

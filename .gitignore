@@ -8,3 +8,7 @@ dist/
 artifacts/wheels/
 artifacts/*.checkpoint.json
 artifacts/*.checkpoint.json.tmp
+artifacts/*.html.tmp
+artifacts/*.json.tmp
+artifacts/**/*.checkpoint.json
+artifacts/**/*.checkpoint.json.tmp

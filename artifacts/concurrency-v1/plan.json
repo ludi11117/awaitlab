@@ -1,0 +1,19 @@
+{
+  "protocol": "sqlite-concurrency-v1",
+  "scenario_order": [
+    "sqlite",
+    "sqlite-http"
+  ],
+  "concurrency_order": [
+    1,
+    4,
+    8
+  ],
+  "blocks": 10,
+  "requests": 32,
+  "warmup": 4,
+  "seed": 173,
+  "library_version": "0.3.1",
+  "driver_sha256": "e910bc61fc2e9201833ca7c2a45dbfbdaa946294f0fd9ade6b142ba0e04c82cf",
+  "scope": "each case is exploratory; Holm covers replacement arms within a case, not the entire sweep"
+}

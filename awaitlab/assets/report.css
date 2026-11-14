@@ -4,3 +4,4 @@
 
 .metrics strong.neutral{color:#69818e}
 .card{min-width:0;overflow-wrap:anywhere}
+.trace-controls{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.detail .section-title:has(.trace-controls){flex-wrap:wrap}.bar{border:0;text-align:left;cursor:pointer;line-height:14px}.bar.transport{background:#e0d6ef;color:#765b95}.bar.failed{outline:2px solid #ae645b;outline-offset:-2px}.span-detail{margin-top:12px;padding:10px;background:#f5f8f9;border-radius:4px;font-size:10px;line-height:1.8;color:#69818e}.bar:focus-visible{outline:2px solid #244f6a;outline-offset:1px;z-index:1}

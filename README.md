@@ -12,6 +12,7 @@
 - **0.3 SQLite HTTP 接口**：真实本机 TCP / HTTPX / Uvicorn / FastAPI 链路，比较端到端收益。通过一次性本地票据显式桥接上下文，限单进程、同一事件循环。
 - FastAPI 另有进程内 ASGI 与可控 sleep 示例，用于解释并行等待机制，不冒充真实数据库负载。
 - 报告包括配对批次、均值差的 bootstrap 区间、输出核对、采样任务时间线、累计跨度和定时器校准。
+- 0.3.1 时间线可选择已有采样的批次和请求；同任务的重叠跨度分轨显示，点击可查看已记录父跨度。轨道序号不等于依赖深度。
 - 实际替换结果经过固定比较组内的 Holm 调整，结合预先声明的 5% 点估计门槛分级；不会把“小幅变快”直接标为优化成立。
 
 **这不是“优化加速保证器”。** 等待干预测的是操作增加协作式等待后的响应变化，不能据此反推任意加速效果。真实替换才报告已实测的 A/B 变化；示例收益不是该工具自身把业务程序自动加速的比例。
@@ -120,6 +121,8 @@ with bridge.headers() as headers:
 
 CLI 每完成一整对实验就原子写入同名 `.checkpoint.json`。Ctrl+C / 任务取消时保留已完成配对；正在进行的半对不算完成。完成报告只在全部测量成功后覆盖，失败不会把半成品伪装成新结果。
 
+`--output` 必须是 `.json` 路径，对应 HTML 自动生成。已知测量/恢复错误会给出非零退出码、原因与断点位置，并明确旧数据没有替换；取消退出码为 130。JSON 和 HTML 各自原子替换，二者不构成跨文件事务；若保存中途失败，以错误提示和完整断点为准。
+
 ```powershell
 python -m awaitlab demo --scenario parallel --output artifacts/my-run.json
 # 中断后，保持代码和参数一致：
@@ -139,9 +142,12 @@ python -m unittest discover -s tests -v
 python benchmarks/overhead.py
 python benchmarks/paired_overhead.py
 node --check awaitlab/assets/report.js
+node tests/timeline.cjs
 ```
 
 可选浏览器验收 `node tests/browser.cjs`，默认复用 D 盘现有 Playwright/Chromium，可用 AWAITLAB_PLAYWRIGHT 和 AWAITLAB_CHROMIUM 指定位置。应用不需要这些依赖。
+
+固定并发梯度实验：`python benchmarks/concurrency_suite.py`，依次测量直接 SQLite 与 HTTP 链路的 1、4、8 并发，各 10 配对块、每批 32 请求、seed=173。协议先写入 artifacts/concurrency-v1/plan.json，完整块可使用 `--resume` 恢复。此脚本是探索性复验，不是为了达到显著性而搜索参数；Holm 只覆盖每个场景内部的替换臂，不覆盖全部反复试验。若安装了 psutil，另记录整个驱动进程的 RSS 采样峰值，包含导入与之前场景，不能当隔离服务的内存需求。
 
 当前微基准每组 30,000 次无 I/O 的空异步调用、7 次随机顺序重复。第一次自身优化将聚合追踪中位数从约 2.54 降到 1.78 微秒/调用；这是先后两轮微基准，不是业务整体加速或严格配对显著性证据。输出在 artifacts/overhead-v0.1.json 与 artifacts/overhead.json。该进程包含测量脚本的工作集约 27 MiB，不包含浏览器。
 

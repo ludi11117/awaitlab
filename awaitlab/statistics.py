@@ -30,7 +30,8 @@ def paired_effect(control, treatment, seed=73, resamples=2000):
         bootstrap.append(statistics.fmean(t-c for c,t in sample))
     return {'mean_delta_ms':delta,'ci95_delta_ms':[quantile(bootstrap,.025),quantile(bootstrap,.975)],
             'mean_change_pct':100*(statistics.fmean(treatment)/statistics.fmean(control)-1),
-            'independent_units':'randomized paired workload blocks', 'blocks':len(pairs)}
+            'independent_units':'randomized paired workload blocks', 'blocks':len(pairs),
+            'bootstrap':{'resamples':resamples,'seed':seed,'confidence':.95,'interval':'percentile'}}
 
 
 def paired_randomization(control,treatment,seed=73,draws=20000):
@@ -52,7 +53,8 @@ def paired_randomization(control,treatment,seed=73,draws=20000):
         signs=([rng.choice((-1,1)) for _ in differences] for _ in range(draws));total=draws
     extreme=sum(abs(math.fsum(s*d for s,d in zip(sample,differences)))>=observed-tolerance for sample in signs)
     p=extreme/total if exact else (extreme+1)/(total+1)
-    return {'pvalue':p,'exact':exact,'assignments':total,
+    return {'pvalue':p,'exact':exact,'assignments':total,'extreme_assignments':extreme,
+            'seed':None if exact else seed,'tie_tolerance':tolerance,
             'statistic':'two-sided absolute sum of paired treatment-control differences',
             'null':'no arm effect, within-block labels exchangeable under the randomized order design'}
 
