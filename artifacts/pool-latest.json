@@ -1,0 +1,1738 @@
+{
+  "schema_version": 2,
+  "settings": {
+    "blocks": 6,
+    "requests": 40,
+    "concurrency": 8,
+    "warmup": 4,
+    "seed": 173,
+    "trace_requests": 2,
+    "max_records": 4096
+  },
+  "comparisons": [
+    {
+      "name": "delay_query",
+      "kind": "delay",
+      "site": "database.query",
+      "delay_ms": 4,
+      "control_mean_ms": 116.78134291666667,
+      "treatment_mean_ms": 173.7077383333333,
+      "output_equivalence": true,
+      "effect": {
+        "mean_delta_ms": 56.92639541666667,
+        "ci95_delta_ms": [
+          55.769364583333335,
+          58.03197666666666
+        ],
+        "mean_change_pct": 48.74613871951139,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 6
+      },
+      "descriptive_p95_change_pct": 44.057392322647445,
+      "blocks": [
+        {
+          "block": 0,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 118.05654999999999,
+              "p50_ms": 124.58420000000001,
+              "p95_ms": 138.44662,
+              "max_ms": 138.5132
+            },
+            "wall_ms": 638.0856,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 62.687514026331264,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4721.488899999999,
+                "max_ms": 138.5031,
+                "failed": 0,
+                "mean_ms": 118.03722249999998
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3449.6152000000006,
+                "max_ms": 107.9063,
+                "failed": 0,
+                "mean_ms": 86.24038000000002
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1270.5517,
+                "max_ms": 45.4251,
+                "failed": 0,
+                "mean_ms": 31.7637925
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.1343,
+                "duration_ms": 0.0069,
+                "failed": false
+              },
+              {
+                "id": 5,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.1994,
+                "duration_ms": 0.0026,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1707,
+                "duration_ms": 31.4093,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1274,
+                "duration_ms": 31.4919,
+                "failed": false
+              },
+              {
+                "id": 6,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.2171,
+                "duration_ms": 31.5325,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1946,
+                "duration_ms": 31.5705,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 173.703415,
+              "p50_ms": 187.3946,
+              "p95_ms": 189.19643,
+              "max_ms": 189.3312
+            },
+            "wall_ms": 938.5283,
+            "interventions": 40,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 4,
+              "mean_observed_ms": 15.713332499999998,
+              "max_observed_ms": 16.2313
+            },
+            "throughput_rps": 42.619918866591455,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 6947.381299999997,
+                "max_ms": 189.3213,
+                "failed": 0,
+                "mean_ms": 173.68453249999993
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 5074.309,
+                "max_ms": 142.9511,
+                "failed": 0,
+                "mean_ms": 126.857725
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1871.8597000000004,
+                "max_ms": 47.9056,
+                "failed": 0,
+                "mean_ms": 46.796492500000014
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.0874,
+                "duration_ms": 0.0046,
+                "failed": false
+              },
+              {
+                "id": 5,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.136,
+                "duration_ms": 0.0025,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1141,
+                "duration_ms": 46.7356,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0812,
+                "duration_ms": 46.8094,
+                "failed": false
+              },
+              {
+                "id": 6,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1488,
+                "duration_ms": 46.835,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1318,
+                "duration_ms": 46.869,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 1,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 115.037465,
+              "p50_ms": 124.0436,
+              "p95_ms": 125.105845,
+              "max_ms": 125.6268
+            },
+            "wall_ms": 622.3472,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 64.27280463381211,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4600.7426,
+                "max_ms": 125.6177,
+                "failed": 0,
+                "mean_ms": 115.018565
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3360.0754999999995,
+                "max_ms": 94.6528,
+                "failed": 0,
+                "mean_ms": 84.00188749999998
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1239.3953000000004,
+                "max_ms": 31.7521,
+                "failed": 0,
+                "mean_ms": 30.98488250000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 173.39515999999998,
+              "p50_ms": 187.23005,
+              "p95_ms": 188.72152,
+              "max_ms": 188.9688
+            },
+            "wall_ms": 937.9187,
+            "interventions": 40,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 4,
+              "mean_observed_ms": 15.654542500000002,
+              "max_observed_ms": 16.2682
+            },
+            "throughput_rps": 42.64761967108663,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 6935.057100000001,
+                "max_ms": 188.9569,
+                "failed": 0,
+                "mean_ms": 173.37642750000003
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 5063.2818,
+                "max_ms": 142.2152,
+                "failed": 0,
+                "mean_ms": 126.582045
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1870.5789999999995,
+                "max_ms": 47.6309,
+                "failed": 0,
+                "mean_ms": 46.76447499999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 2,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 118.56583499999999,
+              "p50_ms": 124.9718,
+              "p95_ms": 139.39203,
+              "max_ms": 140.3978
+            },
+            "wall_ms": 640.0845,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 62.49174913624685,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4741.8801,
+                "max_ms": 140.3863,
+                "failed": 0,
+                "mean_ms": 118.5470025
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3465.5487999999996,
+                "max_ms": 108.6317,
+                "failed": 0,
+                "mean_ms": 86.63871999999999
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1275.0245000000002,
+                "max_ms": 45.4466,
+                "failed": 0,
+                "mean_ms": 31.875612500000006
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 175.97105,
+              "p50_ms": 186.72095000000002,
+              "p95_ms": 202.220405,
+              "max_ms": 202.4546
+            },
+            "wall_ms": 950.094,
+            "interventions": 40,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 4,
+              "mean_observed_ms": 15.681814999999997,
+              "max_observed_ms": 16.3613
+            },
+            "throughput_rps": 42.10109736510282,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 7038.056499999999,
+                "max_ms": 202.4441,
+                "failed": 0,
+                "mean_ms": 175.95141249999998
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 5142.091600000001,
+                "max_ms": 155.8671,
+                "failed": 0,
+                "mean_ms": 128.55229000000003
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1894.7263,
+                "max_ms": 61.0298,
+                "failed": 0,
+                "mean_ms": 47.3681575
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 3,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 115.1313275,
+              "p50_ms": 124.0346,
+              "p95_ms": 126.169865,
+              "max_ms": 126.2964
+            },
+            "wall_ms": 622.6777,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 64.23869041720943,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4604.456199999999,
+                "max_ms": 126.2862,
+                "failed": 0,
+                "mean_ms": 115.11140499999996
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3363.3308,
+                "max_ms": 95.4429,
+                "failed": 0,
+                "mean_ms": 84.08327
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1239.8117000000002,
+                "max_ms": 31.9005,
+                "failed": 0,
+                "mean_ms": 30.995292500000005
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 172.44547749999998,
+              "p50_ms": 186.5365,
+              "p95_ms": 187.19092500000002,
+              "max_ms": 187.2168
+            },
+            "wall_ms": 931.4401,
+            "interventions": 40,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 4,
+              "mean_observed_ms": 15.55546,
+              "max_observed_ms": 16.4322
+            },
+            "throughput_rps": 42.94425374213543,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 6897.0471,
+                "max_ms": 187.2031,
+                "failed": 0,
+                "mean_ms": 172.4261775
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 5038.220700000001,
+                "max_ms": 141.1135,
+                "failed": 0,
+                "mean_ms": 125.95551750000001
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1857.5943999999995,
+                "max_ms": 47.2007,
+                "failed": 0,
+                "mean_ms": 46.43985999999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 4,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 115.12194,
+              "p50_ms": 124.87965,
+              "p95_ms": 125.828655,
+              "max_ms": 126.0003
+            },
+            "wall_ms": 622.8979,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 64.21598146341479,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4604.103899999999,
+                "max_ms": 125.9882,
+                "failed": 0,
+                "mean_ms": 115.10259749999997
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3362.3324000000007,
+                "max_ms": 95.0263,
+                "failed": 0,
+                "mean_ms": 84.05831000000002
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1240.5216999999998,
+                "max_ms": 31.9819,
+                "failed": 0,
+                "mean_ms": 31.013042499999994
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 173.54602500000001,
+              "p50_ms": 187.7679,
+              "p95_ms": 189.021985,
+              "max_ms": 189.0938
+            },
+            "wall_ms": 938.2901,
+            "interventions": 40,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 4,
+              "mean_observed_ms": 15.665817499999994,
+              "max_observed_ms": 16.4452
+            },
+            "throughput_rps": 42.63073861697997,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 6941.044400000002,
+                "max_ms": 189.0827,
+                "failed": 0,
+                "mean_ms": 173.52611000000005
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 5068.600899999999,
+                "max_ms": 142.0499,
+                "failed": 0,
+                "mean_ms": 126.71502249999996
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1871.157,
+                "max_ms": 48.1775,
+                "failed": 0,
+                "mean_ms": 46.778925
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 5,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 118.77493999999999,
+              "p50_ms": 125.6498,
+              "p95_ms": 139.65525000000002,
+              "max_ms": 139.8984
+            },
+            "wall_ms": 641.5437,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 62.34961079034835,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4750.1463,
+                "max_ms": 139.8882,
+                "failed": 0,
+                "mean_ms": 118.7536575
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3471.224199999999,
+                "max_ms": 108.2258,
+                "failed": 0,
+                "mean_ms": 86.78060499999998
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1277.6962999999996,
+                "max_ms": 45.1104,
+                "failed": 0,
+                "mean_ms": 31.94240749999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 173.18530249999998,
+              "p50_ms": 187.0153,
+              "p95_ms": 188.326275,
+              "max_ms": 189.0708
+            },
+            "wall_ms": 936.427,
+            "interventions": 40,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 4,
+              "mean_observed_ms": 15.595654999999997,
+              "max_observed_ms": 16.9615
+            },
+            "throughput_rps": 42.715556044411365,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 6926.635900000003,
+                "max_ms": 189.0618,
+                "failed": 0,
+                "mean_ms": 173.16589750000009
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 5057.806800000001,
+                "max_ms": 141.7034,
+                "failed": 0,
+                "mean_ms": 126.44517000000003
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1867.6352000000006,
+                "max_ms": 47.8444,
+                "failed": 0,
+                "mean_ms": 46.690880000000014
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        }
+      ],
+      "observed_injection_mean_ms": 15.644437083333331,
+      "sensitivity_ms_per_injected_ms": 3.6387627827985405,
+      "timer_overshoot_warning": true,
+      "interpretation": "response to extra cooperative delay; not an acceleration prediction"
+    },
+    {
+      "name": "faster_query",
+      "kind": "replacement",
+      "site": "database.query",
+      "delay_ms": 0,
+      "control_mean_ms": 116.16883916666666,
+      "treatment_mean_ms": 57.625609583333336,
+      "output_equivalence": true,
+      "effect": {
+        "mean_delta_ms": -58.54322958333333,
+        "ci95_delta_ms": [
+          -59.845932749999996,
+          -57.44986208333333
+        ],
+        "mean_change_pct": -50.3949510069062,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 6
+      },
+      "descriptive_p95_change_pct": -52.205626750293824,
+      "blocks": [
+        {
+          "block": 0,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 114.3702325,
+              "p50_ms": 123.34,
+              "p95_ms": 124.60036,
+              "max_ms": 124.7825
+            },
+            "wall_ms": 618.3152,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 64.69192411896069,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4574.0318,
+                "max_ms": 124.7731,
+                "failed": 0,
+                "mean_ms": 114.35079499999999
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3341.8011,
+                "max_ms": 94.2763,
+                "failed": 0,
+                "mean_ms": 83.5450275
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1230.8468999999998,
+                "max_ms": 32.0837,
+                "failed": 0,
+                "mean_ms": 30.771172499999995
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.0923,
+                "duration_ms": 0.0043,
+                "failed": false
+              },
+              {
+                "id": 5,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.1431,
+                "duration_ms": 0.0023,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1187,
+                "duration_ms": 30.738,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0857,
+                "duration_ms": 30.813,
+                "failed": false
+              },
+              {
+                "id": 6,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1553,
+                "duration_ms": 30.8478,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1386,
+                "duration_ms": 30.8807,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 57.310955,
+              "p50_ms": 62.028999999999996,
+              "p95_ms": 62.70148,
+              "max_ms": 62.9014
+            },
+            "wall_ms": 310.1487,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 128.97039387880716,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 2291.7763,
+                "max_ms": 62.8898,
+                "failed": 0,
+                "mean_ms": 57.2944075
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 1674.9771999999998,
+                "max_ms": 47.21,
+                "failed": 0,
+                "mean_ms": 41.87443
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 615.6828999999998,
+                "max_ms": 15.8852,
+                "failed": 0,
+                "mean_ms": 15.392072499999994
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.0888,
+                "duration_ms": 0.0049,
+                "failed": false
+              },
+              {
+                "id": 5,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.1505,
+                "duration_ms": 0.0036,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1211,
+                "duration_ms": 15.7052,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0823,
+                "duration_ms": 15.7748,
+                "failed": false
+              },
+              {
+                "id": 6,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1683,
+                "duration_ms": 15.786,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1447,
+                "duration_ms": 15.8251,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 1,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 117.227605,
+              "p50_ms": 124.0894,
+              "p95_ms": 136.86635,
+              "max_ms": 137.6948
+            },
+            "wall_ms": 633.8075,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 63.11064479356902,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4688.350699999999,
+                "max_ms": 137.6838,
+                "failed": 0,
+                "mean_ms": 117.20876749999998
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3424.7256,
+                "max_ms": 106.5949,
+                "failed": 0,
+                "mean_ms": 85.61814000000001
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1262.3837999999998,
+                "max_ms": 45.1086,
+                "failed": 0,
+                "mean_ms": 31.559594999999995
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 57.94343,
+              "p50_ms": 62.27315,
+              "p95_ms": 63.660214999999994,
+              "max_ms": 63.7617
+            },
+            "wall_ms": 313.8012,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 127.46923848602236,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 2317.031,
+                "max_ms": 63.7475,
+                "failed": 0,
+                "mean_ms": 57.925775
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 1693.1973999999998,
+                "max_ms": 47.7981,
+                "failed": 0,
+                "mean_ms": 42.32993499999999
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 622.6872,
+                "max_ms": 16.0099,
+                "failed": 0,
+                "mean_ms": 15.567179999999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 2,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 117.186005,
+              "p50_ms": 124.9136,
+              "p95_ms": 140.40166000000002,
+              "max_ms": 140.6481
+            },
+            "wall_ms": 640.5379,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 62.44751481528259,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4686.6831999999995,
+                "max_ms": 140.6164,
+                "failed": 0,
+                "mean_ms": 117.16707999999998
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3409.6157000000007,
+                "max_ms": 109.7415,
+                "failed": 0,
+                "mean_ms": 85.24039250000001
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1275.8544,
+                "max_ms": 45.8419,
+                "failed": 0,
+                "mean_ms": 31.896359999999998
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 57.82744749999999,
+              "p50_ms": 62.480549999999994,
+              "p95_ms": 63.170315,
+              "max_ms": 63.4268
+            },
+            "wall_ms": 313.1732,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 127.72485001909486,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 2312.3579,
+                "max_ms": 63.4148,
+                "failed": 0,
+                "mean_ms": 57.8089475
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 1689.9188000000001,
+                "max_ms": 47.7937,
+                "failed": 0,
+                "mean_ms": 42.24797
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 621.2478,
+                "max_ms": 16.3357,
+                "failed": 0,
+                "mean_ms": 15.531195
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 3,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 114.67941499999999,
+              "p50_ms": 123.23005,
+              "p95_ms": 125.165155,
+              "max_ms": 125.6076
+            },
+            "wall_ms": 620.4548,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 64.46883802011041,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4586.377600000001,
+                "max_ms": 125.5937,
+                "failed": 0,
+                "mean_ms": 114.65944000000002
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3349.7664999999997,
+                "max_ms": 94.585,
+                "failed": 0,
+                "mean_ms": 83.74416249999999
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1235.3209000000002,
+                "max_ms": 31.981,
+                "failed": 0,
+                "mean_ms": 30.883022500000003
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 57.81624000000001,
+              "p50_ms": 62.095150000000004,
+              "p95_ms": 63.665935000000005,
+              "max_ms": 63.7046
+            },
+            "wall_ms": 312.8332,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 127.86366664407743,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 2311.9205999999995,
+                "max_ms": 63.6949,
+                "failed": 0,
+                "mean_ms": 57.798014999999985
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 1690.1873,
+                "max_ms": 48.2208,
+                "failed": 0,
+                "mean_ms": 42.2546825
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 620.5473,
+                "max_ms": 16.2335,
+                "failed": 0,
+                "mean_ms": 15.513682499999998
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 4,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 115.0539975,
+              "p50_ms": 124.32485,
+              "p95_ms": 125.39156,
+              "max_ms": 125.5765
+            },
+            "wall_ms": 622.1059,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 64.29773451754757,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4601.214299999999,
+                "max_ms": 125.5652,
+                "failed": 0,
+                "mean_ms": 115.03035749999997
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3361.2437999999997,
+                "max_ms": 94.3591,
+                "failed": 0,
+                "mean_ms": 84.031095
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1238.7403000000002,
+                "max_ms": 32.0479,
+                "failed": 0,
+                "mean_ms": 30.968507500000005
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 57.48390500000001,
+              "p50_ms": 62.13915,
+              "p95_ms": 63.099185,
+              "max_ms": 63.6391
+            },
+            "wall_ms": 310.7369,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 128.72626327932088,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 2298.5891,
+                "max_ms": 63.6297,
+                "failed": 0,
+                "mean_ms": 57.4647275
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 1681.0227999999995,
+                "max_ms": 48.0018,
+                "failed": 0,
+                "mean_ms": 42.02556999999999
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 616.3663999999999,
+                "max_ms": 16.4524,
+                "failed": 0,
+                "mean_ms": 15.409159999999996
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 5,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 118.49578,
+              "p50_ms": 124.69284999999999,
+              "p95_ms": 140.366805,
+              "max_ms": 140.6299
+            },
+            "wall_ms": 639.4235,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 62.556349586776214,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 4739.073400000001,
+                "max_ms": 140.6188,
+                "failed": 0,
+                "mean_ms": 118.47683500000002
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 3464.188600000001,
+                "max_ms": 108.8294,
+                "failed": 0,
+                "mean_ms": 86.60471500000003
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1273.6551999999997,
+                "max_ms": 45.2239,
+                "failed": 0,
+                "mean_ms": 31.841379999999994
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 57.371680000000005,
+              "p50_ms": 62.02695,
+              "p95_ms": 62.612785,
+              "max_ms": 62.6663
+            },
+            "wall_ms": 310.1628,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 128.96453088507067,
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 2294.1841,
+                "max_ms": 62.6547,
+                "failed": 0,
+                "mean_ms": 57.3546025
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 40,
+                "total_ms": 1677.4959000000001,
+                "max_ms": 47.5179,
+                "failed": 0,
+                "mean_ms": 41.9373975
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 615.5749,
+                "max_ms": 15.8648,
+                "failed": 0,
+                "mean_ms": 15.389372499999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "b91031c68a25d781ae6c131e06c674be9b59892b1ab5bcb5b5dab79efb5683ab"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        }
+      ],
+      "verified_improvement": true,
+      "interpretation": "actual replacement under this workload; output equality is observed on tested request IDs only"
+    }
+  ],
+  "method": "randomized paired closed-loop blocks; percentile bootstrap over block mean differences",
+  "limitations": [
+    "cooperative readiness delay does not simulate CPU work",
+    "delay sensitivity is not inverse speedup prediction",
+    "output hash agreement on tested inputs does not prove semantic equivalence",
+    "p95 changes are descriptive; no inferential tail-latency claim",
+    "multiple arms are exploratory without multiplicity correction",
+    "explicitly instrumented parent spans are not a complete await/dependency graph"
+  ],
+  "timer_calibration": {
+    "sleep_samples": [
+      {
+        "requested_ms": 1,
+        "count": 7,
+        "mean_ms": 15.664385714285714,
+        "p50_ms": 15.5112,
+        "p95_ms": 16.47054,
+        "max_ms": 16.6563
+      },
+      {
+        "requested_ms": 4,
+        "count": 7,
+        "mean_ms": 15.632685714285714,
+        "p50_ms": 15.5943,
+        "p95_ms": 16.04493,
+        "max_ms": 16.1307
+      },
+      {
+        "requested_ms": 8,
+        "count": 7,
+        "mean_ms": 15.539299999999999,
+        "p50_ms": 15.4656,
+        "p95_ms": 15.9114,
+        "max_ms": 15.93
+      },
+      {
+        "requested_ms": 10,
+        "count": 7,
+        "mean_ms": 15.467828571428571,
+        "p50_ms": 15.4776,
+        "p95_ms": 15.67549,
+        "max_ms": 15.676
+      },
+      {
+        "requested_ms": 12,
+        "count": 7,
+        "mean_ms": 15.44242857142857,
+        "p50_ms": 15.3317,
+        "p95_ms": 15.80787,
+        "max_ms": 15.8868
+      },
+      {
+        "requested_ms": 20,
+        "count": 7,
+        "mean_ms": 30.904528571428575,
+        "p50_ms": 30.6323,
+        "p95_ms": 31.83192,
+        "max_ms": 31.974
+      },
+      {
+        "requested_ms": 30,
+        "count": 7,
+        "mean_ms": 30.92182857142857,
+        "p50_ms": 30.7662,
+        "p95_ms": 31.509639999999997,
+        "max_ms": 31.6303
+      },
+      {
+        "requested_ms": 32,
+        "count": 7,
+        "mean_ms": 46.71291428571429,
+        "p50_ms": 46.6888,
+        "p95_ms": 47.307739999999995,
+        "max_ms": 47.4905
+      }
+    ],
+    "clock": {
+      "perf_counter": {
+        "implementation": "QueryPerformanceCounter()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 1e-07
+      },
+      "monotonic": {
+        "implementation": "QueryPerformanceCounter()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 1e-07
+      }
+    },
+    "note": "measured in an idle calibration; per-arm observed injection includes actual scheduling under load; no timer resolution changes requested"
+  },
+  "scenario": "pool",
+  "title": "共享连接池：服务时间与排队放大",
+  "environment": {
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

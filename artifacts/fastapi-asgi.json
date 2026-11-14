@@ -1,0 +1,2701 @@
+{
+  "schema_version": 2,
+  "settings": {
+    "blocks": 6,
+    "requests": 40,
+    "concurrency": 8,
+    "warmup": 4,
+    "seed": 173,
+    "trace_requests": 2,
+    "max_records": 4096
+  },
+  "comparisons": [
+    {
+      "name": "faster_inventory",
+      "kind": "replacement",
+      "site": "inventory.lookup",
+      "delay_ms": 0,
+      "control_mean_ms": 46.69843458333333,
+      "treatment_mean_ms": 46.719960833333325,
+      "output_equivalence": true,
+      "effect": {
+        "mean_delta_ms": 0.021526249999997304,
+        "ci95_delta_ms": [
+          -0.2665461354166697,
+          0.2986991666666654
+        ],
+        "mean_change_pct": 0.04609629892748934,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 6
+      },
+      "descriptive_p95_change_pct": 1.5695795570591198,
+      "blocks": [
+        {
+          "block": 0,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.554005000000004,
+              "p50_ms": 46.61605,
+              "p95_ms": 46.987045,
+              "max_ms": 47.1026
+            },
+            "wall_ms": 234.2089,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 170.78770277303724,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 6237.626400000002,
+                "max_ms": 13.8696,
+                "failed": 0,
+                "mean_ms": 12.995055000000004
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1861.7769999999998,
+                "max_ms": 47.0937,
+                "failed": 0,
+                "mean_ms": 46.544425
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1746.8208999999995,
+                "max_ms": 43.981,
+                "failed": 0,
+                "mean_ms": 43.67052249999999
+              }
+            ],
+            "trace": [
+              {
+                "id": 9,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5487,
+                "duration_ms": 13.631,
+                "failed": false
+              },
+              {
+                "id": 10,
+                "parent": 1,
+                "request": 0,
+                "task": 2,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5599,
+                "duration_ms": 13.6658,
+                "failed": false
+              },
+              {
+                "id": 11,
+                "parent": 1,
+                "request": 0,
+                "task": 3,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5666,
+                "duration_ms": 13.6847,
+                "failed": false
+              },
+              {
+                "id": 12,
+                "parent": 1,
+                "request": 0,
+                "task": 4,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5714,
+                "duration_ms": 13.6938,
+                "failed": false
+              },
+              {
+                "id": 13,
+                "parent": 1,
+                "request": 0,
+                "task": 5,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5742,
+                "duration_ms": 13.7023,
+                "failed": false
+              },
+              {
+                "id": 14,
+                "parent": 1,
+                "request": 0,
+                "task": 6,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5772,
+                "duration_ms": 13.7111,
+                "failed": false
+              },
+              {
+                "id": 15,
+                "parent": 1,
+                "request": 0,
+                "task": 7,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5814,
+                "duration_ms": 13.7151,
+                "failed": false
+              },
+              {
+                "id": 16,
+                "parent": 1,
+                "request": 0,
+                "task": 8,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5842,
+                "duration_ms": 13.72,
+                "failed": false
+              },
+              {
+                "id": 17,
+                "parent": 1,
+                "request": 0,
+                "task": 9,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5869,
+                "duration_ms": 13.7262,
+                "failed": false
+              },
+              {
+                "id": 18,
+                "parent": 1,
+                "request": 0,
+                "task": 10,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5912,
+                "duration_ms": 13.7318,
+                "failed": false
+              },
+              {
+                "id": 19,
+                "parent": 1,
+                "request": 0,
+                "task": 11,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5939,
+                "duration_ms": 13.7389,
+                "failed": false
+              },
+              {
+                "id": 20,
+                "parent": 1,
+                "request": 0,
+                "task": 12,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.5966,
+                "duration_ms": 13.7471,
+                "failed": false
+              },
+              {
+                "id": 22,
+                "parent": 2,
+                "request": 1,
+                "task": 13,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6025,
+                "duration_ms": 13.7514,
+                "failed": false
+              },
+              {
+                "id": 23,
+                "parent": 2,
+                "request": 1,
+                "task": 14,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6066,
+                "duration_ms": 13.7565,
+                "failed": false
+              },
+              {
+                "id": 24,
+                "parent": 2,
+                "request": 1,
+                "task": 15,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6096,
+                "duration_ms": 13.7634,
+                "failed": false
+              },
+              {
+                "id": 25,
+                "parent": 2,
+                "request": 1,
+                "task": 16,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.612,
+                "duration_ms": 13.7695,
+                "failed": false
+              },
+              {
+                "id": 26,
+                "parent": 2,
+                "request": 1,
+                "task": 17,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6159,
+                "duration_ms": 13.7747,
+                "failed": false
+              },
+              {
+                "id": 27,
+                "parent": 2,
+                "request": 1,
+                "task": 18,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6197,
+                "duration_ms": 13.78,
+                "failed": false
+              },
+              {
+                "id": 28,
+                "parent": 2,
+                "request": 1,
+                "task": 19,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6234,
+                "duration_ms": 13.7854,
+                "failed": false
+              },
+              {
+                "id": 29,
+                "parent": 2,
+                "request": 1,
+                "task": 20,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.627,
+                "duration_ms": 13.7914,
+                "failed": false
+              },
+              {
+                "id": 30,
+                "parent": 2,
+                "request": 1,
+                "task": 21,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6297,
+                "duration_ms": 13.7986,
+                "failed": false
+              },
+              {
+                "id": 31,
+                "parent": 2,
+                "request": 1,
+                "task": 22,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6323,
+                "duration_ms": 13.8081,
+                "failed": false
+              },
+              {
+                "id": 32,
+                "parent": 2,
+                "request": 1,
+                "task": 23,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.636,
+                "duration_ms": 13.8166,
+                "failed": false
+              },
+              {
+                "id": 33,
+                "parent": 2,
+                "request": 1,
+                "task": 24,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6386,
+                "duration_ms": 13.8252,
+                "failed": false
+              },
+              {
+                "id": 21,
+                "parent": 1,
+                "request": 0,
+                "task": 25,
+                "name": "pricing.quote",
+                "kind": "operation",
+                "start_ms": 1.5995,
+                "duration_ms": 43.9673,
+                "failed": false
+              },
+              {
+                "id": 34,
+                "parent": 2,
+                "request": 1,
+                "task": 26,
+                "name": "pricing.quote",
+                "kind": "operation",
+                "start_ms": 1.6411,
+                "duration_ms": 43.9611,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 27,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0916,
+                "duration_ms": 45.9655,
+                "failed": false
+              },
+              {
+                "id": 2,
+                "parent": null,
+                "request": 1,
+                "task": 28,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.4276,
+                "duration_ms": 46.311,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.8539575,
+              "p50_ms": 46.801649999999995,
+              "p95_ms": 47.455475,
+              "max_ms": 47.4716
+            },
+            "wall_ms": 235.6237,
+            "interventions": 0,
+            "replacement_calls": 480,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 169.76220982863776,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 6343.895399999996,
+                "max_ms": 13.6344,
+                "failed": 0,
+                "mean_ms": 13.21644874999999
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1873.7845000000007,
+                "max_ms": 47.4578,
+                "failed": 0,
+                "mean_ms": 46.84461250000002
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1756.7398,
+                "max_ms": 44.6142,
+                "failed": 0,
+                "mean_ms": 43.918495
+              }
+            ],
+            "trace": [
+              {
+                "id": 9,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6728,
+                "duration_ms": 13.6131,
+                "failed": false
+              },
+              {
+                "id": 10,
+                "parent": 1,
+                "request": 0,
+                "task": 2,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6897,
+                "duration_ms": 13.6344,
+                "failed": false
+              },
+              {
+                "id": 11,
+                "parent": 1,
+                "request": 0,
+                "task": 3,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.9594,
+                "duration_ms": 13.3783,
+                "failed": false
+              },
+              {
+                "id": 12,
+                "parent": 1,
+                "request": 0,
+                "task": 4,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.9658,
+                "duration_ms": 13.3814,
+                "failed": false
+              },
+              {
+                "id": 13,
+                "parent": 1,
+                "request": 0,
+                "task": 5,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.971,
+                "duration_ms": 13.3849,
+                "failed": false
+              },
+              {
+                "id": 14,
+                "parent": 1,
+                "request": 0,
+                "task": 6,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.9765,
+                "duration_ms": 13.3876,
+                "failed": false
+              },
+              {
+                "id": 15,
+                "parent": 1,
+                "request": 0,
+                "task": 7,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.9817,
+                "duration_ms": 13.3905,
+                "failed": false
+              },
+              {
+                "id": 16,
+                "parent": 1,
+                "request": 0,
+                "task": 8,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.987,
+                "duration_ms": 13.3932,
+                "failed": false
+              },
+              {
+                "id": 17,
+                "parent": 1,
+                "request": 0,
+                "task": 9,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.9919,
+                "duration_ms": 13.3955,
+                "failed": false
+              },
+              {
+                "id": 18,
+                "parent": 1,
+                "request": 0,
+                "task": 10,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.9968,
+                "duration_ms": 13.3986,
+                "failed": false
+              },
+              {
+                "id": 19,
+                "parent": 1,
+                "request": 0,
+                "task": 11,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0013,
+                "duration_ms": 13.4016,
+                "failed": false
+              },
+              {
+                "id": 20,
+                "parent": 1,
+                "request": 0,
+                "task": 12,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0056,
+                "duration_ms": 13.4051,
+                "failed": false
+              },
+              {
+                "id": 22,
+                "parent": 2,
+                "request": 1,
+                "task": 13,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0144,
+                "duration_ms": 13.4042,
+                "failed": false
+              },
+              {
+                "id": 23,
+                "parent": 2,
+                "request": 1,
+                "task": 14,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0188,
+                "duration_ms": 13.4069,
+                "failed": false
+              },
+              {
+                "id": 24,
+                "parent": 2,
+                "request": 1,
+                "task": 15,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0233,
+                "duration_ms": 13.4095,
+                "failed": false
+              },
+              {
+                "id": 25,
+                "parent": 2,
+                "request": 1,
+                "task": 16,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0284,
+                "duration_ms": 13.4117,
+                "failed": false
+              },
+              {
+                "id": 26,
+                "parent": 2,
+                "request": 1,
+                "task": 17,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0332,
+                "duration_ms": 13.4144,
+                "failed": false
+              },
+              {
+                "id": 27,
+                "parent": 2,
+                "request": 1,
+                "task": 18,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0375,
+                "duration_ms": 13.4169,
+                "failed": false
+              },
+              {
+                "id": 28,
+                "parent": 2,
+                "request": 1,
+                "task": 19,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.042,
+                "duration_ms": 13.4195,
+                "failed": false
+              },
+              {
+                "id": 29,
+                "parent": 2,
+                "request": 1,
+                "task": 20,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0468,
+                "duration_ms": 13.4216,
+                "failed": false
+              },
+              {
+                "id": 30,
+                "parent": 2,
+                "request": 1,
+                "task": 21,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0517,
+                "duration_ms": 13.4234,
+                "failed": false
+              },
+              {
+                "id": 31,
+                "parent": 2,
+                "request": 1,
+                "task": 22,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0557,
+                "duration_ms": 13.4257,
+                "failed": false
+              },
+              {
+                "id": 32,
+                "parent": 2,
+                "request": 1,
+                "task": 23,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0601,
+                "duration_ms": 13.4291,
+                "failed": false
+              },
+              {
+                "id": 33,
+                "parent": 2,
+                "request": 1,
+                "task": 24,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 2.0645,
+                "duration_ms": 13.4317,
+                "failed": false
+              },
+              {
+                "id": 21,
+                "parent": 1,
+                "request": 0,
+                "task": 25,
+                "name": "pricing.quote",
+                "kind": "operation",
+                "start_ms": 2.0099,
+                "duration_ms": 44.0344,
+                "failed": false
+              },
+              {
+                "id": 34,
+                "parent": 2,
+                "request": 1,
+                "task": 26,
+                "name": "pricing.quote",
+                "kind": "operation",
+                "start_ms": 2.0692,
+                "duration_ms": 44.02,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 27,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1044,
+                "duration_ms": 46.4654,
+                "failed": false
+              },
+              {
+                "id": 2,
+                "parent": null,
+                "request": 1,
+                "task": 28,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.4735,
+                "duration_ms": 46.6497,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 1,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.50348,
+              "p50_ms": 46.40275,
+              "p95_ms": 47.780199999999994,
+              "max_ms": 48.5625
+            },
+            "wall_ms": 234.436,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 170.6222593799587,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 10322.055099999994,
+                "max_ms": 27.902,
+                "failed": 0,
+                "mean_ms": 21.50428145833332
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1859.655,
+                "max_ms": 48.5494,
+                "failed": 0,
+                "mean_ms": 46.491375
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1709.0993999999996,
+                "max_ms": 44.195,
+                "failed": 0,
+                "mean_ms": 42.72748499999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.39127,
+              "p50_ms": 45.6701,
+              "p95_ms": 48.615285,
+              "max_ms": 49.4863
+            },
+            "wall_ms": 233.6406,
+            "interventions": 0,
+            "replacement_calls": 480,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 171.2031213753089,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 5755.750200000008,
+                "max_ms": 14.3896,
+                "failed": 0,
+                "mean_ms": 11.991146250000016
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1855.1925999999999,
+                "max_ms": 49.4759,
+                "failed": 0,
+                "mean_ms": 46.379814999999994
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1699.5449000000003,
+                "max_ms": 44.5876,
+                "failed": 0,
+                "mean_ms": 42.488622500000005
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 2,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.969015,
+              "p50_ms": 46.94025,
+              "p95_ms": 48.04726,
+              "max_ms": 48.4976
+            },
+            "wall_ms": 236.9582,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 168.80614386841222,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 10419.624600000001,
+                "max_ms": 28.5055,
+                "failed": 0,
+                "mean_ms": 21.70755125
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1878.3042,
+                "max_ms": 48.4897,
+                "failed": 0,
+                "mean_ms": 46.957605
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1732.6502000000003,
+                "max_ms": 44.5344,
+                "failed": 0,
+                "mean_ms": 43.316255000000005
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 47.009947499999996,
+              "p50_ms": 47.116,
+              "p95_ms": 47.478489999999994,
+              "max_ms": 47.6794
+            },
+            "wall_ms": 236.7179,
+            "interventions": 0,
+            "replacement_calls": 480,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 168.97750444727671,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 6086.515500000005,
+                "max_ms": 13.7469,
+                "failed": 0,
+                "mean_ms": 12.68024062500001
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1879.9619000000005,
+                "max_ms": 47.6555,
+                "failed": 0,
+                "mean_ms": 46.99904750000001
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1735.8328999999999,
+                "max_ms": 43.9785,
+                "failed": 0,
+                "mean_ms": 43.395822499999994
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 3,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.773115000000004,
+              "p50_ms": 46.6639,
+              "p95_ms": 47.991080000000004,
+              "max_ms": 48.2368
+            },
+            "wall_ms": 235.8027,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 169.6333417725921,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 10574.539699999994,
+                "max_ms": 28.7736,
+                "failed": 0,
+                "mean_ms": 22.030291041666654
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1870.4633,
+                "max_ms": 48.2286,
+                "failed": 0,
+                "mean_ms": 46.761582499999996
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1728.0665,
+                "max_ms": 44.3112,
+                "failed": 0,
+                "mean_ms": 43.2016625
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.6570325,
+              "p50_ms": 46.3398,
+              "p95_ms": 48.606085,
+              "max_ms": 48.8585
+            },
+            "wall_ms": 235.4544,
+            "interventions": 0,
+            "replacement_calls": 480,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 169.88427483198447,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 5827.096499999999,
+                "max_ms": 13.277,
+                "failed": 0,
+                "mean_ms": 12.139784374999998
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1865.8219999999997,
+                "max_ms": 48.8507,
+                "failed": 0,
+                "mean_ms": 46.64554999999999
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1714.7835000000002,
+                "max_ms": 44.0802,
+                "failed": 0,
+                "mean_ms": 42.86958750000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 4,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 47.13453,
+              "p50_ms": 47.220600000000005,
+              "p95_ms": 47.83148,
+              "max_ms": 48.348
+            },
+            "wall_ms": 237.5042,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 168.41807429089675,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 9015.506699999993,
+                "max_ms": 27.8628,
+                "failed": 0,
+                "mean_ms": 18.782305624999985
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1884.9394999999997,
+                "max_ms": 48.3302,
+                "failed": 0,
+                "mean_ms": 47.123487499999996
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1739.4319999999996,
+                "max_ms": 45.1386,
+                "failed": 0,
+                "mean_ms": 43.48579999999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.5632325,
+              "p50_ms": 46.653850000000006,
+              "p95_ms": 48.46362,
+              "max_ms": 49.0402
+            },
+            "wall_ms": 234.4255,
+            "interventions": 0,
+            "replacement_calls": 480,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 170.62990161053298,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 5840.975700000002,
+                "max_ms": 13.6737,
+                "failed": 0,
+                "mean_ms": 12.168699375000005
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1862.1069000000002,
+                "max_ms": 49.0331,
+                "failed": 0,
+                "mean_ms": 46.55267250000001
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1722.1933999999999,
+                "max_ms": 44.2645,
+                "failed": 0,
+                "mean_ms": 43.054835
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 5,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.2564625,
+              "p50_ms": 46.33485,
+              "p95_ms": 47.055685,
+              "max_ms": 47.1845
+            },
+            "wall_ms": 232.9062,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 171.7429591827096,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 10311.636699999988,
+                "max_ms": 27.9832,
+                "failed": 0,
+                "mean_ms": 21.48257645833331
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1849.8499000000006,
+                "max_ms": 47.1779,
+                "failed": 0,
+                "mean_ms": 46.24624750000002
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1714.4736000000003,
+                "max_ms": 43.7936,
+                "failed": 0,
+                "mean_ms": 42.86184000000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.844325,
+              "p50_ms": 46.68575,
+              "p95_ms": 49.55797,
+              "max_ms": 49.8783
+            },
+            "wall_ms": 235.6957,
+            "interventions": 0,
+            "replacement_calls": 480,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 169.71035110101712,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 5853.220499999995,
+                "max_ms": 14.0414,
+                "failed": 0,
+                "mean_ms": 12.19420937499999
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1873.2695000000003,
+                "max_ms": 49.8715,
+                "failed": 0,
+                "mean_ms": 46.83173750000001
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1718.2552000000003,
+                "max_ms": 45.3354,
+                "failed": 0,
+                "mean_ms": 42.95638000000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        }
+      ],
+      "verified_improvement": false,
+      "interpretation": "actual replacement under this workload; output equality is observed on tested request IDs only"
+    },
+    {
+      "name": "faster_pricing",
+      "kind": "replacement",
+      "site": "pricing.quote",
+      "delay_ms": 0,
+      "control_mean_ms": 46.54982041666667,
+      "treatment_mean_ms": 26.97729875,
+      "output_equivalence": true,
+      "effect": {
+        "mean_delta_ms": -19.572521666666667,
+        "ci95_delta_ms": [
+          -20.759509166666668,
+          -18.524070937500003
+        ],
+        "mean_change_pct": -42.04639564980779,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 6
+      },
+      "descriptive_p95_change_pct": -33.52089595459046,
+      "blocks": [
+        {
+          "block": 0,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.746625,
+              "p50_ms": 46.6525,
+              "p95_ms": 47.4343,
+              "max_ms": 47.5073
+            },
+            "wall_ms": 235.3645,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 169.94916395633157,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 6316.661099999997,
+                "max_ms": 13.9905,
+                "failed": 0,
+                "mean_ms": 13.159710624999994
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1869.4976999999997,
+                "max_ms": 47.4999,
+                "failed": 0,
+                "mean_ms": 46.73744249999999
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1754.4004,
+                "max_ms": 44.2986,
+                "failed": 0,
+                "mean_ms": 43.86001
+              }
+            ],
+            "trace": [
+              {
+                "id": 9,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6844,
+                "duration_ms": 13.7969,
+                "failed": false
+              },
+              {
+                "id": 10,
+                "parent": 1,
+                "request": 0,
+                "task": 2,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.6957,
+                "duration_ms": 13.8162,
+                "failed": false
+              },
+              {
+                "id": 11,
+                "parent": 1,
+                "request": 0,
+                "task": 3,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7003,
+                "duration_ms": 13.8251,
+                "failed": false
+              },
+              {
+                "id": 12,
+                "parent": 1,
+                "request": 0,
+                "task": 4,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7037,
+                "duration_ms": 13.8304,
+                "failed": false
+              },
+              {
+                "id": 13,
+                "parent": 1,
+                "request": 0,
+                "task": 5,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7066,
+                "duration_ms": 13.8352,
+                "failed": false
+              },
+              {
+                "id": 14,
+                "parent": 1,
+                "request": 0,
+                "task": 6,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7096,
+                "duration_ms": 13.8397,
+                "failed": false
+              },
+              {
+                "id": 15,
+                "parent": 1,
+                "request": 0,
+                "task": 7,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7122,
+                "duration_ms": 13.8438,
+                "failed": false
+              },
+              {
+                "id": 16,
+                "parent": 1,
+                "request": 0,
+                "task": 8,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.715,
+                "duration_ms": 13.8472,
+                "failed": false
+              },
+              {
+                "id": 17,
+                "parent": 1,
+                "request": 0,
+                "task": 9,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7176,
+                "duration_ms": 13.8509,
+                "failed": false
+              },
+              {
+                "id": 18,
+                "parent": 1,
+                "request": 0,
+                "task": 10,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7203,
+                "duration_ms": 13.8546,
+                "failed": false
+              },
+              {
+                "id": 19,
+                "parent": 1,
+                "request": 0,
+                "task": 11,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7228,
+                "duration_ms": 13.8585,
+                "failed": false
+              },
+              {
+                "id": 20,
+                "parent": 1,
+                "request": 0,
+                "task": 12,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7255,
+                "duration_ms": 13.8639,
+                "failed": false
+              },
+              {
+                "id": 22,
+                "parent": 2,
+                "request": 1,
+                "task": 13,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7306,
+                "duration_ms": 13.8663,
+                "failed": false
+              },
+              {
+                "id": 23,
+                "parent": 2,
+                "request": 1,
+                "task": 14,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.733,
+                "duration_ms": 13.8702,
+                "failed": false
+              },
+              {
+                "id": 24,
+                "parent": 2,
+                "request": 1,
+                "task": 15,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7354,
+                "duration_ms": 13.8746,
+                "failed": false
+              },
+              {
+                "id": 25,
+                "parent": 2,
+                "request": 1,
+                "task": 16,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7382,
+                "duration_ms": 13.8785,
+                "failed": false
+              },
+              {
+                "id": 26,
+                "parent": 2,
+                "request": 1,
+                "task": 17,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.741,
+                "duration_ms": 13.8824,
+                "failed": false
+              },
+              {
+                "id": 27,
+                "parent": 2,
+                "request": 1,
+                "task": 18,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7433,
+                "duration_ms": 13.8861,
+                "failed": false
+              },
+              {
+                "id": 28,
+                "parent": 2,
+                "request": 1,
+                "task": 19,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7462,
+                "duration_ms": 13.8894,
+                "failed": false
+              },
+              {
+                "id": 29,
+                "parent": 2,
+                "request": 1,
+                "task": 20,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7488,
+                "duration_ms": 13.8929,
+                "failed": false
+              },
+              {
+                "id": 30,
+                "parent": 2,
+                "request": 1,
+                "task": 21,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7512,
+                "duration_ms": 13.8964,
+                "failed": false
+              },
+              {
+                "id": 31,
+                "parent": 2,
+                "request": 1,
+                "task": 22,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7536,
+                "duration_ms": 13.9005,
+                "failed": false
+              },
+              {
+                "id": 32,
+                "parent": 2,
+                "request": 1,
+                "task": 23,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7559,
+                "duration_ms": 13.9053,
+                "failed": false
+              },
+              {
+                "id": 33,
+                "parent": 2,
+                "request": 1,
+                "task": 24,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.758,
+                "duration_ms": 13.909,
+                "failed": false
+              },
+              {
+                "id": 21,
+                "parent": 1,
+                "request": 0,
+                "task": 25,
+                "name": "pricing.quote",
+                "kind": "operation",
+                "start_ms": 1.7281,
+                "duration_ms": 44.1071,
+                "failed": false
+              },
+              {
+                "id": 34,
+                "parent": 2,
+                "request": 1,
+                "task": 26,
+                "name": "pricing.quote",
+                "kind": "operation",
+                "start_ms": 1.7604,
+                "duration_ms": 44.1132,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 27,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0908,
+                "duration_ms": 46.229,
+                "failed": false
+              },
+              {
+                "id": 2,
+                "parent": null,
+                "request": 1,
+                "task": 28,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.4319,
+                "duration_ms": 46.447,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 24.83739,
+              "p50_ms": 29.6988,
+              "p95_ms": 31.559305000000002,
+              "max_ms": 31.6232
+            },
+            "wall_ms": 125.5915,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 318.4928916367748,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 10313.217100000003,
+                "max_ms": 27.7723,
+                "failed": 0,
+                "mean_ms": 21.48586895833334
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 993.1203,
+                "max_ms": 31.6144,
+                "failed": 0,
+                "mean_ms": 24.828007500000002
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 859.8881,
+                "max_ms": 27.7757,
+                "failed": 0,
+                "mean_ms": 21.4972025
+              }
+            ],
+            "trace": [
+              {
+                "id": 9,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.4528,
+                "duration_ms": 13.5888,
+                "failed": false
+              },
+              {
+                "id": 10,
+                "parent": 1,
+                "request": 0,
+                "task": 2,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.4624,
+                "duration_ms": 13.6079,
+                "failed": false
+              },
+              {
+                "id": 11,
+                "parent": 1,
+                "request": 0,
+                "task": 3,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7091,
+                "duration_ms": 13.3742,
+                "failed": false
+              },
+              {
+                "id": 12,
+                "parent": 1,
+                "request": 0,
+                "task": 4,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7157,
+                "duration_ms": 13.3782,
+                "failed": false
+              },
+              {
+                "id": 13,
+                "parent": 1,
+                "request": 0,
+                "task": 5,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7195,
+                "duration_ms": 13.3827,
+                "failed": false
+              },
+              {
+                "id": 14,
+                "parent": 1,
+                "request": 0,
+                "task": 6,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7226,
+                "duration_ms": 13.387,
+                "failed": false
+              },
+              {
+                "id": 15,
+                "parent": 1,
+                "request": 0,
+                "task": 7,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7258,
+                "duration_ms": 13.3906,
+                "failed": false
+              },
+              {
+                "id": 16,
+                "parent": 1,
+                "request": 0,
+                "task": 8,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7285,
+                "duration_ms": 13.3954,
+                "failed": false
+              },
+              {
+                "id": 17,
+                "parent": 1,
+                "request": 0,
+                "task": 9,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7311,
+                "duration_ms": 13.3995,
+                "failed": false
+              },
+              {
+                "id": 18,
+                "parent": 1,
+                "request": 0,
+                "task": 10,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7337,
+                "duration_ms": 13.4034,
+                "failed": false
+              },
+              {
+                "id": 19,
+                "parent": 1,
+                "request": 0,
+                "task": 11,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7364,
+                "duration_ms": 13.4069,
+                "failed": false
+              },
+              {
+                "id": 20,
+                "parent": 1,
+                "request": 0,
+                "task": 12,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7391,
+                "duration_ms": 13.412,
+                "failed": false
+              },
+              {
+                "id": 21,
+                "parent": 1,
+                "request": 0,
+                "task": 13,
+                "name": "pricing.quote",
+                "kind": "operation",
+                "start_ms": 1.7418,
+                "duration_ms": 13.4168,
+                "failed": false
+              },
+              {
+                "id": 22,
+                "parent": 2,
+                "request": 1,
+                "task": 14,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7446,
+                "duration_ms": 13.4207,
+                "failed": false
+              },
+              {
+                "id": 23,
+                "parent": 2,
+                "request": 1,
+                "task": 15,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7471,
+                "duration_ms": 13.4245,
+                "failed": false
+              },
+              {
+                "id": 24,
+                "parent": 2,
+                "request": 1,
+                "task": 16,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7495,
+                "duration_ms": 13.4279,
+                "failed": false
+              },
+              {
+                "id": 25,
+                "parent": 2,
+                "request": 1,
+                "task": 17,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7529,
+                "duration_ms": 13.4314,
+                "failed": false
+              },
+              {
+                "id": 26,
+                "parent": 2,
+                "request": 1,
+                "task": 18,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7554,
+                "duration_ms": 13.4353,
+                "failed": false
+              },
+              {
+                "id": 27,
+                "parent": 2,
+                "request": 1,
+                "task": 19,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7597,
+                "duration_ms": 13.4371,
+                "failed": false
+              },
+              {
+                "id": 28,
+                "parent": 2,
+                "request": 1,
+                "task": 20,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7636,
+                "duration_ms": 13.4389,
+                "failed": false
+              },
+              {
+                "id": 29,
+                "parent": 2,
+                "request": 1,
+                "task": 21,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.766,
+                "duration_ms": 13.4423,
+                "failed": false
+              },
+              {
+                "id": 30,
+                "parent": 2,
+                "request": 1,
+                "task": 22,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7684,
+                "duration_ms": 13.4462,
+                "failed": false
+              },
+              {
+                "id": 31,
+                "parent": 2,
+                "request": 1,
+                "task": 23,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7708,
+                "duration_ms": 13.4511,
+                "failed": false
+              },
+              {
+                "id": 32,
+                "parent": 2,
+                "request": 1,
+                "task": 24,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7734,
+                "duration_ms": 13.4545,
+                "failed": false
+              },
+              {
+                "id": 33,
+                "parent": 2,
+                "request": 1,
+                "task": 25,
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "start_ms": 1.7758,
+                "duration_ms": 13.4583,
+                "failed": false
+              },
+              {
+                "id": 34,
+                "parent": 2,
+                "request": 1,
+                "task": 26,
+                "name": "pricing.quote",
+                "kind": "operation",
+                "start_ms": 1.7783,
+                "duration_ms": 13.462,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 27,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0824,
+                "duration_ms": 15.9859,
+                "failed": false
+              },
+              {
+                "id": 2,
+                "parent": null,
+                "request": 1,
+                "task": 28,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.415,
+                "duration_ms": 16.1989,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 1,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.50926,
+              "p50_ms": 46.5559,
+              "p95_ms": 48.423069999999996,
+              "max_ms": 48.8491
+            },
+            "wall_ms": 234.0487,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 170.90460233276238,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 8933.835400000005,
+                "max_ms": 27.5001,
+                "failed": 0,
+                "mean_ms": 18.612157083333344
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1859.9631,
+                "max_ms": 48.8413,
+                "failed": 0,
+                "mean_ms": 46.4990775
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1727.0695999999998,
+                "max_ms": 44.3949,
+                "failed": 0,
+                "mean_ms": 43.176739999999995
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 28.305509999999998,
+              "p50_ms": 30.7137,
+              "p95_ms": 31.681820000000002,
+              "max_ms": 31.8822
+            },
+            "wall_ms": 143.2974,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 279.13974712730305,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 11725.848799999987,
+                "max_ms": 27.6489,
+                "failed": 0,
+                "mean_ms": 24.428851666666638
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1131.7993999999999,
+                "max_ms": 31.874,
+                "failed": 0,
+                "mean_ms": 28.294984999999997
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 977.4906,
+                "max_ms": 27.6491,
+                "failed": 0,
+                "mean_ms": 24.437265
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 2,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.4067025,
+              "p50_ms": 46.4522,
+              "p95_ms": 47.286364999999996,
+              "max_ms": 47.3812
+            },
+            "wall_ms": 233.72,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 171.14495978093444,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 8948.315600000005,
+                "max_ms": 27.739,
+                "failed": 0,
+                "mean_ms": 18.64232416666668
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1855.8664999999999,
+                "max_ms": 47.3734,
+                "failed": 0,
+                "mean_ms": 46.3966625
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1719.3155999999992,
+                "max_ms": 43.3695,
+                "failed": 0,
+                "mean_ms": 42.98288999999998
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 27.7216625,
+              "p50_ms": 30.52885,
+              "p95_ms": 31.242994999999997,
+              "max_ms": 31.2933
+            },
+            "wall_ms": 140.3502,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 285.00137513163503,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 11509.878400000005,
+                "max_ms": 26.9591,
+                "failed": 0,
+                "mean_ms": 23.978913333333345
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1108.4457999999997,
+                "max_ms": 31.2845,
+                "failed": 0,
+                "mean_ms": 27.711144999999995
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 959.4644999999999,
+                "max_ms": 26.9596,
+                "failed": 0,
+                "mean_ms": 23.9866125
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 3,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.3768125,
+              "p50_ms": 46.3722,
+              "p95_ms": 48.13807,
+              "max_ms": 48.2419
+            },
+            "wall_ms": 233.5889,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 171.24101359268357,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 11833.915699999998,
+                "max_ms": 27.7746,
+                "failed": 0,
+                "mean_ms": 24.65399104166666
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1854.6127999999999,
+                "max_ms": 48.2334,
+                "failed": 0,
+                "mean_ms": 46.36532
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1703.2945999999997,
+                "max_ms": 44.0793,
+                "failed": 0,
+                "mean_ms": 42.582364999999996
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 27.8840175,
+              "p50_ms": 30.673099999999998,
+              "p95_ms": 31.598805,
+              "max_ms": 32.1111
+            },
+            "wall_ms": 140.8344,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 284.0215174701636,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 11576.391100000003,
+                "max_ms": 27.3294,
+                "failed": 0,
+                "mean_ms": 24.117481458333337
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1114.936,
+                "max_ms": 32.1013,
+                "failed": 0,
+                "mean_ms": 27.873399999999997
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 964.8033999999998,
+                "max_ms": 27.3294,
+                "failed": 0,
+                "mean_ms": 24.120084999999996
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 4,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.7964075,
+              "p50_ms": 46.9651,
+              "p95_ms": 47.47526,
+              "max_ms": 47.5049
+            },
+            "wall_ms": 235.9513,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 169.52650822436664,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 10501.382700000006,
+                "max_ms": 28.1785,
+                "failed": 0,
+                "mean_ms": 21.87788062500001
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1871.4069999999997,
+                "max_ms": 47.4953,
+                "failed": 0,
+                "mean_ms": 46.785174999999995
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1726.4745999999996,
+                "max_ms": 43.8747,
+                "failed": 0,
+                "mean_ms": 43.16186499999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 27.919557500000003,
+              "p50_ms": 30.0122,
+              "p95_ms": 32.440635,
+              "max_ms": 32.6151
+            },
+            "wall_ms": 141.501,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 282.6835146041371,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 11624.453700000004,
+                "max_ms": 28.1791,
+                "failed": 0,
+                "mean_ms": 24.217611875000006
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1116.3251999999998,
+                "max_ms": 32.6063,
+                "failed": 0,
+                "mean_ms": 27.908129999999993
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 969.1623,
+                "max_ms": 28.1823,
+                "failed": 0,
+                "mean_ms": 24.2290575
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        },
+        {
+          "block": 5,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 46.463115,
+              "p50_ms": 46.61725,
+              "p95_ms": 47.57575,
+              "max_ms": 48.0026
+            },
+            "wall_ms": 233.6532,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 171.19388906293602,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 8965.081600000005,
+                "max_ms": 28.2115,
+                "failed": 0,
+                "mean_ms": 18.677253333333343
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1858.1245,
+                "max_ms": 47.9937,
+                "failed": 0,
+                "mean_ms": 46.453112499999996
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 1731.3698,
+                "max_ms": 43.7959,
+                "failed": 0,
+                "mean_ms": 43.284245
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "treatment": {
+            "latency": {
+              "count": 40,
+              "mean_ms": 25.195655,
+              "p50_ms": 30.84375,
+              "p95_ms": 31.82793,
+              "max_ms": 31.9707
+            },
+            "wall_ms": 127.4905,
+            "interventions": 0,
+            "replacement_calls": 40,
+            "injection": {
+              "requested_ms": 0,
+              "mean_observed_ms": 0,
+              "max_observed_ms": 0.0
+            },
+            "throughput_rps": 313.74886756268114,
+            "operations": [
+              {
+                "name": "inventory.lookup",
+                "kind": "operation",
+                "count": 480,
+                "total_ms": 10430.237600000002,
+                "max_ms": 28.0499,
+                "failed": 0,
+                "mean_ms": 21.729661666666672
+              },
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 40,
+                "total_ms": 1007.4587999999999,
+                "max_ms": 31.9633,
+                "failed": 0,
+                "mean_ms": 25.186469999999996
+              },
+              {
+                "name": "pricing.quote",
+                "kind": "operation",
+                "count": 40,
+                "total_ms": 869.5563000000002,
+                "max_ms": 28.0518,
+                "failed": 0,
+                "mean_ms": 21.738907500000003
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0,
+            "batch_output_hash": "09468e9ce46923eca3e6503deb0a1bfbc3d94913a54c6a2700b21f81decddd50"
+          },
+          "outputs_equal": true,
+          "output_mismatch_ids": []
+        }
+      ],
+      "verified_improvement": true,
+      "interpretation": "actual replacement under this workload; output equality is observed on tested request IDs only"
+    }
+  ],
+  "method": "randomized paired closed-loop blocks; percentile bootstrap over block mean differences",
+  "limitations": [
+    "cooperative readiness delay does not simulate CPU work",
+    "delay sensitivity is not inverse speedup prediction",
+    "output hash agreement on tested inputs does not prove semantic equivalence",
+    "p95 changes are descriptive; no inferential tail-latency claim",
+    "multiple arms are exploratory without multiplicity correction",
+    "explicitly instrumented parent spans are not a complete await/dependency graph"
+  ],
+  "scenario": "fastapi-asgi",
+  "title": "FastAPI 订单路由：路由、验证与响应序列化均参与测量",
+  "timer_calibration": {
+    "sleep_samples": [
+      {
+        "requested_ms": 1,
+        "count": 7,
+        "mean_ms": 14.288742857142859,
+        "p50_ms": 15.6191,
+        "p95_ms": 15.914299999999999,
+        "max_ms": 16.0139
+      },
+      {
+        "requested_ms": 4,
+        "count": 7,
+        "mean_ms": 15.670042857142858,
+        "p50_ms": 15.5142,
+        "p95_ms": 16.11136,
+        "max_ms": 16.1539
+      },
+      {
+        "requested_ms": 8,
+        "count": 7,
+        "mean_ms": 15.687871428571428,
+        "p50_ms": 15.733,
+        "p95_ms": 15.91883,
+        "max_ms": 15.9248
+      },
+      {
+        "requested_ms": 10,
+        "count": 7,
+        "mean_ms": 15.590157142857143,
+        "p50_ms": 15.4471,
+        "p95_ms": 16.04267,
+        "max_ms": 16.0514
+      },
+      {
+        "requested_ms": 12,
+        "count": 7,
+        "mean_ms": 15.504085714285713,
+        "p50_ms": 15.4491,
+        "p95_ms": 16.20634,
+        "max_ms": 16.3486
+      },
+      {
+        "requested_ms": 20,
+        "count": 7,
+        "mean_ms": 30.964971428571427,
+        "p50_ms": 31.058,
+        "p95_ms": 31.50835,
+        "max_ms": 31.6702
+      },
+      {
+        "requested_ms": 30,
+        "count": 7,
+        "mean_ms": 31.175485714285713,
+        "p50_ms": 31.0353,
+        "p95_ms": 31.77726,
+        "max_ms": 31.7916
+      },
+      {
+        "requested_ms": 32,
+        "count": 7,
+        "mean_ms": 46.844585714285714,
+        "p50_ms": 47.1629,
+        "p95_ms": 47.5945,
+        "max_ms": 47.6254
+      }
+    ],
+    "clock": {
+      "perf_counter": {
+        "implementation": "QueryPerformanceCounter()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 1e-07
+      },
+      "monotonic": {
+        "implementation": "QueryPerformanceCounter()",
+        "monotonic": true,
+        "adjustable": false,
+        "resolution": 1e-07
+      }
+    },
+    "note": "measured in an idle calibration; per-arm observed injection includes actual scheduling under load; no timer resolution changes requested"
+  },
+  "transport": "in-process ASGI; excludes TCP, uvicorn workers and external databases"
+}

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+artifacts/*.log
+build/
+dist/
+artifacts/wheels/
+artifacts/*.checkpoint.json
+artifacts/*.checkpoint.json.tmp

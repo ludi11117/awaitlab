@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "awaitlab-local"
+version = "0.2.0"
+description = "Cooperative latency sensitivity and measured A/B experiments for asyncio"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+awaitlab = "awaitlab.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["awaitlab*"]
+
+[tool.setuptools.package-data]
+awaitlab = ["assets/*.js", "assets/*.css"]

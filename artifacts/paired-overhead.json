@@ -1,0 +1,123 @@
+{
+  "baseline": {
+    "origin": "awaitlab_local-0.1.0-py3-none-any.whl:awaitlab/trace.py",
+    "source_sha256": "4582cd53041eaf75fd1147cc2bc3021221b23405b493d3c83819785ddde66d78",
+    "purpose": "frozen pre-optimization implementation for same-process paired microbenchmark"
+  },
+  "current_source_sha256": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b",
+  "calls_per_sample": 30000,
+  "blocks": 11,
+  "mode": "aggregate, no sampled spans, no I/O",
+  "mean_change_pct": -29.31928259877301,
+  "mean_delta_us_per_call": -0.717090303030303,
+  "ci95_delta_us_per_call": [
+    -0.7400131363636365,
+    -0.6935712727272728
+  ],
+  "samples_ms_per_call": [
+    {
+      "block": 0,
+      "order": [
+        "baseline",
+        "current"
+      ],
+      "baseline": 0.0024924466666666665,
+      "current": 0.0017522133333333335
+    },
+    {
+      "block": 1,
+      "order": [
+        "current",
+        "baseline"
+      ],
+      "current": 0.0017345566666666667,
+      "baseline": 0.002493466666666667
+    },
+    {
+      "block": 2,
+      "order": [
+        "baseline",
+        "current"
+      ],
+      "baseline": 0.002431903333333333,
+      "current": 0.0017244233333333335
+    },
+    {
+      "block": 3,
+      "order": [
+        "current",
+        "baseline"
+      ],
+      "current": 0.00172617,
+      "baseline": 0.0025052566666666667
+    },
+    {
+      "block": 4,
+      "order": [
+        "baseline",
+        "current"
+      ],
+      "baseline": 0.0024624166666666666,
+      "current": 0.0017022799999999998
+    },
+    {
+      "block": 5,
+      "order": [
+        "baseline",
+        "current"
+      ],
+      "baseline": 0.0024292566666666666,
+      "current": 0.0017251966666666666
+    },
+    {
+      "block": 6,
+      "order": [
+        "current",
+        "baseline"
+      ],
+      "current": 0.0017677366666666668,
+      "baseline": 0.0024108433333333333
+    },
+    {
+      "block": 7,
+      "order": [
+        "baseline",
+        "current"
+      ],
+      "baseline": 0.0023813700000000003,
+      "current": 0.0017141166666666667
+    },
+    {
+      "block": 8,
+      "order": [
+        "baseline",
+        "current"
+      ],
+      "baseline": 0.0024228500000000003,
+      "current": 0.0017263333333333334
+    },
+    {
+      "block": 9,
+      "order": [
+        "current",
+        "baseline"
+      ],
+      "current": 0.0017137533333333333,
+      "baseline": 0.002434843333333333
+    },
+    {
+      "block": 10,
+      "order": [
+        "baseline",
+        "current"
+      ],
+      "baseline": 0.00243912,
+      "current": 0.0017289999999999999
+    }
+  ],
+  "limits": [
+    "one machine and process",
+    "empty async function exaggerates relative overhead",
+    "does not measure application speedup or inference/causal accuracy"
+  ]
+}

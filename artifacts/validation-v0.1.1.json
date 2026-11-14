@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-15",
+  "version": "0.1.1",
+  "unit_and_integration_tests_passed": 16,
+  "browser_checks_passed": 9,
+  "wheel_outside_source_verified": true,
+  "environment": {
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "controlled_workload_results": {
+    "parallel-latest": [
+      {
+        "arm": "delay_inventory",
+        "change_pct": 0.73,
+        "ci95_delta_ms": [
+          -0.2586849479166644,
+          1.261200364583337
+        ],
+        "equal_outputs": true
+      },
+      {
+        "arm": "delay_pricing",
+        "change_pct": 33.27,
+        "ci95_delta_ms": [
+          15.254274166666669,
+          15.856815000000003
+        ],
+        "equal_outputs": true
+      },
+      {
+        "arm": "faster_inventory",
+        "change_pct": 0.3,
+        "ci95_delta_ms": [
+          0.00804291666666638,
+          0.2785516666666652
+        ],
+        "equal_outputs": true
+      },
+      {
+        "arm": "faster_pricing",
+        "change_pct": -66.54,
+        "ci95_delta_ms": [
+          -31.209675416666666,
+          -30.990144166666667
+        ],
+        "equal_outputs": true
+      }
+    ],
+    "pool-latest": [
+      {
+        "arm": "delay_query",
+        "change_pct": 48.75,
+        "ci95_delta_ms": [
+          55.769364583333335,
+          58.03197666666666
+        ],
+        "equal_outputs": true
+      },
+      {
+        "arm": "faster_query",
+        "change_pct": -50.39,
+        "ci95_delta_ms": [
+          -59.845932749999996,
+          -57.44986208333333
+        ],
+        "equal_outputs": true
+      }
+    ],
+    "fastapi-asgi": [
+      {
+        "arm": "faster_inventory",
+        "change_pct": 0.05,
+        "ci95_delta_ms": [
+          -0.2665461354166697,
+          0.2986991666666654
+        ],
+        "equal_outputs": true
+      },
+      {
+        "arm": "faster_pricing",
+        "change_pct": -42.05,
+        "ci95_delta_ms": [
+          -20.759509166666668,
+          -18.524070937500003
+        ],
+        "equal_outputs": true
+      }
+    ]
+  },
+  "limits": [
+    "controlled fixtures, not production performance guarantees",
+    "FastAPI is in-process ASGI, excludes sockets and workers",
+    "no evidence of novelty or superiority over existing profilers"
+  ]
+}

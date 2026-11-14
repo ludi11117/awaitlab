@@ -1,0 +1,180 @@
+{
+  "calls_per_sample": 30000,
+  "blocks": 7,
+  "workload": "async function returning immediately, no I/O",
+  "results": {
+    "plain": {
+      "median_us_per_call": 0.07591,
+      "max_trace_records": 0,
+      "max_trace_dropped": 0,
+      "samples": [
+        {
+          "us_per_call": 0.07435333333333333,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.07591,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.08052,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.07612,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.07514666666666667,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.07539,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.07805333333333334,
+          "trace_records": 0,
+          "trace_dropped": 0
+        }
+      ]
+    },
+    "disabled": {
+      "median_us_per_call": 0.19854,
+      "max_trace_records": 0,
+      "max_trace_dropped": 0,
+      "samples": [
+        {
+          "us_per_call": 0.20206666666666667,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.19854,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.19309666666666667,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.19932333333333332,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.20079333333333335,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.19663999999999998,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 0.19498,
+          "trace_records": 0,
+          "trace_dropped": 0
+        }
+      ]
+    },
+    "aggregate": {
+      "median_us_per_call": 2.5391233333333334,
+      "max_trace_records": 0,
+      "max_trace_dropped": 0,
+      "samples": [
+        {
+          "us_per_call": 2.5090600000000003,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 2.5939533333333333,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 2.5759566666666665,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 2.6261566666666667,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 2.42797,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 2.5391233333333334,
+          "trace_records": 0,
+          "trace_dropped": 0
+        },
+        {
+          "us_per_call": 2.452013333333333,
+          "trace_records": 0,
+          "trace_dropped": 0
+        }
+      ]
+    },
+    "bounded_trace": {
+      "median_us_per_call": 2.7289166666666667,
+      "max_trace_records": 4096,
+      "max_trace_dropped": 25905,
+      "samples": [
+        {
+          "us_per_call": 2.746726666666667,
+          "trace_records": 4096,
+          "trace_dropped": 25905
+        },
+        {
+          "us_per_call": 2.7796666666666665,
+          "trace_records": 4096,
+          "trace_dropped": 25905
+        },
+        {
+          "us_per_call": 2.7289166666666667,
+          "trace_records": 4096,
+          "trace_dropped": 25905
+        },
+        {
+          "us_per_call": 2.725986666666667,
+          "trace_records": 4096,
+          "trace_dropped": 25905
+        },
+        {
+          "us_per_call": 2.6834700000000002,
+          "trace_records": 4096,
+          "trace_dropped": 25905
+        },
+        {
+          "us_per_call": 2.70922,
+          "trace_records": 4096,
+          "trace_dropped": 25905
+        },
+        {
+          "us_per_call": 2.7799766666666668,
+          "trace_records": 4096,
+          "trace_dropped": 25905
+        }
+      ]
+    }
+  },
+  "note": "No-op operations exaggerate relative overhead compared with I/O services. Process memory includes this driver.",
+  "process_memory_mib": {
+    "rss": 27.40625,
+    "peak_working_set": 27.40625
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "local standalone report",
+    "four selectable arms",
+    "delay interpretation",
+    "control/treatment timeline",
+    "actual replacement result",
+    "mobile width",
+    "timer calibration",
+    "TCP transport scope",
+    "report library version",
+    "TCP mobile width",
+    "no JS exceptions",
+    "no network requests"
+  ]
+}

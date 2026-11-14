@@ -1,0 +1,5 @@
+{
+  "origin": "awaitlab_local-0.1.0-py3-none-any.whl:awaitlab/trace.py",
+  "source_sha256": "4582cd53041eaf75fd1147cc2bc3021221b23405b493d3c83819785ddde66d78",
+  "purpose": "frozen pre-optimization implementation for same-process paired microbenchmark"
+}

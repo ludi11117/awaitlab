@@ -1,0 +1,2253 @@
+{
+  "schema_version": 1,
+  "settings": {
+    "blocks": 4,
+    "requests": 32,
+    "concurrency": 8,
+    "warmup": 4,
+    "seed": 173,
+    "trace_requests": 2,
+    "max_records": 4096
+  },
+  "comparisons": [
+    {
+      "name": "delay_query",
+      "kind": "delay",
+      "site": "database.query",
+      "delay_ms": 4,
+      "control_mean_ms": 56.494234375,
+      "treatment_mean_ms": 112.82627578125,
+      "output_equivalence": true,
+      "effect": {
+        "mean_delta_ms": 56.332041406250006,
+        "ci95_delta_ms": [
+          55.740629687500004,
+          56.81126171875
+        ],
+        "mean_change_pct": 99.71290350149118,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 4
+      },
+      "descriptive_p95_change_pct": 100.37448066547081,
+      "first_pair": {
+        "block": 0,
+        "order": [
+          "control",
+          "treatment"
+        ],
+        "control": {
+          "latency": {
+            "count": 32,
+            "mean_ms": 56.24901875,
+            "p50_ms": 61.971500000000006,
+            "p95_ms": 63.00326,
+            "max_ms": 63.045
+          },
+          "wall_ms": 249.5974,
+          "interventions": 0,
+          "replacement_calls": 0,
+          "throughput_rps": 128.20646368912497,
+          "output_hashes": [
+            "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+            "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+            "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+            "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+            "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+            "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+            "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+            "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+            "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+            "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+            "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+            "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+            "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+            "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+            "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+            "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+            "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+            "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+            "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+            "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+            "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+            "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+            "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+            "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+            "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+            "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+            "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+            "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+            "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+            "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+            "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+            "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+          ],
+          "operations": [
+            {
+              "name": "request",
+              "kind": "request",
+              "count": 32,
+              "total_ms": 1799.4703000000002,
+              "max_ms": 63.0354,
+              "failed": 0,
+              "mean_ms": 56.233446875000006
+            },
+            {
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "count": 32,
+              "total_ms": 1303.4346,
+              "max_ms": 47.4714,
+              "failed": 0,
+              "mean_ms": 40.73233125
+            },
+            {
+              "name": "database.query",
+              "kind": "operation",
+              "count": 32,
+              "total_ms": 495.00550000000004,
+              "max_ms": 16.4583,
+              "failed": 0,
+              "mean_ms": 15.468921875000001
+            }
+          ],
+          "trace": [
+            {
+              "id": 2,
+              "parent": 1,
+              "request": 0,
+              "task": 1,
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "start_ms": 0.1769,
+              "duration_ms": 0.0057,
+              "failed": false
+            },
+            {
+              "id": 5,
+              "parent": 4,
+              "request": 1,
+              "task": 2,
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "start_ms": 0.2485,
+              "duration_ms": 0.0038,
+              "failed": false
+            },
+            {
+              "id": 3,
+              "parent": 1,
+              "request": 0,
+              "task": 1,
+              "name": "database.query",
+              "kind": "operation",
+              "start_ms": 0.2134,
+              "duration_ms": 15.3836,
+              "failed": false
+            },
+            {
+              "id": 1,
+              "parent": null,
+              "request": 0,
+              "task": 1,
+              "name": "request",
+              "kind": "request",
+              "start_ms": 0.1676,
+              "duration_ms": 15.482,
+              "failed": false
+            },
+            {
+              "id": 6,
+              "parent": 4,
+              "request": 1,
+              "task": 2,
+              "name": "database.query",
+              "kind": "operation",
+              "start_ms": 0.2721,
+              "duration_ms": 15.5148,
+              "failed": false
+            },
+            {
+              "id": 4,
+              "parent": null,
+              "request": 1,
+              "task": 2,
+              "name": "request",
+              "kind": "request",
+              "start_ms": 0.2388,
+              "duration_ms": 15.5637,
+              "failed": false
+            }
+          ],
+          "trace_dropped": 0
+        },
+        "treatment": {
+          "latency": {
+            "count": 32,
+            "mean_ms": 112.53605625,
+            "p50_ms": 124.31245,
+            "p95_ms": 125.01614,
+            "max_ms": 125.0539
+          },
+          "wall_ms": 497.1698,
+          "interventions": 32,
+          "replacement_calls": 0,
+          "throughput_rps": 64.36432784131297,
+          "output_hashes": [
+            "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+            "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+            "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+            "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+            "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+            "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+            "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+            "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+            "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+            "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+            "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+            "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+            "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+            "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+            "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+            "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+            "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+            "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+            "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+            "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+            "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+            "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+            "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+            "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+            "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+            "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+            "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+            "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+            "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+            "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+            "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+            "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+          ],
+          "operations": [
+            {
+              "name": "request",
+              "kind": "request",
+              "count": 32,
+              "total_ms": 3600.6112000000007,
+              "max_ms": 125.0444,
+              "failed": 0,
+              "mean_ms": 112.51910000000002
+            },
+            {
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "count": 32,
+              "total_ms": 2609.583699999999,
+              "max_ms": 94.0139,
+              "failed": 0,
+              "mean_ms": 81.54949062499998
+            },
+            {
+              "name": "database.query",
+              "kind": "operation",
+              "count": 32,
+              "total_ms": 989.8648000000001,
+              "max_ms": 31.7521,
+              "failed": 0,
+              "mean_ms": 30.933275000000002
+            }
+          ],
+          "trace": [
+            {
+              "id": 2,
+              "parent": 1,
+              "request": 0,
+              "task": 1,
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "start_ms": 0.1936,
+              "duration_ms": 0.0078,
+              "failed": false
+            },
+            {
+              "id": 5,
+              "parent": 4,
+              "request": 1,
+              "task": 2,
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "start_ms": 0.2808,
+              "duration_ms": 0.0035,
+              "failed": false
+            },
+            {
+              "id": 3,
+              "parent": 1,
+              "request": 0,
+              "task": 1,
+              "name": "database.query",
+              "kind": "operation",
+              "start_ms": 0.2334,
+              "duration_ms": 29.907,
+              "failed": false
+            },
+            {
+              "id": 1,
+              "parent": null,
+              "request": 0,
+              "task": 1,
+              "name": "request",
+              "kind": "request",
+              "start_ms": 0.1815,
+              "duration_ms": 30.0168,
+              "failed": false
+            },
+            {
+              "id": 6,
+              "parent": 4,
+              "request": 1,
+              "task": 2,
+              "name": "database.query",
+              "kind": "operation",
+              "start_ms": 0.3011,
+              "duration_ms": 29.9994,
+              "failed": false
+            },
+            {
+              "id": 4,
+              "parent": null,
+              "request": 1,
+              "task": 2,
+              "name": "request",
+              "kind": "request",
+              "start_ms": 0.2724,
+              "duration_ms": 30.042,
+              "failed": false
+            }
+          ],
+          "trace_dropped": 0
+        },
+        "outputs_equal": true
+      },
+      "blocks": [
+        {
+          "block": 0,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 56.24901875,
+              "p50_ms": 61.971500000000006,
+              "p95_ms": 63.00326,
+              "max_ms": 63.045
+            },
+            "wall_ms": 249.5974,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "throughput_rps": 128.20646368912497,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1799.4703000000002,
+                "max_ms": 63.0354,
+                "failed": 0,
+                "mean_ms": 56.233446875000006
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1303.4346,
+                "max_ms": 47.4714,
+                "failed": 0,
+                "mean_ms": 40.73233125
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 495.00550000000004,
+                "max_ms": 16.4583,
+                "failed": 0,
+                "mean_ms": 15.468921875000001
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.1769,
+                "duration_ms": 0.0057,
+                "failed": false
+              },
+              {
+                "id": 5,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.2485,
+                "duration_ms": 0.0038,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.2134,
+                "duration_ms": 15.3836,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1676,
+                "duration_ms": 15.482,
+                "failed": false
+              },
+              {
+                "id": 6,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.2721,
+                "duration_ms": 15.5148,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.2388,
+                "duration_ms": 15.5637,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 112.53605625,
+              "p50_ms": 124.31245,
+              "p95_ms": 125.01614,
+              "max_ms": 125.0539
+            },
+            "wall_ms": 497.1698,
+            "interventions": 32,
+            "replacement_calls": 0,
+            "throughput_rps": 64.36432784131297,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 3600.6112000000007,
+                "max_ms": 125.0444,
+                "failed": 0,
+                "mean_ms": 112.51910000000002
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 2609.583699999999,
+                "max_ms": 94.0139,
+                "failed": 0,
+                "mean_ms": 81.54949062499998
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 989.8648000000001,
+                "max_ms": 31.7521,
+                "failed": 0,
+                "mean_ms": 30.933275000000002
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.1936,
+                "duration_ms": 0.0078,
+                "failed": false
+              },
+              {
+                "id": 5,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.2808,
+                "duration_ms": 0.0035,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.2334,
+                "duration_ms": 29.907,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1815,
+                "duration_ms": 30.0168,
+                "failed": false
+              },
+              {
+                "id": 6,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.3011,
+                "duration_ms": 29.9994,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.2724,
+                "duration_ms": 30.042,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0
+          },
+          "outputs_equal": true
+        },
+        {
+          "block": 1,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 57.110453125,
+              "p50_ms": 62.977050000000006,
+              "p95_ms": 63.848525,
+              "max_ms": 64.0651
+            },
+            "wall_ms": 251.4251,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "throughput_rps": 127.27448452839435,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1827.0691000000002,
+                "max_ms": 64.0559,
+                "failed": 0,
+                "mean_ms": 57.095909375000005
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1327.0526000000002,
+                "max_ms": 48.6482,
+                "failed": 0,
+                "mean_ms": 41.47039375000001
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 499.0477999999999,
+                "max_ms": 16.708,
+                "failed": 0,
+                "mean_ms": 15.595243749999996
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 114.09645625,
+              "p50_ms": 125.32169999999999,
+              "p95_ms": 130.346165,
+              "max_ms": 130.7478
+            },
+            "wall_ms": 504.1024,
+            "interventions": 32,
+            "replacement_calls": 0,
+            "throughput_rps": 63.479166137673616,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 3650.5984000000008,
+                "max_ms": 130.7372,
+                "failed": 0,
+                "mean_ms": 114.08120000000002
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 2645.7335,
+                "max_ms": 98.5807,
+                "failed": 0,
+                "mean_ms": 82.679171875
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 1003.7926000000002,
+                "max_ms": 33.6383,
+                "failed": 0,
+                "mean_ms": 31.368518750000007
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "outputs_equal": true
+        },
+        {
+          "block": 2,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 56.369503125,
+              "p50_ms": 61.999449999999996,
+              "p95_ms": 62.85105,
+              "max_ms": 62.8718
+            },
+            "wall_ms": 248.9822,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "throughput_rps": 128.52324383028184,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1803.3401,
+                "max_ms": 62.8518,
+                "failed": 0,
+                "mean_ms": 56.354378125
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1308.1756999999998,
+                "max_ms": 47.262,
+                "failed": 0,
+                "mean_ms": 40.88049062499999
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 494.22490000000005,
+                "max_ms": 16.0508,
+                "failed": 0,
+                "mean_ms": 15.444528125000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 112.97093125,
+              "p50_ms": 124.60275,
+              "p95_ms": 126.09879,
+              "max_ms": 126.1651
+            },
+            "wall_ms": 499.4979,
+            "interventions": 32,
+            "replacement_calls": 0,
+            "throughput_rps": 64.0643334036039,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 3614.5475,
+                "max_ms": 126.1555,
+                "failed": 0,
+                "mean_ms": 112.954609375
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 2618.6687,
+                "max_ms": 95.0286,
+                "failed": 0,
+                "mean_ms": 81.833396875
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 994.8146,
+                "max_ms": 32.0255,
+                "failed": 0,
+                "mean_ms": 31.08795625
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "outputs_equal": true
+        },
+        {
+          "block": 3,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 56.2479625,
+              "p50_ms": 61.7968,
+              "p95_ms": 62.706725,
+              "max_ms": 62.785
+            },
+            "wall_ms": 248.7414,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "throughput_rps": 128.6476637986278,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1799.4729000000002,
+                "max_ms": 62.7777,
+                "failed": 0,
+                "mean_ms": 56.23352812500001
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1304.8773,
+                "max_ms": 47.2515,
+                "failed": 0,
+                "mean_ms": 40.777415625
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 493.6462,
+                "max_ms": 16.0609,
+                "failed": 0,
+                "mean_ms": 15.42644375
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 111.701659375,
+              "p50_ms": 123.0951,
+              "p95_ms": 124.30325,
+              "max_ms": 124.4045
+            },
+            "wall_ms": 493.6788,
+            "interventions": 32,
+            "replacement_calls": 0,
+            "throughput_rps": 64.81947371448804,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 3573.9498,
+                "max_ms": 124.3942,
+                "failed": 0,
+                "mean_ms": 111.68593125
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 2589.6919999999996,
+                "max_ms": 93.948,
+                "failed": 0,
+                "mean_ms": 80.92787499999999
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 983.1809,
+                "max_ms": 32.1492,
+                "failed": 0,
+                "mean_ms": 30.724403125
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "outputs_equal": true
+        }
+      ],
+      "sensitivity_ms_per_injected_ms": 14.083010351562502,
+      "interpretation": "response to extra cooperative delay; not an acceleration prediction"
+    },
+    {
+      "name": "faster_query",
+      "kind": "replacement",
+      "site": "database.query",
+      "delay_ms": 0,
+      "control_mean_ms": 56.827730468750005,
+      "treatment_mean_ms": 56.3329,
+      "output_equivalence": true,
+      "effect": {
+        "mean_delta_ms": -0.4948304687500009,
+        "ci95_delta_ms": [
+          -0.7520078125000023,
+          -0.22524140624999944
+        ],
+        "mean_change_pct": -0.8707552891314418,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 4
+      },
+      "descriptive_p95_change_pct": -1.333641183671841,
+      "first_pair": {
+        "block": 0,
+        "order": [
+          "control",
+          "treatment"
+        ],
+        "control": {
+          "latency": {
+            "count": 32,
+            "mean_ms": 57.087965625,
+            "p50_ms": 62.96485,
+            "p95_ms": 64.0724,
+            "max_ms": 64.1218
+          },
+          "wall_ms": 252.3885,
+          "interventions": 0,
+          "replacement_calls": 0,
+          "throughput_rps": 126.78866113154918,
+          "output_hashes": [
+            "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+            "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+            "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+            "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+            "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+            "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+            "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+            "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+            "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+            "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+            "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+            "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+            "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+            "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+            "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+            "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+            "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+            "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+            "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+            "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+            "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+            "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+            "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+            "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+            "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+            "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+            "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+            "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+            "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+            "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+            "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+            "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+          ],
+          "operations": [
+            {
+              "name": "request",
+              "kind": "request",
+              "count": 32,
+              "total_ms": 1826.3069,
+              "max_ms": 64.1124,
+              "failed": 0,
+              "mean_ms": 57.072090625
+            },
+            {
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "count": 32,
+              "total_ms": 1324.6819,
+              "max_ms": 48.3349,
+              "failed": 0,
+              "mean_ms": 41.396309375
+            },
+            {
+              "name": "database.query",
+              "kind": "operation",
+              "count": 32,
+              "total_ms": 500.59929999999997,
+              "max_ms": 16.7113,
+              "failed": 0,
+              "mean_ms": 15.643728124999999
+            }
+          ],
+          "trace": [
+            {
+              "id": 2,
+              "parent": 1,
+              "request": 0,
+              "task": 1,
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "start_ms": 0.0786,
+              "duration_ms": 0.0044,
+              "failed": false
+            },
+            {
+              "id": 5,
+              "parent": 4,
+              "request": 1,
+              "task": 2,
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "start_ms": 0.1262,
+              "duration_ms": 0.0025,
+              "failed": false
+            },
+            {
+              "id": 3,
+              "parent": 1,
+              "request": 0,
+              "task": 1,
+              "name": "database.query",
+              "kind": "operation",
+              "start_ms": 0.1035,
+              "duration_ms": 15.7716,
+              "failed": false
+            },
+            {
+              "id": 1,
+              "parent": null,
+              "request": 0,
+              "task": 1,
+              "name": "request",
+              "kind": "request",
+              "start_ms": 0.0715,
+              "duration_ms": 15.8368,
+              "failed": false
+            },
+            {
+              "id": 6,
+              "parent": 4,
+              "request": 1,
+              "task": 2,
+              "name": "database.query",
+              "kind": "operation",
+              "start_ms": 0.1393,
+              "duration_ms": 15.8541,
+              "failed": false
+            },
+            {
+              "id": 4,
+              "parent": null,
+              "request": 1,
+              "task": 2,
+              "name": "request",
+              "kind": "request",
+              "start_ms": 0.1218,
+              "duration_ms": 15.8838,
+              "failed": false
+            }
+          ],
+          "trace_dropped": 0
+        },
+        "treatment": {
+          "latency": {
+            "count": 32,
+            "mean_ms": 56.2375125,
+            "p50_ms": 62.0988,
+            "p95_ms": 62.845675,
+            "max_ms": 62.9636
+          },
+          "wall_ms": 248.1428,
+          "interventions": 0,
+          "replacement_calls": 32,
+          "throughput_rps": 128.95800321427822,
+          "output_hashes": [
+            "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+            "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+            "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+            "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+            "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+            "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+            "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+            "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+            "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+            "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+            "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+            "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+            "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+            "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+            "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+            "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+            "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+            "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+            "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+            "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+            "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+            "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+            "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+            "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+            "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+            "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+            "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+            "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+            "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+            "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+            "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+            "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+          ],
+          "operations": [
+            {
+              "name": "request",
+              "kind": "request",
+              "count": 32,
+              "total_ms": 1799.1061999999997,
+              "max_ms": 62.9537,
+              "failed": 0,
+              "mean_ms": 56.22206874999999
+            },
+            {
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "count": 32,
+              "total_ms": 1305.7625,
+              "max_ms": 47.4466,
+              "failed": 0,
+              "mean_ms": 40.805078125
+            },
+            {
+              "name": "database.query",
+              "kind": "operation",
+              "count": 32,
+              "total_ms": 492.3155,
+              "max_ms": 16.3311,
+              "failed": 0,
+              "mean_ms": 15.384859375
+            }
+          ],
+          "trace": [
+            {
+              "id": 2,
+              "parent": 1,
+              "request": 0,
+              "task": 1,
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "start_ms": 0.0908,
+              "duration_ms": 0.0041,
+              "failed": false
+            },
+            {
+              "id": 5,
+              "parent": 4,
+              "request": 1,
+              "task": 2,
+              "name": "database.pool_wait",
+              "kind": "wait",
+              "start_ms": 0.1361,
+              "duration_ms": 0.0027,
+              "failed": false
+            },
+            {
+              "id": 3,
+              "parent": 1,
+              "request": 0,
+              "task": 1,
+              "name": "database.query",
+              "kind": "operation",
+              "start_ms": 0.1137,
+              "duration_ms": 14.8596,
+              "failed": false
+            },
+            {
+              "id": 1,
+              "parent": null,
+              "request": 0,
+              "task": 1,
+              "name": "request",
+              "kind": "request",
+              "start_ms": 0.0843,
+              "duration_ms": 14.9266,
+              "failed": false
+            },
+            {
+              "id": 6,
+              "parent": 4,
+              "request": 1,
+              "task": 2,
+              "name": "database.query",
+              "kind": "operation",
+              "start_ms": 0.1497,
+              "duration_ms": 14.9456,
+              "failed": false
+            },
+            {
+              "id": 4,
+              "parent": null,
+              "request": 1,
+              "task": 2,
+              "name": "request",
+              "kind": "request",
+              "start_ms": 0.1309,
+              "duration_ms": 14.9771,
+              "failed": false
+            }
+          ],
+          "trace_dropped": 0
+        },
+        "outputs_equal": true
+      },
+      "blocks": [
+        {
+          "block": 0,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 57.087965625,
+              "p50_ms": 62.96485,
+              "p95_ms": 64.0724,
+              "max_ms": 64.1218
+            },
+            "wall_ms": 252.3885,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "throughput_rps": 126.78866113154918,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1826.3069,
+                "max_ms": 64.1124,
+                "failed": 0,
+                "mean_ms": 57.072090625
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1324.6819,
+                "max_ms": 48.3349,
+                "failed": 0,
+                "mean_ms": 41.396309375
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 500.59929999999997,
+                "max_ms": 16.7113,
+                "failed": 0,
+                "mean_ms": 15.643728124999999
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.0786,
+                "duration_ms": 0.0044,
+                "failed": false
+              },
+              {
+                "id": 5,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.1262,
+                "duration_ms": 0.0025,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1035,
+                "duration_ms": 15.7716,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0715,
+                "duration_ms": 15.8368,
+                "failed": false
+              },
+              {
+                "id": 6,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1393,
+                "duration_ms": 15.8541,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1218,
+                "duration_ms": 15.8838,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 56.2375125,
+              "p50_ms": 62.0988,
+              "p95_ms": 62.845675,
+              "max_ms": 62.9636
+            },
+            "wall_ms": 248.1428,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "throughput_rps": 128.95800321427822,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1799.1061999999997,
+                "max_ms": 62.9537,
+                "failed": 0,
+                "mean_ms": 56.22206874999999
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1305.7625,
+                "max_ms": 47.4466,
+                "failed": 0,
+                "mean_ms": 40.805078125
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 492.3155,
+                "max_ms": 16.3311,
+                "failed": 0,
+                "mean_ms": 15.384859375
+              }
+            ],
+            "trace": [
+              {
+                "id": 2,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.0908,
+                "duration_ms": 0.0041,
+                "failed": false
+              },
+              {
+                "id": 5,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "start_ms": 0.1361,
+                "duration_ms": 0.0027,
+                "failed": false
+              },
+              {
+                "id": 3,
+                "parent": 1,
+                "request": 0,
+                "task": 1,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1137,
+                "duration_ms": 14.8596,
+                "failed": false
+              },
+              {
+                "id": 1,
+                "parent": null,
+                "request": 0,
+                "task": 1,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.0843,
+                "duration_ms": 14.9266,
+                "failed": false
+              },
+              {
+                "id": 6,
+                "parent": 4,
+                "request": 1,
+                "task": 2,
+                "name": "database.query",
+                "kind": "operation",
+                "start_ms": 0.1497,
+                "duration_ms": 14.9456,
+                "failed": false
+              },
+              {
+                "id": 4,
+                "parent": null,
+                "request": 1,
+                "task": 2,
+                "name": "request",
+                "kind": "request",
+                "start_ms": 0.1309,
+                "duration_ms": 14.9771,
+                "failed": false
+              }
+            ],
+            "trace_dropped": 0
+          },
+          "outputs_equal": true
+        },
+        {
+          "block": 1,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 56.54944375,
+              "p50_ms": 61.8756,
+              "p95_ms": 64.87041,
+              "max_ms": 65.0938
+            },
+            "wall_ms": 250.527,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "throughput_rps": 127.730743592507,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1809.1362000000001,
+                "max_ms": 65.0857,
+                "failed": 0,
+                "mean_ms": 56.535506250000005
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1310.9131,
+                "max_ms": 49.124,
+                "failed": 0,
+                "mean_ms": 40.966034375
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 497.27139999999997,
+                "max_ms": 16.7818,
+                "failed": 0,
+                "mean_ms": 15.539731249999999
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 56.435059375,
+              "p50_ms": 62.00315,
+              "p95_ms": 63.255145,
+              "max_ms": 63.3283
+            },
+            "wall_ms": 249.019,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "throughput_rps": 128.50425067966702,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1805.4371,
+                "max_ms": 63.3186,
+                "failed": 0,
+                "mean_ms": 56.419909375
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1310.3695,
+                "max_ms": 47.6808,
+                "failed": 0,
+                "mean_ms": 40.949046875
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 494.06260000000003,
+                "max_ms": 15.9775,
+                "failed": 0,
+                "mean_ms": 15.439456250000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "outputs_equal": true
+        },
+        {
+          "block": 2,
+          "order": [
+            "treatment",
+            "control"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 56.291446875,
+              "p50_ms": 61.9555,
+              "p95_ms": 62.924735,
+              "max_ms": 63.0763
+            },
+            "wall_ms": 249.1519,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "throughput_rps": 128.4357052866143,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1800.7521,
+                "max_ms": 63.0666,
+                "failed": 0,
+                "mean_ms": 56.273503125
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1305.3607,
+                "max_ms": 47.625,
+                "failed": 0,
+                "mean_ms": 40.792521875
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 494.4589000000001,
+                "max_ms": 16.3603,
+                "failed": 0,
+                "mean_ms": 15.451840625000003
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 55.733634375,
+              "p50_ms": 61.329049999999995,
+              "p95_ms": 62.499,
+              "max_ms": 62.5235
+            },
+            "wall_ms": 246.3711,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "throughput_rps": 129.88536398952635,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1782.9969999999998,
+                "max_ms": 62.5136,
+                "failed": 0,
+                "mean_ms": 55.718656249999995
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1293.4261999999999,
+                "max_ms": 47.3411,
+                "failed": 0,
+                "mean_ms": 40.419568749999996
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 488.59610000000004,
+                "max_ms": 15.9982,
+                "failed": 0,
+                "mean_ms": 15.268628125000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "outputs_equal": true
+        },
+        {
+          "block": 3,
+          "order": [
+            "control",
+            "treatment"
+          ],
+          "control": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 57.382065625,
+              "p50_ms": 63.1753,
+              "p95_ms": 65.3137,
+              "max_ms": 66.1693
+            },
+            "wall_ms": 253.2543,
+            "interventions": 0,
+            "replacement_calls": 0,
+            "throughput_rps": 126.35520897374694,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1835.7263,
+                "max_ms": 66.1599,
+                "failed": 0,
+                "mean_ms": 57.366446875
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1332.231,
+                "max_ms": 49.0071,
+                "failed": 0,
+                "mean_ms": 41.63221875
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 502.50340000000017,
+                "max_ms": 17.6523,
+                "failed": 0,
+                "mean_ms": 15.703231250000005
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "treatment": {
+            "latency": {
+              "count": 32,
+              "mean_ms": 56.92539375,
+              "p50_ms": 62.1657,
+              "p95_ms": 65.15155,
+              "max_ms": 65.2079
+            },
+            "wall_ms": 251.0836,
+            "interventions": 0,
+            "replacement_calls": 32,
+            "throughput_rps": 127.44759116087232,
+            "output_hashes": [
+              "8105590eda8cd39748d1067aaaea91e82ad8aff611f940615a40ac9cd88212f4",
+              "c68f8406807883ed11d75a8864abd7e3b06b4c6fc6e0c6d88f6eb75c4f71ca5a",
+              "d6ac1cef39c18c8b8d4a1255c72a59632fd3bf18e0683cb77ad52d197d8f57b7",
+              "ba3bb042cdd9a62d6ed8b9fb1176e0ac1b422408bb04ff4f109d580f91724560",
+              "59ae622c311052558a1931e788d0c71918a01de22a61360560f5cafe7d93979f",
+              "5101d5980ab800550fd010be6ab0f7bbbf2c8eecfeabb0cab83ff5a4997e3d47",
+              "88085886b512c7bd1e72539734e7f28a6f0c00272be877c8fe5c95ea6134ebdf",
+              "4e217a63c1f768438c4b29f322905f681ba5616ae3c4c25a67acf8b40351c7da",
+              "0f61441347bcdc7076c6341bbfc4660508c5a1f36503826230079eeee31b7f13",
+              "16082d29a8f1bf52899991994afa4ffc6154211dab54c724629a9fc7206c1c01",
+              "ff32e065a411b8cc1f2dfa1e7202cc41071837de1b328f54a8c23603c4bec547",
+              "56320fbc726ee1cf955a97c66979d9667944057e63c15d0984c73016b474748d",
+              "fb57b1704e5f3f251c741fca085e4fa2e70ef6d2f14a106064d3b4aa060f7402",
+              "4df8388d3b848cd6179c4e1b1e8a9fcf6e3e2286485c628a88433ea0770fd995",
+              "91d0837820037c886655db42ba7e7f106765c21de7485b24edb5d531eff30d09",
+              "5cb61c6f1318256f1fcb974d270374d70ca030bbf9a8bc587847d75e2869f8ba",
+              "868a31944e622caf5c66177ae4ae2c3642c4a72cadbfd6316e647d29c69eec1f",
+              "bcab64bde4b277356a11d18b7355c030dc3492431e0c2ab2eed21da546108a0b",
+              "988e98e979c74a2a67dd91bf69c220455e66613d221b2bb9499125eb71972a27",
+              "1b4fdcdff5287358bb296d1871571ad16046b7feef83454c40052ec4498be2aa",
+              "4bdc4a1c387569433c469dd9c2a129a32cd3ff4ef9dcfbb585ab8dac02cd747b",
+              "54db257b27424ac733478b789c4b7db3a72934f135e1e7f44b102014e3fab162",
+              "87e1b794e633aea68ea2823d4099ecdad40fa60a18f4f21f6a26058b709c2c1a",
+              "2fc30df52d0a2fe9f719e9e062ee7c3bef1183e61680548b863fa911b4fec6bf",
+              "ef52d127851eb9bd8ca01917af1d3f51520a3c4d971466162ecf84199d0f0ea3",
+              "07ac4188bdfad63a820b1396cc8c9aec372dfc0e194a8750a83abf7f106bcabc",
+              "bf50eba492bad5838308783bcaf66d3f5f42c491e43fd2aab1c3da81e64c8048",
+              "857321813a12f19161b7fa68c04314a68a74207fae577f4075299ce525873b26",
+              "03ebf40441c688ddd07c9db1e103637068c5746a194b034cbe78739918989ad5",
+              "242f09ae3deed169717de76d8257b6158dd58f4e51298cdddc081199cfd7bf72",
+              "28d543d15e68f4d38cb3a66fa70d55983f44ea2874035824c408f5afc58d609c",
+              "8d9ac29e5801895dbdf6dcce8752d66913cfff89125b8bfd342d588fe8f0b456"
+            ],
+            "operations": [
+              {
+                "name": "request",
+                "kind": "request",
+                "count": 32,
+                "total_ms": 1821.1752000000004,
+                "max_ms": 65.188,
+                "failed": 0,
+                "mean_ms": 56.91172500000001
+              },
+              {
+                "name": "database.pool_wait",
+                "kind": "wait",
+                "count": 32,
+                "total_ms": 1321.7376000000002,
+                "max_ms": 49.8166,
+                "failed": 0,
+                "mean_ms": 41.304300000000005
+              },
+              {
+                "name": "database.query",
+                "kind": "operation",
+                "count": 32,
+                "total_ms": 498.51410000000004,
+                "max_ms": 17.3725,
+                "failed": 0,
+                "mean_ms": 15.578565625000001
+              }
+            ],
+            "trace": [],
+            "trace_dropped": 0
+          },
+          "outputs_equal": true
+        }
+      ],
+      "verified_improvement": true,
+      "interpretation": "actual replacement under this workload; output equality is observed on tested request IDs only"
+    }
+  ],
+  "method": "randomized paired closed-loop blocks; percentile bootstrap over block mean differences",
+  "limitations": [
+    "cooperative readiness delay does not simulate CPU work",
+    "delay sensitivity is not inverse speedup prediction",
+    "output hash agreement on tested inputs does not prove semantic equivalence",
+    "p95 changes are descriptive; no inferential tail-latency claim",
+    "multiple arms are exploratory without multiplicity correction",
+    "explicitly instrumented parent spans are not a complete await/dependency graph"
+  ],
+  "scenario": "pool",
+  "title": "共享连接池：服务时间与排队放大",
+  "environment": {
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}
