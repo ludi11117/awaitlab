@@ -35,7 +35,7 @@ class SQLiteTests(unittest.IsolatedAsyncioTestCase):
     async def test_actual_executor_queries_remain_equivalent(self):
         factory=make_workload(self.root,rows=2000,workers=2)
         report=await Experiment(factory,ARMS,Settings(blocks=2,requests=8,concurrency=2,warmup=1)).run()
-        self.assertEqual(report['schema_version'],3)
+        self.assertEqual(report['schema_version'],4)
         self.assertEqual(report['evidence_policy']['family'],['indexed_lookup','unchanged_lookup'])
         for c in report['comparisons']:
             self.assertTrue(c['output_equivalence'])

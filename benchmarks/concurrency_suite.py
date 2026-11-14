@@ -17,7 +17,7 @@ from awaitlab.scenarios import SCENARIOS
 
 
 async def main(resume=False):
-    folder=ROOT/'artifacts/concurrency-v1';folder.mkdir(parents=True,exist_ok=True)
+    folder=ROOT/f'artifacts/concurrency-v1-{__version__}';folder.mkdir(parents=True,exist_ok=True)
     plan={'protocol':'sqlite-concurrency-v1','scenario_order':['sqlite','sqlite-http'],
         'concurrency_order':[1,4,8],'blocks':10,'requests':32,'warmup':4,'seed':173,
         'library_version':__version__,'driver_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),

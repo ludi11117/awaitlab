@@ -1,6 +1,8 @@
 import asyncio
 from contextlib import asynccontextmanager
 import unittest
+import time
+from unittest.mock import patch
 from awaitlab import Arm,Experiment,Session,Settings,operation,stage
 from awaitlab.statistics import quantile,paired_effect
 
@@ -82,6 +84,27 @@ class TraceTests(unittest.IsolatedAsyncioTestCase):
 
 class ExperimentTests(unittest.IsolatedAsyncioTestCase):
     def settings(self):return Settings(blocks=2,requests=5,concurrency=2,warmup=0)
+
+    async def test_output_checks_are_in_cycle_and_wall_not_own_response(self):
+        from awaitlab.experiment import fingerprint
+        @operation('value')
+        async def value(i):return {'id':i}
+        @asynccontextmanager
+        async def factory():yield value
+        experiment=Experiment(factory,[Arm('delay','delay','value',1)],
+            Settings(blocks=2,requests=4,concurrency=1,warmup=0))
+        def slow_check(output):
+            time.sleep(.003)
+            return fingerprint(output)
+        with patch('awaitlab.experiment.fingerprint',slow_check):measurement=await experiment._block(None)
+        check=measurement['output_check']
+        self.assertEqual(check['count'],4)
+        self.assertGreaterEqual(check['mean_ms'],3)
+        self.assertAlmostEqual(measurement['worker_cycle']['mean_ms'],
+            measurement['latency']['mean_ms']+check['mean_ms'],places=8)
+        self.assertAlmostEqual(check['total_ms'],4*check['mean_ms'],places=8)
+        self.assertGreaterEqual(measurement['wall_ms'],check['total_ms'])
+        self.assertEqual(measurement['output_hashes'],[fingerprint({'id':i}) for i in range(4)])
 
     async def test_actual_replacement_must_preserve_tested_outputs(self):
         @operation('value')

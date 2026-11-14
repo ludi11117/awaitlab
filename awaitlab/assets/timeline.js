@@ -38,7 +38,29 @@
   }
   return {start,end,width:Math.max(end-start,.001),lanes};
  }
- const api={pack,layout};
+ function union(intervals){
+  const ordered=intervals.filter(([a,b])=>b>a).sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  let length=0,end=-Infinity;
+  for(const [a,b] of ordered){if(b>end){length+=b-Math.max(a,end);end=b;}}
+  return length;
+ }
+ function coverage(records,request){
+  const rows=records.filter(r=>r.request===request),root=rows.find(r=>r.kind==='request');
+  if(!root)return null;
+  const start=root.start_ms,end=start+root.duration_ms,groups=new Map(),intervals=[];
+  for(const span of rows){
+   if(span.kind==='request')continue;
+   const interval=[Math.max(start,span.start_ms),Math.min(end,span.start_ms+span.duration_ms)];
+   if(interval[1]<=interval[0])continue;
+   const key=JSON.stringify([span.name,span.kind]);
+   if(!groups.has(key))groups.set(key,{name:span.name,kind:span.kind,intervals:[],cumulative_ms:0});
+   const group=groups.get(key);group.intervals.push(interval);group.cumulative_ms+=interval[1]-interval[0];intervals.push(interval);
+  }
+  const covered_ms=Math.min(root.duration_ms,union(intervals));
+  return {request_ms:root.duration_ms,covered_ms,uncovered_ms:Math.max(0,root.duration_ms-covered_ms),
+   groups:[...groups.values()].map(g=>({name:g.name,kind:g.kind,cumulative_ms:g.cumulative_ms,covered_ms:union(g.intervals)}))};
+ }
+ const api={pack,layout,union,coverage};
  if(typeof module==='object'&&module.exports)module.exports=api;
  else root.AwaitLabTimeline=api;
 })(typeof globalThis==='object'?globalThis:this);

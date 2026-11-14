@@ -87,15 +87,20 @@ class Experiment:
             session=Session(delay_site=arm.site if arm and arm.kind=='delay' else None,
                 delay_ms=arm.delay_ms if arm else 0,replacements=arm.replacements if arm else {},
                 trace_requests=cfg.trace_requests if trace else 0,max_records=cfg.max_records)
-            latencies=[None]*cfg.requests;outputs=[None]*cfg.requests
+            latencies=[None]*cfg.requests;cycles=[None]*cfg.requests
+            check_times=[None]*cfg.requests;outputs=[None]*cfg.requests
             jobs=iter(range(cfg.requests))
             async def worker():
                 for i in jobs:
                     start=time.perf_counter_ns()
                     async with session.request(i):
                         value=await handler(i)
-                    latencies[i]=(time.perf_counter_ns()-start)/1_000_000
+                    returned=time.perf_counter_ns()
+                    latencies[i]=(returned-start)/1_000_000
                     outputs[i]=fingerprint(value)
+                    checked=time.perf_counter_ns()
+                    cycles[i]=(checked-start)/1_000_000
+                    check_times[i]=(checked-returned)/1_000_000
             start=time.perf_counter_ns()
             with session:
                 workers=[asyncio.create_task(worker()) for _ in range(min(cfg.concurrency,cfg.requests))]
@@ -108,7 +113,11 @@ class Experiment:
                         if not task.done():task.cancel()
                     await asyncio.gather(*workers,return_exceptions=True)
             elapsed=(time.perf_counter_ns()-start)/1_000_000
-        return {'latency':describe(latencies),'wall_ms':elapsed,
+        return {'latency':describe(latencies),'worker_cycle':describe(cycles),
+                'output_check':{**describe(check_times),'total_ms':sum(check_times),
+                    'share_of_worker_cycle_pct':100*sum(check_times)/sum(cycles),
+                    'basis':'synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time'},
+                'wall_ms':elapsed,
                 'interventions':session.interventions,'replacement_calls':session.replacement_calls,
                 'injection':{'requested_ms':arm.delay_ms if arm and arm.kind=='delay' else 0,
                     'mean_observed_ms':session.observed_injection_ms/session.interventions if session.interventions else 0,
@@ -201,7 +210,11 @@ class Experiment:
             c['evidence_level']=evidence_level(c['output_equivalence'],c['effect']['mean_change_pct'],
                 c['holm_adjusted_p'],c['randomization']['exact'],self.settings.alpha,self.settings.min_gain_pct)
             c['candidate_improvement']=c['evidence_level']=='supported_in_this_experiment'
-        return {'schema_version':3,'library_version':__version__,'settings':asdict(self.settings),'comparisons':comparisons,
+        return {'schema_version':4,'library_version':__version__,'settings':asdict(self.settings),'comparisons':comparisons,
+            'measurement_basis':{'latency':'handler await including request trace; excludes its own output check',
+                'worker_cycle':'handler plus synchronous output check, excluding the outer worker scheduling loop',
+                'wall':'all workers, output checks and orchestration; excludes workload setup, warmup and teardown',
+                'interference':'output checks can change request pacing and delay other tasks even when outside the current request timer'},
             'evidence_policy':{'family':list(family),'correction':'Holm, replacement arms only',
                 'alpha':self.settings.alpha,'min_point_gain_pct':self.settings.min_gain_pct,
                 'scope':'exploratory within-workload support; not preregistered confirmation or a lower bound on the practical margin',
@@ -213,4 +226,5 @@ class Experiment:
                 'output hash agreement on tested inputs does not prove semantic equivalence',
                 'p95 changes are descriptive; no inferential tail-latency claim',
                 'replacement p-values use Holm; all conclusions remain exploratory and workload-specific',
+                'synchronous output checks affect closed-loop pacing and may delay other concurrent requests',
                 'explicitly instrumented parent spans are not a complete await/dependency graph']}

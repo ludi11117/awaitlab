@@ -1,7 +1,12 @@
 """Optional export figure; uses existing matplotlib, not a product dependency."""
 import json
 import os
+import argparse
 from pathlib import Path
+import sys
+
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
+from awaitlab import __version__
 
 os.environ.setdefault('MPLCONFIGDIR','D:/CodexWork/cache/awaitlab-matplotlib')
 os.environ['TEMP']='D:/CodexWork/temp/awaitlab'
@@ -10,7 +15,9 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-folder=Path(__file__).resolve().parents[1]/'artifacts/concurrency-v1'
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--folder',type=Path,default=ROOT/f'artifacts/concurrency-v1-{__version__}')
+folder=parser.parse_args().folder
 summary=json.loads((folder/'summary.json').read_text(encoding='utf-8'))
 if summary['state']!='complete':raise ValueError('Only plot a completed fixed sweep')
 fig,ax=plt.subplots(figsize=(9,5.6),layout='constrained')
@@ -29,8 +36,9 @@ ax.set_xticks([1,4,8]);ax.set_xlabel('Closed-loop workers');ax.set_ylabel('Mean 
 ax.set_ylim(-98,24);ax.grid(axis='y',alpha=.15);ax.spines[['top','right']].set_visible(False)
 ax.set_title('The same index yields different end-to-end gains',loc='left',fontsize=15,pad=18)
 ax.legend(loc='upper center',ncol=2,fontsize=8.5,frameon=False)
-fig.suptitle('AwaitLab 0.3.1 | 50,000 rows | 10 paired blocks x 32 requests | seed 173',fontsize=9,color='#687c8d')
-fig.supxlabel('Exploratory point estimates; no cross-case inference. Fixed protocol and raw blocks: concurrency-v1/',fontsize=8,color='#687c8d')
+plan=summary['plan']
+fig.suptitle(f'AwaitLab {plan["library_version"]} | 50,000 rows | {plan["blocks"]} paired blocks x {plan["requests"]} requests | seed {plan["seed"]}',fontsize=9,color='#687c8d')
+fig.supxlabel(f'Exploratory point estimates; no cross-case inference. Fixed protocol and raw blocks: {folder.name}/',fontsize=8,color='#687c8d')
 fig.savefig(folder/'latency-change.svg');fig.savefig(folder/'latency-change.png',dpi=170)
 plt.close(fig)
 print(folder/'latency-change.svg')

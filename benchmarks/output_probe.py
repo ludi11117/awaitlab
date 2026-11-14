@@ -46,7 +46,7 @@ async def main():
         effect=paired_effect([p['inline']['mean_ms'] for p in pairs],[p['precomputed_oracle']['mean_ms'] for p in pairs],seed=plan['seed'])
         result['cases'].append({'payload_bytes':size,'pairs':pairs,'oracle_minus_inline_effect':effect,'all_expected_outputs_equal':True})
         print(f'{size} bytes: no-hash oracle changes measured mean by {effect["mean_change_pct"]:+.1f}%',flush=True)
-    target=ROOT/'artifacts/output-probe-v0.3.1.json'
+    target=ROOT/f'artifacts/output-probe-v{__version__}.json'
     target.write_text(json.dumps(result,indent=2),encoding='utf-8')
     print(target,flush=True)
 
