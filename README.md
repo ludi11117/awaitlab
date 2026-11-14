@@ -60,7 +60,7 @@ $env:PYTHONPATH='D:\CodexWork\projects\awaitlab'
 python -m awaitlab run perf_case --output artifacts/perf.json
 ```
 
-`perf_case` 对应本地 perf_case.py，也可使用包内的点分模块名。模块按普通 Python 代码导入。实验设置由模块内 Settings 决定，CLI 的 blocks/requests/concurrency 参数用于 demo 子命令。入口模块、workload、replacement 和 SDK 已知源码会进入断点身份；配置源码变化后拒绝恢复，测量中变化也拒绝输出完成报告。外部数据与未自动覆盖的传递依赖仍需更新 workload_version。
+`perf_case` 对应本地 perf_case.py，也可使用包内的点分模块名。模块按普通 Python 代码导入。实验设置由模块内 Settings 决定，CLI 的 blocks/requests/concurrency 参数用于 demo 子命令。可选导出 `transport` 和 `output_contract` 字符串，分别说明实际链路和核对哪些输出字段。入口模块、workload、replacement 和 SDK 已知源码会进入断点身份；配置源码变化后拒绝恢复，测量中变化也拒绝输出完成报告。外部数据与未自动覆盖的传递依赖仍需更新 workload_version。
 
 纯实现替换不运行额外定时器校准；包含等待干预的实验会测量名义等待与实际等待的偏差。以下为直接使用 Python API 的方式：
 
@@ -141,6 +141,21 @@ with bridge.headers() as headers:
 ```
 
 票据只引用同一进程内的会话，单次使用且离开请求上下文后移除。无票据请求正常透传；无法识别、重复或来自非本机客户端的票据返回403。没有票据内容进入实验报告。服务绑定 127.0.0.1 临时端口，关闭实验即关闭服务，不启动常驻进程。
+
+### 含初始化资源与动态响应的接口
+
+0.6 的 `serve_local(app)` 默认启用 ASGI lifespan，等 startup 完成后才交付客户端，关闭时等待 shutdown。启动失败、关闭失败均会拒绝本次测量；Uvicorn 的启动 SystemExit 在嵌入边界转为 RuntimeError。启动中或关闭中取消会清理受控任务并保留 CancelledError。资源需合作式清理；HTTP-only ASGI 应用可明确使用 `serve_local(app, lifespan='off')`。
+
+完整例子 [examples/customer_api_case.py](examples/customer_api_case.py)：在 FastAPI lifespan 中创建专用线程池，HTTPX 客户端在每块内复用连接；SQLite仍每次查询新建并关闭只读连接。
+
+```powershell
+python -m awaitlab run examples.customer_api_case --output artifacts/my-customer-api.json
+python -m awaitlab run examples.customer_api_case --output artifacts/my-customer-api.json --resume
+```
+
+接口每次都会返回新的追踪ID与时间戳。示例的 `business_output` 明确返回 HTTP 状态及完整客户数据，排除这两个追踪元数据字段；报告显示 output_contract，避免把投影一致误认为整个响应相同。测试另验证原始整响应会因动态字段而不一致，客户余额变化在投影后仍会被检出。业务时间字段若属于结果语义，应纳入你自己的投影。
+
+固定10配对、每批24请求、4并发的复验记录见 artifacts/customer-api-v0.6.0.json 与 customer-lifecycle-check-v0.6.0.json：40次应用生命周期均正确开关资源，HTTP连接在块内复用；完整恢复20对数据不重新启动应用。此负载与旧版8并发SQLite样例不同，不作版本性能提升比较。用 `python benchmarks/customer_lifecycle.py` 可复跑并核对这些生命周期记录。
 
 ## 中断与恢复
 

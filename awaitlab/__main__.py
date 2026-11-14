@@ -54,6 +54,8 @@ def main():
                 raise ValueError('The module must export a nonempty workload_version for external data/config')
             source_files=(module.__file__,) if getattr(module,'__file__',None) else ()
             metadata={'scenario':'custom','title':str(getattr(module,'title',args.module)),'workload_module':args.module}
+            for field in ('transport','output_contract'):
+                if hasattr(module,field):metadata[field]=str(getattr(module,field))
         calibration=await calibrate() if any(arm.kind=='delay' for arm in experiment.arms) else None
         report=await experiment.run(
             lambda done,total,name:print(f'[{done}/{total}] {name}',flush=True),

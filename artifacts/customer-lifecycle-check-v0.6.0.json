@@ -1,0 +1,363 @@
+{
+  "version": "0.6.0",
+  "report": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\customer-api-v0.6.0.json",
+  "lifetimes": 40,
+  "lifecycle_audit": [
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    },
+    {
+      "startups": 1,
+      "shutdowns": 1,
+      "requests": 26,
+      "client_closed": true,
+      "pending_tickets": 0,
+      "http_connections": 4
+    }
+  ],
+  "fixture": {
+    "fixture_version": "sqlite-v1",
+    "rows": 50000,
+    "logical_data_sha256": "21b308f260c40f30a09bf79d10eabe2c520d53bc18f1ff5e4d6210ffadeb746b",
+    "files": {
+      "unindexed": {
+        "sha256": "dc0c26e83543cd0a68829a6173009c1764cdc5c8f911746789c7924c616aa13a",
+        "bytes": 2531328
+      },
+      "indexed": {
+        "sha256": "6f1dfc173e98fba561b104b1312f58be27bdc90785ffaf2d577d90024d013e84",
+        "bytes": 4108288
+      }
+    }
+  },
+  "sql": "SELECT id, name, balance FROM customers WHERE email = ? ORDER BY id",
+  "dependency_versions": {
+    "fastapi": "0.141.1",
+    "httpx": "0.28.1",
+    "uvicorn": "0.52.4"
+  },
+  "resumed_pairs": 20,
+  "resume_created_no_resources": true,
+  "comparisons_unchanged_after_resume": true,
+  "output_contract": "核对 HTTP 状态与完整 customers（id、name、balance）；接入代码明确排除 metadata.request_id 与 metadata.served_at_ns。未核对整个响应体。",
+  "limits": [
+    "business projection checks declared fields only",
+    "HTTP connections persist within a block, not across blocks",
+    "SQLite connections remain per query; executor is lifespan-managed",
+    "single process, synthetic customer rows"
+  ],
+  "process_memory_mib": {
+    "rss_end": 69.6171875,
+    "peak_working_set": 80.48828125,
+    "scope": "whole driver process, imports and all lifetimes; not isolated service memory or OS file cache"
+  }
+}

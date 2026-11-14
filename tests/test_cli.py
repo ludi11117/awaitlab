@@ -33,6 +33,8 @@ from business import workload,candidate
 experiment=Experiment(workload,[Arm('candidate','replacement','customer',replacements={'customer':candidate})],Settings(blocks=2,requests=3,concurrency=1,warmup=0))
 workload_version='customers-fixture-v1'
 title='User business case'
+transport='local test transport'
+output_contract='id field only; other response fields outside this contract'
 ''',encoding='utf-8')
         return entry
 
@@ -44,6 +46,8 @@ title='User business case'
         self.assertEqual(report['workload_module'],'my_case')
         self.assertEqual(report['scenario'],'custom')
         self.assertEqual(report['title'],'User business case')
+        self.assertEqual(report['transport'],'local test transport')
+        self.assertIn('id field only',report['output_contract'])
         self.assertNotIn('timer_calibration',report)
         c=report['comparisons'][0]
         self.assertTrue(c['output_equivalence'])

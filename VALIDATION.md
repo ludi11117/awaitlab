@@ -1,4 +1,32 @@
-# 0.5.0 验证记录
+# 0.6.0 验证记录
+
+日期：2026-11-15。原始汇总见 artifacts/validation-v0.6.json。
+
+- 60项单元/集成测试、42项浏览器检查与640组区间布局/并集校验通过。
+- 真实startup资源就绪后才接请求，块内HTTP连接复用；shutdown失败、原始ASGI未发送失败消息而抛异常、startup失败均拒绝测量。启动中取消、关闭中取消及原业务异常均保持正确，生命周期任务完成清理。
+- 没有调用模型API；全程本机loopback与现有依赖。核心安装包禁用site-packages，标准库用户模块导出/恢复仍通过；包17个源码/资源逐字节一致。
+- 安装包在独立D盘HTTP用户项目中完成8个生命周期、4对恢复，所有HTTP客户端关闭、票据归零、比较数据不变。记录见 artifacts/install-check-v0.6.json 与 artifacts/install-http-check-v0.6.json。
+
+## 真实动态响应与资源生命周期
+
+入口examples/customer_api_case.py。相同5万行SQLite数据；10配对、24请求、4并发、预热2、seed173，固定索引候选和原实现对照。原始数据见 artifacts/customer-api-v0.6.0.json，资源记录见 artifacts/customer-lifecycle-check-v0.6.0.json。
+
+| 候选 | 平均响应变化 | Holm p | 本轮状态 |
+| --- | --- | --- | --- |
+| 索引查询 | -48.40% | .00390625 | 支持继续验证 |
+| 保持原实现 | -2.04% | .51171875 | 未达点估计门槛 |
+
+索引臂平均11.0434ms → 5.6989ms。响应始终生成动态request_id与served_at_ns，接入代码明确投影HTTP状态和完整customers列表。已测投影输出一致，不是整个HTTP响应体等价。单元测试另显示原始响应因元数据不同而不一致，改动客户余额仍会触发invalid_output。
+
+40次应用生命周期均记录startup=shutdown=1，每次26请求（含2预热）、4条HTTP连接复用、客户端关闭、待用票据0。恢复全部20对测量时，应用生命周期审计没有新增记录，比较数据逐项相等。导入与源码/数据预检仍可能发生，不能将恢复解读为完全零I/O。
+
+数据库执行器在应用lifespan中持有，SQLite仍为每查询独立只读连接；OS缓存协议沿用双文件完整读取与双路径线程预热。依赖版本fastapi0.141.1/httpx0.28.1/uvicorn0.52.4与数据文件摘要纳入案例版本。不是长连接SQLite池、多worker或远程服务。
+
+整个验证驱动进程峰值工作集约80.5MiB，结束RSS约69.6MiB，含导入、驱动与所有生命周期，不含浏览器与OS文件缓存；不是独立服务内存上界。
+
+绑定依赖版本前的首轮结果另保留在 artifacts/customer-api-initial-v0.6.0.json 与 customer-lifecycle-initial-v0.6.0.json。业务参数、seed未更改，最终运行在入口版本明确绑定后重新执行；不合并两轮作确认性统计。所有结果仍属本轮探索性证据。与0.4的8并发样例负载不同，不把差异说成版本带来的整体加速。
+
+## 0.5.0 历史验证记录
 
 日期：2026-11-15。原始汇总见 artifacts/validation-v0.5.json。
 

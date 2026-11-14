@@ -24,6 +24,8 @@ python -m awaitlab demo --scenario sqlite-http
 
 0.5 可补充一段业务接入演示：运行 `python -m awaitlab run examples.unique_case --output artifacts/unique-latest.json`。这是一个独立Python模块，通过模块级experiment和workload_version接入现有引擎。3000个整数事件ID、1000个不同ID，列表扫描改为保序哈希去重，当前约6.94ms → 0.24ms，已测完整输出一致。算法是标准已知算法；项目负责真实替换、结果核对、实验协议和可恢复运行。只要替换workload与候选代码，同一CLI也能运行用户业务。
 
+0.6 的接入演示可以打开 artifacts/customer-api-v0.6.0.html：它通过lifespan创建真实资源，响应含每次变化的追踪ID和时间戳。报告明确核对状态与客户数据，未声称整个响应相同；测试会拒绝余额变化。40次应用生命周期均完成初始化/关闭，恢复20对测量未重建应用。这个例子适合解释“业务输出合同”和资源边界，不能只讲索引快了多少。
+
 ## 值得讲清楚的技术点
 
 | 设计 | 解决的问题 | 应说明的边界 |
