@@ -1,0 +1,1348 @@
+{
+  "version": "0.6.2",
+  "date": "2026-11-15",
+  "unit_integration_tests": 67,
+  "unit_integration_passed": true,
+  "interval_layout_and_union_cases": 640,
+  "browser": {
+    "passed": true,
+    "checks": [
+      "standalone SQLite report",
+      "two real replacement arms",
+      "supported evidence grade",
+      "adjusted inference visible",
+      "workload provenance",
+      "actual fixture size",
+      "actual SQL",
+      "placebo not promoted",
+      "placebo neutral presentation",
+      "treatment timeline",
+      "real HTTP transport scope",
+      "library version",
+      "response, worker cycle and check separately shown",
+      "check cost matches recorded block mean",
+      "sampled request selector",
+      "HTTP and database spans both visible",
+      "sampled HTTP and operation coverage",
+      "uncovered window not called CPU time",
+      "no overlap hides nested spans",
+      "server parent linked to request",
+      "keyboard-accessible recorded parent",
+      "switch sampled request",
+      "preserve request across modes",
+      "mobile width",
+      "timer calibration",
+      "custom business report metadata",
+      "custom comparison and observer metrics",
+      "replacement-only case has no sleep calibration",
+      "custom business report mobile width",
+      "declared metadata exclusion visible",
+      "projection not presented as full-response equality",
+      "lifespan and keep-alive transport visible",
+      "real API replacement has no timer calibration",
+      "declared contract mobile width",
+      "sampled block selector with replay fixture",
+      "empty sampling remains usable",
+      "legacy delay interpretation",
+      "legacy result not silently upgraded",
+      "legacy check cost not assumed zero",
+      "missing legacy values handled",
+      "no JavaScript exceptions",
+      "no network requests"
+    ]
+  },
+  "core_installation": {
+    "version": "0.6.2",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.6.2\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 17,
+    "wheel_sha256": "47120ecb1f8b3a8b1d47ea2466f7445713b5216805d0e21399721314ff58c121",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.6.2\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.6.2\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false,
+      "certifi": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only",
+    "orphan_task_probe": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+  },
+  "http_installation": {
+    "version": "0.6.2",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.6.2\\awaitlab\\__init__.py",
+    "user_project": "D:\\CodexWork\\temp\\awaitlab\\http-user-case-0.6.2",
+    "lifetimes": 8,
+    "lifecycle_audit": [
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      }
+    ],
+    "resumed_pairs": 4,
+    "resume_created_no_resources": true,
+    "comparisons_unchanged_after_resume": true,
+    "all_outputs_equal": true,
+    "output_contract": "核对 HTTP 状态与完整 customers（id、name、balance）；接入代码明确排除 metadata.request_id 与 metadata.served_at_ns。未核对整个响应体。",
+    "packaged_files_match_source": 17,
+    "dependency_versions": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "uvicorn": "0.52.4"
+    },
+    "shared_ssl_configuration": {
+      "same_context_reused": true,
+      "certificate_verification_required": true,
+      "hostname_check_enabled": true,
+      "ca_certificates_match_fresh_default": true
+    }
+  },
+  "setup": {
+    "plan": {
+      "version": "0.6.2",
+      "baseline": {
+        "origin": "artifacts\\wheels\\awaitlab_local-0.6.1-py3-none-any.whl",
+        "wheel_sha256": "c276184ffdcb743c72ee2a3ea393b6889a2a39c51ef4de0fc72518fb2789fd8d",
+        "local_http_sha256": "ef998ac6474e942275159a561d620036bb1c57facd84dc8e4f771b33674b88db",
+        "normalization": "CRLF to LF only"
+      },
+      "pairs": 12,
+      "seed": 409,
+      "source_sha256": "f0cf1c5af5bcad3dc029a792a3b0684ae2cdaa1b00a58c2732647be0f1aac7d7",
+      "dependencies": {
+        "httpx": "0.28.1",
+        "uvicorn": "0.52.4",
+        "fastapi": "0.141.1",
+        "certifi": "2026.7.22"
+      },
+      "environment": {
+        "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "protocol": "warm each helper once, then random paired order; fresh app/client/pool each lifetime; same three local requests",
+      "cold_context_ms": 276.8414,
+      "trust_store_stats": {
+        "x509": 121,
+        "crl": 0,
+        "x509_ca": 121
+      },
+      "verify_mode": 2,
+      "check_hostname": true
+    },
+    "clients": [
+      {
+        "block": 0,
+        "order": [
+          "baseline",
+          "cached"
+        ],
+        "baseline": {
+          "construct_ms": 270.8013,
+          "close_ms": 0.048
+        },
+        "cached": {
+          "construct_ms": 0.1025,
+          "close_ms": 0.0132
+        }
+      },
+      {
+        "block": 1,
+        "order": [
+          "baseline",
+          "cached"
+        ],
+        "baseline": {
+          "construct_ms": 274.6869,
+          "close_ms": 0.0433
+        },
+        "cached": {
+          "construct_ms": 0.0995,
+          "close_ms": 0.014
+        }
+      },
+      {
+        "block": 2,
+        "order": [
+          "baseline",
+          "cached"
+        ],
+        "baseline": {
+          "construct_ms": 308.1934,
+          "close_ms": 0.0461
+        },
+        "cached": {
+          "construct_ms": 0.0962,
+          "close_ms": 0.0114
+        }
+      },
+      {
+        "block": 3,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "construct_ms": 0.251,
+          "close_ms": 0.0556
+        },
+        "baseline": {
+          "construct_ms": 345.06,
+          "close_ms": 0.05
+        }
+      },
+      {
+        "block": 4,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "construct_ms": 0.1367,
+          "close_ms": 0.0354
+        },
+        "baseline": {
+          "construct_ms": 277.1325,
+          "close_ms": 0.0445
+        }
+      },
+      {
+        "block": 5,
+        "order": [
+          "baseline",
+          "cached"
+        ],
+        "baseline": {
+          "construct_ms": 288.6544,
+          "close_ms": 0.0424
+        },
+        "cached": {
+          "construct_ms": 0.0947,
+          "close_ms": 0.0106
+        }
+      },
+      {
+        "block": 6,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "construct_ms": 0.1327,
+          "close_ms": 0.0334
+        },
+        "baseline": {
+          "construct_ms": 314.6206,
+          "close_ms": 0.0443
+        }
+      },
+      {
+        "block": 7,
+        "order": [
+          "baseline",
+          "cached"
+        ],
+        "baseline": {
+          "construct_ms": 290.8814,
+          "close_ms": 0.0424
+        },
+        "cached": {
+          "construct_ms": 0.095,
+          "close_ms": 0.0129
+        }
+      },
+      {
+        "block": 8,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "construct_ms": 0.1477,
+          "close_ms": 0.0345
+        },
+        "baseline": {
+          "construct_ms": 329.6984,
+          "close_ms": 0.0932
+        }
+      },
+      {
+        "block": 9,
+        "order": [
+          "baseline",
+          "cached"
+        ],
+        "baseline": {
+          "construct_ms": 314.3248,
+          "close_ms": 0.0555
+        },
+        "cached": {
+          "construct_ms": 0.1171,
+          "close_ms": 0.0198
+        }
+      },
+      {
+        "block": 10,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "construct_ms": 0.1544,
+          "close_ms": 0.0348
+        },
+        "baseline": {
+          "construct_ms": 284.6723,
+          "close_ms": 0.0568
+        }
+      },
+      {
+        "block": 11,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "construct_ms": 0.1428,
+          "close_ms": 0.0331
+        },
+        "baseline": {
+          "construct_ms": 291.0791,
+          "close_ms": 0.0427
+        }
+      }
+    ],
+    "helpers": [
+      {
+        "block": 0,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "setup_ms": 7.5938,
+          "three_requests_ms": 3.3936,
+          "shutdown_ms": 200.0178,
+          "total_ms": 211.0052
+        },
+        "baseline": {
+          "setup_ms": 285.7892,
+          "three_requests_ms": 3.4732,
+          "shutdown_ms": 208.8852,
+          "total_ms": 498.1476
+        }
+      },
+      {
+        "block": 1,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "setup_ms": 7.4491,
+          "three_requests_ms": 3.6908,
+          "shutdown_ms": 199.0524,
+          "total_ms": 210.1923
+        },
+        "baseline": {
+          "setup_ms": 312.841,
+          "three_requests_ms": 4.4862,
+          "shutdown_ms": 209.145,
+          "total_ms": 526.4722
+        }
+      },
+      {
+        "block": 2,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "setup_ms": 15.3654,
+          "three_requests_ms": 3.3947,
+          "shutdown_ms": 200.8495,
+          "total_ms": 219.6096
+        },
+        "baseline": {
+          "setup_ms": 304.9483,
+          "three_requests_ms": 3.5374,
+          "shutdown_ms": 220.4812,
+          "total_ms": 528.9669
+        }
+      },
+      {
+        "block": 3,
+        "order": [
+          "baseline",
+          "cached"
+        ],
+        "baseline": {
+          "setup_ms": 312.9489,
+          "three_requests_ms": 3.656,
+          "shutdown_ms": 211.1249,
+          "total_ms": 527.7298
+        },
+        "cached": {
+          "setup_ms": 15.4767,
+          "three_requests_ms": 4.6264,
+          "shutdown_ms": 198.5029,
+          "total_ms": 218.606
+        }
+      },
+      {
+        "block": 4,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "setup_ms": 18.806,
+          "three_requests_ms": 3.5202,
+          "shutdown_ms": 200.9704,
+          "total_ms": 223.2966
+        },
+        "baseline": {
+          "setup_ms": 335.9011,
+          "three_requests_ms": 5.9347,
+          "shutdown_ms": 217.9671,
+          "total_ms": 559.8029
+        }
+      },
+      {
+        "block": 5,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "setup_ms": 6.3471,
+          "three_requests_ms": 2.9934,
+          "shutdown_ms": 215.6225,
+          "total_ms": 224.963
+        },
+        "baseline": {
+          "setup_ms": 336.7848,
+          "three_requests_ms": 3.2787,
+          "shutdown_ms": 222.4319,
+          "total_ms": 562.4954
+        }
+      },
+      {
+        "block": 6,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "setup_ms": 11.823,
+          "three_requests_ms": 4.0976,
+          "shutdown_ms": 198.0867,
+          "total_ms": 214.0073
+        },
+        "baseline": {
+          "setup_ms": 339.7123,
+          "three_requests_ms": 3.5975,
+          "shutdown_ms": 214.8582,
+          "total_ms": 558.168
+        }
+      },
+      {
+        "block": 7,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "setup_ms": 20.1872,
+          "three_requests_ms": 6.4859,
+          "shutdown_ms": 196.7887,
+          "total_ms": 223.4618
+        },
+        "baseline": {
+          "setup_ms": 331.6245,
+          "three_requests_ms": 3.209,
+          "shutdown_ms": 209.8638,
+          "total_ms": 544.6973
+        }
+      },
+      {
+        "block": 8,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "setup_ms": 9.2304,
+          "three_requests_ms": 3.6239,
+          "shutdown_ms": 198.3773,
+          "total_ms": 211.2316
+        },
+        "baseline": {
+          "setup_ms": 321.0384,
+          "three_requests_ms": 3.3564,
+          "shutdown_ms": 214.7755,
+          "total_ms": 539.1703
+        }
+      },
+      {
+        "block": 9,
+        "order": [
+          "cached",
+          "baseline"
+        ],
+        "cached": {
+          "setup_ms": 8.2921,
+          "three_requests_ms": 3.3492,
+          "shutdown_ms": 200.6128,
+          "total_ms": 212.2541
+        },
+        "baseline": {
+          "setup_ms": 336.4596,
+          "three_requests_ms": 3.619,
+          "shutdown_ms": 215.2157,
+          "total_ms": 555.2943
+        }
+      },
+      {
+        "block": 10,
+        "order": [
+          "baseline",
+          "cached"
+        ],
+        "baseline": {
+          "setup_ms": 303.16,
+          "three_requests_ms": 7.4607,
+          "shutdown_ms": 209.7787,
+          "total_ms": 520.3994
+        },
+        "cached": {
+          "setup_ms": 15.5223,
+          "three_requests_ms": 3.7061,
+          "shutdown_ms": 201.8263,
+          "total_ms": 221.0547
+        }
+      },
+      {
+        "block": 11,
+        "order": [
+          "baseline",
+          "cached"
+        ],
+        "baseline": {
+          "setup_ms": 316.8912,
+          "three_requests_ms": 3.4499,
+          "shutdown_ms": 212.686,
+          "total_ms": 533.0271
+        },
+        "cached": {
+          "setup_ms": 15.4225,
+          "three_requests_ms": 3.674,
+          "shutdown_ms": 196.8907,
+          "total_ms": 215.9872
+        }
+      }
+    ],
+    "results": {
+      "client_construct": {
+        "effect": {
+          "mean_delta_ms": -299.01956666666666,
+          "ci95_delta_ms": [
+            -311.91254208333334,
+            -286.94865312499996
+          ],
+          "mean_change_pct": -99.95625667811325,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 2000,
+            "seed": 409,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.00048828125,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 3.44809e-10,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "holm_adjusted_p": 0.0009765625
+      },
+      "helper_setup": {
+        "effect": {
+          "mean_delta_ms": -307.2153083333333,
+          "ci95_delta_ms": [
+            -316.10695937500003,
+            -298.1616079166667
+          ],
+          "mean_change_pct": -96.0523272547951,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 2000,
+            "seed": 409,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.00048828125,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 3.304377e-10,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "holm_adjusted_p": 0.0009765625
+      }
+    },
+    "limits": [
+      "steady setup after first trust-store creation; cold cost reported separately",
+      "no business-request acceleration inference",
+      "context is reused, apps/clients/pools are fresh",
+      "single machine/process, exploratory paired evidence"
+    ]
+  },
+  "setup_memory": {
+    "version": "0.6.2",
+    "order": [
+      "cached",
+      "baseline"
+    ],
+    "workers": [
+      {
+        "mode": "cached",
+        "lifetimes": 12,
+        "phases": [
+          {
+            "setup_ms": 443.814,
+            "three_requests_ms": 14.1921,
+            "shutdown_ms": 205.7395,
+            "total_ms": 663.7456
+          },
+          {
+            "setup_ms": 14.9125,
+            "three_requests_ms": 3.957,
+            "shutdown_ms": 199.4875,
+            "total_ms": 218.357
+          },
+          {
+            "setup_ms": 14.0541,
+            "three_requests_ms": 3.6615,
+            "shutdown_ms": 200.2363,
+            "total_ms": 217.9519
+          },
+          {
+            "setup_ms": 14.8451,
+            "three_requests_ms": 3.6703,
+            "shutdown_ms": 202.7666,
+            "total_ms": 221.282
+          },
+          {
+            "setup_ms": 14.6207,
+            "three_requests_ms": 3.6874,
+            "shutdown_ms": 200.7846,
+            "total_ms": 219.0927
+          },
+          {
+            "setup_ms": 15.2885,
+            "three_requests_ms": 4.1848,
+            "shutdown_ms": 199.4752,
+            "total_ms": 218.9485
+          },
+          {
+            "setup_ms": 15.2352,
+            "three_requests_ms": 3.5903,
+            "shutdown_ms": 200.3499,
+            "total_ms": 219.1754
+          },
+          {
+            "setup_ms": 14.438,
+            "three_requests_ms": 3.8195,
+            "shutdown_ms": 199.1444,
+            "total_ms": 217.4019
+          },
+          {
+            "setup_ms": 15.2489,
+            "three_requests_ms": 3.5962,
+            "shutdown_ms": 200.4819,
+            "total_ms": 219.327
+          },
+          {
+            "setup_ms": 14.96,
+            "three_requests_ms": 3.9422,
+            "shutdown_ms": 200.5661,
+            "total_ms": 219.4683
+          },
+          {
+            "setup_ms": 15.4008,
+            "three_requests_ms": 3.708,
+            "shutdown_ms": 200.9033,
+            "total_ms": 220.0121
+          },
+          {
+            "setup_ms": 15.508,
+            "three_requests_ms": 3.865,
+            "shutdown_ms": 198.4578,
+            "total_ms": 217.8308
+          }
+        ],
+        "scope": "one fresh whole driver process, 12 app/client lifetimes, includes imports; descriptive memory only",
+        "memory": {
+          "rss_end_mib": 61.5703125,
+          "peak_working_set_mib": 61.5703125
+        }
+      },
+      {
+        "mode": "baseline",
+        "lifetimes": 12,
+        "phases": [
+          {
+            "setup_ms": 417.3075,
+            "three_requests_ms": 13.7189,
+            "shutdown_ms": 208.5519,
+            "total_ms": 639.5783
+          },
+          {
+            "setup_ms": 281.5417,
+            "three_requests_ms": 4.4571,
+            "shutdown_ms": 213.0999,
+            "total_ms": 499.0987
+          },
+          {
+            "setup_ms": 295.9822,
+            "three_requests_ms": 3.2232,
+            "shutdown_ms": 212.1571,
+            "total_ms": 511.3625
+          },
+          {
+            "setup_ms": 300.5646,
+            "three_requests_ms": 3.2392,
+            "shutdown_ms": 211.9221,
+            "total_ms": 515.7259
+          },
+          {
+            "setup_ms": 295.3852,
+            "three_requests_ms": 3.276,
+            "shutdown_ms": 215.5896,
+            "total_ms": 514.2508
+          },
+          {
+            "setup_ms": 312.071,
+            "three_requests_ms": 3.3164,
+            "shutdown_ms": 213.0276,
+            "total_ms": 528.415
+          },
+          {
+            "setup_ms": 301.9417,
+            "three_requests_ms": 7.1114,
+            "shutdown_ms": 219.1763,
+            "total_ms": 528.2294
+          },
+          {
+            "setup_ms": 291.6717,
+            "three_requests_ms": 3.2145,
+            "shutdown_ms": 221.5815,
+            "total_ms": 516.4677
+          },
+          {
+            "setup_ms": 350.2563,
+            "three_requests_ms": 3.4486,
+            "shutdown_ms": 220.6274,
+            "total_ms": 574.3323
+          },
+          {
+            "setup_ms": 301.6676,
+            "three_requests_ms": 3.2921,
+            "shutdown_ms": 210.9113,
+            "total_ms": 515.871
+          },
+          {
+            "setup_ms": 335.3292,
+            "three_requests_ms": 3.7099,
+            "shutdown_ms": 219.4738,
+            "total_ms": 558.5129
+          },
+          {
+            "setup_ms": 293.5475,
+            "three_requests_ms": 3.8089,
+            "shutdown_ms": 217.2853,
+            "total_ms": 514.6417
+          }
+        ],
+        "scope": "one fresh whole driver process, 12 app/client lifetimes, includes imports; descriptive memory only",
+        "memory": {
+          "rss_end_mib": 61.57421875,
+          "peak_working_set_mib": 64.1015625
+        }
+      }
+    ],
+    "limits": [
+      "one separate process per configuration, no memory inference",
+      "first cold context cost included in each worker",
+      "all 12 lifetimes close app/client/pool; no service output speedup claim"
+    ]
+  },
+  "lifecycle": {
+    "version": "0.6.2",
+    "report": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\customer-api-v0.6.2.json",
+    "lifetimes": 40,
+    "lifecycle_audit": [
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      }
+    ],
+    "fixture": {
+      "fixture_version": "sqlite-v1",
+      "rows": 50000,
+      "logical_data_sha256": "21b308f260c40f30a09bf79d10eabe2c520d53bc18f1ff5e4d6210ffadeb746b",
+      "files": {
+        "unindexed": {
+          "sha256": "dc0c26e83543cd0a68829a6173009c1764cdc5c8f911746789c7924c616aa13a",
+          "bytes": 2531328
+        },
+        "indexed": {
+          "sha256": "6f1dfc173e98fba561b104b1312f58be27bdc90785ffaf2d577d90024d013e84",
+          "bytes": 4108288
+        }
+      }
+    },
+    "sql": "SELECT id, name, balance FROM customers WHERE email = ? ORDER BY id",
+    "dependency_versions": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "uvicorn": "0.52.4"
+    },
+    "resumed_pairs": 20,
+    "resume_created_no_resources": true,
+    "comparisons_unchanged_after_resume": true,
+    "output_contract": "核对 HTTP 状态与完整 customers（id、name、balance）；接入代码明确排除 metadata.request_id 与 metadata.served_at_ns。未核对整个响应体。",
+    "limits": [
+      "business projection checks declared fields only",
+      "HTTP connections persist within a block, not across blocks",
+      "SQLite connections remain per query; executor is lifespan-managed",
+      "single process, synthetic customer rows"
+    ],
+    "process_memory_mib": {
+      "rss_end": 71.86328125,
+      "peak_working_set": 78.68359375,
+      "scope": "whole driver process, imports and all lifetimes; not isolated service memory or OS file cache"
+    }
+  },
+  "run": {
+    "started_at": "2026-11-14T23:18:01.202888+00:00",
+    "completed_at": "2026-11-14T23:18:13.365536+00:00",
+    "identity": {
+      "digest": "d08653618f047a441bda9028918939fa591ed0aee1453eec68ce422828eec1ba",
+      "manifest": {
+        "checkpoint_schema": 1,
+        "workload_version": "c42c38ea91ad262c06e21ab9bbff16813cfde601bdb0f705b9a7b23ed75d742e",
+        "settings": {
+          "blocks": 10,
+          "requests": 24,
+          "concurrency": 4,
+          "warmup": 2,
+          "seed": 173,
+          "trace_requests": 2,
+          "max_records": 4096,
+          "min_gain_pct": 5.0,
+          "alpha": 0.05
+        },
+        "arms": [
+          {
+            "name": "indexed_lookup",
+            "kind": "replacement",
+            "site": "customer.lookup",
+            "delay_ms": 0,
+            "replacement_names": {
+              "customer.lookup": "awaitlab.sqlite_workload.indexed_lookup"
+            }
+          },
+          {
+            "name": "unchanged_lookup",
+            "kind": "replacement",
+            "site": "customer.lookup",
+            "delay_ms": 0,
+            "replacement_names": {
+              "customer.lookup": "awaitlab.sqlite_workload.unchanged_lookup"
+            }
+          }
+        ],
+        "sources": {
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__init__.py": "1b094c97589a5b792f97d61ff084ffb32cfd5719d4bdf61800a7061ad1ebfc6a",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__main__.py": "12cbb67081202b5370d9d4a37bcb29d9e22861bd8c5d208d980eaafbcb409ab0",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\asgi.py": "8ed2071ad0f182c52b9decadf92bd12efe64db254f7ab9a1056a96582bd82f3c",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\calibration.py": "26329df46ecb657107dfc85463ad39a3317bc7a803262a2cce16a00485acddce",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\checkpoint.py": "653cd689a48b8ed5700e41b2f438b91481c5b56cea2ae26390bafb5c77abd485",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\experiment.py": "0386de52f093195236b59ed0d88e38bc6b6b07f0482c71a442287674bbed2654",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\local_http.py": "f0cf1c5af5bcad3dc029a792a3b0684ae2cdaa1b00a58c2732647be0f1aac7d7",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\ownership.py": "c8b6e3169a044db86a2d97fd0acd1823bd82d21a861b38f89a7a978b3439d0ef",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\report.py": "8ea27eb80d6a9dd34a37d34ac28a4658cdd5d30f814bcb78564355ebd3761430",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\scenarios.py": "90b3db36e70912b308881249129b11c7809daabf61a6e2fc7038458ed9a8b9c7",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_http_workload.py": "a2ea0cd73338f18f595789e3ba3610c4c1ad2a34b3efc85066c89b0cf9b675d1",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_workload.py": "287661efeb684b89c4097b3ebf9c342c97c79e6bd72482889ee9f519431ebdeb",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\statistics.py": "012b812e8253c98f926aa928e2f20e2f122dab46bef5e3e73c02cea2e43d232d",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\trace.py": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e",
+          "D:\\CodexWork\\projects\\awaitlab\\examples\\customer_api_case.py": "1f06032d8ab31a51daec3476b8ca206a02a1cdfa44c1b8366d8af74fa5e87404"
+        },
+        "python": "3.13.15",
+        "platform": "Windows-11-10.0.26200-SP0"
+      }
+    },
+    "resumed_pairs": 20
+  },
+  "comparisons": [
+    {
+      "name": "indexed_lookup",
+      "effect": {
+        "mean_delta_ms": -7.1550925,
+        "ci95_delta_ms": [
+          -8.236547114583335,
+          -6.163387145833334
+        ],
+        "mean_change_pct": -55.520024535576255,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "holm_adjusted_p": 0.00390625,
+      "evidence_level": "supported_in_this_experiment",
+      "output_equivalence": true
+    },
+    {
+      "name": "unchanged_lookup",
+      "effect": {
+        "mean_delta_ms": -0.6816150000000001,
+        "ci95_delta_ms": [
+          -1.5312478229166673,
+          0.27722648958333324
+        ],
+        "mean_change_pct": -5.274700698502621,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "holm_adjusted_p": 0.193359375,
+      "evidence_level": "inconclusive",
+      "output_equivalence": true
+    }
+  ],
+  "limits": [
+    "steady setup measured after first configuration load, first cost recorded separately",
+    "fresh apps/clients/pools with process-scoped default SSL configuration",
+    "no business-request speedup inference",
+    "single fresh process per memory configuration, descriptive only"
+  ]
+}

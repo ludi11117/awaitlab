@@ -1,0 +1,511 @@
+{
+  "plan": {
+    "version": "0.6.2",
+    "baseline": {
+      "origin": "artifacts\\wheels\\awaitlab_local-0.6.1-py3-none-any.whl",
+      "wheel_sha256": "c276184ffdcb743c72ee2a3ea393b6889a2a39c51ef4de0fc72518fb2789fd8d",
+      "local_http_sha256": "ef998ac6474e942275159a561d620036bb1c57facd84dc8e4f771b33674b88db",
+      "normalization": "CRLF to LF only"
+    },
+    "pairs": 12,
+    "seed": 409,
+    "source_sha256": "f0cf1c5af5bcad3dc029a792a3b0684ae2cdaa1b00a58c2732647be0f1aac7d7",
+    "dependencies": {
+      "httpx": "0.28.1",
+      "uvicorn": "0.52.4",
+      "fastapi": "0.141.1",
+      "certifi": "2026.7.22"
+    },
+    "environment": {
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0"
+    },
+    "protocol": "warm each helper once, then random paired order; fresh app/client/pool each lifetime; same three local requests",
+    "cold_context_ms": 276.8414,
+    "trust_store_stats": {
+      "x509": 121,
+      "crl": 0,
+      "x509_ca": 121
+    },
+    "verify_mode": 2,
+    "check_hostname": true
+  },
+  "clients": [
+    {
+      "block": 0,
+      "order": [
+        "baseline",
+        "cached"
+      ],
+      "baseline": {
+        "construct_ms": 270.8013,
+        "close_ms": 0.048
+      },
+      "cached": {
+        "construct_ms": 0.1025,
+        "close_ms": 0.0132
+      }
+    },
+    {
+      "block": 1,
+      "order": [
+        "baseline",
+        "cached"
+      ],
+      "baseline": {
+        "construct_ms": 274.6869,
+        "close_ms": 0.0433
+      },
+      "cached": {
+        "construct_ms": 0.0995,
+        "close_ms": 0.014
+      }
+    },
+    {
+      "block": 2,
+      "order": [
+        "baseline",
+        "cached"
+      ],
+      "baseline": {
+        "construct_ms": 308.1934,
+        "close_ms": 0.0461
+      },
+      "cached": {
+        "construct_ms": 0.0962,
+        "close_ms": 0.0114
+      }
+    },
+    {
+      "block": 3,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "construct_ms": 0.251,
+        "close_ms": 0.0556
+      },
+      "baseline": {
+        "construct_ms": 345.06,
+        "close_ms": 0.05
+      }
+    },
+    {
+      "block": 4,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "construct_ms": 0.1367,
+        "close_ms": 0.0354
+      },
+      "baseline": {
+        "construct_ms": 277.1325,
+        "close_ms": 0.0445
+      }
+    },
+    {
+      "block": 5,
+      "order": [
+        "baseline",
+        "cached"
+      ],
+      "baseline": {
+        "construct_ms": 288.6544,
+        "close_ms": 0.0424
+      },
+      "cached": {
+        "construct_ms": 0.0947,
+        "close_ms": 0.0106
+      }
+    },
+    {
+      "block": 6,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "construct_ms": 0.1327,
+        "close_ms": 0.0334
+      },
+      "baseline": {
+        "construct_ms": 314.6206,
+        "close_ms": 0.0443
+      }
+    },
+    {
+      "block": 7,
+      "order": [
+        "baseline",
+        "cached"
+      ],
+      "baseline": {
+        "construct_ms": 290.8814,
+        "close_ms": 0.0424
+      },
+      "cached": {
+        "construct_ms": 0.095,
+        "close_ms": 0.0129
+      }
+    },
+    {
+      "block": 8,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "construct_ms": 0.1477,
+        "close_ms": 0.0345
+      },
+      "baseline": {
+        "construct_ms": 329.6984,
+        "close_ms": 0.0932
+      }
+    },
+    {
+      "block": 9,
+      "order": [
+        "baseline",
+        "cached"
+      ],
+      "baseline": {
+        "construct_ms": 314.3248,
+        "close_ms": 0.0555
+      },
+      "cached": {
+        "construct_ms": 0.1171,
+        "close_ms": 0.0198
+      }
+    },
+    {
+      "block": 10,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "construct_ms": 0.1544,
+        "close_ms": 0.0348
+      },
+      "baseline": {
+        "construct_ms": 284.6723,
+        "close_ms": 0.0568
+      }
+    },
+    {
+      "block": 11,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "construct_ms": 0.1428,
+        "close_ms": 0.0331
+      },
+      "baseline": {
+        "construct_ms": 291.0791,
+        "close_ms": 0.0427
+      }
+    }
+  ],
+  "helpers": [
+    {
+      "block": 0,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "setup_ms": 7.5938,
+        "three_requests_ms": 3.3936,
+        "shutdown_ms": 200.0178,
+        "total_ms": 211.0052
+      },
+      "baseline": {
+        "setup_ms": 285.7892,
+        "three_requests_ms": 3.4732,
+        "shutdown_ms": 208.8852,
+        "total_ms": 498.1476
+      }
+    },
+    {
+      "block": 1,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "setup_ms": 7.4491,
+        "three_requests_ms": 3.6908,
+        "shutdown_ms": 199.0524,
+        "total_ms": 210.1923
+      },
+      "baseline": {
+        "setup_ms": 312.841,
+        "three_requests_ms": 4.4862,
+        "shutdown_ms": 209.145,
+        "total_ms": 526.4722
+      }
+    },
+    {
+      "block": 2,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "setup_ms": 15.3654,
+        "three_requests_ms": 3.3947,
+        "shutdown_ms": 200.8495,
+        "total_ms": 219.6096
+      },
+      "baseline": {
+        "setup_ms": 304.9483,
+        "three_requests_ms": 3.5374,
+        "shutdown_ms": 220.4812,
+        "total_ms": 528.9669
+      }
+    },
+    {
+      "block": 3,
+      "order": [
+        "baseline",
+        "cached"
+      ],
+      "baseline": {
+        "setup_ms": 312.9489,
+        "three_requests_ms": 3.656,
+        "shutdown_ms": 211.1249,
+        "total_ms": 527.7298
+      },
+      "cached": {
+        "setup_ms": 15.4767,
+        "three_requests_ms": 4.6264,
+        "shutdown_ms": 198.5029,
+        "total_ms": 218.606
+      }
+    },
+    {
+      "block": 4,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "setup_ms": 18.806,
+        "three_requests_ms": 3.5202,
+        "shutdown_ms": 200.9704,
+        "total_ms": 223.2966
+      },
+      "baseline": {
+        "setup_ms": 335.9011,
+        "three_requests_ms": 5.9347,
+        "shutdown_ms": 217.9671,
+        "total_ms": 559.8029
+      }
+    },
+    {
+      "block": 5,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "setup_ms": 6.3471,
+        "three_requests_ms": 2.9934,
+        "shutdown_ms": 215.6225,
+        "total_ms": 224.963
+      },
+      "baseline": {
+        "setup_ms": 336.7848,
+        "three_requests_ms": 3.2787,
+        "shutdown_ms": 222.4319,
+        "total_ms": 562.4954
+      }
+    },
+    {
+      "block": 6,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "setup_ms": 11.823,
+        "three_requests_ms": 4.0976,
+        "shutdown_ms": 198.0867,
+        "total_ms": 214.0073
+      },
+      "baseline": {
+        "setup_ms": 339.7123,
+        "three_requests_ms": 3.5975,
+        "shutdown_ms": 214.8582,
+        "total_ms": 558.168
+      }
+    },
+    {
+      "block": 7,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "setup_ms": 20.1872,
+        "three_requests_ms": 6.4859,
+        "shutdown_ms": 196.7887,
+        "total_ms": 223.4618
+      },
+      "baseline": {
+        "setup_ms": 331.6245,
+        "three_requests_ms": 3.209,
+        "shutdown_ms": 209.8638,
+        "total_ms": 544.6973
+      }
+    },
+    {
+      "block": 8,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "setup_ms": 9.2304,
+        "three_requests_ms": 3.6239,
+        "shutdown_ms": 198.3773,
+        "total_ms": 211.2316
+      },
+      "baseline": {
+        "setup_ms": 321.0384,
+        "three_requests_ms": 3.3564,
+        "shutdown_ms": 214.7755,
+        "total_ms": 539.1703
+      }
+    },
+    {
+      "block": 9,
+      "order": [
+        "cached",
+        "baseline"
+      ],
+      "cached": {
+        "setup_ms": 8.2921,
+        "three_requests_ms": 3.3492,
+        "shutdown_ms": 200.6128,
+        "total_ms": 212.2541
+      },
+      "baseline": {
+        "setup_ms": 336.4596,
+        "three_requests_ms": 3.619,
+        "shutdown_ms": 215.2157,
+        "total_ms": 555.2943
+      }
+    },
+    {
+      "block": 10,
+      "order": [
+        "baseline",
+        "cached"
+      ],
+      "baseline": {
+        "setup_ms": 303.16,
+        "three_requests_ms": 7.4607,
+        "shutdown_ms": 209.7787,
+        "total_ms": 520.3994
+      },
+      "cached": {
+        "setup_ms": 15.5223,
+        "three_requests_ms": 3.7061,
+        "shutdown_ms": 201.8263,
+        "total_ms": 221.0547
+      }
+    },
+    {
+      "block": 11,
+      "order": [
+        "baseline",
+        "cached"
+      ],
+      "baseline": {
+        "setup_ms": 316.8912,
+        "three_requests_ms": 3.4499,
+        "shutdown_ms": 212.686,
+        "total_ms": 533.0271
+      },
+      "cached": {
+        "setup_ms": 15.4225,
+        "three_requests_ms": 3.674,
+        "shutdown_ms": 196.8907,
+        "total_ms": 215.9872
+      }
+    }
+  ],
+  "results": {
+    "client_construct": {
+      "effect": {
+        "mean_delta_ms": -299.01956666666666,
+        "ci95_delta_ms": [
+          -311.91254208333334,
+          -286.94865312499996
+        ],
+        "mean_change_pct": -99.95625667811325,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 12,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 409,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 0.00048828125,
+        "exact": true,
+        "assignments": 4096,
+        "extreme_assignments": 2,
+        "seed": null,
+        "tie_tolerance": 3.44809e-10,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 0.0009765625
+    },
+    "helper_setup": {
+      "effect": {
+        "mean_delta_ms": -307.2153083333333,
+        "ci95_delta_ms": [
+          -316.10695937500003,
+          -298.1616079166667
+        ],
+        "mean_change_pct": -96.0523272547951,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 12,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 409,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 0.00048828125,
+        "exact": true,
+        "assignments": 4096,
+        "extreme_assignments": 2,
+        "seed": null,
+        "tie_tolerance": 3.304377e-10,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 0.0009765625
+    }
+  },
+  "limits": [
+    "steady setup after first trust-store creation; cold cost reported separately",
+    "no business-request acceleration inference",
+    "context is reused, apps/clients/pools are fresh",
+    "single machine/process, exploratory paired evidence"
+  ]
+}

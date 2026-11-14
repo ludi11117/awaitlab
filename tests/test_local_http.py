@@ -2,12 +2,40 @@ import asyncio
 import importlib.util
 import unittest
 from contextlib import asynccontextmanager
+import ssl
 from unittest.mock import patch
 
 
 @unittest.skipUnless(all(importlib.util.find_spec(m) for m in ['httpx','uvicorn']),
                      'Optional HTTP dependencies not installed')
 class LocalHTTPTests(unittest.IsolatedAsyncioTestCase):
+    async def test_cached_context_keeps_the_default_trust_and_verification(self):
+        import httpx
+        from awaitlab.local_http import _client_ssl_context
+        _client_ssl_context.cache_clear()
+        self.addCleanup(_client_ssl_context.cache_clear)
+        context=_client_ssl_context();fresh=httpx.create_ssl_context(trust_env=False)
+        self.assertIs(context,_client_ssl_context())
+        self.assertEqual(context.verify_mode,ssl.CERT_REQUIRED)
+        self.assertTrue(context.check_hostname)
+        self.assertEqual(context.verify_flags,fresh.verify_flags)
+        self.assertEqual(context.minimum_version,fresh.minimum_version)
+        self.assertEqual(set(context.get_ca_certs(binary_form=True)),set(fresh.get_ca_certs(binary_form=True)))
+
+    async def test_reused_configuration_still_creates_and_closes_fresh_clients(self):
+        from awaitlab.local_http import serve_local,_client_ssl_context
+        async def app(scope,receive,send):
+            await send({'type':'http.response.start','status':200,'headers':[]})
+            await send({'type':'http.response.body','body':b'ok'})
+        clients=[];context=_client_ssl_context()
+        for _ in range(2):
+            async with serve_local(app,lifespan='off') as (client,bridge):
+                clients.append(client)
+                self.assertEqual((await client.get('/')).text,'ok')
+            self.assertTrue(client.is_closed)
+        self.assertIsNot(clients[0],clients[1])
+        self.assertIs(context,_client_ssl_context())
+
     async def test_body_cancellation_survives_a_stuck_shutdown(self):
         from awaitlab.local_http import serve_local
         entered=asyncio.Event();stopped=asyncio.Event()

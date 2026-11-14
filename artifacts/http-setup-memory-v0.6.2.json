@@ -1,0 +1,180 @@
+{
+  "version": "0.6.2",
+  "order": [
+    "cached",
+    "baseline"
+  ],
+  "workers": [
+    {
+      "mode": "cached",
+      "lifetimes": 12,
+      "phases": [
+        {
+          "setup_ms": 443.814,
+          "three_requests_ms": 14.1921,
+          "shutdown_ms": 205.7395,
+          "total_ms": 663.7456
+        },
+        {
+          "setup_ms": 14.9125,
+          "three_requests_ms": 3.957,
+          "shutdown_ms": 199.4875,
+          "total_ms": 218.357
+        },
+        {
+          "setup_ms": 14.0541,
+          "three_requests_ms": 3.6615,
+          "shutdown_ms": 200.2363,
+          "total_ms": 217.9519
+        },
+        {
+          "setup_ms": 14.8451,
+          "three_requests_ms": 3.6703,
+          "shutdown_ms": 202.7666,
+          "total_ms": 221.282
+        },
+        {
+          "setup_ms": 14.6207,
+          "three_requests_ms": 3.6874,
+          "shutdown_ms": 200.7846,
+          "total_ms": 219.0927
+        },
+        {
+          "setup_ms": 15.2885,
+          "three_requests_ms": 4.1848,
+          "shutdown_ms": 199.4752,
+          "total_ms": 218.9485
+        },
+        {
+          "setup_ms": 15.2352,
+          "three_requests_ms": 3.5903,
+          "shutdown_ms": 200.3499,
+          "total_ms": 219.1754
+        },
+        {
+          "setup_ms": 14.438,
+          "three_requests_ms": 3.8195,
+          "shutdown_ms": 199.1444,
+          "total_ms": 217.4019
+        },
+        {
+          "setup_ms": 15.2489,
+          "three_requests_ms": 3.5962,
+          "shutdown_ms": 200.4819,
+          "total_ms": 219.327
+        },
+        {
+          "setup_ms": 14.96,
+          "three_requests_ms": 3.9422,
+          "shutdown_ms": 200.5661,
+          "total_ms": 219.4683
+        },
+        {
+          "setup_ms": 15.4008,
+          "three_requests_ms": 3.708,
+          "shutdown_ms": 200.9033,
+          "total_ms": 220.0121
+        },
+        {
+          "setup_ms": 15.508,
+          "three_requests_ms": 3.865,
+          "shutdown_ms": 198.4578,
+          "total_ms": 217.8308
+        }
+      ],
+      "scope": "one fresh whole driver process, 12 app/client lifetimes, includes imports; descriptive memory only",
+      "memory": {
+        "rss_end_mib": 61.5703125,
+        "peak_working_set_mib": 61.5703125
+      }
+    },
+    {
+      "mode": "baseline",
+      "lifetimes": 12,
+      "phases": [
+        {
+          "setup_ms": 417.3075,
+          "three_requests_ms": 13.7189,
+          "shutdown_ms": 208.5519,
+          "total_ms": 639.5783
+        },
+        {
+          "setup_ms": 281.5417,
+          "three_requests_ms": 4.4571,
+          "shutdown_ms": 213.0999,
+          "total_ms": 499.0987
+        },
+        {
+          "setup_ms": 295.9822,
+          "three_requests_ms": 3.2232,
+          "shutdown_ms": 212.1571,
+          "total_ms": 511.3625
+        },
+        {
+          "setup_ms": 300.5646,
+          "three_requests_ms": 3.2392,
+          "shutdown_ms": 211.9221,
+          "total_ms": 515.7259
+        },
+        {
+          "setup_ms": 295.3852,
+          "three_requests_ms": 3.276,
+          "shutdown_ms": 215.5896,
+          "total_ms": 514.2508
+        },
+        {
+          "setup_ms": 312.071,
+          "three_requests_ms": 3.3164,
+          "shutdown_ms": 213.0276,
+          "total_ms": 528.415
+        },
+        {
+          "setup_ms": 301.9417,
+          "three_requests_ms": 7.1114,
+          "shutdown_ms": 219.1763,
+          "total_ms": 528.2294
+        },
+        {
+          "setup_ms": 291.6717,
+          "three_requests_ms": 3.2145,
+          "shutdown_ms": 221.5815,
+          "total_ms": 516.4677
+        },
+        {
+          "setup_ms": 350.2563,
+          "three_requests_ms": 3.4486,
+          "shutdown_ms": 220.6274,
+          "total_ms": 574.3323
+        },
+        {
+          "setup_ms": 301.6676,
+          "three_requests_ms": 3.2921,
+          "shutdown_ms": 210.9113,
+          "total_ms": 515.871
+        },
+        {
+          "setup_ms": 335.3292,
+          "three_requests_ms": 3.7099,
+          "shutdown_ms": 219.4738,
+          "total_ms": 558.5129
+        },
+        {
+          "setup_ms": 293.5475,
+          "three_requests_ms": 3.8089,
+          "shutdown_ms": 217.2853,
+          "total_ms": 514.6417
+        }
+      ],
+      "scope": "one fresh whole driver process, 12 app/client lifetimes, includes imports; descriptive memory only",
+      "memory": {
+        "rss_end_mib": 61.57421875,
+        "peak_working_set_mib": 64.1015625
+      }
+    }
+  ],
+  "limits": [
+    "one separate process per configuration, no memory inference",
+    "first cold context cost included in each worker",
+    "all 12 lifetimes close app/client/pool; no service output speedup claim"
+  ]
+}

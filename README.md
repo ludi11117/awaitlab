@@ -202,6 +202,10 @@ node tests/timeline.cjs
 
 0.6.1 的任务持有修复有可测成本：固定12配对、4096任务/组、64任务/波，立即返回模式从约2.80到3.19微秒/任务，约增加0.39微秒；单次yield模式的差值区间跨零，证据不足。这里包含Task/gather/调度和登记成本，不是业务请求同比变慢。完整原始数据见 artifacts/task-ownership-v0.6.1.json，故障复现见 artifacts/ownership-gc-v0.6.1.json；没有用关闭遗留检查换取更漂亮的耗时。
 
+0.6.2 复用本机HTTP压测客户端的SSL配置，逐批新建应用、客户端和连接池。12个随机配对中，配置已加载后的辅助器就绪时间约320ms → 13ms；首次SSL配置构造仍约277ms。包括3个请求和关闭的完整辅助器周期约538ms → 217ms。这减少实验准备成本，不表示业务响应快了96%。配置保留默认信任证书和验证设置，进程内作为固定快照复用；证书配置变化后重启进程。实现依据 [HTTPX SSLContext配置](https://www.python-httpx.org/advanced/ssl/) 与 [Python SSLContext共享规则](https://docs.python.org/3.13/library/ssl.html#ssl.SSLContext)。
+
+复跑：`python benchmarks/http_setup.py`；分进程描述内存与含首次加载的12次生命周期：`python benchmarks/http_setup.py --memory`。原始数据在 artifacts/http-setup-v0.6.2.json / http-setup-memory-v0.6.2.json，阶段图在 http-setup-phases-v0.6.2.png；可选matplotlib导出脚本为 benchmarks/plot_http_setup.py。
+
 跨度记录有上限，聚合计数仍保留。延迟数组、输出摘要、批次结果和报告也会占内存，不能把“追踪有上限”说成整个实验内存恒定。报告 v2 删除重复首批数据与逐行哈希列表，保留整批摘要、不一致 ID 和逐批结果。
 
 项目、构建后端、缓存、临时数据均放 D 盘；Python 运行时沿用现有安装位置。没有迁移 Codex 数据或系统目录。

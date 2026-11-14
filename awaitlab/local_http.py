@@ -1,9 +1,17 @@
 """Optional same-process loopback HTTP host for controlled ASGI experiments."""
 import asyncio
 from contextlib import asynccontextmanager,contextmanager
+from functools import lru_cache
 import socket
 import sys
 from .asgi import LocalASGITrace
+
+
+@lru_cache(maxsize=1)
+def _client_ssl_context():
+    import certifi
+    import ssl
+    return ssl.create_default_context(cafile=certifi.where())
 
 
 @asynccontextmanager
@@ -45,7 +53,8 @@ async def serve_local(app, *, lifespan='on'):
                     await task
                     raise RuntimeError('Local ASGI server stopped before startup')
                 await asyncio.sleep(.005)
-            async with httpx.AsyncClient(base_url=f'http://127.0.0.1:{address[1]}',trust_env=False,timeout=10) as client:
+            async with httpx.AsyncClient(base_url=f'http://127.0.0.1:{address[1]}',trust_env=False,timeout=10,
+                                         verify=_client_ssl_context()) as client:
                 yield client,bridge
         finally:
             primary_error=sys.exc_info()[1]
