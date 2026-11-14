@@ -92,7 +92,7 @@ class ExperimentTests(unittest.IsolatedAsyncioTestCase):
         report=await Experiment(factory,[Arm('bad','replacement','value',replacements={'value':changed})],self.settings()).run()
         comparison=report['comparisons'][0]
         self.assertFalse(comparison['output_equivalence'])
-        self.assertFalse(comparison['verified_improvement'])
+        self.assertFalse(comparison['candidate_improvement'])
 
     async def test_typo_in_site_cannot_be_reported_as_zero_sensitivity(self):
         @operation('real')

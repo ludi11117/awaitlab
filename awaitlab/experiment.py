@@ -7,7 +7,7 @@ import statistics
 import time
 from . import __version__
 from .trace import Session
-from .statistics import describe, paired_effect
+from .statistics import describe,paired_effect,paired_randomization,holm_adjust,evidence_level
 from .ownership import owned_tasks
 from . import checkpoint as checkpoints
 
@@ -30,10 +30,14 @@ class Settings:
     seed: int = 173
     trace_requests: int = 2
     max_records: int = 4096
+    min_gain_pct: float = 5.0
+    alpha: float = .05
 
     def validate(self):
         if self.blocks<2 or self.requests<2 or self.concurrency<1 or self.warmup<0:
             raise ValueError('Need >=2 blocks and requests, positive concurrency, nonnegative warmup')
+        if not 0<self.alpha<1 or not 0<=self.min_gain_pct<100:
+            raise ValueError('alpha must be in (0,1), min_gain_pct must be in [0,100)')
 
 
 def fingerprint(value):
@@ -183,15 +187,28 @@ class Experiment:
                 comparison['timer_overshoot_warning']=observed>arm.delay_ms*1.5
                 comparison['interpretation']='response to extra cooperative delay; not an acceleration prediction'
             else:
-                comparison['verified_improvement']=equivalent and effect['ci95_delta_ms'][1]<0
+                comparison['observed_gain']=equivalent and effect['mean_change_pct']<0
+                comparison['randomization']=paired_randomization(controls,treatments,self.settings.seed)
                 comparison['interpretation']='actual replacement under this workload; output equality is observed on tested request IDs only'
             comparisons.append(comparison)
-        return {'schema_version':2,'library_version':__version__,'settings':asdict(self.settings),'comparisons':comparisons,
+        family={c['name']:c['randomization']['pvalue'] for c in comparisons if c['kind']=='replacement'}
+        adjusted=holm_adjust(family)
+        for c in comparisons:
+            if c['kind']!='replacement':continue
+            c['holm_adjusted_p']=adjusted[c['name']]
+            c['evidence_level']=evidence_level(c['output_equivalence'],c['effect']['mean_change_pct'],
+                c['holm_adjusted_p'],c['randomization']['exact'],self.settings.alpha,self.settings.min_gain_pct)
+            c['candidate_improvement']=c['evidence_level']=='supported_in_this_experiment'
+        return {'schema_version':3,'library_version':__version__,'settings':asdict(self.settings),'comparisons':comparisons,
+            'evidence_policy':{'family':list(family),'correction':'Holm, replacement arms only',
+                'alpha':self.settings.alpha,'min_point_gain_pct':self.settings.min_gain_pct,
+                'scope':'exploratory within-workload support; not preregistered confirmation or a lower bound on the practical margin',
+                'monte_carlo_classification':'approximate p-values are reported but never classified as supported'},
             'run':{'started_at':started_at,'completed_at':checkpoints.now(),'identity':run_identity,'resumed_pairs':resumed_pairs},
             'method':'randomized paired closed-loop blocks; percentile bootstrap over block mean differences',
             'limitations':['cooperative readiness delay does not simulate CPU work',
                 'delay sensitivity is not inverse speedup prediction',
                 'output hash agreement on tested inputs does not prove semantic equivalence',
                 'p95 changes are descriptive; no inferential tail-latency claim',
-                'multiple arms are exploratory without multiplicity correction',
+                'replacement p-values use Holm; all conclusions remain exploratory and workload-specific',
                 'explicitly instrumented parent spans are not a complete await/dependency graph']}

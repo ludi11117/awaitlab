@@ -1,66 +1,33 @@
 """Loopback TCP + HTTPX + Uvicorn + FastAPI, one process and one event loop."""
 import asyncio
-from contextlib import asynccontextmanager,contextmanager
+from contextlib import asynccontextmanager
 import json
 from pathlib import Path
-import socket
 import sys
 
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from fastapi import FastAPI
-import httpx
-import uvicorn
 from awaitlab import Arm,Experiment,Settings
-from awaitlab.asgi import LocalASGITrace
+from awaitlab.local_http import serve_local
 from awaitlab.scenarios import inventory,pricing,fast_inventory,fast_pricing
 from awaitlab.calibration import calibrate
 from awaitlab.report import write_report
 
 
-class EmbeddedServer(uvicorn.Server):
-    @contextmanager
-    def capture_signals(self):
-        # The enclosing experimental runner owns KeyboardInterrupt/cancellation.
-        yield
-
-
 @asynccontextmanager
 async def application():
-    bridge=LocalASGITrace()
     app=FastAPI()
     @app.get('/orders/{order_id}')
     async def order(order_id:int):
         stock,price=await asyncio.gather(asyncio.gather(*(inventory(i) for i in range(12))),pricing(order_id))
         return {'order':order_id,'stock':stock,'price':price}
-    # Prebind an ephemeral loopback port, avoiding fixed-port collisions.
-    with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as listener:
-        listener.bind(('127.0.0.1',0))
-        address=listener.getsockname()
-        config=uvicorn.Config(bridge.middleware(app),host='127.0.0.1',port=address[1],
-                              lifespan='off',access_log=False,log_config=None,
-                              proxy_headers=False,ws='none',timeout_graceful_shutdown=2)
-        server=EmbeddedServer(config)
-        server_task=asyncio.create_task(server.serve(sockets=[listener]))
-        try:
-            while not server.started:
-                if server_task.done():
-                    await server_task
-                    raise RuntimeError('Local ASGI server stopped before startup')
-                await asyncio.sleep(.005)
-            async with httpx.AsyncClient(base_url=f'http://127.0.0.1:{address[1]}',
-                                         trust_env=False,timeout=10) as client:
-                async def handler(i):
-                    with bridge.headers() as headers:
-                        response=await client.get(f'/orders/{i}',headers=headers)
-                    response.raise_for_status()
-                    return response.json()
-                yield handler
-        finally:
-            server.should_exit=True
-            try:await asyncio.wait_for(asyncio.shield(server_task),5)
-            except (TimeoutError,asyncio.CancelledError):
-                server_task.cancel()
-                await asyncio.gather(server_task,return_exceptions=True)
+    async with serve_local(app) as (client,bridge):
+        async def handler(i):
+            with bridge.headers() as headers:
+                response=await client.get(f'/orders/{i}',headers=headers)
+            response.raise_for_status()
+            return response.json()
+        yield handler
 
 
 async def main():

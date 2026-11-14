@@ -2,30 +2,38 @@
 
 给 Python 异步服务做可复跑的性能实验：找出对响应时间敏感的操作，再用真正更快的实现核对收益。
 
-**最快查看：双击 `Start-AwaitLab.cmd`。** 它会打开已生成的本地交互报告；没有报告时才运行演示。无需后台服务、账号、API 或模型权重。
+**最快查看：双击 `Start-AwaitLab.cmd`。** 它会打开真实 SQLite 查询的本地交互报告；没有报告时才运行实验。无需后台服务、账号、API 或模型权重。重新测量双击 `Run-SQLite-Experiments.cmd`。
 
 ## 目前能看到什么
 
 - 并行订单查询：12 个库存查询累计耗时很高，但替换它们后，响应时间基本不变；定价查询替换后，当前受控负载下响应明显下降。
 - 共享连接池：区分取得连接前的排队跨度和持有连接时的查询跨度；核对查询加快后排队响应的变化。
-- FastAPI 接入例子：实际运行路由、类型验证、请求/响应序列化；当前使用进程内 ASGI，不包含 TCP 和 uvicorn 多 worker。
-- 0.2 新增真实本机 TCP / HTTPX / Uvicorn / FastAPI 示例。通过显式本地票据桥接上下文，不依赖 ContextVar 自动穿过网络；仍限单进程、同一事件循环。
+- **0.3 真实 SQLite 查询**：同样的 5 万行客户数据、相同 SQL，比较无索引与有索引实现；另设不改实现的对照，检查随机波动会不会被误报为收益。查询由实际数据库引擎执行，没有人为 sleep。
+- **0.3 SQLite HTTP 接口**：真实本机 TCP / HTTPX / Uvicorn / FastAPI 链路，比较端到端收益。通过一次性本地票据显式桥接上下文，限单进程、同一事件循环。
+- FastAPI 另有进程内 ASGI 与可控 sleep 示例，用于解释并行等待机制，不冒充真实数据库负载。
 - 报告包括配对批次、均值差的 bootstrap 区间、输出核对、采样任务时间线、累计跨度和定时器校准。
+- 实际替换结果经过固定比较组内的 Holm 调整，结合预先声明的 5% 点估计门槛分级；不会把“小幅变快”直接标为优化成立。
 
 **这不是“优化加速保证器”。** 等待干预测的是操作增加协作式等待后的响应变化，不能据此反推任意加速效果。真实替换才报告已实测的 A/B 变化；示例收益不是该工具自身把业务程序自动加速的比例。
 
 ## 运行要求
 
-Python 3.10+。核心与报告仅使用标准库，直接在本目录运行即可，无需安装。FastAPI 例子另需 fastapi、httpx；本机已存在这两个库，项目没有把它们设为核心依赖。
+Python 3.10+，本机验证版本为 3.13.15。核心、SQLite 实验与报告仅使用标准库，直接在本目录运行即可，无需安装。HTTP 例子另需 fastapi、httpx、uvicorn；本机已存在，项目没有将它们设为核心依赖。
 
 ```powershell
+python -m awaitlab demo --scenario sqlite --output artifacts/sqlite-latest.json
+python -m awaitlab demo --scenario sqlite-http --output artifacts/sqlite-http-latest.json
 python -m awaitlab demo --scenario parallel --output artifacts/parallel-latest.json
 python -m awaitlab demo --scenario pool --output artifacts/pool-latest.json
 python examples/fastapi_lab.py
 python examples/fastapi_tcp.py
 ```
 
-每次生成同名 JSON 和 HTML。HTML 可离线打开，无外部脚本、字体或网络请求。要重新运行两个基础演示，双击 `Rerun-Experiments.cmd`。默认 6 个配对批次、每批 40 请求、8 个闭环并发 worker；运行时间随 Windows 调度和机器负载变化。
+每次生成同名 JSON 和 HTML。HTML 可离线打开，无外部脚本、字体或网络请求。SQLite 两个场景默认 10 个配对批次，其他演示默认 6 个；每批 40 请求、8 个闭环并发 worker。要重跑两个等待机制演示，双击 `Rerun-Experiments.cmd`。运行时间随 Windows 调度和机器负载变化。
+
+当前样例中，索引版的直接查询平均响应下降约 82%，经过 HTTP 链路下降约 26%，已测请求输出一致。这是这组数据与本机环境的实测替换结果，不是工具自动产生索引，也不保证其他数据库同样收益。原始数据与完整边界见 [VALIDATION.md](VALIDATION.md)。
+
+数据库文件合计约 6.6 MB，存于 `D:\CodexWork\temp\awaitlab\sqlite-fixture-v1`。两份文件每块计时前都会校验并完整读取，所有线程各自预热两条路径。每次查询新建、关闭只读连接：包含线程排队、连接创建及取回结果的成本；预热主要影响 OS 文件缓存，后续新连接不继承 SQLite 私有页缓存。这是短连接的读实验，不是冷盘、持久连接池或写事务性能测试。
 
 ## 接入自己的代码
 
@@ -56,7 +64,7 @@ async def main():
         Arm('delay_fetch', 'delay', 'fetch', delay_ms=4),
         Arm('new_fetch', 'replacement', 'fetch',
             replacements={'fetch': faster_fetch}),
-    ], Settings(blocks=6, requests=40, concurrency=8))
+    ], Settings(blocks=10, requests=40, concurrency=8))
     report = await experiment.run()
     write_report(report, 'my-report.html')
 
@@ -82,7 +90,10 @@ finally:
 
 - 额外等待使用 `asyncio.sleep`，不会故意阻塞整个事件循环；不模拟增加 CPU 工作。零干预不调用 sleep(0)。
 - 先按实验臂预热，再在同一批次随机排列控制/实验顺序。资源每次重建，请求输入按 ID 固定，不能用全局 RNG 的调度消费顺序决定业务数据。
-- 按配对工作负载批次重采样，而不是把同一批内的请求当成独立试验。区间是探索性的百分位 bootstrap，未进行多重比较校正。
+- 按配对工作负载批次重采样，而不是把同一批内的请求当成独立试验。显示的区间是未调整的探索性百分位 bootstrap，不是多个实验臂同时覆盖的区间。
+- 真实替换另做双侧配对随机化检验，并在预先列出的所有替换臂内作 Holm 调整。需满足随机执行顺序、标签可交换、无跨轮残留干扰等条件；随机顺序本身不证明这些条件成立。
+- 仅在输出一致、点估计改善至少 5%、精确检验 Holm p<.05 时标记“本轮支持继续验证此优化”。这不证明真实改善下界至少 5%，也不是注册过的确认性研究。超过 16 块时报告 Monte Carlo 近似 p，不自动升级为支持。
+- 6 块、两个替换臂时最小 Holm p 为 .0625；即便图中 bootstrap 区间不跨零，也无法按此规则升级。应在开始前确定块数，不能为了过线而事后不断追加。
 - p95 只作描述，不提供尾分位显著性结论。闭环并发不是生产环境固定外部到达率的负载。
 - Windows 上名义 sleep 时长可能明显小于实测值。报告会记录空闲定时校准和实际负载中的注入等待；程序不修改系统定时器分辨率。
 - 仅追踪明确标记的跨度和前几个请求，不是完整 await 依赖图，也不自动证明关键路径。
@@ -119,7 +130,7 @@ SDK 方式：`await experiment.run(checkpoint='run.checkpoint.json', resume=True
 
 外部数据、数据库状态、闭包配置和所有传递依赖无法自动完整指纹化，变更这些内容必须更新 workload_version；不要把文件哈希当作全环境可复现保证。断点不支持并发写入。同一路径不加 --resume 是重新运行，不复用旧配对。
 
-进一步的方法审查和一手来源见 [METHOD.md](METHOD.md)。因果性能分析、异步追踪和实验统计都有前人工作，本项目未证明原创性，也没有宣称胜过 Coz、Pyinstrument 或 Codex。
+进一步的方法审查和一手来源见 [METHOD.md](METHOD.md) 与 [METHOD-v0.3.md](METHOD-v0.3.md)。旧版 JSON 的 verified_improvement 字段不沿用为新版证据；用新版渲染器打开时标为“历史报告：未按新版规则分级”。因果性能分析、异步追踪和实验统计都有前人工作，本项目未证明原创性，也没有宣称胜过 Coz、Pyinstrument 或 Codex。
 
 ## 验证与自身开销
 

@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import platform
 import sys
-from .experiment import Experiment,Settings
+from .experiment import Experiment,Settings,fingerprint
 from .scenarios import SCENARIOS
 from .calibration import calibrate
 from .report import write_report
@@ -14,22 +14,27 @@ def main():
     parser=argparse.ArgumentParser(description='AwaitLab — asynchronous latency experiments, no model/API required')
     parser.add_argument('command',choices=['demo'])
     parser.add_argument('--scenario',choices=SCENARIOS,default='parallel')
-    parser.add_argument('--blocks',type=int,default=6)
+    parser.add_argument('--blocks',type=int,default=None)
     parser.add_argument('--requests',type=int,default=40)
     parser.add_argument('--concurrency',type=int,default=8)
     parser.add_argument('--output',default=None)
     parser.add_argument('--resume',action='store_true',help='Resume completed pairs only if code/settings/workload identity match')
     args=parser.parse_args()
     scenario=SCENARIOS[args.scenario]
-    settings=Settings(blocks=args.blocks,requests=args.requests,concurrency=args.concurrency)
+    settings=Settings(blocks=args.blocks if args.blocks is not None else scenario.get('default_blocks',6),requests=args.requests,concurrency=args.concurrency)
     target=Path(args.output or f'D:/CodexWork/projects/awaitlab/artifacts/{args.scenario}-latest.json').resolve()
     target.parent.mkdir(parents=True,exist_ok=True)
     async def execute():
+        evidence=await scenario['prepare']() if 'prepare' in scenario else None
         calibration=await calibrate()
-        report=await Experiment(scenario['factory'],scenario['arms'],settings).run(
+        factory=scenario['factory_for'](settings) if 'factory_for' in scenario else scenario['factory']
+        workload_version='bundled-scenarios-v1' if evidence is None else fingerprint(evidence)
+        report=await Experiment(factory,scenario['arms'],settings).run(
             lambda done,total,name:print(f'[{done}/{total}] {name}',flush=True),
-            checkpoint=target.with_suffix('.checkpoint.json'),resume=args.resume,workload_version='bundled-scenarios-v1')
+            checkpoint=target.with_suffix('.checkpoint.json'),resume=args.resume,workload_version=workload_version)
         report['timer_calibration']=calibration
+        if evidence is not None:report['workload_evidence']=evidence
+        if evidence and evidence.get('transport'):report['transport']=evidence['transport']
         return report
     report=asyncio.run(execute())
     report.update(scenario=args.scenario,title=scenario['title'],environment={'python':sys.version,'platform':platform.platform()})

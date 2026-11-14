@@ -1,0 +1,371 @@
+{
+  "version": "0.3.0",
+  "date": "2026-11-15",
+  "tests": {
+    "unit_integration": 38,
+    "passed": true
+  },
+  "browser": {
+    "passed": true,
+    "checks": [
+      "standalone SQLite report",
+      "two real replacement arms",
+      "supported evidence grade",
+      "adjusted inference visible",
+      "workload provenance",
+      "actual fixture size",
+      "actual SQL",
+      "placebo not promoted",
+      "placebo neutral presentation",
+      "treatment timeline",
+      "real HTTP transport scope",
+      "library version",
+      "mobile width",
+      "timer calibration",
+      "legacy delay interpretation",
+      "legacy result not silently upgraded",
+      "missing legacy values handled",
+      "no JavaScript exceptions",
+      "no network requests"
+    ]
+  },
+  "installation": {
+    "version": "0.3.0",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.3.0\\awaitlab\\__init__.py",
+    "schema_version": 3,
+    "resumed_pairs": 4,
+    "all_outputs_equal": true,
+    "packaged_files_match_source": 16,
+    "wheel_sha256": "a55a7d6c15e4d7b20b2c841729765b3b4333585ba4b054b869b32146df617675",
+    "standalone_html": "D:\\CodexWork\\temp\\awaitlab\\installed-smoke-v0.3.html"
+  },
+  "experiments": {
+    "sqlite": {
+      "settings": {
+        "blocks": 10,
+        "requests": 40,
+        "concurrency": 8,
+        "warmup": 4,
+        "seed": 173,
+        "trace_requests": 2,
+        "max_records": 4096,
+        "min_gain_pct": 5.0,
+        "alpha": 0.05
+      },
+      "run": {
+        "started_at": "2026-11-14T21:30:15.779362+00:00",
+        "completed_at": "2026-11-14T21:30:19.487805+00:00",
+        "identity": {
+          "digest": "4b78abedb4c11e6f2f53bbaf9e2d1d56994872fbb2901726de3f208253ef1403",
+          "manifest": {
+            "checkpoint_schema": 1,
+            "workload_version": "7610726787b38fbebbc6c40f6df31a7b8afc6b28244d9dc7d87c4bb205557d0d",
+            "settings": {
+              "blocks": 10,
+              "requests": 40,
+              "concurrency": 8,
+              "warmup": 4,
+              "seed": 173,
+              "trace_requests": 2,
+              "max_records": 4096,
+              "min_gain_pct": 5.0,
+              "alpha": 0.05
+            },
+            "arms": [
+              {
+                "name": "indexed_lookup",
+                "kind": "replacement",
+                "site": "customer.lookup",
+                "delay_ms": 0,
+                "replacement_names": {
+                  "customer.lookup": "awaitlab.sqlite_workload.indexed_lookup"
+                }
+              },
+              {
+                "name": "unchanged_lookup",
+                "kind": "replacement",
+                "site": "customer.lookup",
+                "delay_ms": 0,
+                "replacement_names": {
+                  "customer.lookup": "awaitlab.sqlite_workload.unchanged_lookup"
+                }
+              }
+            ],
+            "sources": {
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__init__.py": "04637b8c9b2bf335a00259b48467c9dbd52adc093b2dc48662bb08f329237dc5",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__main__.py": "a0e4ac08f20ab6c51227d6932321991cf7972671f2bc026b1602d55abf0c69a9",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\asgi.py": "8ed2071ad0f182c52b9decadf92bd12efe64db254f7ab9a1056a96582bd82f3c",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\calibration.py": "26329df46ecb657107dfc85463ad39a3317bc7a803262a2cce16a00485acddce",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\checkpoint.py": "d92b9534bda79095371fc801eab43ed061a6c66b3d7271203681ae917ccd5298",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\experiment.py": "7bebf3f45cf3138355b4f8d82749dcf595acb4acef032fb6373928e6dc283178",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\local_http.py": "210d0e50a1c17e173fb4d6eb6bfda9e8da97da7802ef27b8b385abc4905ef563",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\ownership.py": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\report.py": "c5b14489a0bf37a94371d0752cea0a6ac613b7261d2f451ddf31cd219065fd05",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\scenarios.py": "90b3db36e70912b308881249129b11c7809daabf61a6e2fc7038458ed9a8b9c7",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_http_workload.py": "a2ea0cd73338f18f595789e3ba3610c4c1ad2a34b3efc85066c89b0cf9b675d1",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_workload.py": "287661efeb684b89c4097b3ebf9c342c97c79e6bd72482889ee9f519431ebdeb",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\statistics.py": "49e8044ce4c42d0854b30bac9e1f9ae7f38b2efdb24d44de7affb9ca273f4ee9",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\trace.py": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b"
+            },
+            "python": "3.13.15",
+            "platform": "Windows-11-10.0.26200-SP0"
+          }
+        },
+        "resumed_pairs": 0
+      },
+      "workload_evidence": {
+        "kind": "actual SQLite SELECT, no artificial sleep",
+        "rows": 50000,
+        "sqlite_version": "3.50.4",
+        "sql": "SELECT id, name, balance FROM customers WHERE email = ? ORDER BY id",
+        "fixture": {
+          "fixture_version": "sqlite-v1",
+          "rows": 50000,
+          "logical_data_sha256": "21b308f260c40f30a09bf79d10eabe2c520d53bc18f1ff5e4d6210ffadeb746b",
+          "files": {
+            "unindexed": {
+              "sha256": "dc0c26e83543cd0a68829a6173009c1764cdc5c8f911746789c7924c616aa13a",
+              "bytes": 2531328
+            },
+            "indexed": {
+              "sha256": "6f1dfc173e98fba561b104b1312f58be27bdc90785ffaf2d577d90024d013e84",
+              "bytes": 4108288
+            }
+          }
+        },
+        "query_plans": {
+          "unindexed": [
+            [
+              3,
+              0,
+              216,
+              "SCAN customers"
+            ]
+          ],
+          "indexed": [
+            [
+              4,
+              0,
+              62,
+              "SEARCH customers USING INDEX idx_customer_email (email=?)"
+            ]
+          ]
+        },
+        "connections": "fresh read-only connection per query",
+        "cache_policy": "both complete files read before each block; new connections have new SQLite page caches",
+        "thread_policy": "fresh executor per block, all configured workers primed before timing",
+        "limits": [
+          "read-only synthetic customer data",
+          "warm OS cache, not guaranteed cold-disk performance",
+          "connection setup and executor queueing are included in lookup latency"
+        ]
+      },
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "effect": {
+            "mean_delta_ms": -10.79984175,
+            "ci95_delta_ms": [
+              -11.562797393750001,
+              -10.04244096875
+            ],
+            "mean_change_pct": -81.60782272314711,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10
+          },
+          "output_equivalence": true,
+          "holm_adjusted_p": 0.00390625,
+          "evidence_level": "supported_in_this_experiment",
+          "candidate_improvement": true
+        },
+        {
+          "name": "unchanged_lookup",
+          "effect": {
+            "mean_delta_ms": 0.3408932500000006,
+            "ci95_delta_ms": [
+              -0.10516932499999954,
+              0.7488185187499995
+            ],
+            "mean_change_pct": 2.671910397916988,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10
+          },
+          "output_equivalence": true,
+          "holm_adjusted_p": 0.17578125,
+          "evidence_level": "no_observed_gain",
+          "candidate_improvement": false
+        }
+      ]
+    },
+    "sqlite-http": {
+      "settings": {
+        "blocks": 10,
+        "requests": 40,
+        "concurrency": 8,
+        "warmup": 4,
+        "seed": 173,
+        "trace_requests": 2,
+        "max_records": 4096,
+        "min_gain_pct": 5.0,
+        "alpha": 0.05
+      },
+      "run": {
+        "started_at": "2026-11-14T21:30:21.114246+00:00",
+        "completed_at": "2026-11-14T21:30:46.138885+00:00",
+        "identity": {
+          "digest": "2fa2383e59ee620254419ea1fda8c45200901855559343d7ddec723fa3f2f9d3",
+          "manifest": {
+            "checkpoint_schema": 1,
+            "workload_version": "9c8bcda418207305168a185bef2baa015abc677a4ed64082eac16e2051018b6c",
+            "settings": {
+              "blocks": 10,
+              "requests": 40,
+              "concurrency": 8,
+              "warmup": 4,
+              "seed": 173,
+              "trace_requests": 2,
+              "max_records": 4096,
+              "min_gain_pct": 5.0,
+              "alpha": 0.05
+            },
+            "arms": [
+              {
+                "name": "indexed_lookup",
+                "kind": "replacement",
+                "site": "customer.lookup",
+                "delay_ms": 0,
+                "replacement_names": {
+                  "customer.lookup": "awaitlab.sqlite_workload.indexed_lookup"
+                }
+              },
+              {
+                "name": "unchanged_lookup",
+                "kind": "replacement",
+                "site": "customer.lookup",
+                "delay_ms": 0,
+                "replacement_names": {
+                  "customer.lookup": "awaitlab.sqlite_workload.unchanged_lookup"
+                }
+              }
+            ],
+            "sources": {
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__init__.py": "04637b8c9b2bf335a00259b48467c9dbd52adc093b2dc48662bb08f329237dc5",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__main__.py": "a0e4ac08f20ab6c51227d6932321991cf7972671f2bc026b1602d55abf0c69a9",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\asgi.py": "8ed2071ad0f182c52b9decadf92bd12efe64db254f7ab9a1056a96582bd82f3c",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\calibration.py": "26329df46ecb657107dfc85463ad39a3317bc7a803262a2cce16a00485acddce",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\checkpoint.py": "d92b9534bda79095371fc801eab43ed061a6c66b3d7271203681ae917ccd5298",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\experiment.py": "7bebf3f45cf3138355b4f8d82749dcf595acb4acef032fb6373928e6dc283178",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\local_http.py": "210d0e50a1c17e173fb4d6eb6bfda9e8da97da7802ef27b8b385abc4905ef563",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\ownership.py": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\report.py": "c5b14489a0bf37a94371d0752cea0a6ac613b7261d2f451ddf31cd219065fd05",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\scenarios.py": "90b3db36e70912b308881249129b11c7809daabf61a6e2fc7038458ed9a8b9c7",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_http_workload.py": "a2ea0cd73338f18f595789e3ba3610c4c1ad2a34b3efc85066c89b0cf9b675d1",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_workload.py": "287661efeb684b89c4097b3ebf9c342c97c79e6bd72482889ee9f519431ebdeb",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\statistics.py": "49e8044ce4c42d0854b30bac9e1f9ae7f38b2efdb24d44de7affb9ca273f4ee9",
+              "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\trace.py": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b"
+            },
+            "python": "3.13.15",
+            "platform": "Windows-11-10.0.26200-SP0"
+          }
+        },
+        "resumed_pairs": 0
+      },
+      "workload_evidence": {
+        "kind": "actual SQLite SELECT, no artificial sleep",
+        "rows": 50000,
+        "sqlite_version": "3.50.4",
+        "sql": "SELECT id, name, balance FROM customers WHERE email = ? ORDER BY id",
+        "fixture": {
+          "fixture_version": "sqlite-v1",
+          "rows": 50000,
+          "logical_data_sha256": "21b308f260c40f30a09bf79d10eabe2c520d53bc18f1ff5e4d6210ffadeb746b",
+          "files": {
+            "unindexed": {
+              "sha256": "dc0c26e83543cd0a68829a6173009c1764cdc5c8f911746789c7924c616aa13a",
+              "bytes": 2531328
+            },
+            "indexed": {
+              "sha256": "6f1dfc173e98fba561b104b1312f58be27bdc90785ffaf2d577d90024d013e84",
+              "bytes": 4108288
+            }
+          }
+        },
+        "query_plans": {
+          "unindexed": [
+            [
+              3,
+              0,
+              216,
+              "SCAN customers"
+            ]
+          ],
+          "indexed": [
+            [
+              4,
+              0,
+              62,
+              "SEARCH customers USING INDEX idx_customer_email (email=?)"
+            ]
+          ]
+        },
+        "connections": "fresh read-only connection per query",
+        "cache_policy": "both complete files read before each block; new connections have new SQLite page caches",
+        "thread_policy": "fresh executor per block, all configured workers primed before timing",
+        "limits": [
+          "read-only synthetic customer data",
+          "warm OS cache, not guaranteed cold-disk performance",
+          "connection setup and executor queueing are included in lookup latency",
+          "single process and event loop; no remote or multi-worker service"
+        ],
+        "transport": "loopback TCP / HTTPX / Uvicorn / FastAPI / dedicated executor / SQLite",
+        "dependency_versions": {
+          "fastapi": "0.141.1",
+          "httpx": "0.28.1",
+          "uvicorn": "0.52.4"
+        }
+      },
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "effect": {
+            "mean_delta_ms": -4.19599425,
+            "ci95_delta_ms": [
+              -5.238017325,
+              -3.1605104875000007
+            ],
+            "mean_change_pct": -26.017084710048067,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10
+          },
+          "output_equivalence": true,
+          "holm_adjusted_p": 0.00390625,
+          "evidence_level": "supported_in_this_experiment",
+          "candidate_improvement": true
+        },
+        {
+          "name": "unchanged_lookup",
+          "effect": {
+            "mean_delta_ms": -0.48972575000000057,
+            "ci95_delta_ms": [
+              -0.95275658125,
+              -0.02558966250000214
+            ],
+            "mean_change_pct": -2.9874455951822365,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10
+          },
+          "output_equivalence": true,
+          "holm_adjusted_p": 0.095703125,
+          "evidence_level": "below_practical_threshold",
+          "candidate_improvement": false
+        }
+      ]
+    }
+  },
+  "limits": [
+    "single machine, exploratory fixed-load evidence",
+    "all datasets synthetic; actual SQLite engine and TCP transport",
+    "point threshold is not an effect lower bound",
+    "no publication or API calls"
+  ]
+}

@@ -1,17 +1,24 @@
 {
   "passed": true,
   "checks": [
-    "local standalone report",
-    "four selectable arms",
-    "delay interpretation",
-    "control/treatment timeline",
-    "actual replacement result",
+    "standalone SQLite report",
+    "two real replacement arms",
+    "supported evidence grade",
+    "adjusted inference visible",
+    "workload provenance",
+    "actual fixture size",
+    "actual SQL",
+    "placebo not promoted",
+    "placebo neutral presentation",
+    "treatment timeline",
+    "real HTTP transport scope",
+    "library version",
     "mobile width",
     "timer calibration",
-    "TCP transport scope",
-    "report library version",
-    "TCP mobile width",
-    "no JS exceptions",
+    "legacy delay interpretation",
+    "legacy result not silently upgraded",
+    "missing legacy values handled",
+    "no JavaScript exceptions",
     "no network requests"
   ]
 }

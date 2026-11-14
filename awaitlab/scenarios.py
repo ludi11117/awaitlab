@@ -70,3 +70,14 @@ SCENARIOS={
     'pool':{'factory':pool,'title':'共享连接池：服务时间与排队放大',
         'arms':[Arm('delay_query','delay','database.query',4),
                 Arm('faster_query','replacement','database.query',replacements={'database.query':fast_query})]}}
+
+from . import sqlite_workload
+SCENARIOS['sqlite']={'factory':sqlite_workload.make_workload(),
+    'factory_for':lambda cfg:sqlite_workload.make_workload(workers=cfg.concurrency),
+    'title':'真实 SQLite：相同数据的全表扫描与索引查询，包含不改实现的对照',
+    'arms':sqlite_workload.ARMS,'prepare':sqlite_workload.evidence,'default_blocks':10}
+from . import sqlite_http_workload
+SCENARIOS['sqlite-http']={'factory':sqlite_http_workload.make_workload(),
+    'factory_for':lambda cfg:sqlite_http_workload.make_workload(workers=cfg.concurrency),
+    'title':'真实客户查询接口：通过 TCP 比较 SQLite 索引与原实现',
+    'arms':sqlite_workload.ARMS,'prepare':sqlite_http_workload.evidence,'default_blocks':10}
