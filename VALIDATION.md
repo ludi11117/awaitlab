@@ -1,4 +1,34 @@
-# 0.6.0 验证记录
+# 0.6.1 验证记录
+
+日期：2026-11-15。原始汇总见 artifacts/validation-v0.6.1.json。
+
+- 65项单元/集成测试、42项浏览器检查、640组区间布局/并集检查通过。新检查覆盖丢引用Task、有限后继清理、512完成任务释放、原有eager factory衔接以及真实ASGI lifespan遗留任务。
+- 安装包17个源码/资源逐字节一致；独立D盘、禁用site-packages的安装环境运行同一GC探针，正确拒绝并以CancelledError结束孤立Task，无销毁警告，无关任务保持运行。普通HTTP用户项目8生命周期/4对恢复也通过。记录见 artifacts/install-check-v0.6.1.json 与 install-http-check-v0.6.1.json。
+
+## 有证据的遗留任务修复
+
+冻结0.6.0 wheel中的ownership.py，SHA见 benchmarks/baseline-v060-ownership.json。benchmarks/ownership_gc.py 仅切换所有权登记器，构造一个等待私有Event、没有调用方强引用的Task；请求中强制GC。
+
+- 旧登记器：Task在两次请求中均已消失，finally收到GeneratorExit，循环记录pending-task被销毁；控制块却返回成功。
+- 当前登记器：Task在GC后仍存在，块退出时取消，finally收到CancelledError；块因遗留任务被拒绝，无销毁警告，外部任务不受影响，原task factory恢复。
+- 原始记录分别保留在 artifacts/ownership-gc-v0.6.0.json 与 ownership-gc-v0.6.1.json。
+
+新实现只在任务未完成时持有引用，由完成回调移除；不保留整个运行的完成任务。对取消过程中产生的有限新任务继续清理。合作式取消仍是前提，不提供对任意非合作应用的强制终止保证。官方原理参考 [Python 3.13 asyncio.create_task](https://docs.python.org/3.13/library/asyncio-task.html#asyncio.create_task)。
+
+## 成本与真实接口复验
+
+12随机配对、seed1807、每组4096任务/64任务一波，包含Task创建、gather、调度和登记开销；候选与冻结旧版按随机先后运行。原始记录：artifacts/task-ownership-v0.6.1.json。
+
+| 模式 | 旧/新微秒每Task | 差值区间，微秒 | Holm p |
+| --- | --- | --- | --- |
+| 立即返回 | 2.797 / 3.189 | [.351,.425] | .0009765625 |
+| yield一次 | 3.856 / 4.083 | [-.186,.466] | .296875 |
+
+立即返回模式点估计成本约+14%，绝对值约+.39微秒/Task；yield模式证据不足，不能解释为等效或确定变慢。不是业务请求同比变化。复用回调上下文的变体未形成可靠整体收益，未加入产品；其原始数据与当时源码另保留在 task-ownership-shared-context-v0.6.1.json。
+
+正常动态客户API按相同固定0.6协议再测：40个生命周期均正确关闭，20对完整恢复没有新应用启动；索引候选响应变化-51.21%，Holm p=.00390625，原实现对照+0.57%、p=.904296875。已测业务投影一致，完整输出范围同下文。驱动峰值工作集约79.8MiB。数据见 customer-api-v0.6.1.json / HTML及customer-lifecycle-check-v0.6.1.json。与旧版不是同进程配对比较，不把百分比差别说成版本性能提升。
+
+## 0.6.0 历史验证记录
 
 日期：2026-11-15。原始汇总见 artifacts/validation-v0.6.json。
 

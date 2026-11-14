@@ -1,0 +1,358 @@
+{
+  "plan": {
+    "version": "0.6.1",
+    "baseline": {
+      "origin": "artifacts\\wheels\\awaitlab_local-0.6.0-py3-none-any.whl",
+      "wheel_sha256": "5a7893e9a5a13f4c2a06651ea26b434afa2a7d5652144d08777008bfd77f8961",
+      "ownership_sha256": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+      "normalization": "CRLF to LF only"
+    },
+    "pairs": 12,
+    "tasks_per_sample": 4096,
+    "wave": 64,
+    "seed": 1807,
+    "modes": [
+      "immediate",
+      "yield_once"
+    ],
+    "current_source_sha256": "c8b6e3169a044db86a2d97fd0acd1823bd82d21a861b38f89a7a978b3439d0ef",
+    "environment": {
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0"
+    }
+  },
+  "results": {
+    "immediate": {
+      "samples_ms_per_task": [
+        {
+          "block": 0,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.0027526611328125,
+          "strong_current": 0.0031880859375,
+          "untracked": 0.0024178955078125
+        },
+        {
+          "block": 1,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.00274052734375,
+          "strong_current": 0.0031812255859375,
+          "untracked": 0.0024302978515625
+        },
+        {
+          "block": 2,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.0031693115234375,
+          "weak_baseline": 0.0027499755859375,
+          "untracked": 0.00243798828125
+        },
+        {
+          "block": 3,
+          "order": [
+            "untracked",
+            "weak_baseline",
+            "strong_current"
+          ],
+          "untracked": 0.0025419921875,
+          "weak_baseline": 0.002807080078125,
+          "strong_current": 0.0032185791015625
+        },
+        {
+          "block": 4,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.0031974609375,
+          "weak_baseline": 0.0029680908203125,
+          "untracked": 0.002465087890625
+        },
+        {
+          "block": 5,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.00278388671875,
+          "strong_current": 0.003211376953125,
+          "untracked": 0.0024522216796875
+        },
+        {
+          "block": 6,
+          "order": [
+            "weak_baseline",
+            "untracked",
+            "strong_current"
+          ],
+          "weak_baseline": 0.0028385498046875,
+          "untracked": 0.002452392578125,
+          "strong_current": 0.0031775146484375
+        },
+        {
+          "block": 7,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.002773583984375,
+          "strong_current": 0.0032,
+          "untracked": 0.00243095703125
+        },
+        {
+          "block": 8,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.003207275390625,
+          "weak_baseline": 0.002770166015625,
+          "untracked": 0.002464501953125
+        },
+        {
+          "block": 9,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.003184423828125,
+          "weak_baseline": 0.002886669921875,
+          "untracked": 0.0023794677734375
+        },
+        {
+          "block": 10,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.002401708984375,
+          "strong_current": 0.0031692138671875,
+          "weak_baseline": 0.0027538818359375
+        },
+        {
+          "block": 11,
+          "order": [
+            "untracked",
+            "weak_baseline",
+            "strong_current"
+          ],
+          "untracked": 0.0024218994140625,
+          "weak_baseline": 0.0027359619140625,
+          "strong_current": 0.0031682373046875
+        }
+      ],
+      "strong_minus_weak": {
+        "mean_delta_ms": 0.00039263916015625015,
+        "ci95_delta_ms": [
+          0.00035103261311848966,
+          0.00042507431030273436
+        ],
+        "mean_change_pct": 14.039107852123433,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 12,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 1807,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 0.00048828125,
+        "exact": true,
+        "assignments": 4096,
+        "extreme_assignments": 2,
+        "seed": null,
+        "tie_tolerance": 1e-15,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 0.0009765625
+    },
+    "yield_once": {
+      "samples_ms_per_task": [
+        {
+          "block": 0,
+          "order": [
+            "weak_baseline",
+            "untracked",
+            "strong_current"
+          ],
+          "weak_baseline": 0.0035242919921875,
+          "untracked": 0.0033150390625,
+          "strong_current": 0.004030029296875
+        },
+        {
+          "block": 1,
+          "order": [
+            "weak_baseline",
+            "untracked",
+            "strong_current"
+          ],
+          "weak_baseline": 0.00354501953125,
+          "untracked": 0.003239501953125,
+          "strong_current": 0.0039966552734375
+        },
+        {
+          "block": 2,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.0032555419921875,
+          "strong_current": 0.0042880615234375,
+          "weak_baseline": 0.006225341796875
+        },
+        {
+          "block": 3,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.004064453125,
+          "weak_baseline": 0.003632080078125,
+          "untracked": 0.003267138671875
+        },
+        {
+          "block": 4,
+          "order": [
+            "strong_current",
+            "untracked",
+            "weak_baseline"
+          ],
+          "strong_current": 0.00406611328125,
+          "untracked": 0.0033877685546875,
+          "weak_baseline": 0.0038591552734375
+        },
+        {
+          "block": 5,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.003310546875,
+          "strong_current": 0.0041282470703125,
+          "weak_baseline": 0.0036335205078125
+        },
+        {
+          "block": 6,
+          "order": [
+            "strong_current",
+            "untracked",
+            "weak_baseline"
+          ],
+          "strong_current": 0.00417763671875,
+          "untracked": 0.003241162109375,
+          "weak_baseline": 0.00394345703125
+        },
+        {
+          "block": 7,
+          "order": [
+            "strong_current",
+            "untracked",
+            "weak_baseline"
+          ],
+          "strong_current": 0.0040023193359375,
+          "untracked": 0.0032288330078125,
+          "weak_baseline": 0.0036508056640625
+        },
+        {
+          "block": 8,
+          "order": [
+            "weak_baseline",
+            "untracked",
+            "strong_current"
+          ],
+          "weak_baseline": 0.0035993408203125,
+          "untracked": 0.0032699462890625,
+          "strong_current": 0.004091357421875
+        },
+        {
+          "block": 9,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.003615087890625,
+          "strong_current": 0.00404912109375,
+          "untracked": 0.003238134765625
+        },
+        {
+          "block": 10,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.0032564697265625,
+          "strong_current": 0.0041129638671875,
+          "weak_baseline": 0.003507470703125
+        },
+        {
+          "block": 11,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.0032348388671875,
+          "strong_current": 0.0039911865234375,
+          "weak_baseline": 0.003537109375
+        }
+      ],
+      "strong_minus_weak": {
+        "mean_delta_ms": 0.0002271219889322917,
+        "ci95_delta_ms": [
+          -0.00018599227905273424,
+          0.00046637288411458336
+        ],
+        "mean_change_pct": 5.890006431601091,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 12,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 1807,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 0.296875,
+        "exact": true,
+        "assignments": 4096,
+        "extreme_assignments": 1216,
+        "seed": null,
+        "tie_tolerance": 1.9372802734374994e-15,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 0.296875
+    }
+  },
+  "limits": [
+    "one process/machine, exploratory timing",
+    "includes task/gather/scheduling and registry overhead",
+    "untracked mode has no lifecycle cleanup guarantee",
+    "no I/O or application speedup inference"
+  ]
+}

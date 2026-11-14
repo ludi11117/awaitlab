@@ -52,6 +52,39 @@ class LocalHTTPTests(unittest.IsolatedAsyncioTestCase):
 @unittest.skipUnless(all(importlib.util.find_spec(m) for m in ['fastapi','httpx','uvicorn']),
                      'Optional FastAPI dependencies not installed')
 class LifespanTests(unittest.IsolatedAsyncioTestCase):
+    async def test_lifespan_orphan_is_cleaned_without_cancelling_foreign_task(self):
+        import gc
+        from fastapi import FastAPI
+        from awaitlab import Arm,Experiment,Settings,operation
+        from awaitlab.local_http import serve_local
+        finalized=[]
+        async def orphan():
+            try:await asyncio.Event().wait()
+            finally:finalized.append('cancelled')
+        @asynccontextmanager
+        async def lifecycle(app):
+            asyncio.create_task(orphan())
+            yield # deliberately missing application cleanup
+        @operation('read')
+        async def read():gc.collect();return {'ok':True}
+        @asynccontextmanager
+        async def workload():
+            app=FastAPI(lifespan=lifecycle)
+            app.get('/')(read)
+            async with serve_local(app) as (client,bridge):
+                async def handler(i):
+                    with bridge.headers() as headers:response=await client.get('/',headers=headers)
+                    return response.json()
+                yield handler
+        unrelated=asyncio.create_task(asyncio.Event().wait())
+        try:
+            experiment=Experiment(workload,[Arm('delay','delay','read',1)],Settings(blocks=2,requests=2,warmup=0))
+            with self.assertRaisesRegex(RuntimeError,'leaked background tasks'):
+                await experiment.run()
+            self.assertEqual(finalized,['cancelled']);self.assertFalse(unrelated.done())
+        finally:
+            unrelated.cancel();await asyncio.gather(unrelated,return_exceptions=True)
+
     async def test_startup_failure_never_yields_a_client(self):
         from fastapi import FastAPI
         from awaitlab.local_http import serve_local

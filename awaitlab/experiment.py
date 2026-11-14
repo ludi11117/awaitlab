@@ -65,12 +65,14 @@ class Experiment:
 
     async def _block(self, arm, trace=False):
         with owned_tasks() as tasks:
+            leaked=False
             try:
                 result=await self._execute_block(arm,trace)
             finally:
-                leaked=[t for t in tasks if not t.done()]
-                for task in leaked:task.cancel()
-                if leaked:await asyncio.gather(*leaked,return_exceptions=True)
+                while pending := [t for t in tasks if not t.done()]:
+                    leaked=True
+                    for task in pending:task.cancel()
+                    await asyncio.gather(*pending,return_exceptions=True)
         if leaked:
             raise RuntimeError('Workload leaked background tasks after teardown; cancelled them and rejected this block')
         return result

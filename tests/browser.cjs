@@ -2,6 +2,7 @@ const fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('n
 const assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
 const {chromium}=require(process.env.AWAITLAB_PLAYWRIGHT||'D:/CodexWork/cache/branchforge-browser/node_modules/playwright');
 const root=path.resolve(__dirname,'..'),temp='D:/CodexWork/temp/awaitlab/browser';
+const customerReport=process.env.AWAITLAB_CUSTOMER_REPORT||'customer-api-v0.6.0.html';
 fs.mkdirSync(temp,{recursive:true});process.env.TEMP=temp;process.env.TMP=temp;
 execFileSync('python',['-c',"import json;from awaitlab.report import write_report;from pathlib import Path;p=Path('artifacts');write_report(json.loads((p/'parallel-initial.json').read_text(encoding='utf-8')),p/'legacy-current-renderer.html')"],{cwd:root});
 execFileSync('python',['-c',`import json,copy
@@ -68,7 +69,7 @@ write_report(r,Path('${temp}/empty-trace-fixture.html'))`],{cwd:root});
   assert.equal(await page.locator('.calibration').count(),0);checks.push('replacement-only case has no sleep calibration');
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks.push('custom business report mobile width');
   await page.screenshot({path:path.join(root,'artifacts','unique-report-mobile.png'),fullPage:true});
-  await page.goto(pathToFileURL(path.join(root,'artifacts','customer-api-v0.6.0.html')).href);
+  await page.goto(pathToFileURL(path.join(root,'artifacts',customerReport)).href);
   assert((await page.locator('.output-contract').innerText()).includes('metadata.request_id'));checks.push('declared metadata exclusion visible');
   assert((await page.locator('.output-contract').innerText()).includes('未核对整个响应体'));checks.push('projection not presented as full-response equality');
   assert((await page.locator('.context').innerText()).includes('FastAPI lifespan'));checks.push('lifespan and keep-alive transport visible');

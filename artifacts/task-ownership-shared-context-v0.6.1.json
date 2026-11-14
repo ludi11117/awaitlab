@@ -1,0 +1,360 @@
+{
+  "plan": {
+    "version": "0.6.1",
+    "baseline": {
+      "origin": "artifacts\\wheels\\awaitlab_local-0.6.0-py3-none-any.whl",
+      "wheel_sha256": "5a7893e9a5a13f4c2a06651ea26b434afa2a7d5652144d08777008bfd77f8961",
+      "ownership_sha256": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+      "normalization": "CRLF to LF only"
+    },
+    "pairs": 12,
+    "tasks_per_sample": 4096,
+    "wave": 64,
+    "seed": 1807,
+    "modes": [
+      "immediate",
+      "yield_once"
+    ],
+    "current_source_sha256": "ece57a36c192343e6e83eaea7a21c8a34516a04f5ce325e53f027e0b49214793",
+    "environment": {
+      "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.26200-SP0"
+    }
+  },
+  "results": {
+    "immediate": {
+      "samples_ms_per_task": [
+        {
+          "block": 0,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.00314501953125,
+          "strong_current": 0.00352763671875,
+          "untracked": 0.0029468017578125
+        },
+        {
+          "block": 1,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.003150146484375,
+          "strong_current": 0.0034848876953125,
+          "untracked": 0.002994189453125
+        },
+        {
+          "block": 2,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.00355556640625,
+          "weak_baseline": 0.0032361572265625,
+          "untracked": 0.002978076171875
+        },
+        {
+          "block": 3,
+          "order": [
+            "untracked",
+            "weak_baseline",
+            "strong_current"
+          ],
+          "untracked": 0.0029799560546875,
+          "weak_baseline": 0.0031465576171875,
+          "strong_current": 0.0035145263671875
+        },
+        {
+          "block": 4,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.00354228515625,
+          "weak_baseline": 0.0031677978515625,
+          "untracked": 0.002945068359375
+        },
+        {
+          "block": 5,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.0032371826171875,
+          "strong_current": 0.0035489013671875,
+          "untracked": 0.0030048583984375
+        },
+        {
+          "block": 6,
+          "order": [
+            "weak_baseline",
+            "untracked",
+            "strong_current"
+          ],
+          "weak_baseline": 0.0033194580078125,
+          "untracked": 0.0030217529296875,
+          "strong_current": 0.0036013916015625
+        },
+        {
+          "block": 7,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.0032055908203125,
+          "strong_current": 0.003602197265625,
+          "untracked": 0.0030211181640625
+        },
+        {
+          "block": 8,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.0036268310546875,
+          "weak_baseline": 0.00324189453125,
+          "untracked": 0.003030078125
+        },
+        {
+          "block": 9,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.003564599609375,
+          "weak_baseline": 0.003204443359375,
+          "untracked": 0.00302705078125
+        },
+        {
+          "block": 10,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.003024365234375,
+          "strong_current": 0.003589404296875,
+          "weak_baseline": 0.0032484619140625
+        },
+        {
+          "block": 11,
+          "order": [
+            "untracked",
+            "weak_baseline",
+            "strong_current"
+          ],
+          "untracked": 0.0030470703125,
+          "weak_baseline": 0.0032607666015625,
+          "strong_current": 0.0036263427734375
+        }
+      ],
+      "strong_minus_weak": {
+        "mean_delta_ms": 0.0003517578125,
+        "ci95_delta_ms": [
+          0.0003317052205403646,
+          0.00036898401896158837
+        ],
+        "mean_change_pct": 10.945833016789486,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 12,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 1807,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 0.00048828125,
+        "exact": true,
+        "assignments": 4096,
+        "extreme_assignments": 2,
+        "seed": null,
+        "tie_tolerance": 1e-15,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 0.0009765625
+    },
+    "yield_once": {
+      "samples_ms_per_task": [
+        {
+          "block": 0,
+          "order": [
+            "weak_baseline",
+            "untracked",
+            "strong_current"
+          ],
+          "weak_baseline": 0.004017236328125,
+          "untracked": 0.003771044921875,
+          "strong_current": 0.004347509765625
+        },
+        {
+          "block": 1,
+          "order": [
+            "weak_baseline",
+            "untracked",
+            "strong_current"
+          ],
+          "weak_baseline": 0.003987255859375,
+          "untracked": 0.0038291748046875,
+          "strong_current": 0.00435126953125
+        },
+        {
+          "block": 2,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.0038693115234375,
+          "strong_current": 0.004779541015625,
+          "weak_baseline": 0.0040019287109375
+        },
+        {
+          "block": 3,
+          "order": [
+            "strong_current",
+            "weak_baseline",
+            "untracked"
+          ],
+          "strong_current": 0.0043232177734375,
+          "weak_baseline": 0.0039802001953125,
+          "untracked": 0.0037709228515625
+        },
+        {
+          "block": 4,
+          "order": [
+            "strong_current",
+            "untracked",
+            "weak_baseline"
+          ],
+          "strong_current": 0.00430888671875,
+          "untracked": 0.0037930419921875,
+          "weak_baseline": 0.0039888427734375
+        },
+        {
+          "block": 5,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.0038222412109375,
+          "strong_current": 0.0044314697265625,
+          "weak_baseline": 0.004191796875
+        },
+        {
+          "block": 6,
+          "order": [
+            "strong_current",
+            "untracked",
+            "weak_baseline"
+          ],
+          "strong_current": 0.0043990966796875,
+          "untracked": 0.00380380859375,
+          "weak_baseline": 0.0040359130859375
+        },
+        {
+          "block": 7,
+          "order": [
+            "strong_current",
+            "untracked",
+            "weak_baseline"
+          ],
+          "strong_current": 0.0044369384765625,
+          "untracked": 0.003834130859375,
+          "weak_baseline": 0.0041474853515625
+        },
+        {
+          "block": 8,
+          "order": [
+            "weak_baseline",
+            "untracked",
+            "strong_current"
+          ],
+          "weak_baseline": 0.004097119140625,
+          "untracked": 0.003865625,
+          "strong_current": 0.0044760986328125
+        },
+        {
+          "block": 9,
+          "order": [
+            "weak_baseline",
+            "strong_current",
+            "untracked"
+          ],
+          "weak_baseline": 0.0040421875,
+          "strong_current": 0.0044266357421875,
+          "untracked": 0.0037962158203125
+        },
+        {
+          "block": 10,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.00392646484375,
+          "strong_current": 0.0044660400390625,
+          "weak_baseline": 0.0040744873046875
+        },
+        {
+          "block": 11,
+          "order": [
+            "untracked",
+            "strong_current",
+            "weak_baseline"
+          ],
+          "untracked": 0.0038606689453125,
+          "strong_current": 0.004454443359375,
+          "weak_baseline": 0.004048388671875
+        }
+      ],
+      "strong_minus_weak": {
+        "mean_delta_ms": 0.0003823588053385417,
+        "ci95_delta_ms": [
+          0.00032538625081380206,
+          0.00046223236083984377
+        ],
+        "mean_change_pct": 9.438464188607565,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 12,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 1807,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 0.00048828125,
+        "exact": true,
+        "assignments": 4096,
+        "extreme_assignments": 2,
+        "seed": null,
+        "tie_tolerance": 1e-15,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 0.0009765625
+    }
+  },
+  "limits": [
+    "one process/machine, exploratory timing",
+    "includes task/gather/scheduling and registry overhead",
+    "untracked mode has no lifecycle cleanup guarantee",
+    "no I/O or application speedup inference"
+  ],
+  "prototype_source_utf8": "\"\"\"Track only tasks created in this workload's context, never unrelated tasks.\"\"\"\nimport asyncio\nfrom contextlib import contextmanager\nfrom contextvars import Context,ContextVar\n\n_owner=ContextVar('awaitlab_owned_tasks',default=None)\n\n\n@contextmanager\ndef owned_tasks():\n    loop=asyncio.get_running_loop()\n    tasks=set()\n    discard=tasks.discard\n    callback_context=Context()\n    previous=loop.get_task_factory()\n    token=_owner.set(tasks)\n    def factory(loop,coro,**kwargs):\n        context=kwargs.get('context')\n        owner=context.get(_owner) if context is not None else _owner.get()\n        task=previous(loop,coro,**kwargs) if previous else asyncio.Task(coro,loop=loop,**kwargs)\n        if owner is tasks and not task.done():\n            tasks.add(task)\n            task.add_done_callback(discard,context=callback_context)\n        return task\n    loop.set_task_factory(factory)\n    try:yield tasks\n    finally:\n        if loop.get_task_factory() is factory:loop.set_task_factory(previous)\n        _owner.reset(token)\n",
+  "decision": "Not shipped: these separate protocol runs do not prove a general benefit over the simpler standard done-callback implementation"
+}

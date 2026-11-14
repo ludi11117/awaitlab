@@ -1,0 +1,1047 @@
+{
+  "version": "0.6.1",
+  "date": "2026-11-15",
+  "unit_integration_tests": 65,
+  "unit_integration_passed": true,
+  "interval_layout_and_union_cases": 640,
+  "browser": {
+    "passed": true,
+    "checks": [
+      "standalone SQLite report",
+      "two real replacement arms",
+      "supported evidence grade",
+      "adjusted inference visible",
+      "workload provenance",
+      "actual fixture size",
+      "actual SQL",
+      "placebo not promoted",
+      "placebo neutral presentation",
+      "treatment timeline",
+      "real HTTP transport scope",
+      "library version",
+      "response, worker cycle and check separately shown",
+      "check cost matches recorded block mean",
+      "sampled request selector",
+      "HTTP and database spans both visible",
+      "sampled HTTP and operation coverage",
+      "uncovered window not called CPU time",
+      "no overlap hides nested spans",
+      "server parent linked to request",
+      "keyboard-accessible recorded parent",
+      "switch sampled request",
+      "preserve request across modes",
+      "mobile width",
+      "timer calibration",
+      "custom business report metadata",
+      "custom comparison and observer metrics",
+      "replacement-only case has no sleep calibration",
+      "custom business report mobile width",
+      "declared metadata exclusion visible",
+      "projection not presented as full-response equality",
+      "lifespan and keep-alive transport visible",
+      "real API replacement has no timer calibration",
+      "declared contract mobile width",
+      "sampled block selector with replay fixture",
+      "empty sampling remains usable",
+      "legacy delay interpretation",
+      "legacy result not silently upgraded",
+      "legacy check cost not assumed zero",
+      "missing legacy values handled",
+      "no JavaScript exceptions",
+      "no network requests"
+    ]
+  },
+  "core_installation": {
+    "version": "0.6.1",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.6.1\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 17,
+    "wheel_sha256": "c276184ffdcb743c72ee2a3ea393b6889a2a39c51ef4de0fc72518fb2789fd8d",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.6.1\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.6.1\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only",
+    "orphan_task_probe": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+  },
+  "http_installation": {
+    "version": "0.6.1",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.6.1\\awaitlab\\__init__.py",
+    "user_project": "D:\\CodexWork\\temp\\awaitlab\\http-user-case-0.6.1",
+    "lifetimes": 8,
+    "lifecycle_audit": [
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      }
+    ],
+    "resumed_pairs": 4,
+    "resume_created_no_resources": true,
+    "comparisons_unchanged_after_resume": true,
+    "all_outputs_equal": true,
+    "output_contract": "核对 HTTP 状态与完整 customers（id、name、balance）；接入代码明确排除 metadata.request_id 与 metadata.served_at_ns。未核对整个响应体。",
+    "packaged_files_match_source": 17,
+    "dependency_versions": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "uvicorn": "0.52.4"
+    }
+  },
+  "ownership_gc": {
+    "version": "0.6.1",
+    "baseline": {
+      "origin": "artifacts\\wheels\\awaitlab_local-0.6.0-py3-none-any.whl",
+      "wheel_sha256": "5a7893e9a5a13f4c2a06651ea26b434afa2a7d5652144d08777008bfd77f8961",
+      "ownership_sha256": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+      "normalization": "CRLF to LF only"
+    },
+    "baseline_result": {
+      "outcome": "accepted",
+      "task_survived_gc_during_requests": [
+        false,
+        false
+      ],
+      "orphan_finalization": [
+        "GeneratorExit"
+      ],
+      "loop_messages": [
+        "Task was destroyed but it is pending!"
+      ],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "current_result": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "current_source_sha256": "c8b6e3169a044db86a2d97fd0acd1823bd82d21a861b38f89a7a978b3439d0ef",
+    "scope": "deliberately orphaned task awaiting a private Event, forced GC, single controlled block; no application performance claim"
+  },
+  "task_timing": {
+    "plan": {
+      "version": "0.6.1",
+      "baseline": {
+        "origin": "artifacts\\wheels\\awaitlab_local-0.6.0-py3-none-any.whl",
+        "wheel_sha256": "5a7893e9a5a13f4c2a06651ea26b434afa2a7d5652144d08777008bfd77f8961",
+        "ownership_sha256": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+        "normalization": "CRLF to LF only"
+      },
+      "pairs": 12,
+      "tasks_per_sample": 4096,
+      "wave": 64,
+      "seed": 1807,
+      "modes": [
+        "immediate",
+        "yield_once"
+      ],
+      "current_source_sha256": "c8b6e3169a044db86a2d97fd0acd1823bd82d21a861b38f89a7a978b3439d0ef",
+      "environment": {
+        "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.26200-SP0"
+      }
+    },
+    "results": {
+      "immediate": {
+        "samples_ms_per_task": [
+          {
+            "block": 0,
+            "order": [
+              "weak_baseline",
+              "strong_current",
+              "untracked"
+            ],
+            "weak_baseline": 0.0027526611328125,
+            "strong_current": 0.0031880859375,
+            "untracked": 0.0024178955078125
+          },
+          {
+            "block": 1,
+            "order": [
+              "weak_baseline",
+              "strong_current",
+              "untracked"
+            ],
+            "weak_baseline": 0.00274052734375,
+            "strong_current": 0.0031812255859375,
+            "untracked": 0.0024302978515625
+          },
+          {
+            "block": 2,
+            "order": [
+              "strong_current",
+              "weak_baseline",
+              "untracked"
+            ],
+            "strong_current": 0.0031693115234375,
+            "weak_baseline": 0.0027499755859375,
+            "untracked": 0.00243798828125
+          },
+          {
+            "block": 3,
+            "order": [
+              "untracked",
+              "weak_baseline",
+              "strong_current"
+            ],
+            "untracked": 0.0025419921875,
+            "weak_baseline": 0.002807080078125,
+            "strong_current": 0.0032185791015625
+          },
+          {
+            "block": 4,
+            "order": [
+              "strong_current",
+              "weak_baseline",
+              "untracked"
+            ],
+            "strong_current": 0.0031974609375,
+            "weak_baseline": 0.0029680908203125,
+            "untracked": 0.002465087890625
+          },
+          {
+            "block": 5,
+            "order": [
+              "weak_baseline",
+              "strong_current",
+              "untracked"
+            ],
+            "weak_baseline": 0.00278388671875,
+            "strong_current": 0.003211376953125,
+            "untracked": 0.0024522216796875
+          },
+          {
+            "block": 6,
+            "order": [
+              "weak_baseline",
+              "untracked",
+              "strong_current"
+            ],
+            "weak_baseline": 0.0028385498046875,
+            "untracked": 0.002452392578125,
+            "strong_current": 0.0031775146484375
+          },
+          {
+            "block": 7,
+            "order": [
+              "weak_baseline",
+              "strong_current",
+              "untracked"
+            ],
+            "weak_baseline": 0.002773583984375,
+            "strong_current": 0.0032,
+            "untracked": 0.00243095703125
+          },
+          {
+            "block": 8,
+            "order": [
+              "strong_current",
+              "weak_baseline",
+              "untracked"
+            ],
+            "strong_current": 0.003207275390625,
+            "weak_baseline": 0.002770166015625,
+            "untracked": 0.002464501953125
+          },
+          {
+            "block": 9,
+            "order": [
+              "strong_current",
+              "weak_baseline",
+              "untracked"
+            ],
+            "strong_current": 0.003184423828125,
+            "weak_baseline": 0.002886669921875,
+            "untracked": 0.0023794677734375
+          },
+          {
+            "block": 10,
+            "order": [
+              "untracked",
+              "strong_current",
+              "weak_baseline"
+            ],
+            "untracked": 0.002401708984375,
+            "strong_current": 0.0031692138671875,
+            "weak_baseline": 0.0027538818359375
+          },
+          {
+            "block": 11,
+            "order": [
+              "untracked",
+              "weak_baseline",
+              "strong_current"
+            ],
+            "untracked": 0.0024218994140625,
+            "weak_baseline": 0.0027359619140625,
+            "strong_current": 0.0031682373046875
+          }
+        ],
+        "strong_minus_weak": {
+          "mean_delta_ms": 0.00039263916015625015,
+          "ci95_delta_ms": [
+            0.00035103261311848966,
+            0.00042507431030273436
+          ],
+          "mean_change_pct": 14.039107852123433,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 2000,
+            "seed": 1807,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.00048828125,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 1e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "holm_adjusted_p": 0.0009765625
+      },
+      "yield_once": {
+        "samples_ms_per_task": [
+          {
+            "block": 0,
+            "order": [
+              "weak_baseline",
+              "untracked",
+              "strong_current"
+            ],
+            "weak_baseline": 0.0035242919921875,
+            "untracked": 0.0033150390625,
+            "strong_current": 0.004030029296875
+          },
+          {
+            "block": 1,
+            "order": [
+              "weak_baseline",
+              "untracked",
+              "strong_current"
+            ],
+            "weak_baseline": 0.00354501953125,
+            "untracked": 0.003239501953125,
+            "strong_current": 0.0039966552734375
+          },
+          {
+            "block": 2,
+            "order": [
+              "untracked",
+              "strong_current",
+              "weak_baseline"
+            ],
+            "untracked": 0.0032555419921875,
+            "strong_current": 0.0042880615234375,
+            "weak_baseline": 0.006225341796875
+          },
+          {
+            "block": 3,
+            "order": [
+              "strong_current",
+              "weak_baseline",
+              "untracked"
+            ],
+            "strong_current": 0.004064453125,
+            "weak_baseline": 0.003632080078125,
+            "untracked": 0.003267138671875
+          },
+          {
+            "block": 4,
+            "order": [
+              "strong_current",
+              "untracked",
+              "weak_baseline"
+            ],
+            "strong_current": 0.00406611328125,
+            "untracked": 0.0033877685546875,
+            "weak_baseline": 0.0038591552734375
+          },
+          {
+            "block": 5,
+            "order": [
+              "untracked",
+              "strong_current",
+              "weak_baseline"
+            ],
+            "untracked": 0.003310546875,
+            "strong_current": 0.0041282470703125,
+            "weak_baseline": 0.0036335205078125
+          },
+          {
+            "block": 6,
+            "order": [
+              "strong_current",
+              "untracked",
+              "weak_baseline"
+            ],
+            "strong_current": 0.00417763671875,
+            "untracked": 0.003241162109375,
+            "weak_baseline": 0.00394345703125
+          },
+          {
+            "block": 7,
+            "order": [
+              "strong_current",
+              "untracked",
+              "weak_baseline"
+            ],
+            "strong_current": 0.0040023193359375,
+            "untracked": 0.0032288330078125,
+            "weak_baseline": 0.0036508056640625
+          },
+          {
+            "block": 8,
+            "order": [
+              "weak_baseline",
+              "untracked",
+              "strong_current"
+            ],
+            "weak_baseline": 0.0035993408203125,
+            "untracked": 0.0032699462890625,
+            "strong_current": 0.004091357421875
+          },
+          {
+            "block": 9,
+            "order": [
+              "weak_baseline",
+              "strong_current",
+              "untracked"
+            ],
+            "weak_baseline": 0.003615087890625,
+            "strong_current": 0.00404912109375,
+            "untracked": 0.003238134765625
+          },
+          {
+            "block": 10,
+            "order": [
+              "untracked",
+              "strong_current",
+              "weak_baseline"
+            ],
+            "untracked": 0.0032564697265625,
+            "strong_current": 0.0041129638671875,
+            "weak_baseline": 0.003507470703125
+          },
+          {
+            "block": 11,
+            "order": [
+              "untracked",
+              "strong_current",
+              "weak_baseline"
+            ],
+            "untracked": 0.0032348388671875,
+            "strong_current": 0.0039911865234375,
+            "weak_baseline": 0.003537109375
+          }
+        ],
+        "strong_minus_weak": {
+          "mean_delta_ms": 0.0002271219889322917,
+          "ci95_delta_ms": [
+            -0.00018599227905273424,
+            0.00046637288411458336
+          ],
+          "mean_change_pct": 5.890006431601091,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 2000,
+            "seed": 1807,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.296875,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 1216,
+          "seed": null,
+          "tie_tolerance": 1.9372802734374994e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "holm_adjusted_p": 0.296875
+      }
+    },
+    "limits": [
+      "one process/machine, exploratory timing",
+      "includes task/gather/scheduling and registry overhead",
+      "untracked mode has no lifecycle cleanup guarantee",
+      "no I/O or application speedup inference"
+    ]
+  },
+  "lifecycle": {
+    "version": "0.6.1",
+    "report": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\customer-api-v0.6.1.json",
+    "lifetimes": 40,
+    "lifecycle_audit": [
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      }
+    ],
+    "fixture": {
+      "fixture_version": "sqlite-v1",
+      "rows": 50000,
+      "logical_data_sha256": "21b308f260c40f30a09bf79d10eabe2c520d53bc18f1ff5e4d6210ffadeb746b",
+      "files": {
+        "unindexed": {
+          "sha256": "dc0c26e83543cd0a68829a6173009c1764cdc5c8f911746789c7924c616aa13a",
+          "bytes": 2531328
+        },
+        "indexed": {
+          "sha256": "6f1dfc173e98fba561b104b1312f58be27bdc90785ffaf2d577d90024d013e84",
+          "bytes": 4108288
+        }
+      }
+    },
+    "sql": "SELECT id, name, balance FROM customers WHERE email = ? ORDER BY id",
+    "dependency_versions": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "uvicorn": "0.52.4"
+    },
+    "resumed_pairs": 20,
+    "resume_created_no_resources": true,
+    "comparisons_unchanged_after_resume": true,
+    "output_contract": "核对 HTTP 状态与完整 customers（id、name、balance）；接入代码明确排除 metadata.request_id 与 metadata.served_at_ns。未核对整个响应体。",
+    "limits": [
+      "business projection checks declared fields only",
+      "HTTP connections persist within a block, not across blocks",
+      "SQLite connections remain per query; executor is lifespan-managed",
+      "single process, synthetic customer rows"
+    ],
+    "process_memory_mib": {
+      "rss_end": 68.4375,
+      "peak_working_set": 79.82421875,
+      "scope": "whole driver process, imports and all lifetimes; not isolated service memory or OS file cache"
+    }
+  },
+  "run": {
+    "started_at": "2026-11-14T22:56:36.327786+00:00",
+    "completed_at": "2026-11-14T22:56:58.609590+00:00",
+    "identity": {
+      "digest": "81381c549f87d75c62086382de8e3727014290ad984eb0d155afe1ed6f5e2205",
+      "manifest": {
+        "checkpoint_schema": 1,
+        "workload_version": "c42c38ea91ad262c06e21ab9bbff16813cfde601bdb0f705b9a7b23ed75d742e",
+        "settings": {
+          "blocks": 10,
+          "requests": 24,
+          "concurrency": 4,
+          "warmup": 2,
+          "seed": 173,
+          "trace_requests": 2,
+          "max_records": 4096,
+          "min_gain_pct": 5.0,
+          "alpha": 0.05
+        },
+        "arms": [
+          {
+            "name": "indexed_lookup",
+            "kind": "replacement",
+            "site": "customer.lookup",
+            "delay_ms": 0,
+            "replacement_names": {
+              "customer.lookup": "awaitlab.sqlite_workload.indexed_lookup"
+            }
+          },
+          {
+            "name": "unchanged_lookup",
+            "kind": "replacement",
+            "site": "customer.lookup",
+            "delay_ms": 0,
+            "replacement_names": {
+              "customer.lookup": "awaitlab.sqlite_workload.unchanged_lookup"
+            }
+          }
+        ],
+        "sources": {
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__init__.py": "6db0591a220c2f720fdf3bb7fcde06b8a1c2a09740c8ce0985e491659fcf2cb2",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\__main__.py": "12cbb67081202b5370d9d4a37bcb29d9e22861bd8c5d208d980eaafbcb409ab0",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\asgi.py": "8ed2071ad0f182c52b9decadf92bd12efe64db254f7ab9a1056a96582bd82f3c",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\calibration.py": "26329df46ecb657107dfc85463ad39a3317bc7a803262a2cce16a00485acddce",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\checkpoint.py": "653cd689a48b8ed5700e41b2f438b91481c5b56cea2ae26390bafb5c77abd485",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\experiment.py": "0386de52f093195236b59ed0d88e38bc6b6b07f0482c71a442287674bbed2654",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\local_http.py": "ef998ac6474e942275159a561d620036bb1c57facd84dc8e4f771b33674b88db",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\ownership.py": "c8b6e3169a044db86a2d97fd0acd1823bd82d21a861b38f89a7a978b3439d0ef",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\report.py": "8ea27eb80d6a9dd34a37d34ac28a4658cdd5d30f814bcb78564355ebd3761430",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\scenarios.py": "90b3db36e70912b308881249129b11c7809daabf61a6e2fc7038458ed9a8b9c7",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_http_workload.py": "a2ea0cd73338f18f595789e3ba3610c4c1ad2a34b3efc85066c89b0cf9b675d1",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\sqlite_workload.py": "287661efeb684b89c4097b3ebf9c342c97c79e6bd72482889ee9f519431ebdeb",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\statistics.py": "012b812e8253c98f926aa928e2f20e2f122dab46bef5e3e73c02cea2e43d232d",
+          "D:\\CodexWork\\projects\\awaitlab\\awaitlab\\trace.py": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e",
+          "D:\\CodexWork\\projects\\awaitlab\\examples\\customer_api_case.py": "1f06032d8ab31a51daec3476b8ca206a02a1cdfa44c1b8366d8af74fa5e87404"
+        },
+        "python": "3.13.15",
+        "platform": "Windows-11-10.0.26200-SP0"
+      }
+    },
+    "resumed_pairs": 20
+  },
+  "comparisons": [
+    {
+      "name": "indexed_lookup",
+      "effect": {
+        "mean_delta_ms": -5.767658333333333,
+        "ci95_delta_ms": [
+          -6.321808,
+          -5.166651041666667
+        ],
+        "mean_change_pct": -51.21403188953464,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "holm_adjusted_p": 0.00390625,
+      "evidence_level": "supported_in_this_experiment",
+      "output_equivalence": true
+    },
+    {
+      "name": "unchanged_lookup",
+      "effect": {
+        "mean_delta_ms": 0.06543833333333335,
+        "ci95_delta_ms": [
+          -0.938165625,
+          0.8975201145833321
+        ],
+        "mean_change_pct": 0.574635134204593,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "holm_adjusted_p": 0.904296875,
+      "evidence_level": "no_observed_gain",
+      "output_equivalence": true
+    }
+  ],
+  "limits": [
+    "cooperative finite cleanup only",
+    "task timing is not application speedup",
+    "business output comparison follows declared projection",
+    "no across-version inference from independent service runs"
+  ]
+}
