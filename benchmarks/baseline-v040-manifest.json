@@ -1,0 +1,8 @@
+{
+  "version": "0.4.0",
+  "origin": "artifacts/wheels/awaitlab_local-0.4.0-py3-none-any.whl",
+  "wheel_sha256": "de8c65a67e5d674fbc184e2b7bd363e7a3429fa046e9f4ad1e2a9df0cb824487",
+  "package_trace_sha256": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b",
+  "frozen_trace_sha256": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b",
+  "normalization": "CRLF to LF only, to keep source fingerprint stable across Windows checkouts"
+}

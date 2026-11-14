@@ -43,5 +43,28 @@ class CLITests(unittest.TestCase):
         self.assertEqual(html.read_text(),'previous HTML')
         self.assertEqual(json.loads(checkpoint.read_text()),{'identity':{}})
 
+    def test_completed_measurement_resumes_after_html_save_failure(self):
+        path=self.root/'recover.json';html=path.with_suffix('.html')
+        # A directory in the HTML destination makes replacement fail while the
+        # independently saved JSON and completed checkpoint remain recoverable.
+        html.mkdir()
+        args=('--scenario','sqlite','--blocks','2','--requests','2','--concurrency','1','--output',str(path))
+        failed=self.run_cli(*args)
+        self.assertEqual(failed.returncode,1,failed.stderr)
+        self.assertIn('测量已完成，但保存报告失败',failed.stderr)
+        before=json.loads(path.read_text(encoding='utf-8'))
+        checkpoint=json.loads(path.with_suffix('.checkpoint.json').read_text(encoding='utf-8'))
+        self.assertEqual(checkpoint['status'],'complete')
+        self.assertTrue(all(c['output_equivalence'] for c in before['comparisons']))
+        html.rmdir()  # only the empty directory created above, within this D: temp
+        resumed=self.run_cli(*args,'--resume')
+        self.assertEqual(resumed.returncode,0,resumed.stderr)
+        after=json.loads(path.read_text(encoding='utf-8'))
+        self.assertEqual(after['run']['resumed_pairs'],4)
+        self.assertEqual(before['comparisons'],after['comparisons'])
+        self.assertEqual(before['run']['started_at'],after['run']['started_at'])
+        self.assertNotIn('[1/',resumed.stdout)
+        self.assertIn('function coverageView',html.read_text(encoding='utf-8'))
+
 
 if __name__=='__main__':unittest.main()

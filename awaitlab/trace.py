@@ -103,8 +103,11 @@ class Session:
             end = time.perf_counter_ns()
             _parent.reset(token)
             duration = (end-start)/1_000_000
-            stats = self.stats.setdefault((name,kind), {'name':name,'kind':kind,'count':0,
-                'total_ms':0.0,'max_ms':0.0,'failed':0})
+            key = (name,kind)
+            stats = self.stats.get(key)
+            if stats is None:
+                stats = {'name':name,'kind':kind,'count':0,'total_ms':0.0,'max_ms':0.0,'failed':0}
+                self.stats[key] = stats
             stats['count'] += 1
             stats['total_ms'] += duration
             stats['max_ms'] = max(stats['max_ms'],duration)

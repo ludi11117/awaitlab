@@ -1,0 +1,509 @@
+{
+  "version": "0.4.1",
+  "date": "2026-11-15",
+  "unit_integration_tests": 45,
+  "unit_integration_passed": true,
+  "interval_layout_and_union_cases": 640,
+  "browser": {
+    "passed": true,
+    "checks": [
+      "standalone SQLite report",
+      "two real replacement arms",
+      "supported evidence grade",
+      "adjusted inference visible",
+      "workload provenance",
+      "actual fixture size",
+      "actual SQL",
+      "placebo not promoted",
+      "placebo neutral presentation",
+      "treatment timeline",
+      "real HTTP transport scope",
+      "library version",
+      "response, worker cycle and check separately shown",
+      "check cost matches recorded block mean",
+      "sampled request selector",
+      "HTTP and database spans both visible",
+      "sampled HTTP and operation coverage",
+      "uncovered window not called CPU time",
+      "no overlap hides nested spans",
+      "server parent linked to request",
+      "keyboard-accessible recorded parent",
+      "switch sampled request",
+      "preserve request across modes",
+      "mobile width",
+      "timer calibration",
+      "sampled block selector with replay fixture",
+      "empty sampling remains usable",
+      "legacy delay interpretation",
+      "legacy result not silently upgraded",
+      "legacy check cost not assumed zero",
+      "missing legacy values handled",
+      "no JavaScript exceptions",
+      "no network requests"
+    ]
+  },
+  "installation": {
+    "version": "0.4.1",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.4.1\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "resumed_pairs": 4,
+    "all_outputs_equal": true,
+    "packaged_files_match_source": 17,
+    "wheel_sha256": "0c42297c4a1a7ec7958470dafbbc44524aa06509f4d582ff3f2c417e0e751dec",
+    "standalone_html": "D:\\CodexWork\\temp\\awaitlab\\installed-smoke-v0.4.1.html"
+  },
+  "microbenchmark": {
+    "plan": {
+      "baseline": {
+        "version": "0.4.0",
+        "origin": "artifacts/wheels/awaitlab_local-0.4.0-py3-none-any.whl",
+        "wheel_sha256": "de8c65a67e5d674fbc184e2b7bd363e7a3429fa046e9f4ad1e2a9df0cb824487",
+        "package_trace_sha256": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b",
+        "frozen_trace_sha256": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b",
+        "normalization": "CRLF to LF only, to keep source fingerprint stable across Windows checkouts"
+      },
+      "current_version": "0.4.1",
+      "current_trace_sha256": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e",
+      "pairs": 12,
+      "seed": 991,
+      "counts": {
+        "aggregate": 100000,
+        "bounded_trace": 30000,
+        "cold_names": 4000
+      },
+      "bootstrap_resamples": 4000,
+      "environment": {
+        "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "scope": "empty async calls; cold_names includes many distinct aggregates; no I/O or application speedup inference"
+    },
+    "results": {
+      "aggregate": {
+        "effect": {
+          "mean_delta_ms": -0.00014637633333333338,
+          "ci95_delta_ms": [
+            -0.00018799277083333336,
+            -0.00010432926458333335
+          ],
+          "mean_change_pct": -7.921692092293098,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 4000,
+            "seed": 991,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.00048828125,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 1e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "samples_ms_per_call": [
+          {
+            "block": 0,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0017917060000000001,
+            "candidate": 0.0016319659999999999
+          },
+          {
+            "block": 1,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.001775894,
+            "candidate": 0.001625213
+          },
+          {
+            "block": 2,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0017542670000000001,
+            "candidate": 0.001631472
+          },
+          {
+            "block": 3,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.001744977,
+            "candidate": 0.001631994
+          },
+          {
+            "block": 4,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.001605932,
+            "baseline": 0.001743718
+          },
+          {
+            "block": 5,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0017683680000000002,
+            "candidate": 0.001643861
+          },
+          {
+            "block": 6,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.001637547,
+            "baseline": 0.0018408279999999999
+          },
+          {
+            "block": 7,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.0016872290000000002,
+            "baseline": 0.001940216
+          },
+          {
+            "block": 8,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.002226656,
+            "candidate": 0.001972669
+          },
+          {
+            "block": 9,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.001874672,
+            "candidate": 0.001849495
+          },
+          {
+            "block": 10,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.001928724,
+            "candidate": 0.001718632
+          },
+          {
+            "block": 11,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.001783469,
+            "candidate": 0.001780969
+          }
+        ],
+        "holm_adjusted_p": 0.00146484375
+      },
+      "bounded_trace": {
+        "effect": {
+          "mean_delta_ms": -0.00016461416666666676,
+          "ci95_delta_ms": [
+            -0.00021399609027777792,
+            -0.00012709812500000012
+          ],
+          "mean_change_pct": -8.097745599955852,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 4000,
+            "seed": 991,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.00048828125,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 1e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "samples_ms_per_call": [
+          {
+            "block": 0,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.00200319,
+            "candidate": 0.0018360533333333334
+          },
+          {
+            "block": 1,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.00196978,
+            "candidate": 0.0018570866666666667
+          },
+          {
+            "block": 2,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.002014146666666667,
+            "candidate": 0.0018420966666666666
+          },
+          {
+            "block": 3,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0019423966666666668,
+            "candidate": 0.0018471433333333333
+          },
+          {
+            "block": 4,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.00192958,
+            "candidate": 0.00183083
+          },
+          {
+            "block": 5,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0019349999999999999,
+            "candidate": 0.0018273166666666666
+          },
+          {
+            "block": 6,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0020076733333333333,
+            "candidate": 0.0018702033333333333
+          },
+          {
+            "block": 7,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0019988033333333335,
+            "candidate": 0.0018158166666666666
+          },
+          {
+            "block": 8,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.00204897,
+            "baseline": 0.002279003333333333
+          },
+          {
+            "block": 9,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0023316400000000003,
+            "candidate": 0.0019317066666666666
+          },
+          {
+            "block": 10,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.002013703333333333,
+            "candidate": 0.0018560266666666665
+          },
+          {
+            "block": 11,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.0018554533333333333,
+            "baseline": 0.001969156666666667
+          }
+        ],
+        "holm_adjusted_p": 0.00146484375
+      },
+      "cold_names": {
+        "effect": {
+          "mean_delta_ms": -2.1422916666666617e-05,
+          "ci95_delta_ms": [
+            -0.00012784249999999995,
+            6.039239583333349e-05
+          ],
+          "mean_change_pct": -1.0963048885410887,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 4000,
+            "seed": 991,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.775390625,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 3176,
+          "seed": null,
+          "tie_tolerance": 1e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "samples_ms_per_call": [
+          {
+            "block": 0,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.0021741250000000003,
+            "baseline": 0.0019146749999999998
+          },
+          {
+            "block": 1,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.0018852,
+            "baseline": 0.0018613500000000001
+          },
+          {
+            "block": 2,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.0019260500000000001,
+            "baseline": 0.00190285
+          },
+          {
+            "block": 3,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.0018603,
+            "baseline": 0.001864525
+          },
+          {
+            "block": 4,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0018759999999999998,
+            "candidate": 0.0018628
+          },
+          {
+            "block": 5,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.001895825,
+            "candidate": 0.001895875
+          },
+          {
+            "block": 6,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.002455675,
+            "candidate": 0.0019254
+          },
+          {
+            "block": 7,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.001899275,
+            "candidate": 0.00183465
+          },
+          {
+            "block": 8,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.00193875,
+            "baseline": 0.001974275
+          },
+          {
+            "block": 9,
+            "order": [
+              "candidate",
+              "baseline"
+            ],
+            "candidate": 0.0019527000000000001,
+            "baseline": 0.00189485
+          },
+          {
+            "block": 10,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.001970125,
+            "candidate": 0.002036475
+          },
+          {
+            "block": 11,
+            "order": [
+              "baseline",
+              "candidate"
+            ],
+            "baseline": 0.0019398,
+            "candidate": 0.0018998250000000002
+          }
+        ],
+        "holm_adjusted_p": 0.775390625
+      }
+    },
+    "limits": [
+      "one process/machine and one fixed protocol",
+      "all inference exploratory",
+      "no-op calls amplify instrumenter cost",
+      "cold-name setup/wrapper creation excluded; new aggregate creation included"
+    ]
+  },
+  "html_failure_recovery": "real CLI: complete JSON/checkpoint retained, HTML target repaired, all 4 pairs resumed with identical comparisons",
+  "historical_sqlite_policy": "latest SQLite sample data remains measured with 0.4.0; patch microbenchmark is not an application speedup claim"
+}
