@@ -1,4 +1,14 @@
-# 0.11.0 组合条件与审查页面验证
+# 0.12.0 补丁实用性验证
+
+日期：2026-11-15。新报告为 artifacts/defensive-patches-v0.12.0.json/html/patch，验收见 artifacts/defensive-patch-check-v0.12.0.json。
+
+- 全套149项单元/集成测试通过，审查专项27项。新增8项覆盖if头/前导/尾随注释、简单else保留、函数间空行、不可达分支注释/绑定、elif保留、字符串内#、拒绝单项后的独立补丁和Latin-1诊断不生成UTF-8补丁。修改前新回归5项失败，原始日志保留在 D:/CodexWork/temp/awaitlab/patch-regressions-before.log；修复后专项及全套通过，全套日志为 tests-v0.12.0.log。
+- 示例4处路径问题中3处可生成补丁，1处因空代码块继续手动处理；另有1处静默宽泛异常复核。git apply --check及在D盘副本中的实际应用通过，注释token原文多重集合完全一致（6条），4个函数×7个输入共28次业务输出核对一致，原源码字节不变。
+- 应用后仍有1处ALD001和1处ALD002，二次--check正确返回1。没有把“无自动补丁”解释成“问题已解决”。逐项验证会保留前面已接受的有效修改，不承诺单次得到最大可简化结果；重叠修改仍需后续扫描。
+- 20项审查浏览器检查通过：12项旧组合报告检查与8项新补丁报告检查，覆盖3个可用补丁、手动拒绝原因、注释显示、手机宽度和离线运行。旧截图不覆盖；本轮截图为 defensive-patches-desktop/mobile.png，记录 audit-browser-v0.12.0.json。历史性能报告页面未改，未重复跑其104项旧验收。
+- 20个包内源码/资源与0.12 wheel逐字节一致。独立D盘安装并禁用site-packages后，新审查、HTML、3处补丁应用、残留问题及返回码检查通过，核心CLI另恢复2对并通过遗留任务探针。见 install-audit-check、install-check-v0.12.0.json。扫描仍不执行目标项目，输出对照只执行可信示例。
+
+## 0.11.0 组合条件与审查页面验证
 
 日期：2026-11-15。新报告为 artifacts/defensive-logic-v0.11.0.json/html/patch，验收见 artifacts/defensive-logic-check-v0.11.0.json。
 

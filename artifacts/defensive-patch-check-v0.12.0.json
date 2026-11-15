@@ -1,0 +1,17 @@
+{
+  "version": "0.12.0",
+  "initial_path_findings": 4,
+  "initial_review_findings": 1,
+  "applicable_patches": 3,
+  "initial_check_exit": 1,
+  "after_patch_check_exit": 1,
+  "remaining_manual_path_findings": 1,
+  "remaining_review_findings": 1,
+  "all_comment_texts_preserved": true,
+  "comment_count": 6,
+  "patch_applied_to_temp_copy": true,
+  "differential_input_count": 28,
+  "all_demo_outputs_equal": true,
+  "original_source_unchanged": true,
+  "scope": "Controlled demo only; manual-only finding intentionally retained."
+}

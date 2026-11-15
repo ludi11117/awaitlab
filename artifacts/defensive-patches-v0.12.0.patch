@@ -1,0 +1,43 @@
+--- a/examples/defensive_patch_sample.py
++++ b/examples/defensive_patch_sample.py
+@@ -4,20 +4,19 @@
+ def with_else(value):
+     if value is None:
+         return None
+-    if value is None:  # repeated guard
+-        return 'unreachable'
+-    else:  # reachable branch
+-        # preserve the output shape
+-        return {'value':value}
++    # repeated guard
++    # reachable branch
++    # preserve the output shape
++    return {'value':value}
+ 
+ 
+ def with_comments(value):
+     if value is None:
+         return None
+-    if value is not None:  # already checked
+-        # keep this business explanation
+-        return value
+-        # keep this trailing explanation
++    # already checked
++    # keep this business explanation
++    return value
++    # keep this trailing explanation
+ 
+ 
+ def manual_only(value):
+@@ -29,10 +28,7 @@
+ def true_else(value):
+     if value is None:
+         return None
+-    if value is not None:
+-        return value
+-    else:
+-        return 'unreachable'
++    return value
+ 
+ 
+ def optional_port(loader):

@@ -1,0 +1,111 @@
+{
+  "kind": "defensive_code_audit",
+  "patch_root": "D:\\CodexWork\\projects\\awaitlab",
+  "files_scanned": 1,
+  "findings": [
+    {
+      "path": "examples/defensive_patch_sample.py",
+      "line": 7,
+      "column": 5,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "value is None 在当前路径恒为 False",
+      "evidence": "第 5 行：value is not None。赋值、调用、await等语句会清除已有路径事实。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "code": "    if value is None:  # repeated guard\n        return 'unreachable'\n    else:  # reachable branch\n        # preserve the output shape\n        return {'value':value}",
+      "patch_available": true,
+      "related_conditions": [
+        {
+          "name": "value",
+          "singleton": "None",
+          "identity": false,
+          "lines": [
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "path": "examples/defensive_patch_sample.py",
+      "line": 17,
+      "column": 5,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "value is not None 在当前路径恒为 True",
+      "evidence": "第 15 行：value is not None。赋值、调用、await等语句会清除已有路径事实。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "code": "    if value is not None:  # already checked\n        # keep this business explanation\n        return value\n        # keep this trailing explanation",
+      "patch_available": true,
+      "related_conditions": [
+        {
+          "name": "value",
+          "singleton": "None",
+          "identity": false,
+          "lines": [
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "path": "examples/defensive_patch_sample.py",
+      "line": 25,
+      "column": 9,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "value is None 在当前路径恒为 False",
+      "evidence": "第 24 行：value is not None。赋值、调用、await等语句会清除已有路径事实。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "code": "        if value is None:\n            return 1",
+      "patch_available": false,
+      "related_conditions": [
+        {
+          "name": "value",
+          "singleton": "None",
+          "identity": false,
+          "lines": [
+            24
+          ]
+        }
+      ],
+      "patch_note": "该处修改不能通过语法检查（可能留下空代码块），需人工调整。"
+    },
+    {
+      "path": "examples/defensive_patch_sample.py",
+      "line": 32,
+      "column": 5,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "value is not None 在当前路径恒为 True",
+      "evidence": "第 30 行：value is not None。赋值、调用、await等语句会清除已有路径事实。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "code": "    if value is not None:\n        return value\n    else:\n        return 'unreachable'",
+      "patch_available": true,
+      "related_conditions": [
+        {
+          "name": "value",
+          "singleton": "None",
+          "identity": false,
+          "lines": [
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "path": "examples/defensive_patch_sample.py",
+      "line": 41,
+      "column": 5,
+      "rule": "ALD002",
+      "confidence": "needs_review",
+      "message": "宽泛异常被静默忽略或转成固定结果",
+      "evidence": "except Exception:\n        return None",
+      "suggestion": "核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。",
+      "code": "except Exception:\n        return None",
+      "patch_available": false
+    }
+  ],
+  "errors": [],
+  "patch": "--- a/examples/defensive_patch_sample.py\n+++ b/examples/defensive_patch_sample.py\n@@ -4,20 +4,19 @@\n def with_else(value):\n     if value is None:\n         return None\n-    if value is None:  # repeated guard\n-        return 'unreachable'\n-    else:  # reachable branch\n-        # preserve the output shape\n-        return {'value':value}\n+    # repeated guard\n+    # reachable branch\n+    # preserve the output shape\n+    return {'value':value}\n \n \n def with_comments(value):\n     if value is None:\n         return None\n-    if value is not None:  # already checked\n-        # keep this business explanation\n-        return value\n-        # keep this trailing explanation\n+    # already checked\n+    # keep this business explanation\n+    return value\n+    # keep this trailing explanation\n \n \n def manual_only(value):\n@@ -29,10 +28,7 @@\n def true_else(value):\n     if value is None:\n         return None\n-    if value is not None:\n-        return value\n-    else:\n-        return 'unreachable'\n+    return value\n \n \n def optional_port(loader):\n",
+  "scope": "Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review."
+}

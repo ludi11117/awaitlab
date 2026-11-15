@@ -1,0 +1,101 @@
+{
+  "version": "0.12.0",
+  "date": "2026-11-15",
+  "unit_integration_tests": {
+    "passed": 149,
+    "new_tests": 8,
+    "audit_tests": 27,
+    "log": "D:/CodexWork/temp/awaitlab/tests-v0.12.0.log"
+  },
+  "initial_regressions": {
+    "tests": 8,
+    "failed_before_fix": 5,
+    "log": "D:/CodexWork/temp/awaitlab/patch-regressions-before.log"
+  },
+  "demo": {
+    "version": "0.12.0",
+    "initial_path_findings": 4,
+    "initial_review_findings": 1,
+    "applicable_patches": 3,
+    "initial_check_exit": 1,
+    "after_patch_check_exit": 1,
+    "remaining_manual_path_findings": 1,
+    "remaining_review_findings": 1,
+    "all_comment_texts_preserved": true,
+    "comment_count": 6,
+    "patch_applied_to_temp_copy": true,
+    "differential_input_count": 28,
+    "all_demo_outputs_equal": true,
+    "original_source_unchanged": true,
+    "scope": "Controlled demo only; manual-only finding intentionally retained."
+  },
+  "installed_core": {
+    "version": "0.12.0",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.12.0\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 20,
+    "wheel_sha256": "2bea9924701d92ba2d421585b5fd9c711a083c7b01753f76a84789d2edbc5c35",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.12.0\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.12.0\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false,
+      "certifi": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only",
+    "orphan_task_probe": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+  },
+  "installed_audit": {
+    "version": "0.12.0",
+    "installed_audit_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.12.0\\awaitlab\\code_audit.py",
+    "site_packages_disabled": true,
+    "httpx_available": false,
+    "initial_path_findings": 4,
+    "initial_review_findings": 1,
+    "applicable_patches": 3,
+    "html_shows_manual_rejection": true,
+    "trailing_comment_preserved": true,
+    "patch_applied_to_temp_copy": true,
+    "remaining_manual_path_findings": 1,
+    "remaining_review_findings": 1,
+    "first_check_exit": 1,
+    "second_check_exit": 1
+  },
+  "audit_browser": {
+    "passed": 20,
+    "previous_report_checks": 12,
+    "new_report_checks": 8,
+    "record": "audit-browser-v0.12.0.json",
+    "desktop_screenshot": "defensive-patches-desktop.png",
+    "mobile_screenshot": "defensive-patches-mobile.png"
+  },
+  "scope": [
+    "Simple if/else edits preserve the reachable branch and its comments.",
+    "Comments in unreachable branches, changed bindings/generators, complex layouts and unsupported encodings remain manual.",
+    "Rejected edits do not cancel independent valid edits in the same source file.",
+    "All ALD001 findings affect --check, including findings without proposed patches.",
+    "The scanner does not import/execute targets or rewrite their source; demo execution is restricted to a controlled fixture.",
+    "Historical reports are preserved; proposed patches still require review and target-project tests."
+  ]
+}

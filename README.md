@@ -2,21 +2,21 @@
 
 本地 Python 代码核查与性能实验：识别部分重复防御条件，再用可复跑的实验核对已提供优化的输出和响应变化。
 
-**最快查看审查功能：打开 [防御代码审查报告](artifacts/defensive-logic-v0.11.0.html)。** 可以看到源码位置、判断依据及补丁建议，无需后台服务、账号、API或模型权重。
+**最快查看审查功能：打开 [防御代码审查报告](artifacts/defensive-patches-v0.12.0.html)。** 可以看到源码位置、判断依据及补丁建议，无需后台服务、账号、API或模型权重。
 
 性能实验入口：双击 `Start-AwaitLab.cmd`，默认打开0.8版本的真实SQLite本地报告，包含已声明的负面对照和质量提示；没有报告时才运行实验。重新测量双击 `Run-SQLite-Experiments.cmd`。三个Windows入口都将临时文件放在D盘，结束后恢复调用者的工作目录和环境设置。
 
 求职或复试现场演示见 [DEMO.zh-CN.md](DEMO.zh-CN.md)，包括五分钟操作、技术要点与可核对的简历表述。
 
-## 审查过度防御代码（0.11）
+## 审查过度防御代码（0.12）
 
 这是面向使用者的新功能：扫描自己的 Python 项目，查看代码位置、路径依据和修改建议，生成可复核的补丁。仅使用标准库，不导入或执行扫描目标，不需要模型 API。先看自带示例：
 
 ```powershell
-python -m awaitlab audit examples/defensive_logic_sample.py --html artifacts/audit.html --output artifacts/audit.json --patch artifacts/audit.patch
+python -m awaitlab audit examples/defensive_patch_sample.py --html artifacts/audit.html --output artifacts/audit.json --patch artifacts/audit.patch
 ```
 
-该示例会报告三处重复条件和一处需复核的吞异常，补丁仅处理前三处。打开生成的 HTML 可查看每处源码、依据、无法生成补丁的原因及完整差异。简单情形例如：
+该示例会报告四处重复条件和一处需复核的吞异常。其中三处能生成补丁，另一处修改会留下空代码块，需手动调整；这一处不再使同文件的其他补丁失效。打开 HTML 可查看每处源码、依据、无法生成补丁的原因及完整差异。简单情形例如：
 
 ```python
 if value is None:
@@ -36,13 +36,15 @@ python -m awaitlab audit D:\CodexWork\projects\your-project --html artifacts/aud
 | ALD001 重复单例条件 | 当前函数局部名称对 None/True/False 的身份关系已确定，支持反向比较、not 及纯身份比较的 and/or 短路路径 | 展示前置条件行号，简单情形生成删除死分支或展开恒真分支的补丁 |
 | ALD002 静默宽泛异常 | 裸 except、Exception/BaseException 仅 pass 或返回固定常量 | 仅提示人工复核；合法业务约定不应自动删除 |
 
-`--patch` **只生成差异文件，不改写源码**。在报告的 `patch_root` 目录复核后，可对补丁绝对路径执行 `git apply --check ...`，再自行 `git apply ...`。补丁生成后会编译检查语法，并核对函数/类的文档字符串；复杂 else/elif、会改变局部绑定或生成器类型的死分支、多行字符串、非普通 UTF-8 编码等情形只保留诊断。原文件变化后应重新扫描，再执行项目测试。
+`--patch` **只生成差异文件，不改写源码**。在报告的 `patch_root` 目录复核后，可对补丁绝对路径执行 `git apply --check ...`，再自行 `git apply ...`。现在支持简单 if/else：保留实际可达分支，将其注释和 if 头行尾注释保留下来。不可达分支若有说明注释，不猜测是否应该删除，改为提示人工处理；elif链、多行条件、行内语句、制表符缩进等仍只报告。
 
-追加 `--check` 时：存在路径冗余返回 1，仅有人工复核项返回 0，语法/读取/扫描错误返回 2，便于接入 CI。默认打印报告且返回 0，扫描错误仍为 2。
+每处候选补丁与此前已接受的修改一起编译检查语法、核对函数/类文档字符串；某处被拒绝，不撤回其他独立有效修改。会改变局部绑定或生成器类型的死分支、多行字符串、非普通 UTF-8 编码等继续保留诊断。原文件变化后应重新扫描，再执行项目测试。
+
+追加 `--check` 时：存在任何 ALD001 路径冗余返回 1，**包括无法生成补丁的冗余**；仅有 ALD002 异常复核项时返回 0，语法/读取/扫描错误返回 2。新示例应用三处补丁后仍有一处 ALD001，返回码继续为 1。默认不加 --check 时只打印报告并返回 0，扫描错误仍为 2。
 
 分析限局部语法模型：在赋值、调用、await 和其他不支持的语句处丢弃已知事实，不推断跨函数、全局变量、动态反射或业务必要性。and 为假不表示每项都为假；or 为真不表示每项都为真，合流只保留所有可达路径共有的事实。`value is True` 与 `if value` 或 `value == True` 不混用，不假设用户对象的真值/相等方法没有副作用。
 
-它覆盖两类明确模式，不是全部过度防御问题的检测器，也不承诺补丁在所有 Python 元编程环境中语义等价。组合条件验收见 [defensive-logic-check-v0.11.0.json](artifacts/defensive-logic-check-v0.11.0.json)：补丁应用到 D 盘临时副本后，三处路径问题消失、吞异常提示保留，49 个示例输入输出一致，原源码未改。原0.10的两处 None 检查样例和实测仍保留原版本。重新执行当前验收用 `python benchmarks/defensive_logic_check.py`。
+它覆盖两类明确模式，不是全部过度防御问题的检测器，也不承诺补丁在所有 Python 元编程环境中语义等价。当前验收见 [defensive-patch-check-v0.12.0.json](artifacts/defensive-patch-check-v0.12.0.json)：三处补丁应用到 D 盘临时副本，六条注释原文全部保留，28 个示例输入输出一致；一处手动修改和一处异常复核仍存在，原源码未改。原0.10/0.11样例保持原版本。重新执行当前验收用 `python benchmarks/defensive_patch_check.py`。
 
 ## 减少多余数据库查询：订单列表补全客户资料
 

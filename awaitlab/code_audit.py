@@ -1,6 +1,7 @@
 """Small, local Python audit: path facts first, review-only heuristics second."""
 import ast
 import difflib
+import io
 import json
 import os
 from pathlib import Path
@@ -89,9 +90,25 @@ def scope_docstrings(tree):
     return result
 
 
+def has_scope_declarations(statements):
+    return any(isinstance(child,(ast.Yield,ast.YieldFrom,ast.Global,ast.Nonlocal,
+        ast.Import,ast.ImportFrom,ast.FunctionDef,ast.AsyncFunctionDef,ast.ClassDef,ast.ExceptHandler,ast.Match)) or
+        isinstance(child,ast.Name) and isinstance(child.ctx,(ast.Store,ast.Del))
+        for statement in statements for child in ast.walk(statement))
+
+
+def apply_edits(lines,edits):
+    patched=lines[:]
+    for start,end,replacement,_ in reversed(edits):patched[start:end]=replacement
+    return ''.join(patched)
+
+
 class FlowAudit:
     def __init__(self,source,filename):
         self.source=source;self.lines=source.splitlines(keepends=True);self.filename=filename;self.findings=[];self.edits=[]
+        tokens=list(tokenize.generate_tokens(io.StringIO(source).readline))
+        self.comments={token.start[0]:token.string for token in tokens if token.type==tokenize.COMMENT}
+        self.else_headers=[token.start for token in tokens if token.type==tokenize.NAME and token.string=='else']
 
     def finding(self,node,rule,confidence,message,evidence,suggestion):
         item={'path':self.filename,'line':node.lineno,'column':node.col_offset+1,
@@ -146,28 +163,58 @@ class FlowAudit:
         return facts
 
     def propose(self,node,truth,item):
-        # Keep source formatting. Complex headers/else suites stay reviewable findings.
         lines=self.lines
-        if node.orelse or node.body[0].lineno==node.lineno or not lines[node.lineno-1].lstrip().startswith('if '):
-            item['patch_note']='带 else/elif 或行内语句，首版仅报告，不生成补丁。';return
-        if node.body[0].lineno!=node.lineno+1:
-            item['patch_note']='多行条件或条件后的独立注释需要人工保留。';return
         start=node.lineno-1;end=node.end_lineno
-        replacement=[]
-        if not truth and any(isinstance(child,(ast.Yield,ast.YieldFrom,ast.Global,ast.Nonlocal,
-                ast.Import,ast.ImportFrom,ast.FunctionDef,ast.AsyncFunctionDef,ast.ClassDef,ast.ExceptHandler,ast.Match)) or
-                isinstance(child,ast.Name) and isinstance(child.ctx,(ast.Store,ast.Del))
-                for statement in node.body for child in ast.walk(statement)):
+        header=lines[start];header_indent=header[:len(header)-len(header.lstrip())]
+        if (node.body[0].lineno==node.lineno or not header.lstrip().startswith('if ') or
+                not header.split('#',1)[0].rstrip().endswith(':')):
+            item['patch_note']='elif、多行条件或行内语句仅报告，不生成补丁。';return
+        if '\t' in header_indent:
+            item['patch_note']='含制表符缩进，不生成补丁。';return
+        # AST ranges exclude trailing comments; include only comments still indented in this branch.
+        cursor=end
+        while cursor<len(lines):
+            line=lines[cursor]
+            if not line.strip():cursor+=1;continue
+            indent=line[:len(line)-len(line.lstrip())]
+            if cursor+1 in self.comments and line.lstrip().startswith('#') and len(indent)>len(header_indent):
+                cursor+=1;end=cursor;continue
+            break
+        else_line=None
+        if node.orelse:
+            else_line=next((line-1 for line,column in self.else_headers
+                if node.body[-1].end_lineno<line<=node.orelse[0].lineno and column==node.col_offset),None)
+            if else_line is None or node.orelse[0].lineno==else_line+1:
+                item['patch_note']='elif链或行内else仅报告，不生成补丁。';return
+        kept=node.body if truth else node.orelse
+        discarded=node.orelse if truth else node.body
+        if has_scope_declarations(discarded):
             item['patch_note']='死分支含绑定或生成器声明，删除可能改变函数作用域/类型。';return
         if truth:
+            dead_start=else_line+1 if else_line is not None else end
+            dead_end=end
+        else:
+            dead_start=start+1
+            dead_end=else_line if else_line is not None else end
+        if any(line+1 in self.comments for line in range(dead_start,dead_end)) or (
+                truth and else_line is not None and else_line+1 in self.comments):
+            item['patch_note']='不可达分支含注释，保留原文以便人工处理。';return
+        replacement=[]
+        for line in (start,else_line):
+            if line is not None and line+1 in self.comments:
+                replacement.append(header_indent+self.comments[line+1]+'\n')
+        if kept:
             if any(isinstance(child,(ast.Constant,ast.JoinedStr)) and child.end_lineno>child.lineno
-                    for statement in node.body for child in ast.walk(statement)):
+                    for statement in kept for child in ast.walk(statement)):
                 item['patch_note']='分支含多行字符串，避免改变字符串内容。';return
-            header_indent=lines[start][:len(lines[start])-len(lines[start].lstrip())]
-            body_indent=lines[start+1][:len(lines[start+1])-len(lines[start+1].lstrip())]
+            first=lines[kept[0].lineno-1]
+            body_indent=first[:len(first)-len(first.lstrip())]
             if '\t' in body_indent:
-                item['patch_note']='含制表符缩进，首版不生成补丁。';return
-            replacement=[header_indent+line[len(body_indent):] if line.strip() else line for line in lines[start+1:end]]
+                item['patch_note']='含制表符缩进，不生成补丁。';return
+            kept_start,kept_end=(start+1,else_line if else_line is not None else end) if truth else (else_line+1,end)
+            replacement.extend(header_indent+line[len(body_indent):] if line.startswith(body_indent) else line
+                for line in lines[kept_start:kept_end])
+        item['code']=''.join(lines[start:end]).rstrip('\r\n')
         self.edits.append((start,end,replacement,item))
 
 
@@ -190,28 +237,21 @@ def audit_source(source,filename='<string>'):
                 audit.finding(node,'ALD002','needs_review','宽泛异常被静默忽略或转成固定结果',
                     ast.get_source_segment(source,node),
                     '核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。')
-    # Avoid overlapping edits; a later audit can simplify nested residual guards.
-    accepted=[];end=-1
+    # Validate each candidate with earlier accepted edits; one rejected edit cannot block other fixes.
+    accepted=[];lines=audit.lines;docstrings=scope_docstrings(tree)
     for edit in sorted(audit.edits,key=lambda e:(e[0],-e[1])):
-        if edit[0]<end:
+        if accepted and edit[0]<accepted[-1][1]:
             edit[3]['patch_note']='与外层修改重叠，先复核外层补丁。';continue
-        accepted.append(edit);end=edit[1]
-    lines=source.splitlines(keepends=True)
-    patched=lines[:]
-    for start,end,replacement,_ in reversed(accepted):patched[start:end]=replacement
-    result=''.join(patched)
-    try:
-        patched_tree=ast.parse(result,filename=filename)
-        compile(patched_tree,filename,'exec')
-    except SyntaxError:
-        for *_,item in accepted:item['patch_note']='修改会留下空代码块，需人工调整。'
-        result=source
-    else:
-        if scope_docstrings(tree)!=scope_docstrings(patched_tree):
-            for *_,item in accepted:item['patch_note']='修改会改变函数或类的文档字符串，需人工调整。'
-            result=source
-        else:
-            for *_,item in accepted:item['patch_available']=True
+        candidate=apply_edits(lines,accepted+[edit])
+        try:
+            patched_tree=ast.parse(candidate,filename=filename)
+            compile(patched_tree,filename,'exec')
+        except SyntaxError:
+            edit[3]['patch_note']='该处修改不能通过语法检查（可能留下空代码块），需人工调整。';continue
+        if scope_docstrings(patched_tree)!=docstrings:
+            edit[3]['patch_note']='修改会改变函数或类的文档字符串，需人工调整。';continue
+        edit[3]['patch_available']=True;accepted.append(edit)
+    result=apply_edits(lines,accepted)
     return sorted(audit.findings,key=lambda f:(f['line'],f['column'],f['rule'])),result
 
 
