@@ -1,0 +1,55 @@
+"""Offline, script-free presentation of audit evidence and proposed changes."""
+from html import escape
+from pathlib import Path
+
+
+def render_audit_report(report):
+    proven=sum(item['confidence']=='path_proven' for item in report['findings'])
+    review=len(report['findings'])-proven
+    cards=[]
+    for item in report['findings']:
+        label='路径确定的冗余' if item['confidence']=='path_proven' else '需要业务复核'
+        patch='有补丁建议' if item['patch_available'] else '无自动补丁'
+        note=f'<p class="note">{escape(item["patch_note"])}</p>' if 'patch_note' in item else ''
+        cards.append(f'''<article class="finding">
+<div class="labels"><span>{escape(item['rule'])}</span><span>{label}</span><span>{patch}</span></div>
+<h2>{escape(item['message'])}</h2><p class="location">{escape(item['path'])}:{item['line']}:{item['column']}</p>
+<pre class="source"><code>{escape(item['code'])}</code></pre>
+<details open><summary>判断依据</summary><p>{escape(item['evidence'])}</p></details>
+<p>{escape(item['suggestion'])}</p>{note}</article>''')
+    errors=''.join(f'<li>{escape(item["path"])}：{escape(item["error"])}</li>' for item in report['errors'])
+    error_view=f'<section class="errors"><h2>未完成的扫描</h2><ul>{errors}</ul></section>' if errors else ''
+    findings=''.join(cards) or '<p class="empty">当前规则未发现问题；这不代表所有防御代码均有必要。</p>'
+    patch_view=(f'<pre class="patch"><code>{escape(report["patch"])}</code></pre>' if report['patch'] else
+        '<p>本次没有可生成的补丁。需复核项保留原逻辑。</p>')
+    return f'''<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'">
+<title>AwaitLab · 防御代码审查</title><style>
+*{{box-sizing:border-box}}body{{margin:0;background:#f3f6f7;color:#183641;font:15px/1.7 system-ui,sans-serif}}
+main{{max-width:1040px;margin:auto;padding:32px 24px 64px}}header{{padding:16px 0 24px}}h1{{font-size:clamp(25px,5vw,36px);line-height:1.3}}
+h2{{font-size:19px;line-height:1.5;overflow-wrap:anywhere}}p{{overflow-wrap:anywhere}}a{{color:#11685b}}
+.eyebrow{{color:#397d71;font-size:12px;letter-spacing:.12em}}.summary{{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:20px 0}}
+.metric,.finding,.errors,#changes{{background:white;border:1px solid #d5e0e5;border-radius:10px;padding:20px}}
+.metric strong{{display:block;font-size:28px}}.finding{{margin:18px 0}}.labels{{display:flex;gap:8px;flex-wrap:wrap}}
+.labels span{{font-size:12px;border-radius:4px;background:#e7f1ee;padding:3px 8px}}.location,.note,.scope{{color:#526b75}}
+pre{{max-width:100%;overflow-x:auto;padding:16px;background:#eef3f5;border-radius:6px;font-size:13px;line-height:1.65}}
+details p{{white-space:pre-wrap}}summary{{cursor:pointer;color:#216d61}}.errors{{border-color:#b78556}}#changes{{margin-top:30px}}
+@media(max-width:520px){{main{{padding:18px 14px 40px}}.finding,#changes,.errors{{padding:16px}}}}
+</style></head><body><main><header><div class="eyebrow">AWAITLAB / CODE AUDIT</div>
+<h1>防御代码审查</h1><p>查看依据，再决定如何简化。扫描不导入或执行目标，也不会改写目标源码。</p>
+<div class="summary"><div class="metric"><strong>{report['files_scanned']}</strong>扫描文件</div>
+<div class="metric"><strong>{proven}</strong>路径冗余</div><div class="metric"><strong>{review}</strong>人工复核</div>
+<div class="metric"><strong>{len(report['errors'])}</strong>扫描错误</div></div><a href="#changes">查看补丁建议 ↓</a></header>
+{error_view}<section aria-label="审查发现">{findings}</section>
+<section id="changes"><h2>补丁建议</h2><p>这是待复核的差异，未写入目标。应用后仍需运行目标项目测试。</p>
+<p class="location">补丁相对目录：{escape(report['patch_root'])}</p>{patch_view}</section>
+<footer class="scope"><p>分析范围：{escape(report['scope'])}</p>
+<p>基于局部语法路径，不推断跨函数、动态反射或业务必要性。人工复核项不表示必须删除。</p></footer>
+</main></body></html>'''
+
+
+def write_audit_report(report,path):
+    path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_text(render_audit_report(report),encoding='utf-8',newline='\n')
+    return path

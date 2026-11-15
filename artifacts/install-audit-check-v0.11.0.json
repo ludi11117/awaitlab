@@ -1,0 +1,15 @@
+{
+  "version": "0.11.0",
+  "installed_audit_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.11.0\\awaitlab\\code_audit.py",
+  "installed_report_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.11.0\\awaitlab\\code_audit_report.py",
+  "site_packages_disabled": true,
+  "httpx_available": false,
+  "initial_path_findings": 3,
+  "initial_review_findings": 1,
+  "patch_applied_to_temp_copy": true,
+  "html_written_with_evidence_and_no_scripts": true,
+  "remaining_path_findings": 0,
+  "remaining_review_findings": 1,
+  "first_check_exit": 1,
+  "second_check_exit": 0
+}

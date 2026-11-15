@@ -1,0 +1,13 @@
+{
+  "version": "0.11.0",
+  "initial_path_findings": 3,
+  "initial_review_findings": 1,
+  "patch_applied_to_temp_copy": true,
+  "remaining_path_findings": 0,
+  "remaining_review_findings": 1,
+  "differential_input_count": 49,
+  "all_demo_outputs_equal": true,
+  "original_source_unchanged": true,
+  "report": "defensive-logic-v0.11.0.html",
+  "scope": "Known demonstration only; arbitrary audit targets are never executed."
+}

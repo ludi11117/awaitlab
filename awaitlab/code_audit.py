@@ -10,11 +10,57 @@ import tokenize
 SKIP_DIRS={'.git','.venv','venv','__pycache__','node_modules','build','dist','.mypy_cache','.pytest_cache'}
 
 
-def none_test(node):
-    if (isinstance(node,ast.Compare) and len(node.ops)==1 and
-            isinstance(node.left,ast.Name) and isinstance(node.comparators[0],ast.Constant) and
-            node.comparators[0].value is None and isinstance(node.ops[0],(ast.Is,ast.IsNot))):
-        return node.left.id,isinstance(node.ops[0],ast.Is)
+def identity_test(node):
+    if not (isinstance(node,ast.Compare) and len(node.ops)==1 and isinstance(node.ops[0],(ast.Is,ast.IsNot))):return
+    left,right=node.left,node.comparators[0]
+    if isinstance(left,ast.Constant):left,right=right,left
+    if (isinstance(left,ast.Name) and isinstance(right,ast.Constant) and
+            (right.value is None or type(right.value) is bool)):
+        return (left.id,repr(right.value)),isinstance(node.ops[0],ast.Is)
+
+
+def merge_paths(paths):
+    paths=[path for path in paths if path is not None]
+    if not paths:return None
+    result=dict(paths[0])
+    for path in paths[1:]:
+        result={key:(truth,origins|path[key][1]) for key,(truth,origins) in result.items()
+                if key in path and path[key][0]==truth}
+    return result
+
+
+def supported_condition(node,locals_):
+    test=identity_test(node)
+    if test:return test[0][0] in locals_
+    if isinstance(node,ast.UnaryOp) and isinstance(node.op,ast.Not):return supported_condition(node.operand,locals_)
+    return isinstance(node,ast.BoolOp) and all(supported_condition(value,locals_) for value in node.values)
+
+
+def split_condition(node,facts):
+    """Return facts on true/false short-circuit paths; None means unreachable."""
+    test=identity_test(node)
+    if test:
+        key,wants_identity=test
+        if key in facts:
+            return (dict(facts),None) if facts[key][0]==wants_identity else (None,dict(facts))
+        def branch(identity):
+            result={**facts,key:(identity,frozenset({node.lineno}))}
+            if identity:
+                for other in ('None','True','False'):
+                    if other!=key[1]:result[(key[0],other)]=(False,frozenset({node.lineno}))
+            return result
+        positive,negative=branch(True),branch(False)
+        return (positive,negative) if wants_identity else (negative,positive)
+    if isinstance(node,ast.UnaryOp):
+        positive,negative=split_condition(node.operand,facts)
+        return negative,positive
+    current=dict(facts);exits=[]
+    for value in node.values:
+        if current is None:break
+        positive,negative=split_condition(value,current)
+        continuing,finished=(positive,negative) if isinstance(node.op,ast.And) else (negative,positive)
+        exits.append(finished);current=continuing
+    return (current,merge_paths(exits)) if isinstance(node.op,ast.And) else (merge_paths(exits),current)
 
 
 def local_names(function):
@@ -33,46 +79,58 @@ def local_names(function):
     return names-excluded
 
 
+def scope_docstrings(tree):
+    result=[]
+    def visit(node):
+        if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef,ast.ClassDef)):
+            result.append((type(node).__name__,node.name,ast.get_docstring(node,clean=False)))
+        for child in ast.iter_child_nodes(node):visit(child)
+    visit(tree)
+    return result
+
+
 class FlowAudit:
     def __init__(self,source,filename):
-        self.source=source;self.filename=filename;self.findings=[];self.edits=[]
+        self.source=source;self.lines=source.splitlines(keepends=True);self.filename=filename;self.findings=[];self.edits=[]
 
     def finding(self,node,rule,confidence,message,evidence,suggestion):
         item={'path':self.filename,'line':node.lineno,'column':node.col_offset+1,
               'rule':rule,'confidence':confidence,'message':message,'evidence':evidence,
-              'suggestion':suggestion,'patch_available':False}
+              'suggestion':suggestion,'code':ast.get_source_segment(self.source,node),'patch_available':False}
         self.findings.append(item)
         return item
 
-    def block(self,statements,facts,locals_):
+    def block(self,statements,facts,locals_,parameters):
         facts=dict(facts)
         for node in statements:
             if isinstance(node,ast.If):
-                test=none_test(node.test)
-                if test and test[0] in locals_:
-                    name,wants_none=test
-                    if name in facts:
-                        is_none,origin=facts[name];truth=is_none==wants_none
+                if supported_condition(node.test,locals_):
+                    positive,negative=split_condition(node.test,facts)
+                    names={child.id for child in ast.walk(node.test) if isinstance(child,ast.Name)}
+                    bound=parameters|{name for name,_ in facts}
+                    if (positive is None or negative is None) and names<=bound:
+                        truth=negative is None
+                        tested_keys={test[0] for child in ast.walk(node.test) if (test:=identity_test(child))}
+                        related=[{'name':name,'singleton':singleton,'identity':identity,'lines':sorted(origins)}
+                            for (name,singleton),(identity,origins) in sorted(facts.items()) if (name,singleton) in tested_keys]
+                        details='；'.join(f'第 {"/".join(map(str,row["lines"]))} 行：{row["name"]} is {"" if row["identity"] else "not "}{row["singleton"]}' for row in related)
                         item=self.finding(node,'ALD001','path_proven',
                             f'{ast.get_source_segment(self.source,node.test)} 在当前路径恒为 {truth}',
-                            f'第 {origin} 行条件确定 {name} {"is" if is_none else "is not"} None；中间没有跨越其他语句。',
+                            (details+'。' if details else '条件自身的单例身份比较与短路路径确定结果。')+'赋值、调用、await等语句会清除已有路径事实。',
                             '移除重复条件，保留实际可达分支。')
+                        item['related_conditions']=related
                         self.propose(node,truth,item)
                         selected=node.body if truth else node.orelse
-                        facts=self.block(selected,facts,locals_)
+                        facts=self.block(selected,positive if truth else negative,locals_,parameters)
                         if facts is None:return None
                         continue
-                    positive={**facts,name:(wants_none,node.lineno)}
-                    negative={**facts,name:(not wants_none,node.lineno)}
-                    left=self.block(node.body,positive,locals_)
-                    right=self.block(node.orelse,negative,locals_)
-                    if left is None:facts=right
-                    elif right is None:facts=left
-                    else:facts={name:value for name,value in left.items() if name in right and right[name][0]==value[0]}
+                    left=self.block(node.body,positive,locals_,parameters) if positive is not None else None
+                    right=self.block(node.orelse,negative,locals_,parameters) if negative is not None else None
+                    facts=merge_paths((left,right))
                     if facts is None:return None
                     continue
                 # Unknown conditions may execute user code. Discard incoming facts.
-                self.block(node.body,{},locals_);self.block(node.orelse,{},locals_)
+                self.block(node.body,{},locals_,parameters);self.block(node.orelse,{},locals_,parameters)
                 facts={}
             elif isinstance(node,(ast.Return,ast.Raise)):
                 return None
@@ -80,16 +138,16 @@ class FlowAudit:
                 # Assignment, call, await, loops and context managers are barriers.
                 facts={}
                 if isinstance(node,(ast.For,ast.AsyncFor,ast.While,ast.With,ast.AsyncWith,ast.Try)):
-                    self.block(node.body,{},locals_)
-                    if hasattr(node,'orelse'):self.block(node.orelse,{},locals_)
+                    self.block(node.body,{},locals_,parameters)
+                    if hasattr(node,'orelse'):self.block(node.orelse,{},locals_,parameters)
                     if isinstance(node,ast.Try):
-                        for handler in node.handlers:self.block(handler.body,{},locals_)
-                        self.block(node.finalbody,{},locals_)
+                        for handler in node.handlers:self.block(handler.body,{},locals_,parameters)
+                        self.block(node.finalbody,{},locals_,parameters)
         return facts
 
     def propose(self,node,truth,item):
         # Keep source formatting. Complex headers/else suites stay reviewable findings.
-        lines=self.source.splitlines(keepends=True)
+        lines=self.lines
         if node.orelse or node.body[0].lineno==node.lineno or not lines[node.lineno-1].lstrip().startswith('if '):
             item['patch_note']='带 else/elif 或行内语句，首版仅报告，不生成补丁。';return
         if node.body[0].lineno!=node.lineno+1:
@@ -119,7 +177,10 @@ def audit_source(source,filename='<string>'):
     audit=FlowAudit(source,filename)
     for node in ast.walk(tree):
         if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef)):
-            audit.block(node.body,{},local_names(node))
+            parameters={arg.arg for arg in node.args.posonlyargs+node.args.args+node.args.kwonlyargs}
+            for arg in (node.args.vararg,node.args.kwarg):
+                if arg:parameters.add(arg.arg)
+            audit.block(node.body,{},local_names(node),parameters)
         elif isinstance(node,ast.ExceptHandler):
             types=node.type.elts if isinstance(node.type,ast.Tuple) else [node.type]
             broad=node.type is None or any(isinstance(t,ast.Name) and t.id in ('Exception','BaseException') for t in types)
@@ -139,12 +200,18 @@ def audit_source(source,filename='<string>'):
     patched=lines[:]
     for start,end,replacement,_ in reversed(accepted):patched[start:end]=replacement
     result=''.join(patched)
-    try:compile(result,filename,'exec')
+    try:
+        patched_tree=ast.parse(result,filename=filename)
+        compile(patched_tree,filename,'exec')
     except SyntaxError:
         for *_,item in accepted:item['patch_note']='修改会留下空代码块，需人工调整。'
         result=source
     else:
-        for *_,item in accepted:item['patch_available']=True
+        if scope_docstrings(tree)!=scope_docstrings(patched_tree):
+            for *_,item in accepted:item['patch_note']='修改会改变函数或类的文档字符串，需人工调整。'
+            result=source
+        else:
+            for *_,item in accepted:item['patch_available']=True
     return sorted(audit.findings,key=lambda f:(f['line'],f['column'],f['rule'])),result
 
 
@@ -180,13 +247,14 @@ def audit_path(target):
             errors.append({'path':name,'error':str(error)})
     return {'kind':'defensive_code_audit','patch_root':str(root),'files_scanned':len(files),
         'findings':findings,'errors':errors,'patch':''.join(patches),
-        'scope':'Python local-name None identity guards; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review.'}
+        'scope':'Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review.'}
 
 
-def run_cli(target,output=None,patch=None,check=False):
+def run_cli(target,output=None,patch=None,check=False,*,html=None):
     try:
         if output and Path(output).suffix!='.json':raise ValueError('--output 必须以 .json 结尾')
         if patch and Path(patch).suffix!='.patch':raise ValueError('--patch 必须以 .patch 结尾')
+        if html and Path(html).suffix!='.html':raise ValueError('--html 必须以 .html 结尾')
         report=audit_path(target)
         for item in report['findings']:
             print(f'{item["path"]}:{item["line"]}:{item["column"]} {item["rule"]} [{item["confidence"]}] {item["message"]}')
@@ -196,6 +264,9 @@ def run_cli(target,output=None,patch=None,check=False):
             if destination:
                 path=Path(destination);path.parent.mkdir(parents=True,exist_ok=True)
                 path.write_text(text,encoding='utf-8',newline='\n')
+        if html:
+            from .code_audit_report import write_audit_report
+            print(f'离线报告：{write_audit_report(report,html).resolve()}')
         proven=sum(item['confidence']=='path_proven' for item in report['findings'])
         review=len(report['findings'])-proven
         print(f'扫描 {report["files_scanned"]} 个文件；路径冗余 {proven} 处；人工复核 {review} 处；错误 {len(report["errors"])} 处。')

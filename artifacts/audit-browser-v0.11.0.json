@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "offline audit heading",
+    "all four findings rendered",
+    "three proven path findings",
+    "review-only exception separated",
+    "related guard line visible",
+    "source snippet visible",
+    "actual unified diff visible",
+    "native evidence disclosure works",
+    "mobile page stays within viewport",
+    "no browser exceptions",
+    "no remote requests",
+    "report needs no JavaScript"
+  ]
+}

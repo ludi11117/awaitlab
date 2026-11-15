@@ -1,0 +1,21 @@
+--- a/examples/defensive_logic_sample.py
++++ b/examples/defensive_logic_sample.py
+@@ -4,17 +4,12 @@
+ def customer_result(customer,ready):
+     if customer is None or ready is not True:
+         return None
+-    if None is customer:
+-        return 'unreachable customer fallback'
+-    if not (ready is True):
+-        return 'unreachable readiness fallback'
+     return {'customer':customer}
+ 
+ 
+ def enabled(flag):
+     if flag is True:
+-        if True is flag:
+-            return 'enabled'
++        return 'enabled'
+     return 'disabled'
+ 
+ 
