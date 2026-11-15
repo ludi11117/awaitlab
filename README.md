@@ -2,7 +2,7 @@
 
 给 Python 异步服务做可复跑的性能实验：找出对响应时间敏感的操作，再用真正更快的实现核对收益。
 
-**最快查看：双击 `Start-AwaitLab.cmd`。** 它会打开真实 SQLite 查询的本地交互报告；没有报告时才运行实验。无需后台服务、账号、API 或模型权重。重新测量双击 `Run-SQLite-Experiments.cmd`。
+**最快查看：双击 `Start-AwaitLab.cmd`。** 默认打开0.8版本的真实SQLite本地报告，包含已声明的负面对照和质量提示；没有报告时才运行实验。无需后台服务、账号、API或模型权重。重新测量双击 `Run-SQLite-Experiments.cmd`。三个Windows入口都将临时文件放在D盘，结束后恢复调用者的工作目录和环境设置。
 
 求职或复试现场演示见 [DEMO.zh-CN.md](DEMO.zh-CN.md)，包括五分钟操作、技术要点与可核对的简历表述。
 
@@ -35,7 +35,7 @@ python examples/fastapi_tcp.py
 
 每次生成同名 JSON 和 HTML。HTML 可离线打开，无外部脚本、字体或网络请求。SQLite 两个场景默认 10 个配对批次，其他演示默认 6 个；每批 40 请求、8 个闭环并发 worker。要重跑两个等待机制演示，双击 `Rerun-Experiments.cmd`。运行时间随 Windows 调度和机器负载变化。
 
-当前 0.4 样例中，索引版的直接查询平均响应下降约 83%，经过 HTTP 链路下降约 28%，已测请求输出一致。这是这组数据与本机环境的实测替换结果，不是工具自动产生索引，也不保证其他数据库同样收益。原始数据与完整边界见 [VALIDATION.md](VALIDATION.md)。
+当前0.8样例中，索引版的直接查询平均响应下降约79%，HTTP场景下降约13%，已测输出一致；两个原实现对照都未触发预设报警规则，不等于证明等价。两个场景分别实测，不作跨版本加速推断；索引由接入者提供。原始数据与边界见 [VALIDATION.md](VALIDATION.md)。旧0.4 JSON/HTML保留在 artifacts/history/，发布时的0.8快照另存为 sqlite-v0.8.0 与 sqlite-http-v0.8.0，后续重跑latest不会覆盖这些快照。
 
 数据库文件合计约 6.6 MB，存于 `D:\CodexWork\temp\awaitlab\sqlite-fixture-v1`。两份文件每块计时前都会校验并完整读取，所有线程各自预热两条路径。每次查询新建、关闭只读连接：包含线程排队、连接创建及取回结果的成本；预热主要影响 OS 文件缓存，后续新连接不继承 SQLite 私有页缓存。这是短连接的读实验，不是冷盘、持久连接池或写事务性能测试。
 

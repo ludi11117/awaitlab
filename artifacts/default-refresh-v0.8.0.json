@@ -1,0 +1,223 @@
+{
+  "sdk_version": "0.8.0",
+  "protocol": {
+    "blocks": 10,
+    "requests": 40,
+    "concurrency": 8,
+    "warmup": 4,
+    "seed": 173
+  },
+  "scenarios": [
+    "sqlite",
+    "sqlite-http"
+  ],
+  "archives": [
+    {
+      "source": "sqlite-latest.json",
+      "archive": "history/sqlite-v0.4.0.json",
+      "sha256": "42572007d9ea11a87eee6339a508105e4fc917ba2040056b503fe34e7007e0f2",
+      "git_tracked": true,
+      "git_lf_sha256": "6c54dd37072e14772c08333723b39d73773e7bc37c7f3648943507d03c828f68"
+    },
+    {
+      "source": "sqlite-latest.html",
+      "archive": "history/sqlite-v0.4.0.html",
+      "sha256": "b7d52ecdd6a834281a6adce4db56cdb48f93671408751e064f2d0dc909fb7fc4",
+      "git_tracked": true,
+      "git_lf_sha256": "4bd240b1cf8e03a00b9f3d503489a82ec3ea3be0b404b6716645468d74765c6b"
+    },
+    {
+      "source": "sqlite-latest.checkpoint.json",
+      "archive": "history/sqlite-v0.4.0.checkpoint.json",
+      "sha256": "2191333fde50c528d16e8572f9f38a5cdcc207d455086262aeeaea12135b057e",
+      "git_tracked": false,
+      "git_lf_sha256": "2191333fde50c528d16e8572f9f38a5cdcc207d455086262aeeaea12135b057e"
+    },
+    {
+      "source": "sqlite-http-latest.json",
+      "archive": "history/sqlite-http-v0.4.0.json",
+      "sha256": "e09c27fce2a5c161b02431f451fd3142e5f5b5171deb315a5d89cbc80c627498",
+      "git_tracked": true,
+      "git_lf_sha256": "12874de2e562a807183a65e509b8044003763fed41f1cbe608c84862a89b7756"
+    },
+    {
+      "source": "sqlite-http-latest.html",
+      "archive": "history/sqlite-http-v0.4.0.html",
+      "sha256": "1e4489abe5f4a84e55597e96941194b2ee2f4ebe2c3c960e165279a1761a6b1b",
+      "git_tracked": true,
+      "git_lf_sha256": "9ea433ebf788d77706d4639ebb4e885e22d0f7134a60461ba2847945b14ac1cd"
+    },
+    {
+      "source": "sqlite-http-latest.checkpoint.json",
+      "archive": "history/sqlite-http-v0.4.0.checkpoint.json",
+      "sha256": "842a598c2a3da01b5eedd03855136b5b9d79a98df7cf3ed9837eec0c5157235e",
+      "git_tracked": false,
+      "git_lf_sha256": "842a598c2a3da01b5eedd03855136b5b9d79a98df7cf3ed9837eec0c5157235e"
+    }
+  ],
+  "status": "complete",
+  "scope": "fixed-protocol independent rerun; not a paired cross-version performance comparison",
+  "checks": [
+    {
+      "scenario": "sqlite",
+      "version": "0.8.0",
+      "resumed_pairs": 20,
+      "comparisons_unchanged": true,
+      "quality": {
+        "policy": "declared_negative_controls_v1",
+        "status": "no_alarm_detected",
+        "controls": [
+          {
+            "name": "unchanged_lookup",
+            "status": "no_alarm_detected"
+          }
+        ],
+        "alpha": 0.05,
+        "min_point_change_pct": 5.0,
+        "scope": "declared negative controls in the same replacement Holm family; no alarm does not prove equivalence"
+      },
+      "json_sha256": "15026c4dcd0937136b023cdda29e9335209d85febfb4c4d3e0ef26b2535eead4",
+      "html_sha256": "96da324b675188452ce9ec85bdb7fb74ef52e571d024201323e3cbc6ebfdff3b",
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "role": "candidate",
+          "effect": {
+            "mean_delta_ms": -15.07876775,
+            "ci95_delta_ms": [
+              -17.08067968125,
+              -13.173779750000001
+            ],
+            "mean_change_pct": -79.11405142468938,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.00390625,
+          "candidate_improvement": true,
+          "evidence_level": "supported_in_this_experiment"
+        },
+        {
+          "name": "unchanged_lookup",
+          "role": "negative_control",
+          "effect": {
+            "mean_delta_ms": -0.504677750000001,
+            "ci95_delta_ms": [
+              -1.8837111875000014,
+              0.9644919249999988
+            ],
+            "mean_change_pct": -2.6892692652980887,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.55859375,
+          "candidate_improvement": false,
+          "evidence_level": "below_practical_threshold"
+        }
+      ],
+      "json_git_lf_sha256": "9a1e375d5239749e67f70af4e5cce91243434468e96aa55bf3de9d592774d6cd",
+      "html_git_lf_sha256": "85d22de8167f38ed7bf36ebbf470d4c2bdc0ac6d562e14a2e7d6bb1d38b78285",
+      "per_block_output_check_mean_ms_range": [
+        0.015495,
+        0.024975
+      ]
+    },
+    {
+      "scenario": "sqlite-http",
+      "version": "0.8.0",
+      "resumed_pairs": 20,
+      "comparisons_unchanged": true,
+      "quality": {
+        "policy": "declared_negative_controls_v1",
+        "status": "no_alarm_detected",
+        "controls": [
+          {
+            "name": "unchanged_lookup",
+            "status": "no_alarm_detected"
+          }
+        ],
+        "alpha": 0.05,
+        "min_point_change_pct": 5.0,
+        "scope": "declared negative controls in the same replacement Holm family; no alarm does not prove equivalence"
+      },
+      "json_sha256": "24fa703056241b74907b3b533a0ad37c9713b96d333e3bb79bbcacf5d43f3cf8",
+      "html_sha256": "ee6e395e0ab12eb5275e809bc0b8e4acde6c082f24f2b64880e29854cb316b6d",
+      "comparisons": [
+        {
+          "name": "indexed_lookup",
+          "role": "candidate",
+          "effect": {
+            "mean_delta_ms": -3.14480075,
+            "ci95_delta_ms": [
+              -3.8799377624999996,
+              -2.392735231249999
+            ],
+            "mean_change_pct": -12.779402694525944,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.00390625,
+          "candidate_improvement": true,
+          "evidence_level": "supported_in_this_experiment"
+        },
+        {
+          "name": "unchanged_lookup",
+          "role": "negative_control",
+          "effect": {
+            "mean_delta_ms": -0.1393047499999998,
+            "ci95_delta_ms": [
+              -0.7518794937499997,
+              0.45727420624999937
+            ],
+            "mean_change_pct": -0.5580827726113124,
+            "independent_units": "randomized paired workload blocks",
+            "blocks": 10,
+            "bootstrap": {
+              "resamples": 2000,
+              "seed": 173,
+              "confidence": 0.95,
+              "interval": "percentile"
+            }
+          },
+          "holm_adjusted_p": 0.6484375,
+          "candidate_improvement": false,
+          "evidence_level": "below_practical_threshold"
+        }
+      ],
+      "json_git_lf_sha256": "a471e85d978e6ba937189342056550bee41c1604bf7434aaa21a13fc2dd22cb2",
+      "html_git_lf_sha256": "6ca66a0b9c055f4f4109eb88bd55bafba0fef3be4f9d695f2a7af4ed45489167",
+      "per_block_output_check_mean_ms_range": [
+        0.025785000000000002,
+        0.046404999999999995
+      ]
+    }
+  ],
+  "validation": {
+    "unit_integration_tests": 105,
+    "unit_integration_passed": true,
+    "windows_launcher_tests": 6,
+    "browser_checks": 87,
+    "browser_passed": true,
+    "sdk_files_unchanged_from_0_8_wheel": 17,
+    "launcher_test_scope": "actual cmd routes, environment, cwd, success/failure; GUI open and pause substituted",
+    "normalization": "sha256 records local raw bytes; git_lf_sha256 records Git canonical LF for published text",
+    "unbounded_automatic_development": "not resumed"
+  }
+}
