@@ -39,19 +39,18 @@ def main():
     args=parser.parse_args()
     if args.command=='demo':
         scenario=SCENARIOS[args.scenario]
-        settings=Settings(blocks=args.blocks if args.blocks is not None else scenario.get('default_blocks',6),requests=args.requests,concurrency=args.concurrency)
-        try:settings.validate()
-        except ValueError as exc:parser.error(str(exc))
+        blocks=args.blocks if args.blocks is not None else scenario.get('default_blocks',6)
         label=args.scenario
     elif args.command=='http':
         if not args.workload_version.strip():parser.error('HTTP comparison requires a nonempty workload version for external service code/data')
-        settings=Settings(blocks=args.blocks,requests=args.requests,concurrency=args.concurrency)
-        try:settings.validate()
-        except ValueError as exc:parser.error(str(exc))
-        label='http'
+        blocks=args.blocks;label='http'
     else:
         if not all(part.isidentifier() for part in args.module.split('.')):parser.error('Use an importable dotted Python module name')
         label=args.module
+    if args.command in ('demo','http'):
+        settings=Settings(blocks=blocks,requests=args.requests,concurrency=args.concurrency)
+        try:settings.validate()
+        except ValueError as exc:parser.error(str(exc))
     target=Path(args.output or f'D:/CodexWork/projects/awaitlab/artifacts/{label}-latest.json').resolve()
     if target.suffix.lower()!='.json':parser.error('--output must end in .json; the HTML report is generated alongside it')
     async def execute():
@@ -72,15 +71,18 @@ def main():
         else:
             sys.path.insert(0,str(Path.cwd()))
             module=importlib.import_module(args.module)
-            experiment=getattr(module,'experiment',None)
-            workload_version=getattr(module,'workload_version',None)
+            config=vars(module)
+            experiment=config.get('experiment')
+            workload_version=config.get('workload_version')
             if not isinstance(experiment,Experiment):raise ValueError('The module must export experiment = Experiment(...)')
             if not isinstance(workload_version,str) or not workload_version.strip():
                 raise ValueError('The module must export a nonempty workload_version for external data/config')
-            source_files=(module.__file__,) if getattr(module,'__file__',None) else ()
-            metadata={'scenario':'custom','title':str(getattr(module,'title',args.module)),'workload_module':args.module}
-            for field in ('transport','output_contract'):
-                if hasattr(module,field):metadata[field]=str(getattr(module,field))
+            source_files=(module.__file__,)
+            metadata={'scenario':'custom','title':args.module,'workload_module':args.module}
+            for field in ('title','transport','output_contract'):
+                if field in config:
+                    if not isinstance(config[field],str):raise ValueError(f'Optional module field {field!r} must be a string; omit it to use the default')
+                    metadata[field]=config[field]
         design=experiment.inference_design()
         if args.plan:
             plan={'settings':asdict(experiment.settings),'inference_design':design,

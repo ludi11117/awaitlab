@@ -1,0 +1,13 @@
+{
+  "version": "0.9.1",
+  "installed_sdk": "D:\\CodexWork\\temp\\awaitlab\\installed-0.9.1\\awaitlab\\__init__.py",
+  "report": "D:\\CodexWork\\temp\\awaitlab\\installed-http-url-v0.9.1.json",
+  "requests": {
+    "before": 42,
+    "after": 14
+  },
+  "resumed_pairs": 4,
+  "no_extra_requests_on_resume": true,
+  "all_outputs_equal": true,
+  "source_identity_uses_installed_http_workload": true
+}

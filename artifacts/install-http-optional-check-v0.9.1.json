@@ -1,0 +1,8 @@
+{
+  "version": "0.9.1",
+  "site_packages_disabled": true,
+  "httpx_available": false,
+  "plan_succeeds_without_httpx": true,
+  "run_rejected_with_install_hint": true,
+  "no_completed_report_written": true
+}

@@ -76,6 +76,34 @@ output_contract='id field only; other response fields outside this contract'
         self.assertIn('Checkpoint identity differs',changed.stderr)
         self.assertEqual(path.read_bytes(),original)
 
+    def test_optional_metadata_can_be_omitted(self):
+        entry=self.write_custom_module()
+        lines=entry.read_text(encoding='utf-8').splitlines()
+        entry.write_text('\n'.join(line for line in lines if not line.startswith(('title=','transport=','output_contract='))),encoding='utf-8')
+        path=self.root/'minimal.json'
+        result=self.run_cli('my_case','--output',str(path),command='run',cwd=self.root)
+        self.assertEqual(result.returncode,0,result.stderr)
+        report=json.loads(path.read_text(encoding='utf-8'))
+        self.assertEqual(report['title'],'my_case')
+        self.assertNotIn('transport',report);self.assertNotIn('output_contract',report)
+        self.assertIn(str(entry),report['run']['identity']['manifest']['sources'])
+
+    def test_bad_metadata_is_rejected_instead_of_coerced_into_report(self):
+        entry=self.write_custom_module();source=entry.read_text(encoding='utf-8')
+        path=self.root/'keep.json';path.write_text('previous complete data',encoding='utf-8')
+        html=path.with_suffix('.html');html.write_text('previous HTML',encoding='utf-8')
+        for field in ('title','transport','output_contract'):
+            for value in ('None','42'):
+                with self.subTest(field=field,value=value):
+                    entry.write_text(source+f'\n{field}={value}\n',encoding='utf-8')
+                    result=self.run_cli('my_case','--output',str(path),command='run',cwd=self.root)
+                    self.assertEqual(result.returncode,1,result.stderr)
+                    self.assertIn(f"{field!r} must be a string",result.stderr)
+                    self.assertNotIn('Traceback',result.stderr)
+                    self.assertFalse(path.with_suffix('.checkpoint.json').exists())
+                    self.assertEqual(path.read_text(encoding='utf-8'),'previous complete data')
+                    self.assertEqual(html.read_text(encoding='utf-8'),'previous HTML')
+
     def test_plan_imports_configuration_without_running_workload_or_writing_files(self):
         self.write_custom_module()
         business=self.root/'business.py'

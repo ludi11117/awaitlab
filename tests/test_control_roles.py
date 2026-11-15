@@ -111,6 +111,13 @@ class ControlRoleTests(unittest.IsolatedAsyncioTestCase):
             with self.assertRaisesRegex(ValueError,'Checkpoint identity differs'):
                 await after.run(checkpoint=path,resume=True,workload_version='role-v1')
 
+    async def test_internal_missing_role_is_not_assumed_to_be_a_candidate(self):
+        from awaitlab.experiment import assess_quality
+        report=await self.report_for()
+        del report['comparisons'][0]['role']
+        with self.assertRaisesRegex(KeyError,'role'):
+            assess_quality(report['comparisons'],.05,5)
+
     async def test_invalid_control_roles_are_rejected(self):
         for arm in [Arm('bad','replacement','sum',replacements={'sum':candidate},role='guess'),
                 Arm('bad','delay','sum',delay_ms=1,role='negative_control')]:

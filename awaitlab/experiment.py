@@ -55,7 +55,7 @@ def assess_quality(comparisons,alpha,min_change_pct):
     """
     controls=[]
     for c in comparisons:
-        if c.get('role')!='negative_control':continue
+        if c['role']!='negative_control':continue
         if not c['output_equivalence']:status='output_mismatch'
         elif not c['randomization']['exact']:status='not_assessed'
         elif abs(c['effect']['mean_change_pct'])>=min_change_pct and c['holm_adjusted_p']<alpha:
@@ -68,7 +68,7 @@ def assess_quality(comparisons,alpha,min_change_pct):
         'inconclusive' if 'not_assessed' in statuses else 'no_alarm_detected')
     for c in comparisons:
         if c['kind']=='replacement':
-            c['candidate_improvement']=(c.get('role','candidate')=='candidate' and
+            c['candidate_improvement']=(c['role']=='candidate' and
                 c['evidence_level']=='supported_in_this_experiment' and status!='warning')
     return {'policy':'declared_negative_controls_v1','status':status,'controls':controls,'alpha':alpha,'min_point_change_pct':min_change_pct,
         'scope':'declared negative controls in the same replacement Holm family; no alarm does not prove equivalence'}

@@ -127,6 +127,8 @@ python -m awaitlab run perf_case --output artifacts/perf.json
 
 `perf_case` 对应本地 perf_case.py，也可使用包内的点分模块名。模块按普通 Python 代码导入。实验设置由模块内 Settings 决定，CLI 的 blocks/requests/concurrency 参数用于 demo 子命令。可选导出 `transport` 和 `output_contract` 字符串，分别说明实际链路和核对哪些输出字段。入口模块、workload、replacement 和 SDK 已知源码会进入断点身份；配置源码变化后拒绝恢复，测量中变化也拒绝输出完成报告。外部数据与未自动覆盖的传递依赖仍需更新 workload_version。
 
+0.9.1 收紧模块配置合同：`title`、`transport`、`output_contract` 若声明就必须是字符串，不再把 `None` 或数字强转成报告文案。无需这些字段时直接省略；标题默认模块名，其余两项不补造。配置错误会在测量前说明字段名，不覆盖已有完整报告。SDK 源码变化会使旧断点身份不匹配，旧报告仍可查看，新版本请使用新输出路径开始测量。
+
 纯实现替换不运行额外定时器校准；包含等待干预的实验会测量名义等待与实际等待的偏差。以下为直接使用 Python API 的方式：
 
 ```python

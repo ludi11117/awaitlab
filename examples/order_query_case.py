@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager,closing
 import threading
 
 from awaitlab import Arm,Experiment,Settings,operation
-from awaitlab.sqlite_workload import DEFAULT_ROWS,prepare_fixture,readonly
+from awaitlab.sqlite_workload import DEFAULT_ROOT,DEFAULT_ROWS,prepare_fixture,readonly
 
 
 SELECT='SELECT id,name,balance FROM customers WHERE email=? ORDER BY id'
@@ -68,10 +68,10 @@ async def deduplicated_orders(store,orders):return await execute(store,orders,pe
 async def batched_orders(store,orders):return await execute(store,orders,batched)
 
 
-def make_workload(root=None,rows=DEFAULT_ROWS,workers=4,audit=None):
+def make_workload(root=DEFAULT_ROOT,rows=DEFAULT_ROWS,workers=4,audit=None):
     @asynccontextmanager
     async def workload():
-        fixture=await asyncio.to_thread(prepare_fixture,**({'root':root,'rows':rows} if root else {'rows':rows}))
+        fixture=await asyncio.to_thread(prepare_fixture,root,rows)
         path=fixture['paths']['indexed']
         with ThreadPoolExecutor(max_workers=workers,thread_name_prefix='awaitlab-orders') as executor:
             loop=asyncio.get_running_loop();barrier=threading.Barrier(workers,timeout=10)
