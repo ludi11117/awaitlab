@@ -1,4 +1,14 @@
-# 0.8 默认演示与Windows入口验证
+# 0.9.0 现有 HTTP 接口接入验证
+
+日期：2026-11-15。汇总见 artifacts/validation-v0.9.0.json；新报告为 artifacts/external-http-v0.9.0.json/html，默认 SQLite 报告仍是实际的 0.8 快照。
+
+- 全套 114 项单元/集成测试通过；最终非空版本标签校验改动后，9 项 HTTP 专项测试再次通过。覆盖真实 TCP、完整 JSON 与状态码不一致、接收超时、持续小块响应总超时、响应大小限制、失败不覆盖旧报告、地址摘要与断点身份。
+- 96 项浏览器检查通过，含 HTTP 来源卡、输出合同、外部缓存边界、请求轨道和手机宽度；截图为 artifacts/http-command-mobile.png。
+- 独立进程 stdlib HTTP 服务执行真实 5 万行 SQLite 查询，固定 10 配对、12 请求、4 并发、预热 4、seed 173。原接口 480 次、候选 160 次，共 640 次；方案预览与完整 20 对恢复没有增加请求，恢复前后 comparisons 相同，所有已测输出一致。原始记录见 http-command-check-v0.9.0.json；未将该场景与其他版本或服务生命周期的数字混比。
+- 0.9 wheel 的 18 个源码/资源文件与工作区逐字节一致。独立 D 盘安装环境执行 56 次真实 HTTP 请求、恢复 4 对且不增加请求，来源身份使用安装包中的 http_workload.py。禁用 site-packages 的核心 CLI 另恢复 2 对；HTTP --plan 不依赖 httpx，缺依赖时正式运行给出安装提示、不输出完成报告。详见 install-check、install-http-url-check、install-http-optional-check-v0.9.0.json。
+- 每块重建客户端与连接池，服务进程始终存活，外部缓存及状态不重置。接收超时不包含同步解码的可抢占保证，响应内容限制不是进程内存上限。人工 workload_version 不能替代外部代码/数据核实；完整响应相同只覆盖已测输入。未声明工具自动产生索引或自动加速业务。
+
+## 0.8 默认演示与Windows入口验证
 
 日期：2026-11-15。SDK测量实现未改动，仍为0.8.0。本轮记录见 artifacts/default-refresh-v0.8.0.json。
 

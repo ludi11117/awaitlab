@@ -46,6 +46,18 @@ python -m awaitlab demo --scenario sqlite-http
 
 0.6.2 则测出了实际可减少的准备成本：重复构造默认SSL上下文占约300ms，复用证书配置后，已加载配置的辅助器就绪约320ms → 13ms；应用、客户端、连接池仍逐块创建并关闭。首次构造约277ms单列。阶段图显示关闭仍约200ms，所以完整周期只从约538ms降至217ms，不能说业务请求快了96%。图和配对数据在 artifacts/http-setup-phases-v0.6.2.png 与 http-setup-v0.6.2.json。
 
+## 用自己的接口演示（0.9）
+
+已有优化前后的 GET / JSON 服务时，可以跳过 Python workload 接入：
+
+```powershell
+python -m awaitlab http --before "http://127.0.0.1:8000/old?id={id}" --after "http://127.0.0.1:8000/new?id={id}" --workload-version interview-build-1 --output artifacts/my-api.json
+```
+
+先追加 `--plan` 看固定方案，正式运行后打开同名 HTML，再追加 `--resume` 展示恢复不重复已完成请求。工具比较完整 JSON 与状态码，并将原接口与自身比较作为负面对照；不是让 AI 评价哪段代码更快。没有自己的服务时，按 README 的 `examples/http_service.py` 双终端示例操作，或直接打开 artifacts/external-http-v0.9.0.html。
+
+要主动说明：外部服务始终运行，缓存不自动重置；只测客户端响应，没有服务内部跨度。服务代码或数据变化必须更新人工版本标签。这个入口解决接入成本，算法与测量方法的讨论仍以原始数据和已有失败案例为依据。
+
 ## 简历表述草稿
 
 0.8可以展示“原实现对照也被判支持”之后怎样处理：固定4配置×8次复验，没有为消除异常改seed；计时根因未确认。确定的呈现缺陷用回放锁定，加入显式负面对照角色与质量门控。打开 artifacts/control-role-anomaly-replay-v0.8.0.html，原-7.50%和p=.0121不变，对照显示检出变化，整轮暂停候选推荐；标题注明测后角色注释、未重新测量。这个案例适合解释统计信号、对照作用和业务结论的区别，不应讲成“工具保证没有假阳性”。

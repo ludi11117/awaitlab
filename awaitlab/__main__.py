@@ -22,7 +22,17 @@ def main():
     demo.add_argument('--concurrency',type=int,default=8)
     custom=commands.add_parser('run',help='Run a local Python module exporting experiment and workload_version')
     custom.add_argument('module',help='Importable dotted Python module, e.g. examples.unique_case')
-    for command in [demo,custom]:
+    http=commands.add_parser('http',help='Compare two existing GET endpoints with complete JSON output checks')
+    http.add_argument('--before',required=True,help='Original URL; optional {id} expands to a stable request ID')
+    http.add_argument('--after',required=True,help='Candidate URL; optional {id} uses the same request IDs')
+    http.add_argument('--workload-version',required=True,help='Label both service builds and fixture; change when external code/data changes')
+    http.add_argument('--blocks',type=int,default=10)
+    http.add_argument('--requests',type=int,default=40)
+    http.add_argument('--concurrency',type=int,default=8)
+    http.add_argument('--timeout',type=float,default=10,help='Deadline in seconds to receive each complete response; synchronous JSON decoding is not preempted')
+    http.add_argument('--max-response-bytes',type=int,default=1048576,help='Decoded body limit per response (default 1 MiB), not a process-memory bound')
+    http.add_argument('--first-id',type=int,default=0)
+    for command in [demo,custom,http]:
         command.add_argument('--plan',action='store_true',help='Inspect settings and inference resolution without executing the workload; custom modules are still imported')
         command.add_argument('--output',default=None,help='JSON path ending in .json; a sibling standalone HTML is also written')
         command.add_argument('--resume',action='store_true',help='Resume completed pairs only if code/settings/workload identity match')
@@ -33,6 +43,12 @@ def main():
         try:settings.validate()
         except ValueError as exc:parser.error(str(exc))
         label=args.scenario
+    elif args.command=='http':
+        if not args.workload_version.strip():parser.error('HTTP comparison requires a nonempty workload version for external service code/data')
+        settings=Settings(blocks=args.blocks,requests=args.requests,concurrency=args.concurrency)
+        try:settings.validate()
+        except ValueError as exc:parser.error(str(exc))
+        label='http'
     else:
         if not all(part.isidentifier() for part in args.module.split('.')):parser.error('Use an importable dotted Python module name')
         label=args.module
@@ -40,7 +56,16 @@ def main():
     if target.suffix.lower()!='.json':parser.error('--output must end in .json; the HTML report is generated alongside it')
     async def execute():
         evidence=None;source_files=()
-        if args.command=='demo':
+        if args.command=='http':
+            from .http_workload import make_experiment
+            experiment,spec=make_experiment(args.before,args.after,settings,timeout=args.timeout,first_id=args.first_id,
+                max_response_bytes=args.max_response_bytes)
+            workload_version=fingerprint({'external_version':args.workload_version,'request':spec})
+            metadata={'scenario':'http','title':'现有HTTP接口：原实现与候选实现的实际对比',
+                'http_request':spec,'external_workload_version':args.workload_version,
+                'transport':'HTTPX GET / 已运行的外部服务；每块新客户端，不重启服务或清除服务缓存',
+                'output_contract':'核对HTTP状态码与完整JSON；不自动忽略时间戳、随机ID或任何字段。仅接受2xx JSON响应。'}
+        elif args.command=='demo':
             factory=scenario['factory_for'](settings) if 'factory_for' in scenario else scenario['factory']
             experiment=Experiment(factory,scenario['arms'],settings)
             metadata={'scenario':args.scenario,'title':scenario['title']}
@@ -58,10 +83,12 @@ def main():
                 if hasattr(module,field):metadata[field]=str(getattr(module,field))
         design=experiment.inference_design()
         if args.plan:
-            print(json.dumps({'settings':asdict(experiment.settings),'inference_design':design,
+            plan={'settings':asdict(experiment.settings),'inference_design':design,
                 'replacement_family':[arm.name for arm in experiment.arms if arm.kind=='replacement'],
                 'replacement_roles':{arm.name:arm.role for arm in experiment.arms if arm.kind=='replacement'},
-                'workload_executed':False,'scope':'imports custom module; does not call bundled prepare, workload, calibration, or checkpoint'},ensure_ascii=False,indent=2))
+                'workload_executed':False,'scope':'imports custom module; does not call bundled prepare, workload, calibration, or checkpoint'}
+            if args.command=='http':plan['http_request']=spec
+            print(json.dumps(plan,ensure_ascii=False,indent=2))
             return None
         if design['status']=='resolution_limited':
             minimum=design['minimum_exact_blocks']
@@ -92,6 +119,8 @@ def main():
         print(f'AwaitLab: 实验未完成：{exc}',file=sys.stderr)
         if isinstance(exc,ImportError) and getattr(args,'scenario',None)=='sqlite-http':
             print('HTTP 场景需要 fastapi、httpx、uvicorn；标准库场景可使用 --scenario sqlite。',file=sys.stderr)
+        if isinstance(exc,ImportError) and args.command=='http':
+            print('此命令需要httpx；在项目目录可用 python -m pip install ".[http]" 安装可选依赖。',file=sys.stderr)
         if target.exists():print(f'上一次完整数据未替换：{target}',file=sys.stderr)
         print(f'断点路径：{target.with_suffix(".checkpoint.json")}',file=sys.stderr)
         raise SystemExit(1)

@@ -1,0 +1,76 @@
+{
+  "version": "0.9.0",
+  "report": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\external-http-v0.9.0.json",
+  "independent_server_process": true,
+  "requests": {
+    "before": 480,
+    "after": 160
+  },
+  "expected_measurement_and_warmup_requests": 640,
+  "plan_and_resume_added_no_requests": true,
+  "resumed_pairs": 20,
+  "comparisons_unchanged": true,
+  "all_outputs_equal": true,
+  "request_spec": {
+    "method": "GET",
+    "origins": {
+      "before": "http://127.0.0.1:60486",
+      "after": "http://127.0.0.1:60486"
+    },
+    "url_sha256": {
+      "before": "b8398b84576b1bf24ba385df3fb6692aaa1641586c8a1c2c9b7002874a27bcec",
+      "after": "1c7c3615f7e35a8c83bc55252bb6c11e866a1e2f3248a753bd1f024d754e7101"
+    },
+    "id_template": {
+      "before": true,
+      "after": true
+    },
+    "receive_deadline_seconds": 10,
+    "max_response_bytes": 1048576,
+    "first_id": 0,
+    "ids_per_block": 12,
+    "warmup": "reuse IDs from the measured range",
+    "dependency_versions": {
+      "httpx": "0.28.1",
+      "httpcore": "1.0.9",
+      "anyio": "4.15.1",
+      "h11": "0.16.0",
+      "certifi": "2026.7.22"
+    },
+    "boundary": "fresh client and connection pool per block; external service state/caches are not reset",
+    "timing": "client response, JSON decoding and tracing; not server-internal timing"
+  },
+  "quality": {
+    "policy": "declared_negative_controls_v1",
+    "status": "no_alarm_detected",
+    "controls": [
+      {
+        "name": "http_control",
+        "status": "no_alarm_detected"
+      }
+    ],
+    "alpha": 0.05,
+    "min_point_change_pct": 5.0,
+    "scope": "declared negative controls in the same replacement Holm family; no alarm does not prove equivalence"
+  },
+  "fixture": {
+    "fixture_version": "sqlite-v1",
+    "rows": 50000,
+    "logical_data_sha256": "21b308f260c40f30a09bf79d10eabe2c520d53bc18f1ff5e4d6210ffadeb746b",
+    "files": {
+      "unindexed": {
+        "sha256": "dc0c26e83543cd0a68829a6173009c1764cdc5c8f911746789c7924c616aa13a",
+        "bytes": 2531328
+      },
+      "indexed": {
+        "sha256": "6f1dfc173e98fba561b104b1312f58be27bdc90785ffaf2d577d90024d013e84",
+        "bytes": 4108288
+      }
+    }
+  },
+  "limits": [
+    "server stays alive across blocks; its caches are not reset",
+    "SQLite uses short read-only connections; persistent service threads differ from managed per-block executors",
+    "no server-internal trace or general internet latency claim"
+  ]
+}
