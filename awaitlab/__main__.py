@@ -60,12 +60,13 @@ def main():
         if args.plan:
             print(json.dumps({'settings':asdict(experiment.settings),'inference_design':design,
                 'replacement_family':[arm.name for arm in experiment.arms if arm.kind=='replacement'],
+                'replacement_roles':{arm.name:arm.role for arm in experiment.arms if arm.kind=='replacement'},
                 'workload_executed':False,'scope':'imports custom module; does not call bundled prepare, workload, calibration, or checkpoint'},ensure_ascii=False,indent=2))
             return None
         if design['status']=='resolution_limited':
             minimum=design['minimum_exact_blocks']
             extra=f'同一预定比较组至少需{minimum}批次才具备理论分辨率；' if minimum else '当前精确检验范围内没有可行批次数；'
-            print(f'AwaitLab: 检验分辨率不足：{design["blocks"]}配对批次、{design["replacement_family_size"]}个替换候选的最佳Holm p={design["holm_p_floor"]:g}，规则要求p < {design["alpha"]:g}。{extra}增加每批请求数不能消除该限制。这不是功效保证，请在新实验前固定方案，勿补样直到显著。',file=sys.stderr,flush=True)
+            print(f'AwaitLab: 检验分辨率不足：{design["blocks"]}配对批次、{design["replacement_family_size"]}个替换比较的最佳Holm p={design["holm_p_floor"]:g}，规则要求p < {design["alpha"]:g}。{extra}增加每批请求数不能消除该限制。这不是功效保证，请在新实验前固定方案，勿补样直到显著。',file=sys.stderr,flush=True)
         elif design['status']=='approximate_only':
             print(f'AwaitLab: 当前{design["blocks"]}批次超过精确枚举上限{design["exact_max_blocks"]}；近似p仍报告，本版本不会自动标为支持。请在新实验前确定统计方案，勿从已测数据截取较少批次。',file=sys.stderr,flush=True)
         if args.command=='demo':
@@ -104,8 +105,11 @@ def main():
         print(f'AwaitLab: 测量已完成，但保存报告失败：{exc}',file=sys.stderr)
         print(f'请检查输出路径与权限：{target}；完整配对仍在断点中。',file=sys.stderr)
         raise SystemExit(1)
+    if report['quality']['status']=='warning':
+        print('AwaitLab: 负面对照出现变化或输出不一致，本轮暂停推荐候选收益；请检查实验条件并独立复验。原始效应与p值保留。',file=sys.stderr)
     for c in report['comparisons']:
-        print(f'{c["name"]}: {c["effect"]["mean_change_pct"]:+.1f}% mean latency; equal outputs={c["output_equivalence"]}')
+        control_note=f'; negative_control={c["control_status"]}' if c['role']=='negative_control' else ''
+        print(f'{c["name"]}: {c["effect"]["mean_change_pct"]:+.1f}% mean latency; equal outputs={c["output_equivalence"]}{control_note}')
     print(f'Report: {target}')
     print(f'Interactive report: {html_target}')
 

@@ -138,4 +138,4 @@ async def evidence():
 
 
 ARMS=[Arm('indexed_lookup','replacement','customer.lookup',replacements={'customer.lookup':indexed_lookup}),
-      Arm('unchanged_lookup','replacement','customer.lookup',replacements={'customer.lookup':unchanged_lookup})]
+      Arm('unchanged_lookup','replacement','customer.lookup',replacements={'customer.lookup':unchanged_lookup},role='negative_control')]

@@ -25,6 +25,7 @@ plan=json.loads(preview.stdout)
 assert plan['workload_executed'] is False and not plan_target.parent.exists()
 assert plan['inference_design']['replacement_family_size']==3
 assert plan['inference_design']['status']=='resolution_limited'
+assert set(plan['replacement_roles'].values())=={'candidate'}
 subprocess.run(command,cwd=folder,capture_output=True,encoding='utf-8',check=True)
 before=json.loads(target.read_text(encoding='utf-8'))
 subprocess.run(command+['--resume'],cwd=folder,capture_output=True,encoding='utf-8',check=True)
@@ -44,6 +45,7 @@ from replacement_reach import probe,scope_probe
 from awaitlab import Experiment
 from awaitlab import trace
 from awaitlab.statistics import paired_randomization
+from awaitlab.experiment import assess_quality
 async def check():
     observed={mode:await probe(Experiment,mode) for mode in
         ['unreached','warmup_only','observational_span','cleanup_only']}
@@ -57,8 +59,15 @@ assert large['exact'] and large['assignments']==2**32 and large['extreme_assignm
 assert large['algorithm']=='meet_in_middle_integer'
 approximate=paired_randomization([10]*33,[5]*33,seed=519,draws=200)
 assert not approximate['exact'] and approximate['pvalue']>=1/201
+captured=json.loads((ROOT/'artifacts/extended-exact-v0.7.0.json').read_text(encoding='utf-8'))
+for c in captured['comparisons']:c['role']='negative_control' if c['name']=='unchanged' else 'candidate'
+original_p=[c['holm_adjusted_p'] for c in captured['comparisons']]
+quality=assess_quality(captured['comparisons'],.05,5)
+assert quality['status']=='warning' and not any(c['candidate_improvement'] for c in captured['comparisons'])
+assert [c['holm_adjusted_p'] for c in captured['comparisons']]==original_p
 assert f'installed-{version}' in trace.__file__
 result={'version':version,'installed_path':awaitlab.__file__,'site_packages_disabled':True,
+    'control_role_replay':{'quality':quality,'pvalues_unchanged':True,'candidate_recommendations_withheld':True},
     '32_block_exact':large,'33_block_approximate':approximate,
     'preflight_plan':plan,'plan_matches_report':True,'plan_created_no_output_directory':True,
     'resumed_pairs':6,'comparisons_unchanged':True,'all_outputs_equal':True,

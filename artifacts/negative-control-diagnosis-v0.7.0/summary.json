@@ -1,0 +1,649 @@
+{
+  "plan": {
+    "sdk_version": "0.7.0",
+    "sdk_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.7.0\\awaitlab\\__init__.py",
+    "packaged_files": 17,
+    "wheel_sha256": "26d582f1cb3f21893e0511eb11fb6fbb2088cf7d9d81d11ef372043de36846ef",
+    "driver_sha256": "c9091f5411f24602ea31771e56856650cc14b4c33d080c7d60902041f8803f21",
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "configs": {
+      "short": {
+        "size": 5000,
+        "warmup": 1,
+        "trace_requests": 2
+      },
+      "long": {
+        "size": 500000,
+        "warmup": 1,
+        "trace_requests": 2
+      },
+      "warmup50": {
+        "size": 5000,
+        "warmup": 50,
+        "trace_requests": 2
+      },
+      "unsampled": {
+        "size": 5000,
+        "warmup": 1,
+        "trace_requests": 0
+      }
+    },
+    "repeats_per_config": 8,
+    "experiment_settings": {
+      "blocks": 24,
+      "requests": 8,
+      "concurrency": 1,
+      "seed": 173
+    },
+    "schedule_seed": 9137,
+    "schedule": [
+      {
+        "repeat": 0,
+        "config": "long"
+      },
+      {
+        "repeat": 0,
+        "config": "short"
+      },
+      {
+        "repeat": 0,
+        "config": "warmup50"
+      },
+      {
+        "repeat": 0,
+        "config": "unsampled"
+      },
+      {
+        "repeat": 1,
+        "config": "short"
+      },
+      {
+        "repeat": 1,
+        "config": "long"
+      },
+      {
+        "repeat": 1,
+        "config": "unsampled"
+      },
+      {
+        "repeat": 1,
+        "config": "warmup50"
+      },
+      {
+        "repeat": 2,
+        "config": "warmup50"
+      },
+      {
+        "repeat": 2,
+        "config": "long"
+      },
+      {
+        "repeat": 2,
+        "config": "short"
+      },
+      {
+        "repeat": 2,
+        "config": "unsampled"
+      },
+      {
+        "repeat": 3,
+        "config": "short"
+      },
+      {
+        "repeat": 3,
+        "config": "long"
+      },
+      {
+        "repeat": 3,
+        "config": "warmup50"
+      },
+      {
+        "repeat": 3,
+        "config": "unsampled"
+      },
+      {
+        "repeat": 4,
+        "config": "long"
+      },
+      {
+        "repeat": 4,
+        "config": "short"
+      },
+      {
+        "repeat": 4,
+        "config": "warmup50"
+      },
+      {
+        "repeat": 4,
+        "config": "unsampled"
+      },
+      {
+        "repeat": 5,
+        "config": "warmup50"
+      },
+      {
+        "repeat": 5,
+        "config": "long"
+      },
+      {
+        "repeat": 5,
+        "config": "unsampled"
+      },
+      {
+        "repeat": 5,
+        "config": "short"
+      },
+      {
+        "repeat": 6,
+        "config": "warmup50"
+      },
+      {
+        "repeat": 6,
+        "config": "unsampled"
+      },
+      {
+        "repeat": 6,
+        "config": "short"
+      },
+      {
+        "repeat": 6,
+        "config": "long"
+      },
+      {
+        "repeat": 7,
+        "config": "unsampled"
+      },
+      {
+        "repeat": 7,
+        "config": "warmup50"
+      },
+      {
+        "repeat": 7,
+        "config": "short"
+      },
+      {
+        "repeat": 7,
+        "config": "long"
+      }
+    ],
+    "diagnostic_family_size": 32,
+    "diagnostic_rule": "Holm over all 32 unchanged-arm raw p-values; alarm if p < .05 and abs(point change) >= 5%",
+    "limits": [
+      "follow-up exploratory diagnosis, not replication of the old machine state",
+      "all results retained; no seed search or extension until significance",
+      "interventions change one setting relative to short, not all order/environment effects",
+      "diagnostic family is separate from each run replacement family",
+      "global Python/OS caches and background load are not reset"
+    ]
+  },
+  "rows": [
+    {
+      "config": "long",
+      "repeat": 0,
+      "report": "long-01.json",
+      "control_mean_ms": 4.099745833333333,
+      "treatment_mean_ms": 4.233401041666666,
+      "change_pct": 3.2600852288607207,
+      "raw_p": 0.2302640676498413,
+      "within_run_holm_p": 0.2302640676498413,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "short",
+      "repeat": 0,
+      "report": "short-01.json",
+      "control_mean_ms": 0.050681250000000004,
+      "treatment_mean_ms": 0.05029947916666667,
+      "change_pct": -0.753278250503564,
+      "raw_p": 0.8351080417633057,
+      "within_run_holm_p": 0.8351080417633057,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "warmup50",
+      "repeat": 0,
+      "report": "warmup50-01.json",
+      "control_mean_ms": 0.05764270833333333,
+      "treatment_mean_ms": 0.05446927083333333,
+      "change_pct": -5.505358078681521,
+      "raw_p": 0.44836902618408203,
+      "within_run_holm_p": 0.44836902618408203,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "unsampled",
+      "repeat": 0,
+      "report": "unsampled-01.json",
+      "control_mean_ms": 0.05575885416666667,
+      "treatment_mean_ms": 0.05453802083333333,
+      "change_pct": -2.189487842924809,
+      "raw_p": 0.7518779039382935,
+      "within_run_holm_p": 0.7518779039382935,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "short",
+      "repeat": 1,
+      "report": "short-02.json",
+      "control_mean_ms": 0.05166354166666667,
+      "treatment_mean_ms": 0.051406249999999994,
+      "change_pct": -0.49801399278183167,
+      "raw_p": 0.8596768379211426,
+      "within_run_holm_p": 0.8596768379211426,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "long",
+      "repeat": 1,
+      "report": "long-02.json",
+      "control_mean_ms": 4.615980208333333,
+      "treatment_mean_ms": 4.5140078125,
+      "change_pct": -2.2091168339335665,
+      "raw_p": 0.45210957527160645,
+      "within_run_holm_p": 0.45210957527160645,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "unsampled",
+      "repeat": 1,
+      "report": "unsampled-02.json",
+      "control_mean_ms": 0.0608234375,
+      "treatment_mean_ms": 0.059753645833333334,
+      "change_pct": -1.758847757768811,
+      "raw_p": 0.7475898265838623,
+      "within_run_holm_p": 0.7475898265838623,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "warmup50",
+      "repeat": 1,
+      "report": "warmup50-02.json",
+      "control_mean_ms": 0.055140625,
+      "treatment_mean_ms": 0.054266145833333335,
+      "change_pct": -1.5859072447341083,
+      "raw_p": 0.7626973390579224,
+      "within_run_holm_p": 0.7626973390579224,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "warmup50",
+      "repeat": 2,
+      "report": "warmup50-03.json",
+      "control_mean_ms": 0.053453125,
+      "treatment_mean_ms": 0.051690625,
+      "change_pct": -3.2972814966384156,
+      "raw_p": 0.5744098424911499,
+      "within_run_holm_p": 0.5744098424911499,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "long",
+      "repeat": 2,
+      "report": "long-03.json",
+      "control_mean_ms": 4.679070833333333,
+      "treatment_mean_ms": 4.6391171875,
+      "change_pct": -0.8538799102742023,
+      "raw_p": 0.7563169002532959,
+      "within_run_holm_p": 0.7563169002532959,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "short",
+      "repeat": 2,
+      "report": "short-03.json",
+      "control_mean_ms": 0.06053385416666667,
+      "treatment_mean_ms": 0.060208854166666666,
+      "change_pct": -0.5368896536889767,
+      "raw_p": 0.8569831848144531,
+      "within_run_holm_p": 0.8569831848144531,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "unsampled",
+      "repeat": 2,
+      "report": "unsampled-03.json",
+      "control_mean_ms": 0.068525,
+      "treatment_mean_ms": 0.06287760416666667,
+      "change_pct": -8.241365681624712,
+      "raw_p": 0.12012314796447754,
+      "within_run_holm_p": 0.12012314796447754,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "short",
+      "repeat": 3,
+      "report": "short-04.json",
+      "control_mean_ms": 0.07148489583333333,
+      "treatment_mean_ms": 0.07081666666666667,
+      "change_pct": -0.9347837174228157,
+      "raw_p": 0.5642637014389038,
+      "within_run_holm_p": 0.5642637014389038,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "long",
+      "repeat": 3,
+      "report": "long-04.json",
+      "control_mean_ms": 4.8051828125,
+      "treatment_mean_ms": 4.809179166666667,
+      "change_pct": 0.08316757806321462,
+      "raw_p": 0.983106255531311,
+      "within_run_holm_p": 0.983106255531311,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "warmup50",
+      "repeat": 3,
+      "report": "warmup50-04.json",
+      "control_mean_ms": 0.052039583333333334,
+      "treatment_mean_ms": 0.051375520833333334,
+      "change_pct": -1.2760719003963361,
+      "raw_p": 0.7203713655471802,
+      "within_run_holm_p": 0.7203713655471802,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "unsampled",
+      "repeat": 3,
+      "report": "unsampled-04.json",
+      "control_mean_ms": 0.05056041666666666,
+      "treatment_mean_ms": 0.05123072916666666,
+      "change_pct": 1.3257653797025037,
+      "raw_p": 0.7543163299560547,
+      "within_run_holm_p": 0.7543163299560547,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "long",
+      "repeat": 4,
+      "report": "long-05.json",
+      "control_mean_ms": 4.6004625,
+      "treatment_mean_ms": 4.753272395833333,
+      "change_pct": 3.321620289988969,
+      "raw_p": 0.3497788906097412,
+      "within_run_holm_p": 0.3497788906097412,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "short",
+      "repeat": 4,
+      "report": "short-05.json",
+      "control_mean_ms": 0.0680296875,
+      "treatment_mean_ms": 0.07094114583333333,
+      "change_pct": 4.279687942610821,
+      "raw_p": 0.36650514602661133,
+      "within_run_holm_p": 0.36650514602661133,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "warmup50",
+      "repeat": 4,
+      "report": "warmup50-05.json",
+      "control_mean_ms": 0.0536375,
+      "treatment_mean_ms": 0.05641770833333334,
+      "change_pct": 5.1833294492348525,
+      "raw_p": 0.3322300910949707,
+      "within_run_holm_p": 0.3322300910949707,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "unsampled",
+      "repeat": 4,
+      "report": "unsampled-05.json",
+      "control_mean_ms": 0.05061354166666667,
+      "treatment_mean_ms": 0.052553125,
+      "change_pct": 3.8321430776513177,
+      "raw_p": 0.41222524642944336,
+      "within_run_holm_p": 0.41222524642944336,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "warmup50",
+      "repeat": 5,
+      "report": "warmup50-06.json",
+      "control_mean_ms": 0.056933854166666666,
+      "treatment_mean_ms": 0.06039166666666667,
+      "change_pct": 6.073385599151071,
+      "raw_p": 0.07012808322906494,
+      "within_run_holm_p": 0.07012808322906494,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "long",
+      "repeat": 5,
+      "report": "long-06.json",
+      "control_mean_ms": 4.7644026041666665,
+      "treatment_mean_ms": 4.982856770833333,
+      "change_pct": 4.585132383136958,
+      "raw_p": 0.05712318420410156,
+      "within_run_holm_p": 0.05712318420410156,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "unsampled",
+      "repeat": 5,
+      "report": "unsampled-06.json",
+      "control_mean_ms": 0.06604479166666667,
+      "treatment_mean_ms": 0.06793125,
+      "change_pct": 2.8563317193192717,
+      "raw_p": 0.3112976551055908,
+      "within_run_holm_p": 0.3112976551055908,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "short",
+      "repeat": 5,
+      "report": "short-06.json",
+      "control_mean_ms": 0.06336875,
+      "treatment_mean_ms": 0.05867916666666667,
+      "change_pct": -7.400466844198961,
+      "raw_p": 0.053341031074523926,
+      "within_run_holm_p": 0.053341031074523926,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "warmup50",
+      "repeat": 6,
+      "report": "warmup50-07.json",
+      "control_mean_ms": 0.055072395833333336,
+      "treatment_mean_ms": 0.05705572916666667,
+      "change_pct": 3.601320231891747,
+      "raw_p": 0.5540684461593628,
+      "within_run_holm_p": 0.5540684461593628,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "unsampled",
+      "repeat": 6,
+      "report": "unsampled-07.json",
+      "control_mean_ms": 0.04880416666666667,
+      "treatment_mean_ms": 0.0480921875,
+      "change_pct": -1.4588491419790017,
+      "raw_p": 0.17736196517944336,
+      "within_run_holm_p": 0.17736196517944336,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "short",
+      "repeat": 6,
+      "report": "short-07.json",
+      "control_mean_ms": 0.05203229166666667,
+      "treatment_mean_ms": 0.051869270833333335,
+      "change_pct": -0.3133070409000793,
+      "raw_p": 0.9366370439529419,
+      "within_run_holm_p": 0.9366370439529419,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "long",
+      "repeat": 6,
+      "report": "long-07.json",
+      "control_mean_ms": 4.456500520833333,
+      "treatment_mean_ms": 4.35480625,
+      "change_pct": -2.2819310882592814,
+      "raw_p": 0.34404802322387695,
+      "within_run_holm_p": 0.34404802322387695,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "unsampled",
+      "repeat": 7,
+      "report": "unsampled-08.json",
+      "control_mean_ms": 0.060825520833333334,
+      "treatment_mean_ms": 0.061545833333333334,
+      "change_pct": 1.1842274264674435,
+      "raw_p": 0.7689222097396851,
+      "within_run_holm_p": 0.7689222097396851,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "warmup50",
+      "repeat": 7,
+      "report": "warmup50-08.json",
+      "control_mean_ms": 0.05295104166666667,
+      "treatment_mean_ms": 0.052991145833333336,
+      "change_pct": 0.07573820156197009,
+      "raw_p": 0.9871289730072021,
+      "within_run_holm_p": 0.9871289730072021,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "short",
+      "repeat": 7,
+      "report": "short-08.json",
+      "control_mean_ms": 0.04973541666666667,
+      "treatment_mean_ms": 0.0502203125,
+      "change_pct": 0.9749507812172764,
+      "raw_p": 0.6900068521499634,
+      "within_run_holm_p": 0.6900068521499634,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    },
+    {
+      "config": "long",
+      "repeat": 7,
+      "report": "long-08.json",
+      "control_mean_ms": 4.634821875,
+      "treatment_mean_ms": 4.797174479166666,
+      "change_pct": 3.5028876739015224,
+      "raw_p": 0.4048147201538086,
+      "within_run_holm_p": 0.4048147201538086,
+      "within_run_supported": false,
+      "outputs_equal": true,
+      "diagnostic_global_holm_p": 1.0,
+      "diagnostic_alarm": false
+    }
+  ],
+  "all_outputs_equal": true,
+  "counts": {
+    "short": {
+      "within_run_supported": 0,
+      "diagnostic_alarms": 0
+    },
+    "long": {
+      "within_run_supported": 0,
+      "diagnostic_alarms": 0
+    },
+    "warmup50": {
+      "within_run_supported": 0,
+      "diagnostic_alarms": 0
+    },
+    "unsampled": {
+      "within_run_supported": 0,
+      "diagnostic_alarms": 0
+    }
+  }
+}

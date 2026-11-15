@@ -1,0 +1,59 @@
+{
+  "policy_sdk_version": "0.8.0",
+  "cases": [
+    {
+      "source": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\extended-exact-v0.7.0.json",
+      "output": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\control-role-anomaly-replay-v0.8.0.json",
+      "quality": {
+        "policy": "declared_negative_controls_v1",
+        "status": "warning",
+        "controls": [
+          {
+            "name": "unchanged",
+            "status": "change_detected"
+          }
+        ],
+        "alpha": 0.05,
+        "min_point_change_pct": 5.0,
+        "scope": "declared negative controls in the same replacement Holm family; no alarm does not prove equivalence"
+      },
+      "original_candidate_flags": {
+        "formula": true,
+        "unchanged": true
+      },
+      "replayed_candidate_flags": {
+        "formula": false,
+        "unchanged": false
+      },
+      "measured_fields_unchanged": true,
+      "new_measurements": false
+    },
+    {
+      "source": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\negative-control-diagnosis-v0.7.0\\short-01.json",
+      "output": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\control-role-no-alarm-replay-v0.8.0.json",
+      "quality": {
+        "policy": "declared_negative_controls_v1",
+        "status": "no_alarm_detected",
+        "controls": [
+          {
+            "name": "unchanged",
+            "status": "no_alarm_detected"
+          }
+        ],
+        "alpha": 0.05,
+        "min_point_change_pct": 5.0,
+        "scope": "declared negative controls in the same replacement Holm family; no alarm does not prove equivalence"
+      },
+      "original_candidate_flags": {
+        "formula": true,
+        "unchanged": false
+      },
+      "replayed_candidate_flags": {
+        "formula": true,
+        "unchanged": false
+      },
+      "measured_fields_unchanged": true,
+      "new_measurements": false
+    }
+  ]
+}

@@ -20,6 +20,7 @@ class Arm:
     site: str
     delay_ms: float = 0
     replacements: dict = field(default_factory=dict)
+    role: str = 'candidate'  # candidate | negative_control
 
 
 @dataclass(frozen=True)
@@ -46,6 +47,33 @@ def fingerprint(value):
     return hashlib.sha256(raw.encode()).hexdigest()
 
 
+def assess_quality(comparisons,alpha,min_change_pct):
+    """Interpret declared controls without changing measured effects or p-values.
+
+    No alarm is not an equivalence test. A declared control's large exact
+    two-sided change or output mismatch withholds candidate recommendations.
+    """
+    controls=[]
+    for c in comparisons:
+        if c.get('role')!='negative_control':continue
+        if not c['output_equivalence']:status='output_mismatch'
+        elif not c['randomization']['exact']:status='not_assessed'
+        elif abs(c['effect']['mean_change_pct'])>=min_change_pct and c['holm_adjusted_p']<alpha:
+            status='change_detected'
+        else:status='no_alarm_detected'
+        c['control_status']=status
+        controls.append({'name':c['name'],'status':status})
+    statuses={c['status'] for c in controls}
+    status=('not_checked' if not controls else 'warning' if statuses&{'change_detected','output_mismatch'} else
+        'inconclusive' if 'not_assessed' in statuses else 'no_alarm_detected')
+    for c in comparisons:
+        if c['kind']=='replacement':
+            c['candidate_improvement']=(c.get('role','candidate')=='candidate' and
+                c['evidence_level']=='supported_in_this_experiment' and status!='warning')
+    return {'policy':'declared_negative_controls_v1','status':status,'controls':controls,'alpha':alpha,'min_point_change_pct':min_change_pct,
+        'scope':'declared negative controls in the same replacement Holm family; no alarm does not prove equivalence'}
+
+
 class Experiment:
     def __init__(self, workload, arms, settings=None):
         """workload() is a fresh async context manager yielding handler(request_id)."""
@@ -56,6 +84,8 @@ class Experiment:
         if len(set(names))!=len(names) or 'control' in names:
             raise ValueError('Arm names must be unique; control is reserved')
         for arm in self.arms:
+            if arm.role not in ('candidate','negative_control') or (arm.role=='negative_control' and arm.kind!='replacement'):
+                raise ValueError('Arm role must be candidate or a replacement negative_control')
             if arm.kind not in ('delay','replacement') or (arm.kind=='delay' and (not math.isfinite(arm.delay_ms) or arm.delay_ms<=0)):
                 raise ValueError('Use positive cooperative delay or actual replacement arms')
             if arm.kind=='replacement' and arm.site not in arm.replacements:
@@ -194,7 +224,7 @@ class Experiment:
             treatments=[p['treatment']['latency']['mean_ms'] for p in samples]
             effect=paired_effect(controls,treatments,self.settings.seed)
             equivalent=all(p['outputs_equal'] for p in samples)
-            comparison={'name':arm.name,'kind':arm.kind,'site':arm.site,'delay_ms':arm.delay_ms,
+            comparison={'name':arm.name,'kind':arm.kind,'role':arm.role,'site':arm.site,'delay_ms':arm.delay_ms,
                 'control_mean_ms':statistics.fmean(controls),'treatment_mean_ms':statistics.fmean(treatments),
                 'output_equivalence':equivalent,'effect':effect,
                 'descriptive_p95_change_pct':100*(statistics.fmean(p['treatment']['latency']['p95_ms'] for p in samples)/
@@ -219,8 +249,9 @@ class Experiment:
             c['holm_adjusted_p']=adjusted[c['name']]
             c['evidence_level']=evidence_level(c['output_equivalence'],c['effect']['mean_change_pct'],
                 c['holm_adjusted_p'],c['randomization']['exact'],self.settings.alpha,self.settings.min_gain_pct)
-            c['candidate_improvement']=c['evidence_level']=='supported_in_this_experiment'
+        quality=assess_quality(comparisons,self.settings.alpha,self.settings.min_gain_pct)
         return {'schema_version':4,'library_version':__version__,'settings':asdict(self.settings),'comparisons':comparisons,
+            'quality':quality,
             'inference_design':self.inference_design(),
             'measurement_basis':{'latency':'handler await including request trace; excludes its own output check',
                 'worker_cycle':'handler plus synchronous output check, excluding the outer worker scheduling loop',

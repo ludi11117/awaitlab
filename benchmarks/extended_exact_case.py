@@ -4,7 +4,7 @@ from benchmarks.inference_resolution import workload,formula,total
 
 experiment=Experiment(workload,[
     Arm('formula','replacement','sum',replacements={'sum':formula}),
-    Arm('unchanged','replacement','sum',replacements={'sum':total.__wrapped__})],
+    Arm('unchanged','replacement','sum',replacements={'sum':total.__wrapped__},role='negative_control')],
     Settings(blocks=24,requests=8,concurrency=1,warmup=1))
 workload_version='integer-sum-extended-exact-v1-fixed-24-pairs'
 title='预先固定24配对：真实求和替换与分治精确检验'

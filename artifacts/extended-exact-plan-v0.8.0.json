@@ -1,0 +1,36 @@
+{
+  "settings": {
+    "blocks": 24,
+    "requests": 8,
+    "concurrency": 1,
+    "warmup": 1,
+    "seed": 173,
+    "trace_requests": 2,
+    "max_records": 4096,
+    "min_gain_pct": 5.0,
+    "alpha": 0.05
+  },
+  "inference_design": {
+    "status": "feasible",
+    "blocks": 24,
+    "replacement_family_size": 2,
+    "alpha": 0.05,
+    "exact_max_blocks": 32,
+    "raw_p_floor": 1.1920928955078125e-07,
+    "holm_p_floor": 2.384185791015625e-07,
+    "minimum_exact_blocks": 7,
+    "support_possible": true,
+    "rule": "adjusted_p < alpha; exact test required; output and point-gain gates still apply",
+    "scope": "best-case resolution only, not statistical power or a promise of support"
+  },
+  "replacement_family": [
+    "formula",
+    "unchanged"
+  ],
+  "replacement_roles": {
+    "formula": "candidate",
+    "unchanged": "negative_control"
+  },
+  "workload_executed": false,
+  "scope": "imports custom module; does not call bundled prepare, workload, calibration, or checkpoint"
+}

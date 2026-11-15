@@ -88,6 +88,7 @@ output_contract='id field only; other response fields outside this contract'
         plan=json.loads(result.stdout)
         self.assertFalse(plan['workload_executed'])
         self.assertEqual(plan['replacement_family'],['candidate'])
+        self.assertEqual(plan['replacement_roles'],{'candidate':'candidate'})
         self.assertEqual(plan['inference_design']['minimum_exact_blocks'],6)
         self.assertEqual(plan['inference_design']['status'],'resolution_limited')
         self.assertFalse(path.parent.exists())

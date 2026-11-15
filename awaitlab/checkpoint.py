@@ -22,7 +22,7 @@ def identity(workload,arms,settings,workload_version,source_files=()):
         if source:paths.add(Path(source).resolve())
     sources={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}
     manifest={'checkpoint_schema':1,'workload_version':workload_version,'settings':settings,
-        'arms':[{'name':a.name,'kind':a.kind,'site':a.site,'delay_ms':a.delay_ms,
+        'arms':[{'name':a.name,'kind':a.kind,'role':a.role,'site':a.site,'delay_ms':a.delay_ms,
                  'replacement_names':{k:f'{v.__module__}.{v.__qualname__}' for k,v in a.replacements.items()}} for a in arms],
         'sources':sources,'python':platform.python_version(),'platform':platform.platform()}
     return {'digest':digest(manifest),'manifest':manifest}
