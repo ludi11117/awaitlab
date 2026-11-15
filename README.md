@@ -8,7 +8,7 @@
 
 求职或复试现场演示见 [DEMO.zh-CN.md](DEMO.zh-CN.md)，包括五分钟操作、技术要点与可核对的简历表述。
 
-## 审查过度防御代码（0.13）
+## 审查过度防御代码（0.14）
 
 这是面向使用者的新功能：扫描自己的 Python 项目，查看代码位置、路径依据和修改建议，生成可复核的补丁。仅使用标准库，不导入或执行扫描目标，不需要模型 API。先看自带示例：
 
@@ -64,7 +64,21 @@ def optional_plugin(loader):
 
 支持 `ALD001`、`ALD002`，多个编号用逗号分隔。理由不可为空，未知编号或错误格式会作为扫描错误返回 2；字符串里的相同文字不能充当指令。忽略只作用于该行实际命中的规则，不会传播到后续行，也不会生成该项补丁。JSON与HTML仍保留被忽略的诊断和理由，**忽略不等于已修复**。
 
-本次 [整仓实测](artifacts/self-audit-v0.13.0.html) 排除3个刻意的问题样例后，扫描82个Python文件，没有触发当前两类规则；不代表完整代码质量证明。策略验收在D盘临时项目中验证目录剪枝、带理由保留及补丁应用，见 [audit-policy-check-v0.13.0.json](artifacts/audit-policy-check-v0.13.0.json)。复跑用 `python benchmarks/audit_policy_check.py`。
+0.13时的 [整仓实测](artifacts/self-audit-v0.13.0.html) 排除3个刻意的问题样例后，扫描82个Python文件，没有触发当前两类规则；不代表完整代码质量证明。策略验收在D盘临时项目中验证目录剪枝、带理由保留及补丁应用，见 [audit-policy-check-v0.13.0.json](artifacts/audit-policy-check-v0.13.0.json)。复跑用 `python benchmarks/audit_policy_check.py`。
+
+### 多处候选修改的验证成本
+
+0.14先验证整批非重叠修改，整批失败才回到逐项验证，不删除语法、文档字符串或独立补丁保留检查。固定构造负载中，每个文件的候选修改数与三对测量的描述性中位数如下：
+
+| 候选修改数 | 冻结0.13源码 | 0.14 |
+| --- | ---: | ---: |
+| 20 | 24.66 ms | 5.54 ms |
+| 100 | 600.35 ms | 56.07 ms |
+| 200 | 2837.85 ms | 204.66 ms |
+
+这是本机扫描构造文件的成本，不是业务接口加速或跨机器保证。200处负载约少用92.8%时间；只做3对计时，没有性能显著性结论，也未消除所有其他扫描开销。含拒绝项时还需逐项验证，单次小探针从2.85变3.78ms，这个成本保留在记录中。
+
+新旧结果在87个当前Git列出的Python文件、12条诊断及所生成源码上完全一致；该有限语料不构成全域等价证明。记录与固定基线SHA见 [audit-validation-cost-v0.14.0.json](artifacts/audit-validation-cost-v0.14.0.json) 和 [audit-validation-equivalence-v0.14.0.json](artifacts/audit-validation-equivalence-v0.14.0.json)。复跑命令是 `python benchmarks/audit_validation_cost.py`，等价核对另用 `--corpus`；`--gate-ms 1000` 只是本机回归探针，不加入跨机器单元测试。
 
 分析限局部语法模型：在赋值、调用、await 和其他不支持的语句处丢弃已知事实，不推断跨函数、全局变量、动态反射或业务必要性。and 为假不表示每项都为假；or 为真不表示每项都为真，合流只保留所有可达路径共有的事实。`value is True` 与 `if value` 或 `value == True` 不混用，不假设用户对象的真值/相等方法没有副作用。
 

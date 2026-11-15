@@ -1,0 +1,67 @@
+{
+  "version": "0.14.0",
+  "date": "2026-11-15",
+  "unit_tests": 158,
+  "audit_tests": 36,
+  "test_log": "D:/CodexWork/temp/awaitlab/tests-v0.14.0.log",
+  "cost_record": "audit-validation-cost-v0.14.0.json",
+  "equivalence_record": "audit-validation-equivalence-v0.14.0.json",
+  "baseline_sha256": "3d1e5028ba8fda9e14718a355e4dc9259c13062cb71e751c312819d079182918",
+  "files_compared": 87,
+  "diagnostics_compared": 12,
+  "installed_core": {
+    "version": "0.14.0",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.14.0\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 20,
+    "wheel_sha256": "8a0f19256d27c91775cc7d12da11ebb0b8d2878df54cc25d8bef03d3793dc3f1",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.14.0\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.14.0\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false,
+      "certifi": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only",
+    "orphan_task_probe": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+  },
+  "installed_audit": {
+    "version": "0.14.0",
+    "installed_audit_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.14.0\\awaitlab\\code_audit.py",
+    "site_packages_disabled": true,
+    "optional_dependencies_available": false,
+    "check_exit": 0,
+    "excluded_invalid_source_not_parsed": true,
+    "ignored_reason_exported": true,
+    "html_reason_visible": true
+  },
+  "browser_rerun": false,
+  "reason": "No changes to report rendering; prior 28 checks remain at 0.13.",
+  "scope": [
+    "Only constructed scanner timings; no business response or across-machine performance claim.",
+    "Three descriptive pairs per size; fallback can add cost and is disclosed.",
+    "Batch validates final syntax/docstrings; rejected batches use original per-edit validation.",
+    "Finite corpus equality is not a universal equivalence proof."
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "version": "0.14.0",
+  "baseline_source_sha256": "3d1e5028ba8fda9e14718a355e4dc9259c13062cb71e751c312819d079182918",
+  "baseline_commit": "2cd76b224030bad0b31d9328b5d3984067e50e0c",
+  "records": [
+    {
+      "guards": 20,
+      "runs": [
+        {
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "ms": {
+            "baseline": 24.206300000514602,
+            "current": 6.688900000881404
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "ms": {
+            "baseline": 27.232800002821023,
+            "current": 5.3275999998732
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "ms": {
+            "baseline": 24.66410000124597,
+            "current": 5.544499999814434
+          }
+        }
+      ],
+      "median_ms": {
+        "baseline": 24.66410000124597,
+        "current": 5.544499999814434
+      },
+      "change_pct": -77.51995815969633,
+      "diagnostics_and_patched_source_identical": true
+    },
+    {
+      "guards": 100,
+      "runs": [
+        {
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "ms": {
+            "current": 56.06640000041807,
+            "baseline": 611.2305999995442
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "ms": {
+            "baseline": 552.0168000002741,
+            "current": 50.48959999840008
+          }
+        },
+        {
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "ms": {
+            "current": 56.07429999872693,
+            "baseline": 600.3512999996019
+          }
+        }
+      ],
+      "median_ms": {
+        "baseline": 600.3512999996019,
+        "current": 56.06640000041807
+      },
+      "change_pct": -90.66106794464254,
+      "diagnostics_and_patched_source_identical": true
+    },
+    {
+      "guards": 200,
+      "runs": [
+        {
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "ms": {
+            "baseline": 2726.7681999983324,
+            "current": 204.6636999984912
+          }
+        },
+        {
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "ms": {
+            "current": 198.41009999800008,
+            "baseline": 2837.852999997267
+          }
+        },
+        {
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "ms": {
+            "current": 219.94529999938095,
+            "baseline": 3072.216799999296
+          }
+        }
+      ],
+      "median_ms": {
+        "baseline": 2837.852999997267,
+        "current": 204.6636999984912
+      },
+      "change_pct": -92.78807957992579,
+      "diagnostics_and_patched_source_identical": true
+    }
+  ],
+  "fallback": {
+    "baseline_ms": 2.8472000012698118,
+    "current_ms": 3.77660000231117,
+    "results_identical": true
+  },
+  "limits": [
+    "Constructed scan workload, not application response latency.",
+    "Three descriptive timing pairs per size; no inferential performance guarantee.",
+    "Mixed rejected edits may still require sequential validation."
+  ]
+}

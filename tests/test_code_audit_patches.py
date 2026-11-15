@@ -9,6 +9,16 @@ from awaitlab.code_audit import audit_path,audit_source
 class AuditPatchTests(unittest.TestCase):
     def scan(self,source):return audit_source(textwrap.dedent(source).lstrip(),'patches.py')
 
+    def test_many_independent_guards_generate_all_patches(self):
+        source=''.join(f'def read_{i}(value):\n    if value is None:\n        return None\n    if value is not None:\n        return value\n\n'
+                       for i in range(200))
+        findings,patched=audit_source(source)
+        self.assertEqual(len(findings),200)
+        self.assertTrue(all(item['patch_available'] for item in findings))
+        self.assertNotIn('if value is not None:',patched)
+        scope={};exec(patched,scope)
+        self.assertIsNone(scope['read_199'](None));self.assertEqual(scope['read_199'](0),0)
+
     def test_live_branch_retains_header_leading_and_trailing_comments(self):
         findings,patched=self.scan('''
             def read(value):

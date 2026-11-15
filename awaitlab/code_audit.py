@@ -123,6 +123,16 @@ def apply_edits(lines,edits):
     return ''.join(patched)
 
 
+def patch_error(source,filename,docstrings):
+    try:
+        tree=ast.parse(source,filename=filename)
+        compile(tree,filename,'exec')
+    except SyntaxError:
+        return '该处修改不能通过语法检查（可能留下空代码块），需人工调整。'
+    if scope_docstrings(tree)!=docstrings:
+        return '修改会改变函数或类的文档字符串，需人工调整。'
+
+
 class FlowAudit:
     def __init__(self,source,filename):
         self.source=source;self.lines=source.splitlines(keepends=True);self.filename=filename;self.findings=[];self.edits=[]
@@ -262,19 +272,27 @@ def audit_source(source,filename='<string>'):
                 audit.finding(node,'ALD002','needs_review','宽泛异常被静默忽略或转成固定结果',
                     ast.get_source_segment(source,node),
                     '核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。')
-    # Validate each candidate with earlier accepted edits; one rejected edit cannot block other fixes.
-    accepted=[];lines=audit.lines;docstrings=scope_docstrings(tree)
-    for edit in sorted(audit.edits,key=lambda e:(e[0],-e[1])):
+    ordered=sorted(audit.edits,key=lambda e:(e[0],-e[1]))
+    if not ordered:return sorted(audit.findings,key=lambda f:(f['line'],f['column'],f['rule'])),source
+    lines=audit.lines;docstrings=scope_docstrings(tree)
+    batch=[];covered=[]
+    for edit in ordered:
+        if batch and edit[0]<batch[-1][1]:covered.append(edit)
+        else:batch.append(edit)
+    combined=apply_edits(lines,batch)
+    if patch_error(combined,filename,docstrings) is None:
+        for edit in batch:edit[3]['patch_available']=True
+        for edit in covered:edit[3]['patch_note']='与外层修改重叠，先复核外层补丁。'
+        return sorted(audit.findings,key=lambda f:(f['line'],f['column'],f['rule'])),combined
+    # Batch rejected: keep per-edit checks so an invalid edit cannot block other fixes.
+    accepted=[]
+    for edit in ordered:
         if accepted and edit[0]<accepted[-1][1]:
             edit[3]['patch_note']='与外层修改重叠，先复核外层补丁。';continue
         candidate=apply_edits(lines,accepted+[edit])
-        try:
-            patched_tree=ast.parse(candidate,filename=filename)
-            compile(patched_tree,filename,'exec')
-        except SyntaxError:
-            edit[3]['patch_note']='该处修改不能通过语法检查（可能留下空代码块），需人工调整。';continue
-        if scope_docstrings(patched_tree)!=docstrings:
-            edit[3]['patch_note']='修改会改变函数或类的文档字符串，需人工调整。';continue
+        reason=patch_error(candidate,filename,docstrings)
+        if reason:
+            edit[3]['patch_note']=reason;continue
         edit[3]['patch_available']=True;accepted.append(edit)
     result=apply_edits(lines,accepted)
     return sorted(audit.findings,key=lambda f:(f['line'],f['column'],f['rule'])),result
