@@ -42,12 +42,12 @@ class EvidenceTests(unittest.TestCase):
         self.assertEqual(evidence_level(True,0,p,True,.05,5),'no_observed_gain')
 
     def test_design_handles_approximate_only_and_no_replacements(self):
-        self.assertEqual(inference_design(17,1,.05)['status'],'approximate_only')
-        self.assertIsNone(inference_design(17,1,.05)['raw_p_floor'])
-        self.assertFalse(inference_design(17,1,.05)['support_possible'])
+        self.assertEqual(inference_design(33,1,.05)['status'],'approximate_only')
+        self.assertIsNone(inference_design(33,1,.05)['raw_p_floor'])
+        self.assertFalse(inference_design(33,1,.05)['support_possible'])
         self.assertEqual(inference_design(6,0,.05)['status'],'not_applicable')
         self.assertIsNone(inference_design(6,0,.05)['minimum_exact_blocks'])
-        self.assertIsNone(inference_design(16,100000,.05)['minimum_exact_blocks'])
+        self.assertIsNone(inference_design(32,100000,.000001)['minimum_exact_blocks'])
 
     def test_threshold_output_and_approximate_p_have_distinct_status(self):
         self.assertEqual(evidence_level(False,-80,.001,True,.05,5),'invalid_output')
@@ -57,8 +57,8 @@ class EvidenceTests(unittest.TestCase):
         self.assertEqual(evidence_level(True,-80,.001,True,.05,5),'supported_in_this_experiment')
 
     def test_monte_carlo_is_seeded_and_uses_nonzero_correction(self):
-        first=paired_randomization([10]*17,[5]*17,seed=81,draws=200)
-        second=paired_randomization([10]*17,[5]*17,seed=81,draws=200)
+        first=paired_randomization([10]*33,[5]*33,seed=81,draws=200)
+        second=paired_randomization([10]*33,[5]*33,seed=81,draws=200)
         self.assertEqual(first,second)
         self.assertFalse(first['exact'])
         self.assertGreaterEqual(first['pvalue'],1/201)

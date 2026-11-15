@@ -1,0 +1,86 @@
+{
+  "baseline": {
+    "origin": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\wheels\\awaitlab_local-0.6.4-py3-none-any.whl",
+    "wheel_sha256": "12e34ba62817322250a519f01735b92a49d573ea5a1676bbaa29604e68eb2cc6",
+    "source_sha256": "b569058c16e485e30330dc2d71db865e6e0ea5dbd8739bc336b9a2fd053b6ed8",
+    "normalization": "CRLF to LF only"
+  },
+  "rows": [
+    {
+      "blocks": 8,
+      "exact": true,
+      "samples_ms": [
+        0.19720000091183465,
+        0.1857999995991122,
+        0.2382000002398854
+      ],
+      "mean_ms": 0.2070666669169441,
+      "traced_peak_kib": 1.3125,
+      "pvalue": 0.0703125
+    },
+    {
+      "blocks": 12,
+      "exact": true,
+      "samples_ms": [
+        4.314199999498669,
+        3.69940000018687,
+        3.59530000059749
+      ],
+      "mean_ms": 3.8696333334276765,
+      "traced_peak_kib": 1.4375,
+      "pvalue": 0.04931640625
+    },
+    {
+      "blocks": 16,
+      "exact": true,
+      "samples_ms": [
+        70.20879999981844,
+        69.39489999967918,
+        69.37759999891568
+      ],
+      "mean_ms": 69.66043333280443,
+      "traced_peak_kib": 1.46875,
+      "pvalue": 0.03961181640625
+    },
+    {
+      "blocks": 17,
+      "exact": false,
+      "samples_ms": [
+        84.44320000126027,
+        84.41690000108792,
+        83.93769999929646
+      ],
+      "mean_ms": 84.26593333388155,
+      "traced_peak_kib": 4.7265625,
+      "pvalue": 0.023948802559872008
+    },
+    {
+      "blocks": 24,
+      "exact": false,
+      "samples_ms": [
+        115.32369999986258,
+        116.33019999862881,
+        113.29960000148276
+      ],
+      "mean_ms": 114.98449999999139,
+      "traced_peak_kib": 4.7265625,
+      "pvalue": 0.009499525023748812
+    },
+    {
+      "blocks": 32,
+      "exact": false,
+      "samples_ms": [
+        148.07349999864527,
+        149.07639999910316,
+        149.15490000021236
+      ],
+      "mean_ms": 148.76826666598694,
+      "traced_peak_kib": 4.8515625,
+      "pvalue": 0.003749812509374531
+    }
+  ],
+  "limits": [
+    "3-run descriptive profile, not paired inference",
+    "tracemalloc peak measured separately; excludes runtime and interpreter memory"
+  ]
+}

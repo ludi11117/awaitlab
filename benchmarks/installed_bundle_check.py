@@ -43,6 +43,7 @@ for b in bundle['blocks']:
 from replacement_reach import probe,scope_probe
 from awaitlab import Experiment
 from awaitlab import trace
+from awaitlab.statistics import paired_randomization
 async def check():
     observed={mode:await probe(Experiment,mode) for mode in
         ['unreached','warmup_only','observational_span','cleanup_only']}
@@ -51,8 +52,14 @@ async def check():
     assert expired['calls']==['original'] and not expired['recapture_after_exit']
     return observed,expired
 observed,expired=asyncio.run(check())
+large=paired_randomization([10]*32,[5]*32)
+assert large['exact'] and large['assignments']==2**32 and large['extreme_assignments']==2
+assert large['algorithm']=='meet_in_middle_integer'
+approximate=paired_randomization([10]*33,[5]*33,seed=519,draws=200)
+assert not approximate['exact'] and approximate['pvalue']>=1/201
 assert f'installed-{version}' in trace.__file__
 result={'version':version,'installed_path':awaitlab.__file__,'site_packages_disabled':True,
+    '32_block_exact':large,'33_block_approximate':approximate,
     'preflight_plan':plan,'plan_matches_report':True,'plan_created_no_output_directory':True,
     'resumed_pairs':6,'comparisons_unchanged':True,'all_outputs_equal':True,
     'bundle_sites':bundle['replacement_sites'],'counts_per_treatment_block':{'events.unique':3,'events.count':3},

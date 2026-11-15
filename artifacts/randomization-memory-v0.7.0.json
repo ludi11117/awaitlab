@@ -1,0 +1,37 @@
+{
+  "version": "0.7.0",
+  "processes": {
+    "baseline": {
+      "mode": "baseline",
+      "blocks": 32,
+      "repeats": 10,
+      "total_ms": 1501.0488000007172,
+      "exact": false,
+      "pvalue": 0.003749812509374531,
+      "traced_peak_kib": 4.8515625,
+      "process_memory": {
+        "rss_end_mib": 27.82421875,
+        "peak_working_set_mib": 27.82421875
+      }
+    },
+    "current": {
+      "mode": "current",
+      "blocks": 32,
+      "repeats": 10,
+      "total_ms": 257.9702000002726,
+      "exact": true,
+      "pvalue": 0.003136997576802969,
+      "traced_peak_kib": 7143.8671875,
+      "process_memory": {
+        "rss_end_mib": 29.55859375,
+        "peak_working_set_mib": 51.5703125
+      }
+    }
+  },
+  "limits": [
+    "one new process per mode, descriptive only, no memory inference",
+    "baseline is approximate at 32 blocks; current is exact",
+    "process peaks include imports, all 10 calls, and separate tracemalloc probe",
+    "traced peaks exclude interpreter/native/runtime allocations; not a universal memory bound"
+  ]
+}

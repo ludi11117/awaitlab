@@ -2,7 +2,7 @@ const fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('n
 const assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
 const {chromium}=require(process.env.AWAITLAB_PLAYWRIGHT||'D:/CodexWork/cache/branchforge-browser/node_modules/playwright');
 const root=path.resolve(__dirname,'..'),temp='D:/CodexWork/temp/awaitlab/browser';
-const customerReport=process.env.AWAITLAB_CUSTOMER_REPORT||'customer-api-v0.6.4.html';
+const customerReport=process.env.AWAITLAB_CUSTOMER_REPORT||'customer-api-v0.7.0.html';
 fs.mkdirSync(temp,{recursive:true});process.env.TEMP=temp;process.env.TMP=temp;
 execFileSync('python',['-c',"import json;from awaitlab.report import write_report;from pathlib import Path;p=Path('artifacts');write_report(json.loads((p/'parallel-initial.json').read_text(encoding='utf-8')),p/'legacy-current-renderer.html')"],{cwd:root});
 execFileSync('python',['-c',`import json,copy
@@ -33,7 +33,7 @@ from awaitlab.report import write_report
 from awaitlab.statistics import inference_design
 r=json.loads(Path('artifacts/resolution-v0.6.4.json').read_text(encoding='utf-8'))
 r['title']='UI approximate-plan fixture, replayed measurements; no new workload'
-r['inference_design']=inference_design(17,2,.05)
+r['inference_design']=inference_design(33,2,.05)
 write_report(r,Path('${temp}/approximate-design-fixture.html'))`],{cwd:root});
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.AWAITLAB_CHROMIUM||'D:/CodexWork/cache/ms-playwright/chromium-1243/chrome-win64/chrome.exe'});
@@ -129,6 +129,14 @@ write_report(r,Path('${temp}/approximate-design-fixture.html'))`],{cwd:root});
   await page.screenshot({path:path.join(root,'artifacts','resolution-mobile.png'),fullPage:true});
   await page.goto(pathToFileURL(path.join(temp,'approximate-design-fixture.html')).href);
   await page.getByRole('heading',{name:'本版本只报告近似检验'}).waitFor();checks.push('approximate-only policy explicit');
+  await page.goto(pathToFileURL(path.join(root,'artifacts','extended-exact-v0.7.0.html')).href);
+  await page.locator('[data-arm="0"]').click();
+  assert((await page.locator('.detail').innerText()).includes('分治计数'));checks.push('extended exact algorithm visible');
+  const exact=await page.evaluate(()=>JSON.parse(document.getElementById('data').textContent).comparisons[0].randomization);
+  assert.equal(exact.exact,true);assert.equal(exact.assignments,2**24);assert.equal(exact.algorithm,'meet_in_middle_integer');checks.push('24-block exact result preserved in report data');
+  await page.getByRole('heading',{name:'预定检验具备理论分辨率'}).waitFor();checks.push('32-block capability reflected in design');
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks.push('extended exact report mobile width');
+  await page.screenshot({path:path.join(root,'artifacts','extended-exact-mobile.png'),fullPage:true});
   await page.goto(pathToFileURL(path.join(temp,'trace-fixture.html')).href);
   await page.locator('#trace-block').selectOption('1');assert.equal(await page.locator('.timeline').getAttribute('data-block'),'1');checks.push('sampled block selector with replay fixture');
   await page.goto(pathToFileURL(path.join(temp,'empty-trace-fixture.html')).href);

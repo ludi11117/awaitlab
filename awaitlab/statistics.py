@@ -1,9 +1,9 @@
 import math
 import random
 import statistics
-import itertools
+from bisect import bisect_left
 
-EXACT_MAX_BLOCKS=16
+EXACT_MAX_BLOCKS=32
 
 
 def quantile(values, p):
@@ -45,20 +45,50 @@ def paired_randomization(control,treatment,seed=73,draws=20000):
     if len(control)!=len(treatment) or len(control)<2:
         raise ValueError('Randomization test requires >=2 paired blocks')
     differences=[t-c for c,t in zip(control,treatment)]
-    observed=abs(math.fsum(differences))
     tolerance=max(max(map(abs,differences),default=0)*1e-12,1e-15)
+    weights,cutoff=_integer_problem(differences,tolerance)
     exact=len(differences)<=EXACT_MAX_BLOCKS
     if exact:
-        signs=itertools.product((-1,1),repeat=len(differences));total=2**len(differences)
+        total=2**len(differences)
+        extreme=_count_integer_tail(weights,cutoff)
     else:
         rng=random.Random(seed)
         signs=([rng.choice((-1,1)) for _ in differences] for _ in range(draws));total=draws
-    extreme=sum(abs(math.fsum(s*d for s,d in zip(sample,differences)))>=observed-tolerance for sample in signs)
+        extreme=sum(abs(sum(s*w for s,w in zip(sample,weights)))>=cutoff for sample in signs)
     p=extreme/total if exact else (extreme+1)/(total+1)
     return {'pvalue':p,'exact':exact,'assignments':total,'extreme_assignments':extreme,
             'seed':None if exact else seed,'tie_tolerance':tolerance,
             'statistic':'two-sided absolute sum of paired treatment-control differences',
+            'sum_arithmetic':'exact integer-scaled input differences; tolerance applied before division',
+            'algorithm':'meet_in_middle_integer' if exact else 'monte_carlo_integer',
             'null':'no arm effect, within-block labels exchangeable under the randomized order design'}
+
+
+def _integer_problem(differences,tolerance):
+    ratios=[value.as_integer_ratio() for value in differences]
+    scale=math.lcm(*(denominator for _,denominator in ratios))
+    weights=[numerator*(scale//denominator) for numerator,denominator in ratios]
+    numerator,denominator=tolerance.as_integer_ratio()
+    # |integer sum| >= |observed integer sum| - tolerance*scale.
+    # Taking the ceiling of the right side is equivalent to this floor.
+    cutoff=abs(sum(weights))-numerator*scale//denominator
+    return weights,cutoff
+
+
+def _signed_sums(weights):
+    sums=[0]
+    for weight in weights:
+        sums=[value-weight for value in sums]+[value+weight for value in sums]
+    return sums
+
+
+def _count_integer_tail(weights,cutoff):
+    if cutoff<=0:return 2**len(weights)
+    middle=len(weights)//2
+    left=_signed_sums(weights[:middle]);right=sorted(_signed_sums(weights[middle:]))
+    # Global sign reversal bijects the positive and negative tails. For a
+    # positive cutoff they are disjoint, so count only one and double it.
+    return 2*sum(len(right)-bisect_left(right,cutoff-value) for value in left)
 
 
 def holm_adjust(pvalues):

@@ -1,0 +1,4180 @@
+{
+  "version": "0.7.0",
+  "date": "2026-11-15",
+  "unit_integration_tests": 90,
+  "unit_integration_passed": true,
+  "browser": {
+    "passed": true,
+    "checks": [
+      "standalone SQLite report",
+      "two real replacement arms",
+      "supported evidence grade",
+      "adjusted inference visible",
+      "workload provenance",
+      "actual fixture size",
+      "actual SQL",
+      "placebo not promoted",
+      "placebo neutral presentation",
+      "treatment timeline",
+      "real HTTP transport scope",
+      "library version",
+      "response, worker cycle and check separately shown",
+      "check cost matches recorded block mean",
+      "sampled request selector",
+      "HTTP and database spans both visible",
+      "sampled HTTP and operation coverage",
+      "uncovered window not called CPU time",
+      "no overlap hides nested spans",
+      "server parent linked to request",
+      "keyboard-accessible recorded parent",
+      "switch sampled request",
+      "preserve request across modes",
+      "mobile width",
+      "timer calibration",
+      "custom business report metadata",
+      "custom comparison and observer metrics",
+      "replacement-only case has no sleep calibration",
+      "custom business report mobile width",
+      "declared metadata exclusion visible",
+      "projection not presented as full-response equality",
+      "lifespan and keep-alive transport visible",
+      "real API replacement has no timer calibration",
+      "feasible native design visible",
+      "resolution not a power promise",
+      "declared contract mobile width",
+      "native bundle lists declared sites",
+      "actual per-site invocation and block totals",
+      "bundle effect not allocated by counts",
+      "chart labels multi-site configuration",
+      "bundle scope mobile width",
+      "single-site native scope retained",
+      "legacy bundle proof not invented",
+      "unsupported legacy bundle not promoted",
+      "legacy unambiguous single-site total can be assigned",
+      "finite resolution limit visible",
+      "best-case Holm floor shown",
+      "request count not substituted for blocks",
+      "large effect with insufficient resolution not promoted",
+      "no optional-stopping recommendation",
+      "resolution guidance mobile width",
+      "approximate-only policy explicit",
+      "extended exact algorithm visible",
+      "24-block exact result preserved in report data",
+      "32-block capability reflected in design",
+      "extended exact report mobile width",
+      "sampled block selector with replay fixture",
+      "empty sampling remains usable",
+      "legacy design metadata not fabricated",
+      "legacy delay interpretation",
+      "legacy result not silently upgraded",
+      "legacy check cost not assumed zero",
+      "missing legacy values handled",
+      "no JavaScript exceptions",
+      "no network requests"
+    ]
+  },
+  "core_installation": {
+    "version": "0.7.0",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.7.0\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 17,
+    "wheel_sha256": "26d582f1cb3f21893e0511eb11fb6fbb2088cf7d9d81d11ef372043de36846ef",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.7.0\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.7.0\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false,
+      "certifi": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only",
+    "orphan_task_probe": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+  },
+  "bundle_installation": {
+    "version": "0.7.0",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.7.0\\awaitlab\\__init__.py",
+    "site_packages_disabled": true,
+    "32_block_exact": {
+      "pvalue": 4.656612873077393e-10,
+      "exact": true,
+      "assignments": 4294967296,
+      "extreme_assignments": 2,
+      "seed": null,
+      "tie_tolerance": 5e-12,
+      "statistic": "two-sided absolute sum of paired treatment-control differences",
+      "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+      "algorithm": "meet_in_middle_integer",
+      "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+    },
+    "33_block_approximate": {
+      "pvalue": 0.004975124378109453,
+      "exact": false,
+      "assignments": 200,
+      "extreme_assignments": 0,
+      "seed": 519,
+      "tie_tolerance": 5e-12,
+      "statistic": "two-sided absolute sum of paired treatment-control differences",
+      "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+      "algorithm": "monte_carlo_integer",
+      "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+    },
+    "preflight_plan": {
+      "settings": {
+        "blocks": 2,
+        "requests": 3,
+        "concurrency": 1,
+        "warmup": 0,
+        "seed": 173,
+        "trace_requests": 2,
+        "max_records": 4096,
+        "min_gain_pct": 5.0,
+        "alpha": 0.05
+      },
+      "inference_design": {
+        "status": "resolution_limited",
+        "blocks": 2,
+        "replacement_family_size": 3,
+        "alpha": 0.05,
+        "exact_max_blocks": 32,
+        "raw_p_floor": 0.5,
+        "holm_p_floor": 1.0,
+        "minimum_exact_blocks": 7,
+        "support_possible": false,
+        "rule": "adjusted_p < alpha; exact test required; output and point-gain gates still apply",
+        "scope": "best-case resolution only, not statistical power or a promise of support"
+      },
+      "replacement_family": [
+        "only_unique",
+        "only_count",
+        "unique_and_count"
+      ],
+      "workload_executed": false,
+      "scope": "imports custom module; does not call bundled prepare, workload, calibration, or checkpoint"
+    },
+    "plan_matches_report": true,
+    "plan_created_no_output_directory": true,
+    "resumed_pairs": 6,
+    "comparisons_unchanged": true,
+    "all_outputs_equal": true,
+    "bundle_sites": [
+      "events.unique",
+      "events.count"
+    ],
+    "counts_per_treatment_block": {
+      "events.unique": 3,
+      "events.count": 3
+    },
+    "negative_reach_probes": {
+      "unreached": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      },
+      "warmup_only": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      },
+      "observational_span": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      },
+      "cleanup_only": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      }
+    },
+    "expired_capture": {
+      "calls": [
+        "original"
+      ],
+      "output": 1,
+      "replacement_calls": 0,
+      "recapture_after_exit": false,
+      "recorded_operations": []
+    }
+  },
+  "http_installation": {
+    "version": "0.7.0",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.7.0\\awaitlab\\__init__.py",
+    "user_project": "D:\\CodexWork\\temp\\awaitlab\\http-user-case-0.7.0",
+    "lifetimes": 8,
+    "lifecycle_audit": [
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      }
+    ],
+    "resumed_pairs": 4,
+    "resume_created_no_resources": true,
+    "comparisons_unchanged_after_resume": true,
+    "all_outputs_equal": true,
+    "output_contract": "核对 HTTP 状态与完整 customers（id、name、balance）；接入代码明确排除 metadata.request_id 与 metadata.served_at_ns。未核对整个响应体。",
+    "packaged_files_match_source": 17,
+    "dependency_versions": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "uvicorn": "0.52.4"
+    },
+    "shared_ssl_configuration": {
+      "same_context_reused": true,
+      "certificate_verification_required": true,
+      "hostname_check_enabled": true,
+      "ca_certificates_match_fresh_default": true
+    }
+  },
+  "integer_tail_validation": {
+    "version": "0.7.0",
+    "source_sha256": "c82798c34aee884ba1a3615a3d0b4ff4808ec191beb3d5db09b0829ac57f627a",
+    "fraction_cases": 99,
+    "fraction_results": [
+      {
+        "differences": [
+          0.0,
+          -0.3,
+          0.1,
+          0.1,
+          -0.3,
+          1e-08,
+          0.1,
+          1e-08,
+          0.0
+        ],
+        "fraction_oracle_extreme": 320,
+        "current": {
+          "pvalue": 0.625,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 320,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.625
+      },
+      {
+        "differences": [
+          -1e-08,
+          0.1,
+          0.1,
+          0.0,
+          -1e-08,
+          0.5,
+          -0.3,
+          0.0
+        ],
+        "fraction_oracle_extreme": 160,
+        "current": {
+          "pvalue": 0.625,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 160,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.625
+      },
+      {
+        "differences": [
+          0.5,
+          0.1,
+          -0.3,
+          -1e-08,
+          1e-08,
+          0.0,
+          -1e-08,
+          0.1,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 300,
+        "current": {
+          "pvalue": 0.5859375,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 300,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5859375
+      },
+      {
+        "differences": [
+          0.0,
+          0.5,
+          0.0
+        ],
+        "fraction_oracle_extreme": 8,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 8,
+          "extreme_assignments": 8,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          -0.3,
+          -0.3,
+          1e-08,
+          -0.3,
+          0.0,
+          -0.3,
+          0.5
+        ],
+        "fraction_oracle_extreme": 48,
+        "current": {
+          "pvalue": 0.375,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 48,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.375
+      },
+      {
+        "differences": [
+          0.5,
+          -0.3,
+          1e-08,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 10,
+        "current": {
+          "pvalue": 0.625,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 10,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.625
+      },
+      {
+        "differences": [
+          0.5,
+          -0.3,
+          0.0,
+          0.5,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 24,
+        "current": {
+          "pvalue": 0.75,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 24,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.75
+      },
+      {
+        "differences": [
+          0.5,
+          0.1,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 8,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          1e-08,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 1e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          0.1,
+          0.5,
+          -1e-08,
+          0.1
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.25,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.25
+      },
+      {
+        "differences": [
+          0.5,
+          -1e-08,
+          0.5
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 8,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          -1e-08,
+          -1e-08,
+          -1e-08,
+          0.0,
+          1e-08,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 24,
+        "current": {
+          "pvalue": 0.375,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 24,
+          "seed": null,
+          "tie_tolerance": 1e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.375
+      },
+      {
+        "differences": [
+          0.1,
+          0.1,
+          1e-08,
+          0.1,
+          -1e-08,
+          1e-08,
+          -0.3,
+          -0.3,
+          -0.3,
+          0.1
+        ],
+        "fraction_oracle_extreme": 470,
+        "current": {
+          "pvalue": 0.458984375,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 470,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.458984375
+      },
+      {
+        "differences": [
+          1e-08,
+          0.1,
+          0.0,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 16,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 16,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          -0.3,
+          0.5,
+          0.5,
+          0.0,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 12,
+        "current": {
+          "pvalue": 0.375,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 12,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.375
+      },
+      {
+        "differences": [
+          0.1,
+          0.0,
+          0.1,
+          0.1,
+          1e-08,
+          0.5
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.0625,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.0625
+      },
+      {
+        "differences": [
+          -1e-08,
+          0.5,
+          0.5,
+          1e-08,
+          1e-08,
+          0.5,
+          0.1,
+          0.1
+        ],
+        "fraction_oracle_extreme": 8,
+        "current": {
+          "pvalue": 0.03125,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 8,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.03125
+      },
+      {
+        "differences": [
+          0.0,
+          -0.3,
+          -0.3,
+          0.1,
+          0.0,
+          -1e-08,
+          0.1,
+          0.1
+        ],
+        "fraction_oracle_extreme": 136,
+        "current": {
+          "pvalue": 0.53125,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 136,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.53125
+      },
+      {
+        "differences": [
+          0.5,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 2,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          0.5,
+          -1e-08,
+          -1e-08,
+          0.5,
+          0.1,
+          0.0,
+          0.0,
+          0.5
+        ],
+        "fraction_oracle_extreme": 32,
+        "current": {
+          "pvalue": 0.125,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 32,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.125
+      },
+      {
+        "differences": [
+          1e-08,
+          -0.3,
+          0.1,
+          0.5,
+          -1e-08,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 64,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 64,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          0.1,
+          0.1
+        ],
+        "fraction_oracle_extreme": 2,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 1e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          -1e-08,
+          0.0,
+          0.0,
+          0.0,
+          -0.3,
+          0.0,
+          0.1
+        ],
+        "fraction_oracle_extreme": 96,
+        "current": {
+          "pvalue": 0.75,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 96,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.75
+      },
+      {
+        "differences": [
+          -0.3,
+          -0.3,
+          -0.3,
+          0.0,
+          1e-08,
+          0.0,
+          0.5,
+          -0.3,
+          0.1,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 384,
+        "current": {
+          "pvalue": 0.375,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 384,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.375
+      },
+      {
+        "differences": [
+          1e-08,
+          0.1,
+          0.1,
+          1e-08,
+          0.0,
+          -1e-08,
+          -1e-08,
+          1e-08,
+          -0.3,
+          0.0
+        ],
+        "fraction_oracle_extreme": 976,
+        "current": {
+          "pvalue": 0.953125,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 976,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.953125
+      },
+      {
+        "differences": [
+          0.1,
+          -0.3,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 6,
+        "current": {
+          "pvalue": 0.75,
+          "exact": true,
+          "assignments": 8,
+          "extreme_assignments": 6,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.75
+      },
+      {
+        "differences": [
+          1e-08,
+          0.1,
+          0.1,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 6,
+        "current": {
+          "pvalue": 0.375,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 6,
+          "seed": null,
+          "tie_tolerance": 1e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.375
+      },
+      {
+        "differences": [
+          0.5,
+          0.1,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 6,
+        "current": {
+          "pvalue": 0.75,
+          "exact": true,
+          "assignments": 8,
+          "extreme_assignments": 6,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.75
+      },
+      {
+        "differences": [
+          -0.3,
+          0.1,
+          0.0,
+          -0.3,
+          0.5
+        ],
+        "fraction_oracle_extreme": 32,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 32,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          -1e-08,
+          0.5,
+          -0.3,
+          -0.3,
+          0.0,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "fraction_oracle_extreme": 64,
+        "current": {
+          "pvalue": 0.25,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 64,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.25
+      },
+      {
+        "differences": [
+          -1e-08,
+          1e-08,
+          0.5,
+          0.1,
+          0.5,
+          0.5,
+          1e-08,
+          -0.3,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 176,
+        "current": {
+          "pvalue": 0.34375,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 176,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.34375
+      },
+      {
+        "differences": [
+          0.5,
+          0.1,
+          -1e-08,
+          -0.3,
+          0.1,
+          0.5,
+          0.1,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 72,
+        "current": {
+          "pvalue": 0.28125,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 72,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.28125
+      },
+      {
+        "differences": [
+          1e-08,
+          0.0
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 1e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          0.1,
+          -1e-08,
+          1e-08,
+          -0.3,
+          -0.3,
+          1e-08,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 30,
+        "current": {
+          "pvalue": 0.234375,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 30,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.234375
+      },
+      {
+        "differences": [
+          -1e-08,
+          -0.3,
+          -0.3,
+          0.0
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.25,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.25
+      },
+      {
+        "differences": [
+          0.0,
+          -1e-08,
+          0.5,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 16,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 16,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          -0.3,
+          0.1,
+          0.1,
+          0.0,
+          -0.3,
+          0.5,
+          0.0,
+          0.1,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 464,
+        "current": {
+          "pvalue": 0.90625,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 464,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.90625
+      },
+      {
+        "differences": [
+          -0.3,
+          0.5,
+          -0.3,
+          0.1
+        ],
+        "fraction_oracle_extreme": 16,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 16,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          0.5,
+          0.0,
+          0.0,
+          1e-08,
+          -1e-08,
+          -1e-08,
+          0.1,
+          0.5
+        ],
+        "fraction_oracle_extreme": 56,
+        "current": {
+          "pvalue": 0.21875,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 56,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.21875
+      },
+      {
+        "differences": [
+          0.1,
+          0.5,
+          -0.3,
+          0.0,
+          -1e-08,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 48,
+        "current": {
+          "pvalue": 0.75,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 48,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.75
+      },
+      {
+        "differences": [
+          -0.3,
+          -0.3,
+          -0.3,
+          0.0,
+          0.1,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fraction_oracle_extreme": 64,
+        "current": {
+          "pvalue": 0.25,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 64,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.25
+      },
+      {
+        "differences": [
+          0.5,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          0.5,
+          1e-08,
+          0.0,
+          -1e-08,
+          1e-08,
+          -1e-08,
+          0.0,
+          -0.3,
+          0.5
+        ],
+        "fraction_oracle_extreme": 216,
+        "current": {
+          "pvalue": 0.421875,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 216,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.421875
+      },
+      {
+        "differences": [
+          0.1,
+          0.5
+        ],
+        "fraction_oracle_extreme": 2,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          0.0,
+          0.0,
+          -0.3,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 8,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 8,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          -0.3,
+          -0.3,
+          0.0,
+          1e-08,
+          0.1,
+          -1e-08,
+          0.0,
+          0.1,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 224,
+        "current": {
+          "pvalue": 0.4375,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 224,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.4375
+      },
+      {
+        "differences": [
+          0.1,
+          0.0,
+          0.5,
+          -1e-08,
+          0.5,
+          0.0,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 32,
+        "current": {
+          "pvalue": 0.25,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 32,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.25
+      },
+      {
+        "differences": [
+          -0.3,
+          -1e-08,
+          0.0
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 8,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          0.5,
+          0.0,
+          1e-08,
+          0.1,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.125,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.125
+      },
+      {
+        "differences": [
+          -1e-08,
+          1e-08,
+          1e-08,
+          0.0,
+          -0.3,
+          -1e-08,
+          0.0,
+          0.5
+        ],
+        "fraction_oracle_extreme": 216,
+        "current": {
+          "pvalue": 0.84375,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 216,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.84375
+      },
+      {
+        "differences": [
+          0.0,
+          0.1,
+          -0.3,
+          0.0,
+          -0.3,
+          0.5,
+          0.5
+        ],
+        "fraction_oracle_extreme": 88,
+        "current": {
+          "pvalue": 0.6875,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 88,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.6875
+      },
+      {
+        "differences": [
+          0.5,
+          -1e-08,
+          0.5
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 8,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          0.0,
+          -0.3,
+          -1e-08,
+          -0.3,
+          1e-08,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 16,
+        "current": {
+          "pvalue": 0.25,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 16,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.25
+      },
+      {
+        "differences": [
+          0.1,
+          -1e-08,
+          0.1,
+          -1e-08,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 26,
+        "current": {
+          "pvalue": 0.8125,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 26,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.8125
+      },
+      {
+        "differences": [
+          0.0,
+          -0.3,
+          1e-08,
+          -0.3,
+          -0.3,
+          0.5,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 80,
+        "current": {
+          "pvalue": 0.625,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 80,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.625
+      },
+      {
+        "differences": [
+          0.0,
+          1e-08,
+          -0.3,
+          0.0,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "fraction_oracle_extreme": 96,
+        "current": {
+          "pvalue": 0.75,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 96,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.75
+      },
+      {
+        "differences": [
+          1e-08,
+          1e-08,
+          0.5,
+          0.5,
+          0.1,
+          0.5,
+          0.0,
+          1e-08,
+          -0.3,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 148,
+        "current": {
+          "pvalue": 0.14453125,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 148,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.14453125
+      },
+      {
+        "differences": [
+          -1e-08,
+          1e-08,
+          0.1,
+          1e-08,
+          1e-08,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 32,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 32,
+          "seed": null,
+          "tie_tolerance": 1e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          0.5,
+          -0.3,
+          -1e-08,
+          -0.3,
+          -1e-08,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 34,
+        "current": {
+          "pvalue": 0.53125,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 34,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.53125
+      },
+      {
+        "differences": [
+          0.1,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 2,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 1e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          0.5,
+          0.1,
+          1e-08,
+          -1e-08,
+          -1e-08,
+          0.5,
+          1e-08,
+          1e-08,
+          -0.3,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 300,
+        "current": {
+          "pvalue": 0.29296875,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 300,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.29296875
+      },
+      {
+        "differences": [
+          0.5,
+          1e-08,
+          0.0,
+          0.1,
+          -0.3,
+          0.0,
+          0.1,
+          -0.3,
+          1e-08,
+          0.5
+        ],
+        "fraction_oracle_extreme": 488,
+        "current": {
+          "pvalue": 0.4765625,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 488,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.4765625
+      },
+      {
+        "differences": [
+          -0.3,
+          0.0,
+          -1e-08,
+          -1e-08,
+          0.1,
+          -0.3,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 48,
+        "current": {
+          "pvalue": 0.375,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 48,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.375
+      },
+      {
+        "differences": [
+          1e-08,
+          -0.3,
+          -0.3,
+          1e-08,
+          1e-08,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 30,
+        "current": {
+          "pvalue": 0.46875,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 30,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.46875
+      },
+      {
+        "differences": [
+          1e-08,
+          0.1,
+          0.1,
+          0.0,
+          0.1,
+          -1e-08,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 128,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 128,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          -0.3,
+          0.5,
+          0.1,
+          -0.3,
+          0.5
+        ],
+        "fraction_oracle_extreme": 22,
+        "current": {
+          "pvalue": 0.6875,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 22,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.6875
+      },
+      {
+        "differences": [
+          0.1,
+          -1e-08,
+          0.0,
+          -0.3,
+          -0.3,
+          0.5
+        ],
+        "fraction_oracle_extreme": 64,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 64,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          -0.3,
+          -1e-08,
+          0.5,
+          1e-08,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 30,
+        "current": {
+          "pvalue": 0.9375,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 30,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.9375
+      },
+      {
+        "differences": [
+          1e-08,
+          0.5,
+          -0.3,
+          0.0,
+          -1e-08,
+          0.1,
+          0.1,
+          0.0,
+          0.0,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 976,
+        "current": {
+          "pvalue": 0.953125,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 976,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.953125
+      },
+      {
+        "differences": [
+          0.5,
+          -1e-08,
+          -1e-08,
+          -1e-08,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 32,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 32,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          0.1,
+          0.1,
+          0.0,
+          -0.3,
+          1e-08,
+          -0.3,
+          0.0,
+          0.1,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 320,
+        "current": {
+          "pvalue": 0.625,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 320,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.625
+      },
+      {
+        "differences": [
+          0.5,
+          0.1,
+          1e-08,
+          0.0,
+          1e-08,
+          0.5,
+          0.1,
+          0.5
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.015625,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.015625
+      },
+      {
+        "differences": [
+          0.0,
+          0.0,
+          0.5,
+          -1e-08,
+          0.5,
+          1e-08,
+          0.0,
+          -0.3,
+          0.0
+        ],
+        "fraction_oracle_extreme": 224,
+        "current": {
+          "pvalue": 0.4375,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 224,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.4375
+      },
+      {
+        "differences": [
+          -1e-08,
+          0.1,
+          0.5,
+          0.1,
+          0.1,
+          1e-08,
+          0.1,
+          0.0,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 236,
+        "current": {
+          "pvalue": 0.4609375,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 236,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.4609375
+      },
+      {
+        "differences": [
+          0.0,
+          -1e-08,
+          -0.3,
+          0.1
+        ],
+        "fraction_oracle_extreme": 12,
+        "current": {
+          "pvalue": 0.75,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 12,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.75
+      },
+      {
+        "differences": [
+          0.1,
+          1e-08,
+          0.5,
+          0.5,
+          0.0,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.015625,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.015625
+      },
+      {
+        "differences": [
+          0.1,
+          1e-08,
+          -0.3,
+          -1e-08,
+          -0.3,
+          -0.3,
+          0.1,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 56,
+        "current": {
+          "pvalue": 0.21875,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 56,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.21875
+      },
+      {
+        "differences": [
+          -0.3,
+          -1e-08,
+          0.1,
+          0.0,
+          0.5,
+          -1e-08,
+          0.5,
+          0.0,
+          0.1,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 608,
+        "current": {
+          "pvalue": 0.59375,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 608,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.59375
+      },
+      {
+        "differences": [
+          0.5,
+          1e-08,
+          -0.3,
+          0.1,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 22,
+        "current": {
+          "pvalue": 0.6875,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 22,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.6875
+      },
+      {
+        "differences": [
+          1e-08,
+          -1e-08,
+          0.5,
+          0.1,
+          0.5,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 22,
+        "current": {
+          "pvalue": 0.34375,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 22,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.34375
+      },
+      {
+        "differences": [
+          0.0,
+          0.1,
+          1e-08,
+          0.0,
+          0.5
+        ],
+        "fraction_oracle_extreme": 8,
+        "current": {
+          "pvalue": 0.25,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 8,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.25
+      },
+      {
+        "differences": [
+          0.0,
+          0.1,
+          0.1,
+          0.5
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.25,
+          "exact": true,
+          "assignments": 16,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.25
+      },
+      {
+        "differences": [
+          -1e-08,
+          1e-08,
+          1e-08,
+          0.1,
+          -1e-08,
+          0.1
+        ],
+        "fraction_oracle_extreme": 22,
+        "current": {
+          "pvalue": 0.34375,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 22,
+          "seed": null,
+          "tie_tolerance": 1e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.34375
+      },
+      {
+        "differences": [
+          -0.3,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.0,
+          0.1,
+          -1e-08
+        ],
+        "fraction_oracle_extreme": 216,
+        "current": {
+          "pvalue": 0.84375,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 216,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.84375
+      },
+      {
+        "differences": [
+          0.1,
+          0.1,
+          1e-08,
+          0.1,
+          -1e-08,
+          -0.3,
+          1e-08,
+          0.0,
+          1e-08,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 628,
+        "current": {
+          "pvalue": 0.61328125,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 628,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.61328125
+      },
+      {
+        "differences": [
+          0.1,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 2,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 1e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          1e-08,
+          -0.3,
+          0.0,
+          0.5,
+          -0.3,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 64,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 64,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          0.5,
+          -0.3,
+          -0.3,
+          -0.3,
+          -1e-08,
+          -1e-08,
+          0.5
+        ],
+        "fraction_oracle_extreme": 128,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 128,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          -1e-08,
+          0.0,
+          0.5,
+          0.1,
+          -1e-08,
+          0.0,
+          0.0,
+          -0.3,
+          -0.3
+        ],
+        "fraction_oracle_extreme": 480,
+        "current": {
+          "pvalue": 0.9375,
+          "exact": true,
+          "assignments": 512,
+          "extreme_assignments": 480,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.9375
+      },
+      {
+        "differences": [
+          0.5,
+          -0.3,
+          -1e-08,
+          1e-08,
+          -1e-08,
+          1e-08,
+          0.1
+        ],
+        "fraction_oracle_extreme": 86,
+        "current": {
+          "pvalue": 0.671875,
+          "exact": true,
+          "assignments": 128,
+          "extreme_assignments": 86,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.671875
+      },
+      {
+        "differences": [
+          1e-08,
+          -0.3,
+          -1e-08,
+          0.0,
+          0.1,
+          1e-08,
+          0.5,
+          0.0
+        ],
+        "fraction_oracle_extreme": 160,
+        "current": {
+          "pvalue": 0.625,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 160,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.625
+      },
+      {
+        "differences": [
+          0.0,
+          -0.3,
+          -1e-08,
+          0.5,
+          -1e-08,
+          -1e-08,
+          1e-08,
+          -1e-08,
+          -1e-08,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 992,
+        "current": {
+          "pvalue": 0.96875,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 992,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.96875
+      },
+      {
+        "differences": [
+          -0.3,
+          -1e-08,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "fraction_oracle_extreme": 32,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 32,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 1.0
+      },
+      {
+        "differences": [
+          -1e-08,
+          0.1,
+          0.1,
+          0.5,
+          0.1,
+          0.1
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 0.0625,
+          "exact": true,
+          "assignments": 64,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.0625
+      },
+      {
+        "differences": [
+          0.0,
+          -1e-08,
+          0.0,
+          0.1,
+          1e-08,
+          -0.3,
+          0.0,
+          0.0,
+          0.1,
+          1e-08
+        ],
+        "fraction_oracle_extreme": 992,
+        "current": {
+          "pvalue": 0.96875,
+          "exact": true,
+          "assignments": 1024,
+          "extreme_assignments": 992,
+          "seed": null,
+          "tie_tolerance": 3e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.96875
+      },
+      {
+        "differences": [
+          -0.3,
+          -1e-08,
+          -0.3,
+          0.0,
+          0.5
+        ],
+        "fraction_oracle_extreme": 28,
+        "current": {
+          "pvalue": 0.875,
+          "exact": true,
+          "assignments": 32,
+          "extreme_assignments": 28,
+          "seed": null,
+          "tie_tolerance": 5e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.875
+      },
+      {
+        "differences": [
+          1.0,
+          4.999999999999999e-13
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 1e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          1.0,
+          5e-13
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 1e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          1.0,
+          5.000000000000001e-13
+        ],
+        "fraction_oracle_extreme": 2,
+        "current": {
+          "pvalue": 0.5,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 1e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      }
+    ],
+    "analytic_large_n": [
+      {
+        "n_nonzero": 32,
+        "negative_or_positive_minority": 5,
+        "zeros": 0,
+        "binomial_extreme": 485650,
+        "current": {
+          "pvalue": 0.00011307420209050179,
+          "exact": true,
+          "assignments": 4294967296,
+          "extreme_assignments": 485650,
+          "seed": null,
+          "tie_tolerance": 1e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        }
+      },
+      {
+        "n_nonzero": 31,
+        "negative_or_positive_minority": 3,
+        "zeros": 1,
+        "binomial_extreme": 19968,
+        "current": {
+          "pvalue": 4.649162292480469e-06,
+          "exact": true,
+          "assignments": 4294967296,
+          "extreme_assignments": 19968,
+          "seed": null,
+          "tie_tolerance": 1e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        }
+      },
+      {
+        "n_nonzero": 20,
+        "negative_or_positive_minority": 4,
+        "zeros": 12,
+        "binomial_extreme": 50757632,
+        "current": {
+          "pvalue": 0.01181793212890625,
+          "exact": true,
+          "assignments": 4294967296,
+          "extreme_assignments": 50757632,
+          "seed": null,
+          "tie_tolerance": 1e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        }
+      },
+      {
+        "n_nonzero": 32,
+        "negative_or_positive_minority": 0,
+        "zeros": 0,
+        "binomial_extreme": 2,
+        "current": {
+          "pvalue": 4.656612873077393e-10,
+          "exact": true,
+          "assignments": 4294967296,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 1e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        }
+      }
+    ],
+    "fraction_distribution_dp": {
+      "blocks": 32,
+      "fraction_states": 856,
+      "assignments": 4294967296,
+      "fraction_extreme": 13473302,
+      "current": {
+        "pvalue": 0.003136997576802969,
+        "exact": true,
+        "assignments": 4294967296,
+        "extreme_assignments": 13473302,
+        "seed": null,
+        "tie_tolerance": 5.500000000000114e-13,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+        "algorithm": "meet_in_middle_integer",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      }
+    },
+    "rounded_boundary_differences": [
+      {
+        "differences": [
+          1.0,
+          4.999999999999999e-13
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 1e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      },
+      {
+        "differences": [
+          1.0,
+          5e-13
+        ],
+        "fraction_oracle_extreme": 4,
+        "current": {
+          "pvalue": 1.0,
+          "exact": true,
+          "assignments": 4,
+          "extreme_assignments": 4,
+          "seed": null,
+          "tie_tolerance": 1e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "frozen_rounded_p": 0.5
+      }
+    ],
+    "limits": [
+      "input differences are already-rounded treatment-control values",
+      "integer accumulation intentionally replaces rounded-fsum tail boundaries",
+      "tolerance unchanged in magnitude, applied to exact sum before division",
+      "finite checks and analytic cases do not prove business causal assumptions"
+    ]
+  },
+  "randomization_cost": {
+    "plan": {
+      "version": "0.7.0",
+      "baseline": {
+        "origin": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\wheels\\awaitlab_local-0.6.4-py3-none-any.whl",
+        "wheel_sha256": "12e34ba62817322250a519f01735b92a49d573ea5a1676bbaa29604e68eb2cc6",
+        "source_sha256": "b569058c16e485e30330dc2d71db865e6e0ea5dbd8739bc336b9a2fd053b6ed8",
+        "normalization": "CRLF to LF only"
+      },
+      "pairs": 12,
+      "seed": 2409,
+      "repeats": {
+        "8": 20,
+        "12": 5,
+        "16": 1,
+        "24": 1,
+        "32": 1
+      },
+      "current_statistics_sha256": "c82798c34aee884ba1a3615a3d0b4ff4808ec191beb3d5db09b0829ac57f627a",
+      "primary_family": [
+        "8",
+        "12",
+        "16"
+      ],
+      "extended_scope": "24/32 compare old approximate vs new exact costs, descriptive only"
+    },
+    "measurements": {
+      "8": {
+        "samples_ms": [
+          {
+            "block": 0,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.011265,
+            "baseline": 0.18529
+          },
+          {
+            "block": 1,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.011595,
+            "baseline": 0.18201499999999998
+          },
+          {
+            "block": 2,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.01046,
+            "baseline": 0.17095
+          },
+          {
+            "block": 3,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.17468999999999998,
+            "current": 0.01091
+          },
+          {
+            "block": 4,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.01125,
+            "baseline": 0.17483500000000002
+          },
+          {
+            "block": 5,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.01129,
+            "baseline": 0.187135
+          },
+          {
+            "block": 6,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.01081,
+            "baseline": 0.19293
+          },
+          {
+            "block": 7,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.215755,
+            "current": 0.0106
+          },
+          {
+            "block": 8,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.016819999999999998,
+            "baseline": 0.278285
+          },
+          {
+            "block": 9,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.212215,
+            "current": 0.010795
+          },
+          {
+            "block": 10,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.011265,
+            "baseline": 0.283885
+          },
+          {
+            "block": 11,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.01051,
+            "baseline": 0.17915
+          }
+        ],
+        "baseline_mean_ms": 0.20309458333333333,
+        "current_mean_ms": 0.011464166666666666,
+        "baseline_result": {
+          "pvalue": 0.0703125,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 18,
+          "seed": null,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "current_result": {
+          "pvalue": 0.0703125,
+          "exact": true,
+          "assignments": 256,
+          "extreme_assignments": 18,
+          "seed": null,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "effect": {
+          "mean_delta_ms": -0.19163041666666666,
+          "ci95_delta_ms": [
+            -0.21265659375,
+            -0.1732101354166667
+          ],
+          "mean_change_pct": -94.35525730006749,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 2000,
+            "seed": 2409,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.00048828125,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 2.7261999999999995e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "holm_adjusted_p": 0.00146484375
+      },
+      "12": {
+        "samples_ms": [
+          {
+            "block": 0,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.03658,
+            "baseline": 3.7515799999999997
+          },
+          {
+            "block": 1,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.030220000000000004,
+            "baseline": 3.73352
+          },
+          {
+            "block": 2,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 3.49298,
+            "current": 0.03578
+          },
+          {
+            "block": 3,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 3.48074,
+            "current": 0.03226
+          },
+          {
+            "block": 4,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 3.5727400000000005,
+            "current": 0.029859999999999998
+          },
+          {
+            "block": 5,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 3.71156,
+            "current": 0.03572
+          },
+          {
+            "block": 6,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 3.77286,
+            "current": 0.03112
+          },
+          {
+            "block": 7,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 3.7845,
+            "current": 0.03354
+          },
+          {
+            "block": 8,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.025500000000000002,
+            "baseline": 4.595000000000001
+          },
+          {
+            "block": 9,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.03846,
+            "baseline": 4.62934
+          },
+          {
+            "block": 10,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.033460000000000004,
+            "baseline": 4.48764
+          },
+          {
+            "block": 11,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 3.57782,
+            "current": 0.029599999999999998
+          }
+        ],
+        "baseline_mean_ms": 3.8825233333333333,
+        "current_mean_ms": 0.032675,
+        "baseline_result": {
+          "pvalue": 0.04931640625,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 202,
+          "seed": null,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "current_result": {
+          "pvalue": 0.04931640625,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 202,
+          "seed": null,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "effect": {
+          "mean_delta_ms": -3.8498483333333335,
+          "ci95_delta_ms": [
+            -4.086391750000001,
+            -3.636584916666667
+          ],
+          "mean_change_pct": -99.15840814865247,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 2000,
+            "seed": 2409,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.00048828125,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 4.59088e-12,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "holm_adjusted_p": 0.00146484375
+      },
+      "16": {
+        "samples_ms": [
+          {
+            "block": 0,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 71.6819,
+            "current": 0.1502
+          },
+          {
+            "block": 1,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 67.085,
+            "current": 0.1536
+          },
+          {
+            "block": 2,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.1459,
+            "baseline": 68.489
+          },
+          {
+            "block": 3,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.1408,
+            "baseline": 67.748
+          },
+          {
+            "block": 4,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.1262,
+            "baseline": 72.6219
+          },
+          {
+            "block": 5,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.1128,
+            "baseline": 71.8834
+          },
+          {
+            "block": 6,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.1114,
+            "baseline": 75.6474
+          },
+          {
+            "block": 7,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.112,
+            "baseline": 71.58
+          },
+          {
+            "block": 8,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.1791,
+            "baseline": 72.0649
+          },
+          {
+            "block": 9,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 74.2112,
+            "current": 0.1852
+          },
+          {
+            "block": 10,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.1371,
+            "baseline": 79.7068
+          },
+          {
+            "block": 11,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 87.4997,
+            "current": 0.1406
+          }
+        ],
+        "baseline_mean_ms": 73.3516,
+        "current_mean_ms": 0.14124166666666668,
+        "baseline_result": {
+          "pvalue": 0.03961181640625,
+          "exact": true,
+          "assignments": 65536,
+          "extreme_assignments": 2596,
+          "seed": null,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "current_result": {
+          "pvalue": 0.03961181640625,
+          "exact": true,
+          "assignments": 65536,
+          "extreme_assignments": 2596,
+          "seed": null,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "effect": {
+          "mean_delta_ms": -73.21035833333333,
+          "ci95_delta_ms": [
+            -76.51566729166667,
+            -70.50651895833334
+          ],
+          "mean_change_pct": -99.80744569080066,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 2000,
+            "seed": 2409,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.00048828125,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 2,
+          "seed": null,
+          "tie_tolerance": 8.73591e-11,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "holm_adjusted_p": 0.00146484375
+      },
+      "24": {
+        "samples_ms": [
+          {
+            "block": 0,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 115.2183,
+            "current": 1.5305
+          },
+          {
+            "block": 1,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 1.4953,
+            "baseline": 115.6984
+          },
+          {
+            "block": 2,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 1.4194,
+            "baseline": 115.0281
+          },
+          {
+            "block": 3,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 1.4442,
+            "baseline": 112.4731
+          },
+          {
+            "block": 4,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 116.9289,
+            "current": 1.4989
+          },
+          {
+            "block": 5,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 114.253,
+            "current": 1.5398
+          },
+          {
+            "block": 6,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 119.9641,
+            "current": 1.5144
+          },
+          {
+            "block": 7,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 114.0141,
+            "current": 1.4684
+          },
+          {
+            "block": 8,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 1.4161,
+            "baseline": 114.7067
+          },
+          {
+            "block": 9,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 1.4485,
+            "baseline": 118.948
+          },
+          {
+            "block": 10,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 1.5559,
+            "baseline": 135.3958
+          },
+          {
+            "block": 11,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 1.5021,
+            "baseline": 115.4047
+          }
+        ],
+        "baseline_mean_ms": 117.3361,
+        "current_mean_ms": 1.4861250000000001,
+        "baseline_result": {
+          "pvalue": 0.009499525023748812,
+          "exact": false,
+          "assignments": 20000,
+          "extreme_assignments": 189,
+          "seed": 73,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "current_result": {
+          "pvalue": 0.01012122631072998,
+          "exact": true,
+          "assignments": 16777216,
+          "extreme_assignments": 169806,
+          "seed": null,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        }
+      },
+      "32": {
+        "samples_ms": [
+          {
+            "block": 0,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 25.1374,
+            "baseline": 150.6083
+          },
+          {
+            "block": 1,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 25.339,
+            "baseline": 148.1339
+          },
+          {
+            "block": 2,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 26.0544,
+            "baseline": 146.5355
+          },
+          {
+            "block": 3,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 150.3563,
+            "current": 25.035
+          },
+          {
+            "block": 4,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 25.4591,
+            "baseline": 147.3196
+          },
+          {
+            "block": 5,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 146.0287,
+            "current": 24.6417
+          },
+          {
+            "block": 6,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 148.8053,
+            "current": 24.5952
+          },
+          {
+            "block": 7,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 169.7656,
+            "current": 35.5359
+          },
+          {
+            "block": 8,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 151.4011,
+            "current": 24.7645
+          },
+          {
+            "block": 9,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 27.3265,
+            "baseline": 168.9923
+          },
+          {
+            "block": 10,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 26.4881,
+            "baseline": 166.8945
+          },
+          {
+            "block": 11,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 151.5723,
+            "current": 26.2116
+          }
+        ],
+        "baseline_mean_ms": 153.86778333333334,
+        "current_mean_ms": 26.382366666666666,
+        "baseline_result": {
+          "pvalue": 0.003749812509374531,
+          "exact": false,
+          "assignments": 20000,
+          "extreme_assignments": 74,
+          "seed": 73,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "current_result": {
+          "pvalue": 0.003136997576802969,
+          "exact": true,
+          "assignments": 4294967296,
+          "extreme_assignments": 13473302,
+          "seed": null,
+          "tie_tolerance": 5.500000000000114e-13,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+          "algorithm": "meet_in_middle_integer",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        }
+      }
+    },
+    "memory": {
+      "16": {
+        "baseline": {
+          "traced_peak_kib": 1.9375
+        },
+        "current": {
+          "traced_peak_kib": 29.3828125
+        }
+      },
+      "32": {
+        "baseline": {
+          "traced_peak_kib": 5.453125
+        },
+        "current": {
+          "traced_peak_kib": 7144.40625
+        }
+      }
+    },
+    "limits": [
+      "fixed input fixture, not a business speedup benchmark",
+      "primary n<=16 fixture has equal tail counts; not universal old/new arithmetic equivalence",
+      "extended cases change precision mode, not the same computation",
+      "tracemalloc peaks exclude interpreter/runtime; separate from timing; not a universal memory bound"
+    ]
+  },
+  "randomization_memory": {
+    "version": "0.7.0",
+    "processes": {
+      "baseline": {
+        "mode": "baseline",
+        "blocks": 32,
+        "repeats": 10,
+        "total_ms": 1501.0488000007172,
+        "exact": false,
+        "pvalue": 0.003749812509374531,
+        "traced_peak_kib": 4.8515625,
+        "process_memory": {
+          "rss_end_mib": 27.82421875,
+          "peak_working_set_mib": 27.82421875
+        }
+      },
+      "current": {
+        "mode": "current",
+        "blocks": 32,
+        "repeats": 10,
+        "total_ms": 257.9702000002726,
+        "exact": true,
+        "pvalue": 0.003136997576802969,
+        "traced_peak_kib": 7143.8671875,
+        "process_memory": {
+          "rss_end_mib": 29.55859375,
+          "peak_working_set_mib": 51.5703125
+        }
+      }
+    },
+    "limits": [
+      "one new process per mode, descriptive only, no memory inference",
+      "baseline is approximate at 32 blocks; current is exact",
+      "process peaks include imports, all 10 calls, and separate tracemalloc probe",
+      "traced peaks exclude interpreter/native/runtime allocations; not a universal memory bound"
+    ]
+  },
+  "extended_plan": {
+    "settings": {
+      "blocks": 24,
+      "requests": 8,
+      "concurrency": 1,
+      "warmup": 1,
+      "seed": 173,
+      "trace_requests": 2,
+      "max_records": 4096,
+      "min_gain_pct": 5.0,
+      "alpha": 0.05
+    },
+    "inference_design": {
+      "status": "feasible",
+      "blocks": 24,
+      "replacement_family_size": 2,
+      "alpha": 0.05,
+      "exact_max_blocks": 32,
+      "raw_p_floor": 1.1920928955078125e-07,
+      "holm_p_floor": 2.384185791015625e-07,
+      "minimum_exact_blocks": 7,
+      "support_possible": true,
+      "rule": "adjusted_p < alpha; exact test required; output and point-gain gates still apply",
+      "scope": "best-case resolution only, not statistical power or a promise of support"
+    },
+    "replacement_family": [
+      "formula",
+      "unchanged"
+    ],
+    "workload_executed": false,
+    "scope": "imports custom module; does not call bundled prepare, workload, calibration, or checkpoint"
+  },
+  "extended_resumed_pairs": 48,
+  "extended_comparisons": [
+    {
+      "name": "formula",
+      "control_mean_ms": 0.0506140625,
+      "treatment_mean_ms": 0.007246354166666667,
+      "effect": {
+        "mean_delta_ms": -0.04336770833333334,
+        "ci95_delta_ms": [
+          -0.046806171875000004,
+          -0.04107438802083334
+        ],
+        "mean_change_pct": -85.68312083886435,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 24,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 1.1920928955078125e-07,
+        "exact": true,
+        "assignments": 16777216,
+        "extreme_assignments": 2,
+        "seed": null,
+        "tie_tolerance": 7.727499999999999e-14,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+        "algorithm": "meet_in_middle_integer",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 2.384185791015625e-07,
+      "evidence_level": "supported_in_this_experiment",
+      "output_equivalence": true
+    },
+    {
+      "name": "unchanged",
+      "control_mean_ms": 0.05095416666666667,
+      "treatment_mean_ms": 0.04713124999999999,
+      "effect": {
+        "mean_delta_ms": -0.0038229166666666676,
+        "ci95_delta_ms": [
+          -0.008342252604166668,
+          -0.0005748828125000012
+        ],
+        "mean_change_pct": -7.502657617139608,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 24,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 0.012099266052246094,
+        "exact": true,
+        "assignments": 16777216,
+        "extreme_assignments": 202992,
+        "seed": null,
+        "tie_tolerance": 3.6637500000000004e-14,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "sum_arithmetic": "exact integer-scaled input differences; tolerance applied before division",
+        "algorithm": "meet_in_middle_integer",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 0.012099266052246094,
+      "evidence_level": "supported_in_this_experiment",
+      "output_equivalence": true
+    }
+  ],
+  "negative_control_anomaly_preserved": true,
+  "negative_control_reason_confirmed": false,
+  "customer_lifecycle": {
+    "version": "0.7.0",
+    "report": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\customer-api-v0.7.0.json",
+    "lifetimes": 40,
+    "lifecycle_audit": [
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      }
+    ],
+    "fixture": {
+      "fixture_version": "sqlite-v1",
+      "rows": 50000,
+      "logical_data_sha256": "21b308f260c40f30a09bf79d10eabe2c520d53bc18f1ff5e4d6210ffadeb746b",
+      "files": {
+        "unindexed": {
+          "sha256": "dc0c26e83543cd0a68829a6173009c1764cdc5c8f911746789c7924c616aa13a",
+          "bytes": 2531328
+        },
+        "indexed": {
+          "sha256": "6f1dfc173e98fba561b104b1312f58be27bdc90785ffaf2d577d90024d013e84",
+          "bytes": 4108288
+        }
+      }
+    },
+    "sql": "SELECT id, name, balance FROM customers WHERE email = ? ORDER BY id",
+    "dependency_versions": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "uvicorn": "0.52.4"
+    },
+    "resumed_pairs": 20,
+    "resume_created_no_resources": true,
+    "comparisons_unchanged_after_resume": true,
+    "output_contract": "核对 HTTP 状态与完整 customers（id、name、balance）；接入代码明确排除 metadata.request_id 与 metadata.served_at_ns。未核对整个响应体。",
+    "limits": [
+      "business projection checks declared fields only",
+      "HTTP connections persist within a block, not across blocks",
+      "SQLite connections remain per query; executor is lifespan-managed",
+      "single process, synthetic customer rows"
+    ],
+    "process_memory_mib": {
+      "rss_end": 70.83203125,
+      "peak_working_set": 78.36328125,
+      "scope": "whole driver process, imports and all lifetimes; not isolated service memory or OS file cache"
+    }
+  },
+  "limits": [
+    "integer arithmetic deliberately versions rounded-fsum boundary convention",
+    "statistical computation improvements do not imply business speedup",
+    "32-block memory costs more than old approximate path",
+    "fixed 24-block experiment is separate from historical 6-block data, not optional extension",
+    "unchanged implementation was classified supported on very short workload; explanation remains unresolved",
+    "family-level exploratory policy does not control all project-wide repeated searches"
+  ]
+}
