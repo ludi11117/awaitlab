@@ -6,6 +6,28 @@
 
 求职或复试现场演示见 [DEMO.zh-CN.md](DEMO.zh-CN.md)，包括五分钟操作、技术要点与可核对的简历表述。
 
+## 减少多余数据库查询：订单列表补全客户资料
+
+新增真实 SQLite 案例：48 条订单关联 12 个已有客户及 1 个缺失客户，比较三种实现。它们使用同一有索引数据库，每个请求只开一个连接和只读事务，没有人为延迟。订单列表是固定构造的输入，下面只统计补全客户资料的 SELECT，不包含订单列表查询。
+
+| 实现 | 每请求实际 SELECT 数 | 本次平均响应变化 |
+| --- | ---: | ---: |
+| 每条订单查询一次客户 | 48 | 各候选的配对基线 |
+| 请求内按客户去重，再还原订单 | 13 | -26.36% |
+| 去重后用参数化 IN 分批查询，再还原订单 | 1 | -28.22% |
+
+```powershell
+python -m awaitlab run examples.order_query_case --plan
+python -m awaitlab run examples.order_query_case --output artifacts/my-orders.json
+python -m awaitlab run examples.order_query_case --output artifacts/my-orders.json --resume
+```
+
+输出完整保留订单顺序、重复客户关联、同一 email 的全部客户行和缺失客户空列表；没有通过去重订单或丢掉缺失行来减少查询。去重字典只在单个请求内存在，下一个请求重新查询，不引入跨请求缓存过期问题。批量查询每组最多 256 个不同 key，超过后分批，不把不受限的列表直接塞进一条 SQL。
+
+查询数由 `sqlite3.set_trace_callback` 逐请求记录，不靠代码行数估计。固定 10 配对、16 请求、4 并发、预热 2，本次执行 37,080 次 SELECT，完整输出一致，30 对恢复不再查询。原实现对照变化 +5.07%、Holm p=.6387，未触发预设报警，不证明等价。候选 Holm p 均 .005859375；这只是该合成负载下的响应收益，不能把 48→1 次查询说成响应快 98%，也没有检验批量与去重二者的直接差异。
+
+可复用实现见 [examples/order_query_case.py](examples/order_query_case.py)，离线报告见 [artifacts/order-queries-v1.html](artifacts/order-queries-v1.html)，原始 SQL 次数见 [artifacts/order-query-check-v1.json](artifacts/order-query-check-v1.json)。运行 `python benchmarks/order_query_check.py` 会重新执行固定验收并更新该案例报告。它展示 N+1 查询消除，不会自动扫描任意 ORM；同一请求内复用读取结果需要稳定读取语义，本例用显式只读事务保持一致快照。
+
 ## 直接比较自己的两个接口（0.9）
 
 已有优化前后的 GET / JSON 接口时，不必再编写 Python 实验模块：

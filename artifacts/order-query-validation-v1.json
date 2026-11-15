@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-15",
+  "sdk_version": "0.9.0",
+  "sdk_source_changed": false,
+  "unit_integration_tests_passed": 119,
+  "new_order_query_tests_passed": 5,
+  "browser_checks_passed": 104,
+  "tests_log": "D:/CodexWork/temp/awaitlab/tests-order-queries-v1.log",
+  "browser_log": "D:/CodexWork/temp/awaitlab/browser-order-queries-v1.log",
+  "query_audit": "order-query-check-v1.json",
+  "report": "order-queries-v1.json",
+  "screenshot": "order-queries-mobile.png",
+  "selects_per_request": [48, 13, 1],
+  "total_selects_including_warmup": 37080,
+  "measured_selects": 32960,
+  "resumed_pairs": 30,
+  "all_outputs_equal": true,
+  "plan_and_resume_issued_no_queries": true,
+  "scope": "Existing indexed SQLite fixture, one connection and read transaction per request, request-local deduplication and parameterized batched reads; no cross-request cache or automatic ORM detector."
+}
