@@ -17,6 +17,16 @@ for c in r['comparisons']:
  for b in c['blocks']:
   for mode in ['control','treatment']:b[mode]['trace']=[]
 write_report(r,Path('${temp}/empty-trace-fixture.html'))`],{cwd:root});
+execFileSync('python',['-c',`import json
+from pathlib import Path
+from awaitlab.report import write_report
+r=json.loads(Path('artifacts/events-bundle-v0.6.3.json').read_text(encoding='utf-8'))
+r['title']='UI legacy reach replay; no new measurement'
+for c in r['comparisons']:
+ c.pop('replacement_sites',None)
+ for b in c['blocks']:
+  for mode in ['control','treatment']:b[mode].pop('replacement_calls_by_site',None)
+write_report(r,Path('${temp}/legacy-bundle-fixture.html'))`],{cwd:root});
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.AWAITLAB_CHROMIUM||'D:/CodexWork/cache/ms-playwright/chromium-1243/chrome-win64/chrome.exe'});
  const page=await browser.newPage({viewport:{width:1440,height:1080}});
@@ -78,6 +88,26 @@ write_report(r,Path('${temp}/empty-trace-fixture.html'))`],{cwd:root});
   await page.screenshot({path:path.join(root,'artifacts','customer-api-mobile.png'),fullPage:true});
   await page.setViewportSize({width:1440,height:1080});
   await page.screenshot({path:path.join(root,'artifacts','customer-api-desktop.png'),fullPage:true});
+  await page.goto(pathToFileURL(path.join(root,'artifacts','events-bundle-v0.6.3.html')).href);
+  await page.locator('[data-arm="2"]').click();await page.locator('.replacement-reach summary').click();
+  assert.equal(await page.locator('.replacement-reach tbody tr').count(),2);checks.push('native bundle lists declared sites');
+  for(let i=0;i<2;i++){
+   assert.equal(await page.locator('.replacement-reach tbody tr').nth(i).locator('td').nth(1).innerText(),'80');
+   assert.equal(await page.locator('.replacement-reach tbody tr').nth(i).locator('td').nth(2).innerText(),'10 / 10');
+  }checks.push('actual per-site invocation and block totals');
+  assert((await page.locator('.replacement-reach').innerText()).includes('不能按调用次数分摊'));checks.push('bundle effect not allocated by counts');
+  assert((await page.locator('.chart text').allTextContents()).includes('events.unique +1'));checks.push('chart labels multi-site configuration');
+  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks.push('bundle scope mobile width');
+  await page.screenshot({path:path.join(root,'artifacts','events-bundle-mobile.png'),fullPage:true});
+  await page.locator('[data-arm="1"]').click();assert.equal(await page.locator('.replacement-reach tbody tr').count(),1);checks.push('single-site native scope retained');
+  await page.goto(pathToFileURL(path.join(temp,'legacy-bundle-fixture.html')).href);
+  await page.locator('[data-arm="2"]').click();await page.getByRole('heading',{name:'历史报告：主站点触达证据不足'}).waitFor();
+  await page.locator('.replacement-reach summary').click();
+  assert((await page.locator('.replacement-reach tbody tr').first().locator('td').nth(1).innerText())==='—');checks.push('legacy bundle proof not invented');
+  assert(await page.locator('.metrics strong').evaluate(el=>el.classList.contains('neutral')));checks.push('unsupported legacy bundle not promoted');
+  await page.locator('[data-arm="0"]').click();await page.getByRole('heading',{name:'本轮支持继续验证此优化'}).waitFor();
+  await page.locator('.replacement-reach summary').click();
+  assert((await page.locator('.replacement-reach').innerText()).includes('本臂声明单一站点'));checks.push('legacy unambiguous single-site total can be assigned');
   await page.goto(pathToFileURL(path.join(temp,'trace-fixture.html')).href);
   await page.locator('#trace-block').selectOption('1');assert.equal(await page.locator('.timeline').getAttribute('data-block'),'1');checks.push('sampled block selector with replay fixture');
   await page.goto(pathToFileURL(path.join(temp,'empty-trace-fixture.html')).href);

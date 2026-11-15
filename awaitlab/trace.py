@@ -10,6 +10,14 @@ import weakref
 _session = ContextVar('awaitlab_session', default=None)
 _parent = ContextVar('awaitlab_parent', default=None)
 _request = ContextVar('awaitlab_request', default=None)
+_activation = ContextVar('awaitlab_activation', default=None)
+
+
+@dataclass(eq=False)
+class _Activation:
+    session_token: object
+    token: object = None
+    active: bool = True
 
 
 @dataclass(frozen=True)
@@ -17,23 +25,32 @@ class TraceContext:
     session: object
     request_id: int | None
     parent_id: int | None
+    activation: object = None
+
+    @property
+    def is_active(self):
+        return self.session is not None and (self.activation is None or self.activation.active)
 
     @contextmanager
     def attach(self):
         # Tokens belong to this invocation, never shared on the Session object.
         session_token=_session.set(self.session)
+        activation_token=_activation.set(self.activation)
         request_token=_request.set(self.request_id)
         parent_token=_parent.set(self.parent_id)
         try:yield
         finally:
             _parent.reset(parent_token)
             _request.reset(request_token)
+            _activation.reset(activation_token)
             _session.reset(session_token)
 
 
 def capture_context():
     current=_session.get()
-    return TraceContext(current,_request.get(),_parent.get()) if current is not None else None
+    if current is None:return None
+    context=TraceContext(current,_request.get(),_parent.get(),_activation.get())
+    return context if context.is_active else None
 
 
 @dataclass(frozen=True)
@@ -62,6 +79,7 @@ class Session:
         self.stats = {}
         self.interventions = 0
         self.replacement_calls = 0
+        self.replacement_calls_by_site = {}
         self.observed_injection_ms = 0.0
         self.max_injection_ms = 0.0
         self._ids = itertools.count(1)
@@ -70,11 +88,16 @@ class Session:
         self.start_ns = time.perf_counter_ns()
 
     def __enter__(self):
-        self._token = _session.set(self)
+        activation=_Activation(_session.set(self))
+        activation.token=_activation.set(activation)
         return self
 
     def __exit__(self, *_):
-        _session.reset(self._token)
+        activation=_activation.get()
+        activation.active=False
+        _activation.reset(activation.token)
+        _session.reset(activation.session_token)
+        activation.token=activation.session_token=None
 
     @asynccontextmanager
     async def request(self, request_id):
@@ -89,6 +112,10 @@ class Session:
 
     @contextmanager
     def span(self, name, kind='operation'):
+        activation=_activation.get()
+        if activation is not None and not activation.active and _session.get() is self:
+            yield
+            return
         span_id = next(self._ids)
         parent_id = _parent.get()
         token = _parent.set(span_id)
@@ -146,14 +173,19 @@ def operation(name):
             session = _session.get()
             if session is None:
                 return await func(*args,**kwargs)
+            activation=_activation.get()
+            if activation is not None and not activation.active:
+                return await func(*args,**kwargs)
             with session.span(name):
                 target = session.replacements.get(name,func)
                 if name in session.replacements:
                     session.replacement_calls += 1
+                    counts = session.replacement_calls_by_site
+                    counts[name] = counts.get(name,0)+1
                 result = await target(*args,**kwargs)
                 # Cooperative delay: this extends operation readiness, never blocks
                 # the event-loop thread and never claims to emulate extra CPU work.
-                if session.delay_site == name and session.delay_ms:
+                if session.delay_site == name and session.delay_ms and (activation is None or activation.active):
                     session.interventions += 1
                     delay_start = time.perf_counter_ns()
                     await asyncio.sleep(session.delay_ms/1000)

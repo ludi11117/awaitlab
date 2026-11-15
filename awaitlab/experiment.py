@@ -60,8 +60,10 @@ class Experiment:
                 raise ValueError('Use positive cooperative delay or actual replacement arms')
             if arm.kind=='replacement' and arm.site not in arm.replacements:
                 raise ValueError('Replacement arm must replace its named site')
-            if arm.kind=='replacement' and getattr(arm.replacements[arm.site],'__awaitlab_name__',None)==arm.site:
-                raise ValueError('Pass an undecorated replacement; replacing a site with its own wrapper would recurse')
+            if arm.kind=='replacement':
+                for site,target in arm.replacements.items():
+                    if getattr(target,'__awaitlab_name__',None)==site:
+                        raise ValueError('Pass an undecorated replacement; replacing a site with its own wrapper would recurse')
 
     async def _block(self, arm, trace=False):
         with owned_tasks() as tasks:
@@ -121,6 +123,7 @@ class Experiment:
                     'basis':'synchronous elapsed after handler returns, includes timing bookkeeping, before worker begins its next request; not isolated CPU time'},
                 'wall_ms':elapsed,
                 'interventions':session.interventions,'replacement_calls':session.replacement_calls,
+                'replacement_calls_by_site':dict(session.replacement_calls_by_site),
                 'injection':{'requested_ms':arm.delay_ms if arm and arm.kind=='delay' else 0,
                     'mean_observed_ms':session.observed_injection_ms/session.interventions if session.interventions else 0,
                     'max_observed_ms':session.max_injection_ms},
@@ -161,9 +164,9 @@ class Experiment:
                 for mode in planned['order']:
                     measurements[mode]=await self._block(arm if mode=='treatment' else None,trace=block==0)
                 control,treatment=measurements['control'],measurements['treatment']
-                applied=treatment['interventions'] if arm.kind=='delay' else treatment['replacement_calls']
+                applied=treatment['interventions'] if arm.kind=='delay' else treatment['replacement_calls_by_site'].get(arm.site,0)
                 if not applied:
-                    raise ValueError(f'Arm {arm.name!r} did not reach instrumented site {arm.site!r}; no sensitivity conclusion is valid')
+                    raise ValueError(f'Arm {arm.name!r} did not reach instrumented site {arm.site!r}; no effect conclusion is valid')
                 control_hashes=control.pop('output_hashes')
                 treatment_hashes=treatment.pop('output_hashes')
                 mismatches=[i for i,(left,right) in enumerate(zip(control_hashes,treatment_hashes)) if left!=right]
@@ -201,9 +204,10 @@ class Experiment:
                 comparison['timer_overshoot_warning']=observed>arm.delay_ms*1.5
                 comparison['interpretation']='response to extra cooperative delay; not an acceleration prediction'
             else:
+                comparison['replacement_sites']=list(arm.replacements)
                 comparison['observed_gain']=equivalent and effect['mean_change_pct']<0
                 comparison['randomization']=paired_randomization(controls,treatments,self.settings.seed)
-                comparison['interpretation']='actual replacement under this workload; output equality is observed on tested request IDs only'
+                comparison['interpretation']='effect of the declared replacement configuration, not individual-site attribution; output equality is observed on tested request IDs only'
             comparisons.append(comparison)
         family={c['name']:c['randomization']['pvalue'] for c in comparisons if c['kind']=='replacement'}
         adjusted=holm_adjust(family)

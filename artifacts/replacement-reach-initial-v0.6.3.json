@@ -1,0 +1,78 @@
+{
+  "version": "0.6.3",
+  "baseline": {
+    "origin": "artifacts\\wheels\\awaitlab_local-0.6.2-py3-none-any.whl",
+    "wheel_sha256": "47120ecb1f8b3a8b1d47ea2466f7445713b5216805d0e21399721314ff58c121",
+    "source_sha256": {
+      "experiment.py": "0386de52f093195236b59ed0d88e38bc6b6b07f0482c71a442287674bbed2654",
+      "trace.py": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e"
+    },
+    "normalization": "CRLF to LF only"
+  },
+  "cases": {
+    "unreached": {
+      "frozen_gate": {
+        "outcome": "accepted",
+        "total_replacement_calls": 6,
+        "observed_operation_names": [
+          "active"
+        ],
+        "output_equivalence": true
+      },
+      "current_gate": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      }
+    },
+    "warmup_only": {
+      "frozen_gate": {
+        "outcome": "accepted",
+        "total_replacement_calls": 6,
+        "observed_operation_names": [
+          "active"
+        ],
+        "output_equivalence": true
+      },
+      "current_gate": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      }
+    },
+    "observational_span": {
+      "frozen_gate": {
+        "outcome": "accepted",
+        "total_replacement_calls": 6,
+        "observed_operation_names": [
+          "active",
+          "primary"
+        ],
+        "output_equivalence": true
+      },
+      "current_gate": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      }
+    },
+    "cleanup_only": {
+      "frozen_gate": {
+        "outcome": "accepted",
+        "total_replacement_calls": 8,
+        "observed_operation_names": [
+          "active",
+          "primary"
+        ],
+        "output_equivalence": true
+      },
+      "current_gate": {
+        "outcome": "accepted",
+        "total_replacement_calls": 8,
+        "observed_operation_names": [
+          "active",
+          "primary"
+        ],
+        "output_equivalence": true
+      }
+    }
+  },
+  "scope": "same current trace and workload; compare frozen 0.6.2 vs current run gate; correctness only, no speedup inference"
+}

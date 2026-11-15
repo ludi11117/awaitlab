@@ -52,6 +52,10 @@ python -m awaitlab run examples.unique_case --output artifacts/unique-latest.jso
 
 例子对 3000 个整数事件 ID 做保序去重，比较列表扫描与哈希表，输出包含完整去重 ID 列表，没有人为 sleep。当前同一固定输入协议下均值约6.94ms → 0.24ms；这是提供的算法替换效果，不是工具发明或自动生成的优化。CPU工作会占用事件循环，本例设并发1，不冒充CPU并行测试。
 
+**0.6.3 增加组合替换示例**：`python -m awaitlab run examples.events_bundle_case --output artifacts/events-bundle-latest.json`。对同一批事件分别替换去重、计数和二者组合，核对完整保序ID与频次；离线示例见 artifacts/events-bundle-v0.6.3.html。报告展开“替换范围与实际触达”可看每个站点实际执行多少次。收益属于整组配置，不能把组合结果归给主站点，也不能把独立实验的百分比直接相加。
+
+主要替换站点必须在每个实验块的测量阶段实际分派到候选实现；其他站点、预热、同名观测跨度和退出后的清理调用都不能代替该证据。每块保留总次数及 `replacement_calls_by_site`；额外配置但未调用的站点允许为0。捕获或继承的会话上下文在本次会话退出后失效，重新进入同一Session也不会复活旧上下文。计数表示分派尝试，输出是否一致仍单独核对。
+
 将 examples/unique_case.py 复制到自己的项目，保留模块级 `experiment = Experiment(...)`、非空 `workload_version`，可选 `title`；替换业务 factory 与候选实现即可。在模块所在目录运行，不必额外写 asyncio 启动脚本：
 
 ```powershell

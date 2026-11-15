@@ -1,0 +1,1089 @@
+{
+  "version": "0.6.3",
+  "date": "2026-11-15",
+  "unit_integration_tests": 78,
+  "unit_integration_passed": true,
+  "interval_layout_and_union_cases": 640,
+  "browser": {
+    "passed": true,
+    "checks": [
+      "standalone SQLite report",
+      "two real replacement arms",
+      "supported evidence grade",
+      "adjusted inference visible",
+      "workload provenance",
+      "actual fixture size",
+      "actual SQL",
+      "placebo not promoted",
+      "placebo neutral presentation",
+      "treatment timeline",
+      "real HTTP transport scope",
+      "library version",
+      "response, worker cycle and check separately shown",
+      "check cost matches recorded block mean",
+      "sampled request selector",
+      "HTTP and database spans both visible",
+      "sampled HTTP and operation coverage",
+      "uncovered window not called CPU time",
+      "no overlap hides nested spans",
+      "server parent linked to request",
+      "keyboard-accessible recorded parent",
+      "switch sampled request",
+      "preserve request across modes",
+      "mobile width",
+      "timer calibration",
+      "custom business report metadata",
+      "custom comparison and observer metrics",
+      "replacement-only case has no sleep calibration",
+      "custom business report mobile width",
+      "declared metadata exclusion visible",
+      "projection not presented as full-response equality",
+      "lifespan and keep-alive transport visible",
+      "real API replacement has no timer calibration",
+      "declared contract mobile width",
+      "native bundle lists declared sites",
+      "actual per-site invocation and block totals",
+      "bundle effect not allocated by counts",
+      "chart labels multi-site configuration",
+      "bundle scope mobile width",
+      "single-site native scope retained",
+      "legacy bundle proof not invented",
+      "unsupported legacy bundle not promoted",
+      "legacy unambiguous single-site total can be assigned",
+      "sampled block selector with replay fixture",
+      "empty sampling remains usable",
+      "legacy delay interpretation",
+      "legacy result not silently upgraded",
+      "legacy check cost not assumed zero",
+      "missing legacy values handled",
+      "no JavaScript exceptions",
+      "no network requests"
+    ]
+  },
+  "core_installation": {
+    "version": "0.6.3",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.6.3\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 17,
+    "wheel_sha256": "fe9728066a33adf820f58750eb5bb2329f4c118277ae26655cb953cf2599982d",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.6.3\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.6.3\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false,
+      "certifi": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only",
+    "orphan_task_probe": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+  },
+  "bundle_installation": {
+    "version": "0.6.3",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.6.3\\awaitlab\\__init__.py",
+    "site_packages_disabled": true,
+    "resumed_pairs": 6,
+    "comparisons_unchanged": true,
+    "all_outputs_equal": true,
+    "bundle_sites": [
+      "events.unique",
+      "events.count"
+    ],
+    "counts_per_treatment_block": {
+      "events.unique": 3,
+      "events.count": 3
+    },
+    "negative_reach_probes": {
+      "unreached": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      },
+      "warmup_only": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      },
+      "observational_span": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      },
+      "cleanup_only": {
+        "outcome": "rejected",
+        "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+      }
+    },
+    "expired_capture": {
+      "calls": [
+        "original"
+      ],
+      "output": 1,
+      "replacement_calls": 0,
+      "recapture_after_exit": false,
+      "recorded_operations": []
+    }
+  },
+  "http_installation": {
+    "version": "0.6.3",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.6.3\\awaitlab\\__init__.py",
+    "user_project": "D:\\CodexWork\\temp\\awaitlab\\http-user-case-0.6.3",
+    "lifetimes": 8,
+    "lifecycle_audit": [
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 5,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 2
+      }
+    ],
+    "resumed_pairs": 4,
+    "resume_created_no_resources": true,
+    "comparisons_unchanged_after_resume": true,
+    "all_outputs_equal": true,
+    "output_contract": "核对 HTTP 状态与完整 customers（id、name、balance）；接入代码明确排除 metadata.request_id 与 metadata.served_at_ns。未核对整个响应体。",
+    "packaged_files_match_source": 17,
+    "dependency_versions": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "uvicorn": "0.52.4"
+    },
+    "shared_ssl_configuration": {
+      "same_context_reused": true,
+      "certificate_verification_required": true,
+      "hostname_check_enabled": true,
+      "ca_certificates_match_fresh_default": true
+    }
+  },
+  "reach_diagnostic": {
+    "version": "0.6.3",
+    "baseline": {
+      "origin": "artifacts\\wheels\\awaitlab_local-0.6.2-py3-none-any.whl",
+      "wheel_sha256": "47120ecb1f8b3a8b1d47ea2466f7445713b5216805d0e21399721314ff58c121",
+      "source_sha256": {
+        "experiment.py": "0386de52f093195236b59ed0d88e38bc6b6b07f0482c71a442287674bbed2654",
+        "trace.py": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e"
+      },
+      "normalization": "CRLF to LF only"
+    },
+    "cases": {
+      "unreached": {
+        "frozen_gate": {
+          "outcome": "accepted",
+          "total_replacement_calls": 6,
+          "observed_operation_names": [
+            "active"
+          ],
+          "output_equivalence": true
+        },
+        "current_gate": {
+          "outcome": "rejected",
+          "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+        }
+      },
+      "warmup_only": {
+        "frozen_gate": {
+          "outcome": "accepted",
+          "total_replacement_calls": 6,
+          "observed_operation_names": [
+            "active"
+          ],
+          "output_equivalence": true
+        },
+        "current_gate": {
+          "outcome": "rejected",
+          "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+        }
+      },
+      "observational_span": {
+        "frozen_gate": {
+          "outcome": "accepted",
+          "total_replacement_calls": 6,
+          "observed_operation_names": [
+            "active",
+            "primary"
+          ],
+          "output_equivalence": true
+        },
+        "current_gate": {
+          "outcome": "rejected",
+          "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+        }
+      },
+      "cleanup_only": {
+        "frozen_gate": {
+          "outcome": "accepted",
+          "total_replacement_calls": 6,
+          "observed_operation_names": [
+            "active"
+          ],
+          "output_equivalence": true
+        },
+        "current_gate": {
+          "outcome": "rejected",
+          "reason": "Arm 'masked' did not reach instrumented site 'primary'; no effect conclusion is valid"
+        }
+      }
+    },
+    "expired_capture": {
+      "frozen_trace": {
+        "calls": [
+          "replacement"
+        ],
+        "output": 1,
+        "replacement_calls": 1,
+        "recapture_after_exit": true,
+        "recorded_operations": [
+          "late"
+        ]
+      },
+      "current_trace": {
+        "calls": [
+          "original"
+        ],
+        "output": 1,
+        "replacement_calls": 0,
+        "recapture_after_exit": false,
+        "recorded_operations": []
+      }
+    },
+    "scope": "gate cases share current trace and workload; expired_capture compares frozen/current trace independently; correctness only, no speedup inference"
+  },
+  "trace_cost": {
+    "plan": {
+      "version": "0.6.3",
+      "baseline": {
+        "origin": "artifacts\\wheels\\awaitlab_local-0.6.2-py3-none-any.whl",
+        "wheel_sha256": "47120ecb1f8b3a8b1d47ea2466f7445713b5216805d0e21399721314ff58c121",
+        "source_sha256": {
+          "experiment.py": "0386de52f093195236b59ed0d88e38bc6b6b07f0482c71a442287674bbed2654",
+          "trace.py": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e"
+        },
+        "normalization": "CRLF to LF only"
+      },
+      "pairs": 12,
+      "calls_per_sample": 100000,
+      "seed": 2121,
+      "modes": [
+        "aggregate",
+        "replacement"
+      ],
+      "current_trace_sha256": "e6ad64f1b66bc3806dd76972a5c416e50d04d99779060557796e230dfc15c5b5"
+    },
+    "results": {
+      "aggregate": {
+        "samples_ms_per_call": [
+          {
+            "block": 0,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.001701677,
+            "current": 0.001861345
+          },
+          {
+            "block": 1,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.001849639,
+            "baseline": 0.0017063380000000002
+          },
+          {
+            "block": 2,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.0018474469999999999,
+            "baseline": 0.0016659399999999999
+          },
+          {
+            "block": 3,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.0018430150000000001,
+            "baseline": 0.0017061799999999998
+          },
+          {
+            "block": 4,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.002123681,
+            "baseline": 0.001721968
+          },
+          {
+            "block": 5,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.001854426,
+            "current": 0.002226921
+          },
+          {
+            "block": 6,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.002020244,
+            "baseline": 0.0017404130000000001
+          },
+          {
+            "block": 7,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.0018695150000000002,
+            "baseline": 0.001830225
+          },
+          {
+            "block": 8,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.002490824,
+            "current": 0.001956171
+          },
+          {
+            "block": 9,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.0026020440000000004,
+            "baseline": 0.001785401
+          },
+          {
+            "block": 10,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.002281376,
+            "baseline": 0.001727071
+          },
+          {
+            "block": 11,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.001845732,
+            "baseline": 0.001692945
+          }
+        ],
+        "effect": {
+          "mean_delta_ms": 0.00022531016666666676,
+          "ci95_delta_ms": [
+            3.958664166666675e-05,
+            0.0003980871791666666
+          ],
+          "mean_change_pct": 12.503681195859627,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 2000,
+            "seed": 2121,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.03564453125,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 146,
+          "seed": null,
+          "tie_tolerance": 1e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "holm_adjusted_p": 0.03564453125
+      },
+      "replacement": {
+        "samples_ms_per_call": [
+          {
+            "block": 0,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.0019324260000000001,
+            "baseline": 0.0017430240000000001
+          },
+          {
+            "block": 1,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.001731018,
+            "current": 0.001943604
+          },
+          {
+            "block": 2,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.0017259819999999998,
+            "current": 0.0019316659999999999
+          },
+          {
+            "block": 3,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.001927092,
+            "baseline": 0.0017279830000000002
+          },
+          {
+            "block": 4,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.0019385300000000002,
+            "baseline": 0.001783386
+          },
+          {
+            "block": 5,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.001723681,
+            "current": 0.0021903219999999998
+          },
+          {
+            "block": 6,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.002143668,
+            "baseline": 0.0018207009999999999
+          },
+          {
+            "block": 7,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.002378371,
+            "current": 0.002017159
+          },
+          {
+            "block": 8,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.002219083,
+            "baseline": 0.001774889
+          },
+          {
+            "block": 9,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.001833484,
+            "current": 0.002085041
+          },
+          {
+            "block": 10,
+            "order": [
+              "current",
+              "baseline"
+            ],
+            "current": 0.001939077,
+            "baseline": 0.001750285
+          },
+          {
+            "block": 11,
+            "order": [
+              "baseline",
+              "current"
+            ],
+            "baseline": 0.001830535,
+            "current": 0.002315439
+          }
+        ],
+        "effect": {
+          "mean_delta_ms": 0.00022998066666666669,
+          "ci95_delta_ms": [
+            9.912932291666679e-05,
+            0.0003348213270833333
+          ],
+          "mean_change_pct": 12.645947533509872,
+          "independent_units": "randomized paired workload blocks",
+          "blocks": 12,
+          "bootstrap": {
+            "resamples": 2000,
+            "seed": 2121,
+            "confidence": 0.95,
+            "interval": "percentile"
+          }
+        },
+        "randomization": {
+          "pvalue": 0.0068359375,
+          "exact": true,
+          "assignments": 4096,
+          "extreme_assignments": 28,
+          "seed": null,
+          "tie_tolerance": 1e-15,
+          "statistic": "two-sided absolute sum of paired treatment-control differences",
+          "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+        },
+        "holm_adjusted_p": 0.013671875
+      }
+    },
+    "limits": [
+      "empty async calls and checksum loop, no I/O",
+      "exploratory paired evidence in one process; not business speedup",
+      "replacement mode uses same underlying function on both sides"
+    ]
+  },
+  "events_resumed_pairs": 30,
+  "events_comparisons_unchanged": true,
+  "events_comparisons": [
+    {
+      "name": "only_unique",
+      "replacement_sites": [
+        "events.unique"
+      ],
+      "control_mean_ms": 24.743288749999998,
+      "treatment_mean_ms": 16.51832375,
+      "effect": {
+        "mean_delta_ms": -8.224965000000001,
+        "ci95_delta_ms": [
+          -9.677718500000001,
+          -6.756677875000002
+        ],
+        "mean_change_pct": -33.24119555449151,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "holm_adjusted_p": 0.005859375,
+      "evidence_level": "supported_in_this_experiment",
+      "output_equivalence": true
+    },
+    {
+      "name": "only_count",
+      "replacement_sites": [
+        "events.count"
+      ],
+      "control_mean_ms": 23.6058875,
+      "treatment_mean_ms": 7.23236375,
+      "effect": {
+        "mean_delta_ms": -16.37352375,
+        "ci95_delta_ms": [
+          -18.137096000000003,
+          -15.068995562500001
+        ],
+        "mean_change_pct": -69.36203415355597,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "holm_adjusted_p": 0.005859375,
+      "evidence_level": "supported_in_this_experiment",
+      "output_equivalence": true
+    },
+    {
+      "name": "unique_and_count",
+      "replacement_sites": [
+        "events.unique",
+        "events.count"
+      ],
+      "control_mean_ms": 23.347348750000002,
+      "treatment_mean_ms": 0.43137749999999997,
+      "effect": {
+        "mean_delta_ms": -22.915971250000002,
+        "ci95_delta_ms": [
+          -23.856026437500002,
+          -22.065984718750002
+        ],
+        "mean_change_pct": -98.15234909702542,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 10,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 173,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "holm_adjusted_p": 0.005859375,
+      "evidence_level": "supported_in_this_experiment",
+      "output_equivalence": true
+    }
+  ],
+  "customer_lifecycle": {
+    "version": "0.6.3",
+    "report": "D:\\CodexWork\\projects\\awaitlab\\artifacts\\customer-api-v0.6.3.json",
+    "lifetimes": 40,
+    "lifecycle_audit": [
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      },
+      {
+        "startups": 1,
+        "shutdowns": 1,
+        "requests": 26,
+        "client_closed": true,
+        "pending_tickets": 0,
+        "http_connections": 4
+      }
+    ],
+    "fixture": {
+      "fixture_version": "sqlite-v1",
+      "rows": 50000,
+      "logical_data_sha256": "21b308f260c40f30a09bf79d10eabe2c520d53bc18f1ff5e4d6210ffadeb746b",
+      "files": {
+        "unindexed": {
+          "sha256": "dc0c26e83543cd0a68829a6173009c1764cdc5c8f911746789c7924c616aa13a",
+          "bytes": 2531328
+        },
+        "indexed": {
+          "sha256": "6f1dfc173e98fba561b104b1312f58be27bdc90785ffaf2d577d90024d013e84",
+          "bytes": 4108288
+        }
+      }
+    },
+    "sql": "SELECT id, name, balance FROM customers WHERE email = ? ORDER BY id",
+    "dependency_versions": {
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "uvicorn": "0.52.4"
+    },
+    "resumed_pairs": 20,
+    "resume_created_no_resources": true,
+    "comparisons_unchanged_after_resume": true,
+    "output_contract": "核对 HTTP 状态与完整 customers（id、name、balance）；接入代码明确排除 metadata.request_id 与 metadata.served_at_ns。未核对整个响应体。",
+    "limits": [
+      "business projection checks declared fields only",
+      "HTTP connections persist within a block, not across blocks",
+      "SQLite connections remain per query; executor is lifespan-managed",
+      "single process, synthetic customer rows"
+    ],
+    "process_memory_mib": {
+      "rss_end": 70.61328125,
+      "peak_working_set": 78.2578125,
+      "scope": "whole driver process, imports and all lifetimes; not isolated service memory or OS file cache"
+    }
+  },
+  "limits": [
+    "counts are dispatch attempts, not successful completions",
+    "bundle effect is not an individual-site causal allocation",
+    "correctness fixes cost time on empty-call microbenchmarks",
+    "old gate diagnostic shares current trace; expired-capture trace is independently compared",
+    "initial pre-lifetime-fix artifacts retained separately; no cross-version speedup inference"
+  ]
+}

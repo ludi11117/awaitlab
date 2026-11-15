@@ -1,0 +1,307 @@
+{
+  "plan": {
+    "version": "0.6.3",
+    "baseline": {
+      "origin": "artifacts\\wheels\\awaitlab_local-0.6.2-py3-none-any.whl",
+      "wheel_sha256": "47120ecb1f8b3a8b1d47ea2466f7445713b5216805d0e21399721314ff58c121",
+      "source_sha256": {
+        "experiment.py": "0386de52f093195236b59ed0d88e38bc6b6b07f0482c71a442287674bbed2654",
+        "trace.py": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e"
+      },
+      "normalization": "CRLF to LF only"
+    },
+    "pairs": 12,
+    "calls_per_sample": 100000,
+    "seed": 2121,
+    "modes": [
+      "aggregate",
+      "replacement"
+    ],
+    "current_trace_sha256": "2e23f2f4df13a566e5eaa778da55ad3501eaf9c006c8f4fcb78f7b03e7d06d75"
+  },
+  "results": {
+    "aggregate": {
+      "samples_ms_per_call": [
+        {
+          "block": 0,
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "baseline": 0.001647534,
+          "current": 0.001629978
+        },
+        {
+          "block": 1,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.0016244550000000001,
+          "baseline": 0.001636567
+        },
+        {
+          "block": 2,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001641477,
+          "baseline": 0.0016159190000000002
+        },
+        {
+          "block": 3,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001623574,
+          "baseline": 0.001626625
+        },
+        {
+          "block": 4,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001638837,
+          "baseline": 0.001792551
+        },
+        {
+          "block": 5,
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "baseline": 0.0017285599999999999,
+          "current": 0.0018588110000000001
+        },
+        {
+          "block": 6,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001798445,
+          "baseline": 0.0016819390000000001
+        },
+        {
+          "block": 7,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001810871,
+          "baseline": 0.001933012
+        },
+        {
+          "block": 8,
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "baseline": 0.001892809,
+          "current": 0.001698879
+        },
+        {
+          "block": 9,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.0018466480000000002,
+          "baseline": 0.001924916
+        },
+        {
+          "block": 10,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001927417,
+          "baseline": 0.001661113
+        },
+        {
+          "block": 11,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001654766,
+          "baseline": 0.002105794
+        }
+      ],
+      "effect": {
+        "mean_delta_ms": -4.1098416666666656e-05,
+        "ci95_delta_ms": [
+          -0.00014393139375,
+          5.3913022916666595e-05
+        ],
+        "mean_change_pct": -2.3211424263527625,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 12,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 2121,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 0.4716796875,
+        "exact": true,
+        "assignments": 4096,
+        "extreme_assignments": 1932,
+        "seed": null,
+        "tie_tolerance": 1e-15,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 0.943359375
+    },
+    "replacement": {
+      "samples_ms_per_call": [
+        {
+          "block": 0,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001729153,
+          "baseline": 0.0016617930000000002
+        },
+        {
+          "block": 1,
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "baseline": 0.0016458349999999998,
+          "current": 0.0016938069999999999
+        },
+        {
+          "block": 2,
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "baseline": 0.001659957,
+          "current": 0.001710847
+        },
+        {
+          "block": 3,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001695409,
+          "baseline": 0.001658066
+        },
+        {
+          "block": 4,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001848415,
+          "baseline": 0.0017458609999999998
+        },
+        {
+          "block": 5,
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "baseline": 0.001843898,
+          "current": 0.001948525
+        },
+        {
+          "block": 6,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.0017503039999999998,
+          "baseline": 0.0017124170000000001
+        },
+        {
+          "block": 7,
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "baseline": 0.001694933,
+          "current": 0.001771384
+        },
+        {
+          "block": 8,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001886576,
+          "baseline": 0.001805763
+        },
+        {
+          "block": 9,
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "baseline": 0.001684004,
+          "current": 0.001895327
+        },
+        {
+          "block": 10,
+          "order": [
+            "current",
+            "baseline"
+          ],
+          "current": 0.001786941,
+          "baseline": 0.0017768539999999998
+        },
+        {
+          "block": 11,
+          "order": [
+            "baseline",
+            "current"
+          ],
+          "baseline": 0.002244407,
+          "current": 0.0017465360000000001
+        }
+      ],
+      "effect": {
+        "mean_delta_ms": 2.7453e-05,
+        "ci95_delta_ms": [
+          -7.439371458333328e-05,
+          9.753939166666663e-05
+        ],
+        "mean_change_pct": 1.55881188928364,
+        "independent_units": "randomized paired workload blocks",
+        "blocks": 12,
+        "bootstrap": {
+          "resamples": 2000,
+          "seed": 2121,
+          "confidence": 0.95,
+          "interval": "percentile"
+        }
+      },
+      "randomization": {
+        "pvalue": 0.6953125,
+        "exact": true,
+        "assignments": 4096,
+        "extreme_assignments": 2848,
+        "seed": null,
+        "tie_tolerance": 1e-15,
+        "statistic": "two-sided absolute sum of paired treatment-control differences",
+        "null": "no arm effect, within-block labels exchangeable under the randomized order design"
+      },
+      "holm_adjusted_p": 0.943359375
+    }
+  },
+  "limits": [
+    "empty async calls and checksum loop, no I/O",
+    "exploratory paired evidence in one process; not business speedup",
+    "replacement mode uses same underlying function on both sides"
+  ]
+}

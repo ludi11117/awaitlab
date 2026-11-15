@@ -111,5 +111,29 @@ class CheckpointTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(state['status'],'failed')
         self.assertEqual(len(state['pairs']['delay']),2)
 
+    async def test_unreached_primary_keeps_only_previously_complete_pairs(self):
+        opened=0
+        @operation('primary')
+        async def primary(i):return i
+        @operation('secondary')
+        async def secondary(i):return i
+        async def candidate(i):return i
+        @asynccontextmanager
+        async def workload():
+            nonlocal opened
+            opened+=1;include_primary=opened<=2
+            async def handler(i):
+                if include_primary:await primary(i)
+                return await secondary(i)
+            yield handler
+        arm=Arm('bundle','replacement','primary',replacements={'primary':candidate,'secondary':candidate})
+        exp=Experiment(workload,[arm],Settings(blocks=3,requests=2,warmup=0))
+        with self.assertRaisesRegex(ValueError,'did not reach'):
+            await exp.run(checkpoint=self.path,workload_version='fixed-test-v1')
+        state=json.loads(self.path.read_text(encoding='utf-8'))
+        self.assertEqual(state['status'],'failed')
+        self.assertEqual(len(state['pairs']['bundle']),1)
+        self.assertEqual(state['pairs']['bundle'][0]['treatment']['replacement_calls_by_site'],{'primary':2,'secondary':2})
+
 
 if __name__=='__main__':unittest.main()
