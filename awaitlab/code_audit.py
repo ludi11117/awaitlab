@@ -13,6 +13,12 @@ from . import __version__
 
 SKIP_DIRS={'.git','.venv','venv','__pycache__','node_modules','build','dist','.mypy_cache','.pytest_cache'}
 RULES={'ALD001','ALD002'}
+SOURCE_LINE=re.compile(r'[^\r\n]*(?:\r\n|\r|\n)|[^\r\n]+$')
+
+
+def source_lines(source):
+    """Physical Python lines; Unicode separators and form feeds remain content."""
+    return SOURCE_LINE.findall(source)
 
 
 class SuppressionError(ValueError):
@@ -135,16 +141,23 @@ def patch_error(source,filename,docstrings):
 
 class FlowAudit:
     def __init__(self,source,filename):
-        self.source=source;self.lines=source.splitlines(keepends=True);self.filename=filename;self.findings=[];self.edits=[]
-        tokens=list(tokenize.generate_tokens(io.StringIO(source).readline))
+        self.source=source;self.lines=source_lines(source);self.filename=filename;self.findings=[];self.edits=[]
+        self.encoded_lines=[line.encode('utf-8') for line in self.lines]
+        tokens=list(tokenize.generate_tokens(io.StringIO(source,newline=None).readline))
         self.comments={token.start[0]:token.string for token in tokens if token.type==tokenize.COMMENT}
         self.suppressions=read_suppressions(self.comments)
         self.else_headers=[token.start for token in tokens if token.type==tokenize.NAME and token.string=='else']
 
+    def segment(self,node):
+        start=node.lineno-1;end=node.end_lineno-1
+        if start==end:return self.encoded_lines[start][node.col_offset:node.end_col_offset].decode('utf-8')
+        return (self.encoded_lines[start][node.col_offset:].decode('utf-8')+
+            ''.join(self.lines[start+1:end])+self.encoded_lines[end][:node.end_col_offset].decode('utf-8'))
+
     def finding(self,node,rule,confidence,message,evidence,suggestion):
         item={'path':self.filename,'line':node.lineno,'column':node.col_offset+1,
               'rule':rule,'confidence':confidence,'message':message,'evidence':evidence,
-              'suggestion':suggestion,'code':ast.get_source_segment(self.source,node),'patch_available':False}
+              'suggestion':suggestion,'code':self.segment(node),'patch_available':False}
         self.findings.append(item)
         if node.lineno in self.suppressions:
             rules,reason=self.suppressions[node.lineno]
@@ -166,7 +179,7 @@ class FlowAudit:
                             for (name,singleton),(identity,origins) in sorted(facts.items()) if (name,singleton) in tested_keys]
                         details='；'.join(f'第 {"/".join(map(str,row["lines"]))} 行：{row["name"]} is {"" if row["identity"] else "not "}{row["singleton"]}' for row in related)
                         item=self.finding(node,'ALD001','path_proven',
-                            f'{ast.get_source_segment(self.source,node.test)} 在当前路径恒为 {truth}',
+                            f'{self.segment(node.test)} 在当前路径恒为 {truth}',
                             (details+'。' if details else '条件自身的单例身份比较与短路路径确定结果。')+'赋值、调用、await等语句会清除已有路径事实。',
                             '移除重复条件，保留实际可达分支。')
                         item['related_conditions']=related
@@ -206,6 +219,8 @@ class FlowAudit:
             item['patch_note']='elif、多行条件或行内语句仅报告，不生成补丁。';return
         if '\t' in header_indent:
             item['patch_note']='含制表符缩进，不生成补丁。';return
+        if any(character!=' ' for character in header_indent):
+            item['patch_note']='含非空格缩进，不生成补丁。';return
         # AST ranges exclude trailing comments; include only comments still indented in this branch.
         cursor=end
         while cursor<len(lines):
@@ -246,6 +261,8 @@ class FlowAudit:
             body_indent=first[:len(first)-len(first.lstrip())]
             if '\t' in body_indent:
                 item['patch_note']='含制表符缩进，不生成补丁。';return
+            if any(character!=' ' for character in body_indent):
+                item['patch_note']='含非空格缩进，不生成补丁。';return
             kept_start,kept_end=(start+1,else_line if else_line is not None else end) if truth else (else_line+1,end)
             replacement.extend(header_indent+line[len(body_indent):] if line.startswith(body_indent) else line
                 for line in lines[kept_start:kept_end])
@@ -270,7 +287,7 @@ def audit_source(source,filename='<string>'):
                 isinstance(node.body[0],ast.Return) and (node.body[0].value is None or isinstance(node.body[0].value,ast.Constant)))
             if broad and swallowed:
                 audit.finding(node,'ALD002','needs_review','宽泛异常被静默忽略或转成固定结果',
-                    ast.get_source_segment(source,node),
+                    audit.segment(node),
                     '核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。')
     ordered=sorted(audit.edits,key=lambda e:(e[0],-e[1]))
     if not ordered:return sorted(audit.findings,key=lambda f:(f['line'],f['column'],f['rule'])),source
@@ -333,7 +350,7 @@ def audit_path(target,*,exclude=()):
                     item['patch_available']=False;item['patch_note']='非普通UTF-8编码，首版仅报告。'
             if patched!=source:
                 patches.extend(line if line.endswith('\n') else line+'\n\\ No newline at end of file\n'
-                    for line in difflib.unified_diff(source.splitlines(keepends=True),patched.splitlines(keepends=True),
+                    for line in difflib.unified_diff(source_lines(source),source_lines(patched),
                         fromfile='a/'+name,tofile='b/'+name))
             findings.extend(item for item in found if 'suppression_reason' not in item)
             ignored.extend(item for item in found if 'suppression_reason' in item)

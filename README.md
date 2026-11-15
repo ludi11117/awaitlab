@@ -8,7 +8,7 @@
 
 求职或复试现场演示见 [DEMO.zh-CN.md](DEMO.zh-CN.md)，包括五分钟操作、技术要点与可核对的简历表述。
 
-## 审查过度防御代码（0.14）
+## 审查过度防御代码（0.14.1）
 
 这是面向使用者的新功能：扫描自己的 Python 项目，查看代码位置、路径依据和修改建议，生成可复核的补丁。仅使用标准库，不导入或执行扫描目标，不需要模型 API。先看自带示例：
 
@@ -79,6 +79,8 @@ def optional_plugin(loader):
 这是本机扫描构造文件的成本，不是业务接口加速或跨机器保证。200处负载约少用92.8%时间；只做3对计时，没有性能显著性结论，也未消除所有其他扫描开销。含拒绝项时还需逐项验证，单次小探针从2.85变3.78ms，这个成本保留在记录中。
 
 新旧结果在87个当前Git列出的Python文件、12条诊断及所生成源码上完全一致；该有限语料不构成全域等价证明。记录与固定基线SHA见 [audit-validation-cost-v0.14.0.json](artifacts/audit-validation-cost-v0.14.0.json) 和 [audit-validation-equivalence-v0.14.0.json](artifacts/audit-validation-equivalence-v0.14.0.json)。复跑命令是 `python benchmarks/audit_validation_cost.py`，等价核对另用 `--corpus`；`--gate-ms 1000` 只是本机回归探针，不加入跨机器单元测试。
+
+0.14.1再缓存UTF-8源码切片，并按Python实际的LF/CRLF/CR换行处理行号，修复字符串内Unicode分隔字符导致补丁误拒绝的问题。8种字符串分隔字符、中文标识符、不同换行和无末尾换行均有回归；非空格特殊缩进仍交给人工。新一轮同协议中，200候选相对冻结0.13的中位数为2863.97→49.31ms；这是构造扫描成本、3对描述性计时，不是业务响应或跨机器保证，也不把不同轮次的0.14/0.14.1数字当作直接配对检验。新语料88文件的诊断与建议源码仍与冻结基线一致；特殊字符补丁则按新的正确行为单独验证。记录见 [0.14.1计时](artifacts/audit-validation-cost-v0.14.1.json) 与 [语料核对](artifacts/audit-validation-equivalence-v0.14.1.json)。
 
 分析限局部语法模型：在赋值、调用、await 和其他不支持的语句处丢弃已知事实，不推断跨函数、全局变量、动态反射或业务必要性。and 为假不表示每项都为假；or 为真不表示每项都为真，合流只保留所有可达路径共有的事实。`value is True` 与 `if value` 或 `value == True` 不混用，不假设用户对象的真值/相等方法没有副作用。
 

@@ -1,0 +1,68 @@
+{
+  "version": "0.14.1",
+  "date": "2026-11-15",
+  "unit_tests": 163,
+  "new_source_text_tests": 5,
+  "audit_tests": 41,
+  "test_log": "D:/CodexWork/temp/awaitlab/tests-v0.14.1.log",
+  "original_failure_log": "D:/CodexWork/temp/awaitlab/source-text-before.log",
+  "initial_failing_subcases": 10,
+  "cost_record": "audit-validation-cost-v0.14.1.json",
+  "equivalence_record": "audit-validation-equivalence-v0.14.1.json",
+  "files_compared": 88,
+  "diagnostics_compared": 12,
+  "installed_core": {
+    "version": "0.14.1",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.14.1\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 20,
+    "wheel_sha256": "55b45d945415cba8e9fafb240828a87f9ab12d3429c539166a83aff8a957d93c",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.14.1\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.14.1\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false,
+      "certifi": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only",
+    "orphan_task_probe": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+  },
+  "installed_source_cases": {
+    "version": "0.14.1",
+    "installed_audit_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.14.1\\awaitlab\\code_audit.py",
+    "site_packages_disabled": true,
+    "optional_dependencies_available": false,
+    "source_separator_cases": 8,
+    "all_patches_apply": true,
+    "all_banner_values_preserved": true,
+    "ignored_directives_after_literals_work": true
+  },
+  "browser_rerun": false,
+  "scope": [
+    "Python physical newline handling and UTF-8 byte-offset extraction.",
+    "Patched special-character literals are checked for preserved values and applicable Git diffs.",
+    "Finite normal-source corpus equivalence does not claim equality with old behavior on fixed edge cases.",
+    "Three descriptive timing pairs; no business-response, universal-equivalence or across-machine performance claim."
+  ]
+}
