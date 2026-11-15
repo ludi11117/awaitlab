@@ -1,14 +1,34 @@
 """Small, local Python audit: path facts first, review-only heuristics second."""
 import ast
 import difflib
+from fnmatch import fnmatchcase
 import io
 import json
 import os
 from pathlib import Path
+import re
 import tokenize
+from . import __version__
 
 
 SKIP_DIRS={'.git','.venv','venv','__pycache__','node_modules','build','dist','.mypy_cache','.pytest_cache'}
+RULES={'ALD001','ALD002'}
+
+
+class SuppressionError(ValueError):
+    """A source-level ignore directive is invalid, so the scan is incomplete."""
+
+
+def read_suppressions(comments):
+    result={}
+    for line,comment in comments.items():
+        if not re.match(r'#\s*awaitlab:',comment):continue
+        match=re.fullmatch(r'#\s*awaitlab:\s*ignore\[([A-Z0-9, ]+)\]\s*--\s*(\S.*)',comment)
+        if not match:raise SuppressionError(f'第 {line} 行忽略说明无效；使用 # awaitlab: ignore[ALD002] -- 原因')
+        rules={rule.strip() for rule in match[1].split(',')}
+        if not rules<=RULES:raise SuppressionError(f'第 {line} 行含未知规则：{", ".join(sorted(rules-RULES))}')
+        result[line]=(rules,match[2])
+    return result
 
 
 def identity_test(node):
@@ -108,6 +128,7 @@ class FlowAudit:
         self.source=source;self.lines=source.splitlines(keepends=True);self.filename=filename;self.findings=[];self.edits=[]
         tokens=list(tokenize.generate_tokens(io.StringIO(source).readline))
         self.comments={token.start[0]:token.string for token in tokens if token.type==tokenize.COMMENT}
+        self.suppressions=read_suppressions(self.comments)
         self.else_headers=[token.start for token in tokens if token.type==tokenize.NAME and token.string=='else']
 
     def finding(self,node,rule,confidence,message,evidence,suggestion):
@@ -115,6 +136,9 @@ class FlowAudit:
               'rule':rule,'confidence':confidence,'message':message,'evidence':evidence,
               'suggestion':suggestion,'code':ast.get_source_segment(self.source,node),'patch_available':False}
         self.findings.append(item)
+        if node.lineno in self.suppressions:
+            rules,reason=self.suppressions[node.lineno]
+            if rule in rules:item['suppression_reason']=reason
         return item
 
     def block(self,statements,facts,locals_,parameters):
@@ -163,6 +187,7 @@ class FlowAudit:
         return facts
 
     def propose(self,node,truth,item):
+        if 'suppression_reason' in item:return
         lines=self.lines
         start=node.lineno-1;end=node.end_lineno
         header=lines[start];header_indent=header[:len(header)-len(header.lstrip())]
@@ -255,20 +280,30 @@ def audit_source(source,filename='<string>'):
     return sorted(audit.findings,key=lambda f:(f['line'],f['column'],f['rule'])),result
 
 
-def audit_path(target):
+def audit_path(target,*,exclude=()):
     target=Path(target).resolve()
     if not target.exists():raise ValueError(f'路径不存在：{target}')
     if target.is_file() and target.suffix!='.py':raise ValueError('扫描目标必须是 .py 文件或目录')
     cwd=Path.cwd().resolve()
     root=cwd if target.is_relative_to(cwd) else target if target.is_dir() else target.parent
-    files=[];errors=[]
-    if target.is_file():files=[target]
+    scan_root=target if target.is_dir() else target.parent
+    patterns=tuple(pattern.replace('\\','/') for pattern in exclude)
+    files=[];errors=[];excluded=[]
+    def is_excluded(path,is_dir=False):
+        name=path.relative_to(scan_root).as_posix()+('/' if is_dir else '')
+        if any(fnmatchcase(name,pattern) for pattern in patterns):
+            excluded.append(name);return True
+        return False
+    if target.is_file():
+        if not is_excluded(target):files=[target]
     else:
         def walk_error(error):errors.append({'path':str(error.filename),'error':str(error)})
         for directory,dirs,names in os.walk(target,followlinks=False,onerror=walk_error):
-            dirs[:]=sorted(name for name in dirs if name not in SKIP_DIRS and not (Path(directory)/name).is_symlink())
-            files.extend(Path(directory)/name for name in sorted(names) if name.endswith('.py') and not (Path(directory)/name).is_symlink())
-    findings=[];patches=[]
+            dirs[:]=sorted(name for name in dirs if name not in SKIP_DIRS and not (Path(directory)/name).is_symlink()
+                and not is_excluded(Path(directory)/name,is_dir=True))
+            files.extend(Path(directory)/name for name in sorted(names) if name.endswith('.py')
+                and not (Path(directory)/name).is_symlink() and not is_excluded(Path(directory)/name))
+    findings=[];ignored=[];patches=[]
     for path in files:
         name=path.relative_to(root).as_posix()
         try:
@@ -282,24 +317,28 @@ def audit_path(target):
                 patches.extend(line if line.endswith('\n') else line+'\n\\ No newline at end of file\n'
                     for line in difflib.unified_diff(source.splitlines(keepends=True),patched.splitlines(keepends=True),
                         fromfile='a/'+name,tofile='b/'+name))
-            findings.extend(found)
-        except (OSError,SyntaxError,UnicodeError) as error:
+            findings.extend(item for item in found if 'suppression_reason' not in item)
+            ignored.extend(item for item in found if 'suppression_reason' in item)
+        except (OSError,SyntaxError,UnicodeError,SuppressionError) as error:
             errors.append({'path':name,'error':str(error)})
-    return {'kind':'defensive_code_audit','patch_root':str(root),'files_scanned':len(files),
-        'findings':findings,'errors':errors,'patch':''.join(patches),
+    return {'kind':'defensive_code_audit','library_version':__version__,'patch_root':str(root),'scan_root':str(scan_root),
+        'files_scanned':len(files),'exclude_patterns':list(patterns),'excluded_paths':sorted(excluded),
+        'findings':findings,'ignored_findings':ignored,'errors':errors,'patch':''.join(patches),
         'scope':'Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review.'}
 
 
-def run_cli(target,output=None,patch=None,check=False,*,html=None):
+def run_cli(target,output=None,patch=None,check=False,*,html=None,exclude=()):
     try:
         if output and Path(output).suffix!='.json':raise ValueError('--output 必须以 .json 结尾')
         if patch and Path(patch).suffix!='.patch':raise ValueError('--patch 必须以 .patch 结尾')
         if html and Path(html).suffix!='.html':raise ValueError('--html 必须以 .html 结尾')
-        report=audit_path(target)
+        report=audit_path(target,exclude=exclude)
         for item in report['findings']:
             print(f'{item["path"]}:{item["line"]}:{item["column"]} {item["rule"]} [{item["confidence"]}] {item["message"]}')
             print(f'  依据：{item["evidence"]}\n  建议：{item["suggestion"]}')
         for error in report['errors']:print(f'{error["path"]}: 扫描失败：{error["error"]}')
+        for item in report['ignored_findings']:
+            print(f'{item["path"]}:{item["line"]} {item["rule"]} 已注明忽略：{item["suppression_reason"]}')
         for destination,text in ((output,json.dumps(report,ensure_ascii=False,indent=2)+'\n'),(patch,report['patch'])):
             if destination:
                 path=Path(destination);path.parent.mkdir(parents=True,exist_ok=True)
@@ -309,7 +348,8 @@ def run_cli(target,output=None,patch=None,check=False,*,html=None):
             print(f'离线报告：{write_audit_report(report,html).resolve()}')
         proven=sum(item['confidence']=='path_proven' for item in report['findings'])
         review=len(report['findings'])-proven
-        print(f'扫描 {report["files_scanned"]} 个文件；路径冗余 {proven} 处；人工复核 {review} 处；错误 {len(report["errors"])} 处。')
+        print(f'扫描 {report["files_scanned"]} 个文件；路径冗余 {proven} 处；人工复核 {review} 处；'
+            f'已注明忽略 {len(report["ignored_findings"])} 处；排除路径 {len(report["excluded_paths"])} 个；错误 {len(report["errors"])} 处。')
         if patch:print(f'补丁：{Path(patch).resolve()}；相对目录：{report["patch_root"]}；未修改目标源码。')
         return 2 if report['errors'] else int(check and proven>0)
     except (OSError,ValueError) as error:

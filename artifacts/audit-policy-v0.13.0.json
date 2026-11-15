@@ -1,0 +1,57 @@
+{
+  "kind": "defensive_code_audit",
+  "library_version": "0.13.0",
+  "patch_root": "D:\\CodexWork\\temp\\awaitlab\\tmpd4t0dbly",
+  "scan_root": "D:\\CodexWork\\temp\\awaitlab\\tmpd4t0dbly",
+  "files_scanned": 1,
+  "exclude_patterns": [
+    "generated/**",
+    "legacy/**"
+  ],
+  "excluded_paths": [
+    "generated/",
+    "legacy/"
+  ],
+  "findings": [
+    {
+      "path": "app.py",
+      "line": 4,
+      "column": 5,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "value is None 在当前路径恒为 False",
+      "evidence": "第 2 行：value is not None。赋值、调用、await等语句会清除已有路径事实。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "code": "    if value is None:\n        return 'redundant fallback'",
+      "patch_available": true,
+      "related_conditions": [
+        {
+          "name": "value",
+          "singleton": "None",
+          "identity": false,
+          "lines": [
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "ignored_findings": [
+    {
+      "path": "app.py",
+      "line": 12,
+      "column": 5,
+      "rule": "ALD002",
+      "confidence": "needs_review",
+      "message": "宽泛异常被静默忽略或转成固定结果",
+      "evidence": "except Exception:  # awaitlab: ignore[ALD002] -- plugin is optional; failure leaves it disabled\n        return None",
+      "suggestion": "核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。",
+      "code": "except Exception:  # awaitlab: ignore[ALD002] -- plugin is optional; failure leaves it disabled\n        return None",
+      "patch_available": false,
+      "suppression_reason": "plugin is optional; failure leaves it disabled"
+    }
+  ],
+  "errors": [],
+  "patch": "--- a/app.py\n+++ b/app.py\n@@ -1,8 +1,6 @@\n def read(value):\n     if value is None:\n         return None\n-    if value is None:\n-        return 'redundant fallback'\n     return value\n \n \n",
+  "scope": "Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review."
+}

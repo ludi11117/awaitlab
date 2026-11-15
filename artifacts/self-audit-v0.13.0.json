@@ -1,0 +1,20 @@
+{
+  "kind": "defensive_code_audit",
+  "library_version": "0.13.0",
+  "patch_root": "D:\\CodexWork\\projects\\awaitlab",
+  "scan_root": "D:\\CodexWork\\projects\\awaitlab",
+  "files_scanned": 82,
+  "exclude_patterns": [
+    "examples/defensive_*.py"
+  ],
+  "excluded_paths": [
+    "examples/defensive_logic_sample.py",
+    "examples/defensive_patch_sample.py",
+    "examples/defensive_sample.py"
+  ],
+  "findings": [],
+  "ignored_findings": [],
+  "errors": [],
+  "patch": "",
+  "scope": "Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review."
+}

@@ -1,0 +1,90 @@
+{
+  "version": "0.13.0",
+  "date": "2026-11-15",
+  "unit_tests": 157,
+  "new_tests": 8,
+  "audit_tests": 35,
+  "test_log": "D:/CodexWork/temp/awaitlab/tests-v0.13.0.log",
+  "policy_fixture": {
+    "version": "0.13.0",
+    "fixture": "temporary project, not user business code",
+    "scanned_files": 1,
+    "excluded_paths": [
+      "generated/",
+      "legacy/"
+    ],
+    "initial_active_findings": 1,
+    "reasoned_ignores": 1,
+    "first_check_exit": 1,
+    "after_patch_check_exit": 0,
+    "ignore_reason_retained": true,
+    "differential_inputs": 7,
+    "all_demo_outputs_equal": true,
+    "excluded_invalid_source_not_parsed": true
+  },
+  "self_audit": {
+    "files": 82,
+    "explicitly_excluded_demo_paths": [
+      "examples/defensive_logic_sample.py",
+      "examples/defensive_patch_sample.py",
+      "examples/defensive_sample.py"
+    ],
+    "active_findings": 0,
+    "scope": "Current two rules only; not a general quality or completeness proof."
+  },
+  "browser_checks": 28,
+  "browser_record": "audit-browser-v0.13.0.json",
+  "installed_core": {
+    "version": "0.13.0",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.13.0\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 20,
+    "wheel_sha256": "1ea2992b99080358d66916e06a3234207a1d0039c37cc3cf4117a2155a7bdb30",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.13.0\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.13.0\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false,
+      "certifi": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only",
+    "orphan_task_probe": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+  },
+  "installed_audit": {
+    "version": "0.13.0",
+    "installed_audit_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.13.0\\awaitlab\\code_audit.py",
+    "site_packages_disabled": true,
+    "optional_dependencies_available": false,
+    "check_exit": 0,
+    "excluded_invalid_source_not_parsed": true,
+    "ignored_reason_exported": true,
+    "html_reason_visible": true
+  },
+  "boundaries": [
+    "Exclusions and ignored findings remain visible; ignore is not a fix.",
+    "Ignore directives apply only to the matching rule on the same line and require a reason.",
+    "Malformed/unknown directives produce an incomplete scan, not a clean result.",
+    "Targets are parsed without imports/execution; controlled fixtures alone are executed for comparison."
+  ]
+}

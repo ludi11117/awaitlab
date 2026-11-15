@@ -10,5 +10,6 @@
 # Preserve blank context lines in unified diffs and their offline presentation.
 *.patch text eol=lf whitespace=-blank-at-eol,-blank-at-eof
 artifacts/defensive-*.html whitespace=-blank-at-eol
+artifacts/audit-*.html whitespace=-blank-at-eol
 *.cmd text eol=crlf
 *.png binary

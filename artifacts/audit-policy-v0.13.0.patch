@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -1,8 +1,6 @@
+ def read(value):
+     if value is None:
+         return None
+-    if value is None:
+-        return 'redundant fallback'
+     return value
+ 
+ 

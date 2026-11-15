@@ -1,4 +1,14 @@
-# 0.12.0 补丁实用性验证
+# 0.13.0 整仓接入策略验证
+
+日期：2026-11-15。记录见 artifacts/audit-policy-check-v0.13.0.json 与 self-audit-v0.13.0.json/html。
+
+- 全套157项单元/集成测试通过，审查专项35项。新增8项覆盖目录剪枝、不解析被排除的非法源码、Windows路径归一化、单文件排除、逐行忽略与其他有效补丁并存、HTML理由转义、错误/空忽略指令、字符串伪指令及可重复CLI参数。完整日志 tests-v0.13.0.log 位于D:/CodexWork/temp/awaitlab。
+- 临时项目包含真实可简化分支、带理由保留的可选插件异常处理、非法生成文件及历史目录。只扫描1个文件，明确排除2条目录路径，导出1条有效诊断和1条带理由忽略。实际应用补丁后--check由1变0，7个可信示例输入输出一致，忽略理由仍保留。扫描器不运行目标，输出比较仅执行受控样例。
+- 对当前仓库运行 `audit . --exclude examples/defensive_*.py --check`，明确排除3个刻意样例，扫描82个文件，无当前规则提示/忽略/错误。不能据此声称所有过度防御或其他缺陷均已排除。
+- 28项审查浏览器检查通过：此前20项加策略/整仓报告8项，覆盖有效项与保留决定分开、排除路径可见、忽略不表示修复、手机宽度及离线无脚本。截图为audit-policy-desktop/mobile.png；历史性能页面未重跑。
+- 20个包内文件与0.13 wheel逐字节一致。独立-S安装验证排除非法生成源码、忽略理由导出、HTML及check返回码，无可选依赖；核心CLI恢复2对和遗留任务探针通过。报告见install-audit-check、install-check-v0.13.0.json。
+
+## 0.12.0 补丁实用性验证
 
 日期：2026-11-15。新报告为 artifacts/defensive-patches-v0.12.0.json/html/patch，验收见 artifacts/defensive-patch-check-v0.12.0.json。
 

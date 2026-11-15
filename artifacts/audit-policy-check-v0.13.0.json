@@ -1,0 +1,17 @@
+{
+  "version": "0.13.0",
+  "fixture": "temporary project, not user business code",
+  "scanned_files": 1,
+  "excluded_paths": [
+    "generated/",
+    "legacy/"
+  ],
+  "initial_active_findings": 1,
+  "reasoned_ignores": 1,
+  "first_check_exit": 1,
+  "after_patch_check_exit": 0,
+  "ignore_reason_retained": true,
+  "differential_inputs": 7,
+  "all_demo_outputs_equal": true,
+  "excluded_invalid_source_not_parsed": true
+}

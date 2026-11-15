@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "checks": [
+    "offline audit heading",
+    "all four findings rendered",
+    "three proven path findings",
+    "review-only exception separated",
+    "related guard line visible",
+    "source snippet visible",
+    "actual unified diff visible",
+    "native evidence disclosure works",
+    "mobile page stays within viewport",
+    "no browser exceptions",
+    "no remote requests",
+    "report needs no JavaScript",
+    "patch report retains all five findings",
+    "four path findings displayed",
+    "three valid patches survive rejected edit",
+    "manual-only rejection reason visible",
+    "source explanation comment visible",
+    "patch preserves header comment",
+    "patch report mobile width",
+    "new report stays offline and error-free",
+    "policy report keeps active finding separate",
+    "reasoned ignore shown",
+    "explicit exclusion decisions visible",
+    "ignore is not presented as fixed",
+    "policy report mobile width",
+    "policy report stays script-free and offline",
+    "self-audit has no active findings",
+    "self-audit documents the three excluded demos"
+  ]
+}

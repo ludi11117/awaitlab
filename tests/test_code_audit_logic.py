@@ -123,7 +123,7 @@ class AuditLogicTests(unittest.TestCase):
         report={'files_scanned':1,'findings':[{'rule':'ALD002','confidence':'needs_review','path':payload,
             'line':1,'column':1,'message':payload,'evidence':payload,'suggestion':payload,'code':payload,
             'patch_available':False}], 'errors':[{'path':payload,'error':payload}],
-            'patch_root':payload,'patch':payload,'scope':payload}
+            'patch_root':payload,'patch':payload,'scope':payload,'ignored_findings':[],'excluded_paths':[]}
         html=render_audit_report(report)
         self.assertNotIn(payload,html)
         self.assertIn('&lt;script&gt;',html)

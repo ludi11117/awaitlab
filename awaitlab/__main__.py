@@ -37,6 +37,7 @@ def main():
     audit.add_argument('--output',help='Save findings, evidence and patch as JSON')
     audit.add_argument('--patch',help='Save a reviewable .patch; target sources are not modified')
     audit.add_argument('--html',help='Save a standalone offline evidence and patch report')
+    audit.add_argument('--exclude',action='append',default=[],help='Exclude a scan-root-relative fnmatch pattern; repeatable')
     audit.add_argument('--check',action='store_true',help='Exit 1 for path-proven redundant guards; review-only findings do not fail')
     for command in [demo,custom,http]:
         command.add_argument('--plan',action='store_true',help='Inspect settings and inference resolution without executing the workload; custom modules are still imported')
@@ -45,7 +46,7 @@ def main():
     args=parser.parse_args()
     if args.command=='audit':
         from .code_audit import run_cli
-        raise SystemExit(run_cli(args.path,args.output,args.patch,args.check,html=args.html))
+        raise SystemExit(run_cli(args.path,args.output,args.patch,args.check,html=args.html,exclude=args.exclude))
     if args.command=='demo':
         scenario=SCENARIOS[args.scenario]
         blocks=args.blocks if args.blocks is not None else scenario.get('default_blocks',6)

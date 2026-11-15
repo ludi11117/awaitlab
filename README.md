@@ -2,13 +2,13 @@
 
 本地 Python 代码核查与性能实验：识别部分重复防御条件，再用可复跑的实验核对已提供优化的输出和响应变化。
 
-**最快查看审查功能：打开 [防御代码审查报告](artifacts/defensive-patches-v0.12.0.html)。** 可以看到源码位置、判断依据及补丁建议，无需后台服务、账号、API或模型权重。
+**最快查看审查功能：打开 [接入策略示例报告](artifacts/audit-policy-v0.13.0.html)。** 可以看到有效提示、带理由保留的逻辑、排除目录及补丁建议，无需后台服务、账号、API或模型权重。完整分支修改示例另见 [补丁报告](artifacts/defensive-patches-v0.12.0.html)。
 
 性能实验入口：双击 `Start-AwaitLab.cmd`，默认打开0.8版本的真实SQLite本地报告，包含已声明的负面对照和质量提示；没有报告时才运行实验。重新测量双击 `Run-SQLite-Experiments.cmd`。三个Windows入口都将临时文件放在D盘，结束后恢复调用者的工作目录和环境设置。
 
 求职或复试现场演示见 [DEMO.zh-CN.md](DEMO.zh-CN.md)，包括五分钟操作、技术要点与可核对的简历表述。
 
-## 审查过度防御代码（0.12）
+## 审查过度防御代码（0.13）
 
 这是面向使用者的新功能：扫描自己的 Python 项目，查看代码位置、路径依据和修改建议，生成可复核的补丁。仅使用标准库，不导入或执行扫描目标，不需要模型 API。先看自带示例：
 
@@ -40,7 +40,31 @@ python -m awaitlab audit D:\CodexWork\projects\your-project --html artifacts/aud
 
 每处候选补丁与此前已接受的修改一起编译检查语法、核对函数/类文档字符串；某处被拒绝，不撤回其他独立有效修改。会改变局部绑定或生成器类型的死分支、多行字符串、非普通 UTF-8 编码等继续保留诊断。原文件变化后应重新扫描，再执行项目测试。
 
-追加 `--check` 时：存在任何 ALD001 路径冗余返回 1，**包括无法生成补丁的冗余**；仅有 ALD002 异常复核项时返回 0，语法/读取/扫描错误返回 2。新示例应用三处补丁后仍有一处 ALD001，返回码继续为 1。默认不加 --check 时只打印报告并返回 0，扫描错误仍为 2。
+追加 `--check` 时：存在未忽略的 ALD001 路径冗余返回 1，**包括无法生成补丁的冗余**；仅有 ALD002 异常复核或带理由忽略的项时返回 0，语法/读取/扫描错误返回 2。分支示例应用三处补丁后仍有一处未忽略 ALD001，返回码继续为 1。默认不加 --check 时只打印报告并返回 0，扫描错误仍为 2。
+
+### 整仓接入：排除目录与带理由保留
+
+使用可重复的 `--exclude` 排除生成代码、历史模块或刻意构造的问题样例，例如审查本仓库实际代码：
+
+```powershell
+python -m awaitlab audit . --exclude "examples/defensive_*.py" --check --output artifacts/self-audit.json --html artifacts/self-audit.html
+```
+
+模式相对扫描目录（扫描单文件时相对其父目录），使用大小写敏感的 fnmatch；`*` 可跨目录，`generated/**` 可以在遍历前跳过整个目录。Windows反斜杠会归一成 `/`。这不是 `.gitignore` 语法，也不自动读取它；排除模式和实际跳过的路径会写进报告。
+
+确实需要保留的某一行可声明理由，必须写在对应 `if` 或 `except` 的同一行：
+
+```python
+def optional_plugin(loader):
+    try:
+        return loader()
+    except Exception:  # awaitlab: ignore[ALD002] -- 插件可选，加载失败保留禁用状态
+        return None
+```
+
+支持 `ALD001`、`ALD002`，多个编号用逗号分隔。理由不可为空，未知编号或错误格式会作为扫描错误返回 2；字符串里的相同文字不能充当指令。忽略只作用于该行实际命中的规则，不会传播到后续行，也不会生成该项补丁。JSON与HTML仍保留被忽略的诊断和理由，**忽略不等于已修复**。
+
+本次 [整仓实测](artifacts/self-audit-v0.13.0.html) 排除3个刻意的问题样例后，扫描82个Python文件，没有触发当前两类规则；不代表完整代码质量证明。策略验收在D盘临时项目中验证目录剪枝、带理由保留及补丁应用，见 [audit-policy-check-v0.13.0.json](artifacts/audit-policy-check-v0.13.0.json)。复跑用 `python benchmarks/audit_policy_check.py`。
 
 分析限局部语法模型：在赋值、调用、await 和其他不支持的语句处丢弃已知事实，不推断跨函数、全局变量、动态反射或业务必要性。and 为假不表示每项都为假；or 为真不表示每项都为真，合流只保留所有可达路径共有的事实。`value is True` 与 `if value` 或 `value == True` 不混用，不假设用户对象的真值/相等方法没有副作用。
 

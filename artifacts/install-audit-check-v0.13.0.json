@@ -1,0 +1,10 @@
+{
+  "version": "0.13.0",
+  "installed_audit_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.13.0\\awaitlab\\code_audit.py",
+  "site_packages_disabled": true,
+  "optional_dependencies_available": false,
+  "check_exit": 0,
+  "excluded_invalid_source_not_parsed": true,
+  "ignored_reason_exported": true,
+  "html_reason_visible": true
+}

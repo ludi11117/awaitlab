@@ -19,7 +19,15 @@ def render_audit_report(report):
 <p>{escape(item['suggestion'])}</p>{note}</article>''')
     errors=''.join(f'<li>{escape(item["path"])}：{escape(item["error"])}</li>' for item in report['errors'])
     error_view=f'<section class="errors"><h2>未完成的扫描</h2><ul>{errors}</ul></section>' if errors else ''
-    findings=''.join(cards) or '<p class="empty">当前规则未发现问题；这不代表所有防御代码均有必要。</p>'
+    ignored=''.join(f'<li>{escape(item["path"])}:{item["line"]} · {escape(item["rule"])}：{escape(item["suppression_reason"])}</li>'
+        for item in report['ignored_findings'])
+    excluded=''.join(f'<li>{escape(name)}</li>' for name in report['excluded_paths'])
+    decisions=(f'<section class="decisions"><h2>扫描范围与保留决定</h2><p>忽略表示接入者选择保留，不表示问题已修复。</p>'
+        f'<h3>已注明理由的忽略</h3><ul>{ignored}</ul><h3>明确排除的路径</h3><ul>{excluded}</ul></section>') if ignored or excluded else ''
+    empty=('扫描不完整，请先处理上方错误。' if report['errors'] else
+        '当前没有未忽略的规则提示；保留决定不代表已修复。' if report['ignored_findings'] else
+        '当前扫描范围内未发现规则提示；这不代表所有防御代码均有必要。')
+    findings=''.join(cards) or f'<p class="empty">{empty}</p>'
     patch_view=(f'<pre class="patch"><code>{escape(report["patch"])}</code></pre>' if report['patch'] else
         '<p>本次没有可生成的补丁。需复核项保留原逻辑。</p>')
     return f'''<!doctype html>
@@ -30,7 +38,7 @@ def render_audit_report(report):
 main{{max-width:1040px;margin:auto;padding:32px 24px 64px}}header{{padding:16px 0 24px}}h1{{font-size:clamp(25px,5vw,36px);line-height:1.3}}
 h2{{font-size:19px;line-height:1.5;overflow-wrap:anywhere}}p{{overflow-wrap:anywhere}}a{{color:#11685b}}
 .eyebrow{{color:#397d71;font-size:12px;letter-spacing:.12em}}.summary{{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:20px 0}}
-.metric,.finding,.errors,#changes{{background:white;border:1px solid #d5e0e5;border-radius:10px;padding:20px}}
+.metric,.finding,.errors,.decisions,#changes{{background:white;border:1px solid #d5e0e5;border-radius:10px;padding:20px}}
 .metric strong{{display:block;font-size:28px}}.finding{{margin:18px 0}}.labels{{display:flex;gap:8px;flex-wrap:wrap}}
 .labels span{{font-size:12px;border-radius:4px;background:#e7f1ee;padding:3px 8px}}.location,.note,.scope{{color:#526b75}}
 pre{{max-width:100%;overflow-x:auto;padding:16px;background:#eef3f5;border-radius:6px;font-size:13px;line-height:1.65}}
@@ -41,7 +49,7 @@ details p{{white-space:pre-wrap}}summary{{cursor:pointer;color:#216d61}}.errors{
 <div class="summary"><div class="metric"><strong>{report['files_scanned']}</strong>扫描文件</div>
 <div class="metric"><strong>{proven}</strong>路径冗余</div><div class="metric"><strong>{review}</strong>人工复核</div>
 <div class="metric"><strong>{len(report['errors'])}</strong>扫描错误</div></div><a href="#changes">查看补丁建议 ↓</a></header>
-{error_view}<section aria-label="审查发现">{findings}</section>
+{error_view}{decisions}<section aria-label="审查发现">{findings}</section>
 <section id="changes"><h2>补丁建议</h2><p>这是待复核的差异，未写入目标。应用后仍需运行目标项目测试。</p>
 <p class="location">补丁相对目录：{escape(report['patch_root'])}</p>{patch_view}</section>
 <footer class="scope"><p>分析范围：{escape(report['scope'])}</p>
