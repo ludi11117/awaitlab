@@ -8,7 +8,7 @@ import statistics
 import time
 from . import __version__
 from .trace import Session
-from .statistics import describe,paired_effect,paired_randomization,holm_adjust,evidence_level
+from .statistics import describe,paired_effect,paired_randomization,holm_adjust,evidence_level,inference_design
 from .ownership import owned_tasks
 from . import checkpoint as checkpoints
 
@@ -64,6 +64,9 @@ class Experiment:
                 for site,target in arm.replacements.items():
                     if getattr(target,'__awaitlab_name__',None)==site:
                         raise ValueError('Pass an undecorated replacement; replacing a site with its own wrapper would recurse')
+
+    def inference_design(self):
+        return inference_design(self.settings.blocks,sum(a.kind=='replacement' for a in self.arms),self.settings.alpha)
 
     async def _block(self, arm, trace=False):
         with owned_tasks() as tasks:
@@ -218,6 +221,7 @@ class Experiment:
                 c['holm_adjusted_p'],c['randomization']['exact'],self.settings.alpha,self.settings.min_gain_pct)
             c['candidate_improvement']=c['evidence_level']=='supported_in_this_experiment'
         return {'schema_version':4,'library_version':__version__,'settings':asdict(self.settings),'comparisons':comparisons,
+            'inference_design':self.inference_design(),
             'measurement_basis':{'latency':'handler await including request trace; excludes its own output check',
                 'worker_cycle':'handler plus synchronous output check, excluding the outer worker scheduling loop',
                 'wall':'all workers, output checks and orchestration; excludes workload setup, warmup and teardown',

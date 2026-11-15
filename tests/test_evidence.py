@@ -1,7 +1,7 @@
 import unittest
 from itertools import product
 from collections import Counter
-from awaitlab.statistics import paired_randomization,holm_adjust,evidence_level
+from awaitlab.statistics import paired_randomization,holm_adjust,evidence_level,inference_design
 
 
 class EvidenceTests(unittest.TestCase):
@@ -20,6 +20,34 @@ class EvidenceTests(unittest.TestCase):
         adjusted=holm_adjust({'a':p,'b':1})
         self.assertEqual(adjusted['a'],.0625)
         self.assertEqual(evidence_level(True,-50,adjusted['a'],True,.05,5),'inconclusive')
+
+    def test_design_floor_matches_enumerated_best_case_and_holm(self):
+        for blocks in range(2,11):
+            p=paired_randomization([100]*blocks,[100-i for i in range(1,blocks+1)])['pvalue']
+            for family in [1,2,3,8]:
+                design=inference_design(blocks,family,.05)
+                self.assertEqual(design['raw_p_floor'],p)
+                adjusted=holm_adjust({str(i):p for i in range(family)})
+                self.assertEqual(design['holm_p_floor'],min(adjusted.values()))
+                self.assertEqual(design['support_possible'],any(v<.05 for v in adjusted.values()))
+
+    def test_resolution_boundary_is_strict_and_not_power(self):
+        limited=inference_design(6,2,.0625)
+        self.assertFalse(limited['support_possible'])
+        self.assertEqual(limited['minimum_exact_blocks'],7)
+        feasible=inference_design(7,2,.05)
+        self.assertTrue(feasible['support_possible'])
+        # Zero effects can never be supported even when the design has resolution.
+        p=paired_randomization([10]*7,[10]*7)['pvalue']
+        self.assertEqual(evidence_level(True,0,p,True,.05,5),'no_observed_gain')
+
+    def test_design_handles_approximate_only_and_no_replacements(self):
+        self.assertEqual(inference_design(17,1,.05)['status'],'approximate_only')
+        self.assertIsNone(inference_design(17,1,.05)['raw_p_floor'])
+        self.assertFalse(inference_design(17,1,.05)['support_possible'])
+        self.assertEqual(inference_design(6,0,.05)['status'],'not_applicable')
+        self.assertIsNone(inference_design(6,0,.05)['minimum_exact_blocks'])
+        self.assertIsNone(inference_design(16,100000,.05)['minimum_exact_blocks'])
 
     def test_threshold_output_and_approximate_p_have_distinct_status(self):
         self.assertEqual(evidence_level(False,-80,.001,True,.05,5),'invalid_output')

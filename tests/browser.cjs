@@ -2,7 +2,7 @@ const fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('n
 const assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
 const {chromium}=require(process.env.AWAITLAB_PLAYWRIGHT||'D:/CodexWork/cache/branchforge-browser/node_modules/playwright');
 const root=path.resolve(__dirname,'..'),temp='D:/CodexWork/temp/awaitlab/browser';
-const customerReport=process.env.AWAITLAB_CUSTOMER_REPORT||'customer-api-v0.6.0.html';
+const customerReport=process.env.AWAITLAB_CUSTOMER_REPORT||'customer-api-v0.6.4.html';
 fs.mkdirSync(temp,{recursive:true});process.env.TEMP=temp;process.env.TMP=temp;
 execFileSync('python',['-c',"import json;from awaitlab.report import write_report;from pathlib import Path;p=Path('artifacts');write_report(json.loads((p/'parallel-initial.json').read_text(encoding='utf-8')),p/'legacy-current-renderer.html')"],{cwd:root});
 execFileSync('python',['-c',`import json,copy
@@ -27,6 +27,14 @@ for c in r['comparisons']:
  for b in c['blocks']:
   for mode in ['control','treatment']:b[mode].pop('replacement_calls_by_site',None)
 write_report(r,Path('${temp}/legacy-bundle-fixture.html'))`],{cwd:root});
+execFileSync('python',['-c',`import json
+from pathlib import Path
+from awaitlab.report import write_report
+from awaitlab.statistics import inference_design
+r=json.loads(Path('artifacts/resolution-v0.6.4.json').read_text(encoding='utf-8'))
+r['title']='UI approximate-plan fixture, replayed measurements; no new workload'
+r['inference_design']=inference_design(17,2,.05)
+write_report(r,Path('${temp}/approximate-design-fixture.html'))`],{cwd:root});
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.AWAITLAB_CHROMIUM||'D:/CodexWork/cache/ms-playwright/chromium-1243/chrome-win64/chrome.exe'});
  const page=await browser.newPage({viewport:{width:1440,height:1080}});
@@ -84,6 +92,8 @@ write_report(r,Path('${temp}/legacy-bundle-fixture.html'))`],{cwd:root});
   assert((await page.locator('.output-contract').innerText()).includes('未核对整个响应体'));checks.push('projection not presented as full-response equality');
   assert((await page.locator('.context').innerText()).includes('FastAPI lifespan'));checks.push('lifespan and keep-alive transport visible');
   assert.equal(await page.locator('.calibration').count(),0);checks.push('real API replacement has no timer calibration');
+  await page.getByRole('heading',{name:'预定检验具备理论分辨率'}).waitFor();checks.push('feasible native design visible');
+  assert((await page.locator('.inference-design').innerText()).includes('不是统计功效或成功保证'));checks.push('resolution not a power promise');
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks.push('declared contract mobile width');
   await page.screenshot({path:path.join(root,'artifacts','customer-api-mobile.png'),fullPage:true});
   await page.setViewportSize({width:1440,height:1080});
@@ -108,11 +118,23 @@ write_report(r,Path('${temp}/legacy-bundle-fixture.html'))`],{cwd:root});
   await page.locator('[data-arm="0"]').click();await page.getByRole('heading',{name:'本轮支持继续验证此优化'}).waitFor();
   await page.locator('.replacement-reach summary').click();
   assert((await page.locator('.replacement-reach').innerText()).includes('本臂声明单一站点'));checks.push('legacy unambiguous single-site total can be assigned');
+  await page.goto(pathToFileURL(path.join(root,'artifacts','resolution-v0.6.4.html')).href);
+  await page.locator('[data-arm="0"]').click();
+  await page.getByRole('heading',{name:'批次数限制了检验分辨率'}).waitFor();checks.push('finite resolution limit visible');
+  assert((await page.locator('.inference-design').innerText()).includes('0.062500'));checks.push('best-case Holm floor shown');
+  assert((await page.locator('.inference-design').innerText()).includes('增加每批请求数不能消除'));checks.push('request count not substituted for blocks');
+  assert(await page.locator('.metrics strong').evaluate(el=>el.classList.contains('neutral')));checks.push('large effect with insufficient resolution not promoted');
+  assert((await page.locator('.inference-design').innerText()).includes('勿补样直到显著'));checks.push('no optional-stopping recommendation');
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));checks.push('resolution guidance mobile width');
+  await page.screenshot({path:path.join(root,'artifacts','resolution-mobile.png'),fullPage:true});
+  await page.goto(pathToFileURL(path.join(temp,'approximate-design-fixture.html')).href);
+  await page.getByRole('heading',{name:'本版本只报告近似检验'}).waitFor();checks.push('approximate-only policy explicit');
   await page.goto(pathToFileURL(path.join(temp,'trace-fixture.html')).href);
   await page.locator('#trace-block').selectOption('1');assert.equal(await page.locator('.timeline').getAttribute('data-block'),'1');checks.push('sampled block selector with replay fixture');
   await page.goto(pathToFileURL(path.join(temp,'empty-trace-fixture.html')).href);
   assert.equal(await page.locator('.bar').count(),0);assert((await page.locator('body').innerText()).includes('此批次未采样该请求'));checks.push('empty sampling remains usable');
   await page.goto(pathToFileURL(path.join(root,'artifacts','legacy-current-renderer.html')).href);
+  assert.equal(await page.locator('.inference-design').count(),0);checks.push('legacy design metadata not fabricated');
   await page.locator('[data-arm="0"]').click();await page.getByRole('heading',{name:'测量对额外等待的敏感度'}).waitFor();checks.push('legacy delay interpretation');
   await page.locator('[data-arm="3"]').click();await page.getByRole('heading',{name:'历史报告：未按新版规则分级'}).waitFor();checks.push('legacy result not silently upgraded');
   assert((await page.locator('.observer').innerText()).includes('历史数据未记录'));checks.push('legacy check cost not assumed zero');

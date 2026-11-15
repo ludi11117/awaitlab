@@ -28,6 +28,8 @@ python -m awaitlab demo --scenario sqlite-http
 
 ## 值得讲清楚的技术点
 
+0.6.4可先运行 `python -m awaitlab demo --scenario sqlite --blocks 6 --plan`：不启动负载即可看到最佳Holm p=.0625，不能满足p < .05。再打开 artifacts/resolution-v0.6.4.html，真实求和替换虽快约84%，仍保持证据不足并解释离散分辨率。至少7批次仅是该预定候选组理论上有机会，不是功效保证；不要现场反复加批直到出现支持。
+
 | 设计 | 解决的问题 | 应说明的边界 |
 | --- | --- | --- |
 | 每臂独立的随机配对控制/实验块 | 减少系统负载漂移对前后对比的影响 | 需要无残留干扰，随机顺序不自动消除缓存状态 |

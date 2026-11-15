@@ -5,6 +5,9 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
+from contextlib import redirect_stdout
+from io import StringIO
 
 
 class CLITests(unittest.TestCase):
@@ -49,6 +52,8 @@ output_contract='id field only; other response fields outside this contract'
         self.assertEqual(report['transport'],'local test transport')
         self.assertIn('id field only',report['output_contract'])
         self.assertNotIn('timer_calibration',report)
+        self.assertIn('检验分辨率不足',first.stderr)
+        self.assertEqual(report['inference_design']['status'],'resolution_limited')
         c=report['comparisons'][0]
         self.assertTrue(c['output_equivalence'])
         self.assertTrue(all(b['treatment']['replacement_calls']==3 for b in c['blocks']))
@@ -70,6 +75,35 @@ output_contract='id field only; other response fields outside this contract'
         self.assertEqual(changed.returncode,1)
         self.assertIn('Checkpoint identity differs',changed.stderr)
         self.assertEqual(path.read_bytes(),original)
+
+    def test_plan_imports_configuration_without_running_workload_or_writing_files(self):
+        self.write_custom_module()
+        business=self.root/'business.py'
+        source=business.read_text(encoding='utf-8').replace('async def workload():yield fetch',
+            "async def workload():\n raise AssertionError('workload must not run')\n yield fetch")
+        business.write_text(source,encoding='utf-8')
+        path=self.root/'unused'/'plan.json'
+        result=self.run_cli('my_case','--plan','--output',str(path),command='run',cwd=self.root)
+        self.assertEqual(result.returncode,0,result.stderr)
+        plan=json.loads(result.stdout)
+        self.assertFalse(plan['workload_executed'])
+        self.assertEqual(plan['replacement_family'],['candidate'])
+        self.assertEqual(plan['inference_design']['minimum_exact_blocks'],6)
+        self.assertEqual(plan['inference_design']['status'],'resolution_limited')
+        self.assertFalse(path.parent.exists())
+
+    def test_bundled_plan_skips_prepare_calibration_and_measurement(self):
+        from awaitlab.__main__ import main
+        from awaitlab.scenarios import SCENARIOS
+        path=self.root/'unused'/'plan.json';output=StringIO()
+        with patch.dict(SCENARIOS['sqlite'],{'prepare':lambda:(_ for _ in ()).throw(AssertionError('prepare must not run'))}), \
+                patch('sys.argv',['awaitlab','demo','--scenario','sqlite','--blocks','6','--plan','--output',str(path)]), \
+                patch('awaitlab.__main__.calibrate',side_effect=AssertionError('calibration must not run')), \
+                patch('awaitlab.experiment.Experiment.run',side_effect=AssertionError('measurement must not run')),redirect_stdout(output):
+            main()
+        plan=json.loads(output.getvalue())
+        self.assertEqual(plan['inference_design']['holm_p_floor'],.0625)
+        self.assertFalse(path.parent.exists())
 
     def test_user_module_requires_explicit_external_data_version(self):
         entry=self.write_custom_module()

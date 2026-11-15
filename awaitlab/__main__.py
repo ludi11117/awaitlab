@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import platform
 import sys
+from dataclasses import asdict
 from .experiment import Experiment,Settings,fingerprint
 from .scenarios import SCENARIOS
 from .calibration import calibrate
@@ -22,6 +23,7 @@ def main():
     custom=commands.add_parser('run',help='Run a local Python module exporting experiment and workload_version')
     custom.add_argument('module',help='Importable dotted Python module, e.g. examples.unique_case')
     for command in [demo,custom]:
+        command.add_argument('--plan',action='store_true',help='Inspect settings and inference resolution without executing the workload; custom modules are still imported')
         command.add_argument('--output',default=None,help='JSON path ending in .json; a sibling standalone HTML is also written')
         command.add_argument('--resume',action='store_true',help='Resume completed pairs only if code/settings/workload identity match')
     args=parser.parse_args()
@@ -39,10 +41,8 @@ def main():
     async def execute():
         evidence=None;source_files=()
         if args.command=='demo':
-            evidence=await scenario['prepare']() if 'prepare' in scenario else None
             factory=scenario['factory_for'](settings) if 'factory_for' in scenario else scenario['factory']
             experiment=Experiment(factory,scenario['arms'],settings)
-            workload_version='bundled-scenarios-v1' if evidence is None else fingerprint(evidence)
             metadata={'scenario':args.scenario,'title':scenario['title']}
         else:
             sys.path.insert(0,str(Path.cwd()))
@@ -56,6 +56,21 @@ def main():
             metadata={'scenario':'custom','title':str(getattr(module,'title',args.module)),'workload_module':args.module}
             for field in ('transport','output_contract'):
                 if hasattr(module,field):metadata[field]=str(getattr(module,field))
+        design=experiment.inference_design()
+        if args.plan:
+            print(json.dumps({'settings':asdict(experiment.settings),'inference_design':design,
+                'replacement_family':[arm.name for arm in experiment.arms if arm.kind=='replacement'],
+                'workload_executed':False,'scope':'imports custom module; does not call bundled prepare, workload, calibration, or checkpoint'},ensure_ascii=False,indent=2))
+            return None
+        if design['status']=='resolution_limited':
+            minimum=design['minimum_exact_blocks']
+            extra=f'同一预定比较组至少需{minimum}批次才具备理论分辨率；' if minimum else '当前精确检验范围内没有可行批次数；'
+            print(f'AwaitLab: 检验分辨率不足：{design["blocks"]}配对批次、{design["replacement_family_size"]}个替换候选的最佳Holm p={design["holm_p_floor"]:g}，规则要求p < {design["alpha"]:g}。{extra}增加每批请求数不能消除该限制。这不是功效保证，请在新实验前固定方案，勿补样直到显著。',file=sys.stderr,flush=True)
+        elif design['status']=='approximate_only':
+            print(f'AwaitLab: 当前{design["blocks"]}批次超过精确枚举上限{design["exact_max_blocks"]}；近似p仍报告，本版本不会自动标为支持。请在新实验前确定统计方案，勿从已测数据截取较少批次。',file=sys.stderr,flush=True)
+        if args.command=='demo':
+            evidence=await scenario['prepare']() if 'prepare' in scenario else None
+            workload_version='bundled-scenarios-v1' if evidence is None else fingerprint(evidence)
         calibration=await calibrate() if any(arm.kind=='delay' for arm in experiment.arms) else None
         report=await experiment.run(
             lambda done,total,name:print(f'[{done}/{total}] {name}',flush=True),
@@ -66,7 +81,7 @@ def main():
         report.update(**metadata,environment={'python':sys.version,'platform':platform.platform()})
         return report
     try:
-        target.parent.mkdir(parents=True,exist_ok=True)
+        if not args.plan:target.parent.mkdir(parents=True,exist_ok=True)
         report=asyncio.run(execute())
     except KeyboardInterrupt:
         print('AwaitLab: 实验已中断，未生成本次完成报告。完整配对保存在断点中；代码与参数不变时可加 --resume。',file=sys.stderr)
@@ -79,6 +94,7 @@ def main():
         if target.exists():print(f'上一次完整数据未替换：{target}',file=sys.stderr)
         print(f'断点路径：{target.with_suffix(".checkpoint.json")}',file=sys.stderr)
         raise SystemExit(1)
+    if report is None:return
     try:
         temporary=target.with_name(target.name+'.tmp')
         temporary.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

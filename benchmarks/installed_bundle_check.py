@@ -18,12 +18,20 @@ source=(ROOT/'examples/events_bundle_case.py').read_text(encoding='utf-8').repla
 entry=folder/'bundle_case.py';entry.write_text(source,encoding='utf-8')
 target=folder/'measured.json'
 command=[sys.executable,'-S','-m','awaitlab','run','bundle_case','--output',str(target)]
+plan_target=folder/'plan-unused'/'preview.json'
+preview=subprocess.run([sys.executable,'-S','-m','awaitlab','run','bundle_case','--plan',
+    '--output',str(plan_target)],cwd=folder,capture_output=True,encoding='utf-8',check=True)
+plan=json.loads(preview.stdout)
+assert plan['workload_executed'] is False and not plan_target.parent.exists()
+assert plan['inference_design']['replacement_family_size']==3
+assert plan['inference_design']['status']=='resolution_limited'
 subprocess.run(command,cwd=folder,capture_output=True,encoding='utf-8',check=True)
 before=json.loads(target.read_text(encoding='utf-8'))
 subprocess.run(command+['--resume'],cwd=folder,capture_output=True,encoding='utf-8',check=True)
 after=json.loads(target.read_text(encoding='utf-8'))
 assert after['run']['resumed_pairs']==6 and before['comparisons']==after['comparisons']
 assert all(c['output_equivalence'] for c in after['comparisons'])
+assert after['inference_design']==plan['inference_design']
 bundle=next(c for c in after['comparisons'] if c['name']=='unique_and_count')
 assert bundle['replacement_sites']==['events.unique','events.count']
 for b in bundle['blocks']:
@@ -45,6 +53,7 @@ async def check():
 observed,expired=asyncio.run(check())
 assert f'installed-{version}' in trace.__file__
 result={'version':version,'installed_path':awaitlab.__file__,'site_packages_disabled':True,
+    'preflight_plan':plan,'plan_matches_report':True,'plan_created_no_output_directory':True,
     'resumed_pairs':6,'comparisons_unchanged':True,'all_outputs_equal':True,
     'bundle_sites':bundle['replacement_sites'],'counts_per_treatment_block':{'events.unique':3,'events.count':3},
     'negative_reach_probes':observed,'expired_capture':expired}
