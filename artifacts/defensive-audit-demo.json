@@ -1,0 +1,43 @@
+{
+  "kind": "defensive_code_audit",
+  "patch_root": "D:\\CodexWork\\projects\\awaitlab",
+  "files_scanned": 1,
+  "findings": [
+    {
+      "path": "examples/defensive_sample.py",
+      "line": 7,
+      "column": 5,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "customer is None 在当前路径恒为 False",
+      "evidence": "第 5 行条件确定 customer is not None；中间没有跨越其他语句。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "patch_available": true
+    },
+    {
+      "path": "examples/defensive_sample.py",
+      "line": 9,
+      "column": 5,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "customer is not None 在当前路径恒为 True",
+      "evidence": "第 5 行条件确定 customer is not None；中间没有跨越其他语句。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "patch_available": true
+    },
+    {
+      "path": "examples/defensive_sample.py",
+      "line": 16,
+      "column": 5,
+      "rule": "ALD002",
+      "confidence": "needs_review",
+      "message": "宽泛异常被静默忽略或转成固定结果",
+      "evidence": "except Exception:\n        return None",
+      "suggestion": "核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。",
+      "patch_available": false
+    }
+  ],
+  "errors": [],
+  "patch": "--- a/examples/defensive_sample.py\n+++ b/examples/defensive_sample.py\n@@ -4,10 +4,7 @@\n def customer_result(customer):\n     if customer is None:\n         return {'customer':None}\n-    if customer is None:\n-        return {'customer':'unreachable fallback'}\n-    if customer is not None:\n-        return {'customer':customer}\n+    return {'customer':customer}\n \n \n def optional_port(loader):\n",
+  "scope": "Python local-name None identity guards; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review."
+}

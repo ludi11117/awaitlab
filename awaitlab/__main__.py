@@ -32,11 +32,19 @@ def main():
     http.add_argument('--timeout',type=float,default=10,help='Deadline in seconds to receive each complete response; synchronous JSON decoding is not preempted')
     http.add_argument('--max-response-bytes',type=int,default=1048576,help='Decoded body limit per response (default 1 MiB), not a process-memory bound')
     http.add_argument('--first-id',type=int,default=0)
+    audit=commands.add_parser('audit',help='Audit Python defensive code without importing or executing it')
+    audit.add_argument('path',help='Python file or project directory')
+    audit.add_argument('--output',help='Save findings, evidence and patch as JSON')
+    audit.add_argument('--patch',help='Save a reviewable .patch; target sources are not modified')
+    audit.add_argument('--check',action='store_true',help='Exit 1 for path-proven redundant guards; review-only findings do not fail')
     for command in [demo,custom,http]:
         command.add_argument('--plan',action='store_true',help='Inspect settings and inference resolution without executing the workload; custom modules are still imported')
         command.add_argument('--output',default=None,help='JSON path ending in .json; a sibling standalone HTML is also written')
         command.add_argument('--resume',action='store_true',help='Resume completed pairs only if code/settings/workload identity match')
     args=parser.parse_args()
+    if args.command=='audit':
+        from .code_audit import run_cli
+        raise SystemExit(run_cli(args.path,args.output,args.patch,args.check))
     if args.command=='demo':
         scenario=SCENARIOS[args.scenario]
         blocks=args.blocks if args.blocks is not None else scenario.get('default_blocks',6)

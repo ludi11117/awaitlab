@@ -1,0 +1,88 @@
+{
+  "version": "0.10.0",
+  "date": "2026-11-15",
+  "unit_integration_tests": {
+    "passed": 132,
+    "new_audit_tests": 10,
+    "log": "D:/CodexWork/temp/awaitlab/tests-v0.10.0.log"
+  },
+  "demo": {
+    "version": "0.10.0",
+    "original_findings": 3,
+    "path_proven": 2,
+    "review_only": 1,
+    "patch_applied_to_temp_copy": true,
+    "original_source_unchanged": true,
+    "remaining_review_only": 1,
+    "differential_input_count": 6,
+    "all_demo_outputs_equal": true,
+    "original_sha256": "5a405aca641a444c476737b2ceff1bf0b18fccb186058ff9e12d22e0027c7425",
+    "patch_sha256": "3acb21d21d28f5218bf5c644dc232a202d84b6574bfef018e6e6b264477a4c75",
+    "patched_sha256": "9f583ae36fe93caeaccdeb302d01d7dd43646600e0babc6496f01ff84b9fb473",
+    "scope": "Differential execution covers this trusted demonstration only. The scanner never imports/executes audit targets."
+  },
+  "installed_core": {
+    "version": "0.10.0",
+    "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.10.0\\awaitlab\\__init__.py",
+    "schema_version": 4,
+    "packaged_files_match_source": 19,
+    "wheel_sha256": "cd1c8b71d5bb36a6ba568de730fceea56d12655fe83b2ee7c91032d45a100aca",
+    "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.10.0\\my_case.py",
+    "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.10.0\\measured.html",
+    "resumed_pairs": 2,
+    "unchanged_comparisons_after_resume": true,
+    "all_outputs_equal": true,
+    "python_flags": [
+      "-S"
+    ],
+    "site_packages_disabled": true,
+    "optional_modules_available": {
+      "fastapi": false,
+      "httpx": false,
+      "uvicorn": false,
+      "certifi": false
+    },
+    "purpose": "installed CLI in separate user project, using standard library only",
+    "orphan_task_probe": {
+      "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+      "task_survived_gc_during_requests": [
+        true,
+        true
+      ],
+      "orphan_finalization": [
+        "CancelledError"
+      ],
+      "loop_messages": [],
+      "unrelated_task_untouched": true,
+      "task_factory_restored": true
+    },
+    "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+  },
+  "installed_audit": {
+    "version": "0.10.0",
+    "installed_audit_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.10.0\\awaitlab\\code_audit.py",
+    "site_packages_disabled": true,
+    "httpx_available": false,
+    "initial_path_findings": 2,
+    "initial_review_findings": 1,
+    "patch_applied_to_temp_copy": true,
+    "remaining_path_findings": 0,
+    "remaining_review_findings": 1,
+    "first_check_exit": 1,
+    "second_check_exit": 0
+  },
+  "browser_checks": {
+    "rerun_this_round": false,
+    "reason": "CLI feature; no changes to frontend or historical reports.",
+    "prior_passed": 104,
+    "prior_record": "order-query-validation-v1.json"
+  },
+  "scope": [
+    "Only local-name None identity facts within a function are inferred.",
+    "Assignments, calls, await and unsupported statements stop incoming facts.",
+    "Broad silent exceptions are review-only; review-only findings do not fail --check.",
+    "No imports or execution of audit targets. Differential execution is only for the trusted demonstration fixture.",
+    "Generated patches require review and target-project tests; no universal semantic-equivalence claim.",
+    "No changes to historical performance measurements or statistical rules."
+  ]
+}

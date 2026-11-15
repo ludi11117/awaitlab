@@ -1,0 +1,15 @@
+{
+  "version": "0.10.0",
+  "original_findings": 3,
+  "path_proven": 2,
+  "review_only": 1,
+  "patch_applied_to_temp_copy": true,
+  "original_source_unchanged": true,
+  "remaining_review_only": 1,
+  "differential_input_count": 6,
+  "all_demo_outputs_equal": true,
+  "original_sha256": "5a405aca641a444c476737b2ceff1bf0b18fccb186058ff9e12d22e0027c7425",
+  "patch_sha256": "3acb21d21d28f5218bf5c644dc232a202d84b6574bfef018e6e6b264477a4c75",
+  "patched_sha256": "9f583ae36fe93caeaccdeb302d01d7dd43646600e0babc6496f01ff84b9fb473",
+  "scope": "Differential execution covers this trusted demonstration only. The scanner never imports/executes audit targets."
+}
