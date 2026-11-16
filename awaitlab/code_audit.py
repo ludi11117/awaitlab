@@ -10,6 +10,7 @@ from pathlib import Path
 import re
 import tokenize
 from . import __version__
+from .audit_output import write_text_atomic
 
 
 SKIP_DIRS={'.git','.venv','venv','__pycache__','node_modules','build','dist','.mypy_cache','.pytest_cache'}
@@ -424,8 +425,7 @@ def run_cli(target,output=None,patch=None,check=False,*,html=None,exclude=(),sta
             print(f'{item["path"]}:{item["line"]} {item["rule"]} 已注明忽略：{item["suppression_reason"]}')
         for destination,text in ((output,json.dumps(report,ensure_ascii=False,indent=2)+'\n'),(patch,report['patch'])):
             if destination:
-                path=Path(destination);path.parent.mkdir(parents=True,exist_ok=True)
-                path.write_text(text,encoding='utf-8',newline='\n')
+                write_text_atomic(destination,text)
         if html:
             from .code_audit_report import write_audit_report
             print(f'离线报告：{write_audit_report(report,html).resolve()}')

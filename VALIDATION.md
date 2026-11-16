@@ -1,4 +1,13 @@
-# 0.16.0 循环路径、未绑定读取及Git换行验证
+# 0.16.1 审查产物保存验证
+
+日期：2026-11-16。全套日志D:/CodexWork/temp/awaitlab/tests-v0.16.1.log；安装记录artifacts/install-check、install-index-check、install-semantics-check-v0.16.1.json。
+
+- 全套213项测试通过，新增4项。修改前5个失败子项保存在audit-output-before.log；修改后模拟部分写入抛OSError、目标替换被拒绝时，旧JSON/patch/HTML及目标源码保留，本次临时文件清理；中文空格路径成功更新。
+- 使用目标目录内唯一临时文件，完整写入关闭后os.replace；CLI三种产物与直接write_audit_report入口共用同一实现。每文件原子更新，不承诺多个产物的事务一致性。
+- wheel内23个源码/资源与项目逐字节一致，独立D盘-S安装26项循环/绑定/换行/保存测试通过。核心恢复2对、孤立任务、暂存CLI核验及过期拒绝保持正确。
+- 整仓排除4个刻意样例后扫描94个Python文件，当前规则无提示/错误，记录self-audit-v0.16.1.json/html。报告布局未修改，0.16的43项浏览器记录保持原版；未重跑历史性能测量。
+
+## 0.16.0 循环路径、未绑定读取及Git换行验证
 
 日期：2026-11-16。示例loop-flow-v0.16.0.json/html/patch，核对loop-flow-check、loop-corpus-check、binding-regression与install-semantics-check-v0.16.0.json均位于artifacts。
 

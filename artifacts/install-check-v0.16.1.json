@@ -1,0 +1,37 @@
+{
+  "version": "0.16.1",
+  "installed_path": "D:\\CodexWork\\temp\\awaitlab\\installed-0.16.1\\awaitlab\\__init__.py",
+  "schema_version": 4,
+  "packaged_files_match_source": 23,
+  "wheel_sha256": "9af0fdef2cacf0cdedfd1a11dea6fc0704a54cc350804b6714e23cb78fdc763c",
+  "custom_module": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.16.1\\my_case.py",
+  "exported_html": "D:\\CodexWork\\temp\\awaitlab\\user-case-0.16.1\\measured.html",
+  "resumed_pairs": 2,
+  "unchanged_comparisons_after_resume": true,
+  "all_outputs_equal": true,
+  "python_flags": [
+    "-S"
+  ],
+  "site_packages_disabled": true,
+  "optional_modules_available": {
+    "fastapi": false,
+    "httpx": false,
+    "uvicorn": false,
+    "certifi": false
+  },
+  "purpose": "installed CLI in separate user project, using standard library only",
+  "orphan_task_probe": {
+    "outcome": "Workload leaked background tasks after teardown; cancelled them and rejected this block",
+    "task_survived_gc_during_requests": [
+      true,
+      true
+    ],
+    "orphan_finalization": [
+      "CancelledError"
+    ],
+    "loop_messages": [],
+    "unrelated_task_untouched": true,
+    "task_factory_restored": true
+  },
+  "installed_ownership_source_sha256": "ca6071e379d65e1ed13fea5206fb4cee35fdb6b3063fa4a47254acf10e42b764"
+}

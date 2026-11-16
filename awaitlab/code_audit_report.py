@@ -1,6 +1,6 @@
 """Offline, script-free presentation of audit evidence and proposed changes."""
 from html import escape
-from pathlib import Path
+from .audit_output import write_text_atomic
 
 
 def render_audit_report(report):
@@ -72,6 +72,4 @@ details p{{white-space:pre-wrap}}summary{{cursor:pointer;color:#216d61}}.errors{
 
 
 def write_audit_report(report,path):
-    path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
-    path.write_text(render_audit_report(report),encoding='utf-8',newline='\n')
-    return path
+    return write_text_atomic(path,render_audit_report(report))

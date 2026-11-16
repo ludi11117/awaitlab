@@ -1,0 +1,9 @@
+{
+  "version": "0.16.1",
+  "installed_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.16.1\\awaitlab\\__init__.py",
+  "site_packages_disabled": true,
+  "semantic_regression_methods_passed": 26,
+  "loop_runtime_pairs_in_tests": 1595,
+  "cr_and_mixed_git_patch_cases": 4,
+  "unbound_reads_preserved": true
+}
