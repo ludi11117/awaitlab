@@ -2,13 +2,13 @@
 
 本地 Python 代码核查与性能实验：识别部分重复防御条件，再用可复跑的实验核对已提供优化的输出和响应变化。
 
-**最快查看审查功能：打开 [接入策略示例报告](artifacts/audit-policy-v0.13.0.html)。** 可以看到有效提示、带理由保留的逻辑、排除目录及补丁建议，无需后台服务、账号、API或模型权重。完整分支修改示例另见 [补丁报告](artifacts/defensive-patches-v0.12.0.html)。
+**最快查看审查功能：打开 [循环示例报告](artifacts/loop-flow-v0.16.0.html)。** 可以看到循环提前退出后多余的条件、判断依据及补丁建议，无需后台服务、账号、API或模型权重。带理由保留及排除目录见 [接入策略示例](artifacts/audit-policy-v0.13.0.html)，完整分支修改另见 [补丁报告](artifacts/defensive-patches-v0.12.0.html)。
 
 性能实验入口：双击 `Start-AwaitLab.cmd`，默认打开0.8版本的真实SQLite本地报告，包含已声明的负面对照和质量提示；没有报告时才运行实验。重新测量双击 `Run-SQLite-Experiments.cmd`。三个Windows入口都将临时文件放在D盘，结束后恢复调用者的工作目录和环境设置。
 
 求职或复试现场演示见 [DEMO.zh-CN.md](DEMO.zh-CN.md)，包括五分钟操作、技术要点与可核对的简历表述。
 
-## 审查过度防御代码（0.15.0）
+## 审查过度防御代码（0.16.0）
 
 这是面向使用者的新功能：扫描自己的 Python 项目，查看代码位置、路径依据和修改建议，生成可复核的补丁。仅使用标准库，不导入或执行扫描目标，不需要模型 API。先看自带示例：
 
@@ -31,6 +31,8 @@ if value is None:  # 前面的退出条件已确定这里不可达
 python -m awaitlab audit D:\CodexWork\projects\your-project --html artifacts/audit.html --output artifacts/audit.json --patch artifacts/audit.patch
 ```
 
+循环里的 `continue` / `break` 也会确定后续路径。例如 `if value is None: continue` 后的重复 None 检查可以移除，`if value is not None` 可以展开。支持 for、while、async for；退出只影响所在循环的路径，不当作退出整个函数。两个 if 分支都已退出时，停止给后续不可达代码生成 ALD001 提示。可运行 `python benchmarks/loop_flow_check.py`，在受控副本实际应用补丁并核对800个输出；不会执行使用者项目。
+
 | 规则 | 判断依据 | 处理方式 |
 | --- | --- | --- |
 | ALD001 重复单例条件 | 当前函数局部名称对 None/True/False 的身份关系已确定，支持反向比较、not 及纯身份比较的 and/or 短路路径 | 展示前置条件行号，简单情形生成删除死分支或展开恒真分支的补丁 |
@@ -39,6 +41,10 @@ python -m awaitlab audit D:\CodexWork\projects\your-project --html artifacts/aud
 `--patch` **只生成差异文件，不改写源码**。在报告的 `patch_root` 目录复核后，可对补丁绝对路径执行 `git apply --check ...`，再自行 `git apply ...`。现在支持简单 if/else：保留实际可达分支，将其注释和 if 头行尾注释保留下来。不可达分支若有说明注释，不猜测是否应该删除，改为提示人工处理；elif链、多行条件、行内语句、制表符缩进等仍只报告。
 
 每处候选补丁与此前已接受的修改一起编译检查语法、核对函数/类文档字符串；某处被拒绝，不撤回其他独立有效修改。会改变局部绑定或生成器类型的死分支、多行字符串、非普通 UTF-8 编码等继续保留诊断。原文件变化后应重新扫描，再执行项目测试。
+
+源码定位按Python物理行，导出的Git补丁另按LF分行；LF、CRLF、CR单独换行和混合换行有实际应用回归，字符串内的Unicode分隔符不会被拆成源码行。
+
+形参也可能被删除：`del value`、异常变量清理或闭包的 `nonlocal` 操作后，不再假定读取一定成功。涉及这些绑定的条件保留必要读取，防止将原本的 `UnboundLocalError` 改成正常返回；后续实际条件读取仍可重新建立路径事实。这是局部静态规则，不覆盖任意动态反射或业务语义。
 
 ### 提交前：审查真正进入 Git 暂存区的源码
 

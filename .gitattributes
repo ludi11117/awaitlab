@@ -12,5 +12,6 @@
 artifacts/defensive-*.html whitespace=-blank-at-eol
 artifacts/audit-*.html whitespace=-blank-at-eol
 artifacts/git-index-*.html whitespace=-blank-at-eol
+artifacts/loop-flow-*.html whitespace=-blank-at-eol
 *.cmd text eol=crlf
 *.png binary

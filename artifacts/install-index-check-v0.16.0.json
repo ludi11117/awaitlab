@@ -1,0 +1,17 @@
+{
+  "version": "0.16.0",
+  "installed_module": "D:\\CodexWork\\temp\\awaitlab\\installed-0.16.0\\awaitlab\\__init__.py",
+  "site_packages_disabled": true,
+  "utf8_spaced_filename": true,
+  "staged_issue_found_despite_clean_worktree": true,
+  "scan_and_check_preserve_index_bytes": true,
+  "apply_preserves_unstaged_source": true,
+  "stale_report_refused": true,
+  "installed_cli_check_exit_codes": [
+    1,
+    0,
+    0,
+    0,
+    2
+  ]
+}

@@ -1,0 +1,21 @@
+--- a/case.py
++++ b/case.py
+@@ -6,8 +6,6 @@
+     for value in values:
+         if value is None:
+             continue
+-        if value is None:
+-            result.append('unreachable')
+         result.append(value)
+     return result
+ 
+@@ -17,8 +15,7 @@
+     for value in values:
+         if value is None:
+             break
+-        if value is not None:
+-            result.append(value)
++        result.append(value)
+     else:
+         result.append('exhausted')
+     return result

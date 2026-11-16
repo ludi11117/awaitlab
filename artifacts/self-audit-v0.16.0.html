@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'">
+<title>AwaitLab · 防御代码审查</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6f7;color:#183641;font:15px/1.7 system-ui,sans-serif}
+main{max-width:1040px;margin:auto;padding:32px 24px 64px}header{padding:16px 0 24px}h1{font-size:clamp(25px,5vw,36px);line-height:1.3}
+h2{font-size:19px;line-height:1.5;overflow-wrap:anywhere}p{overflow-wrap:anywhere}a{color:#11685b}
+.eyebrow{color:#397d71;font-size:12px;letter-spacing:.12em}.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:20px 0}
+.metric,.finding,.errors,.decisions,.snapshot,#changes{background:white;border:1px solid #d5e0e5;border-radius:10px;padding:20px}
+.metric strong{display:block;font-size:28px}.finding{margin:18px 0}.labels{display:flex;gap:8px;flex-wrap:wrap}
+.labels span{font-size:12px;border-radius:4px;background:#e7f1ee;padding:3px 8px}.location,.note,.scope{color:#526b75}
+pre{max-width:100%;overflow-x:auto;padding:16px;background:#eef3f5;border-radius:6px;font-size:13px;line-height:1.65}
+.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:10px;text-align:left;border-bottom:1px solid #d5e0e5;overflow-wrap:anywhere}.snapshot{margin:18px 0}
+details p{white-space:pre-wrap}summary{cursor:pointer;color:#216d61}.errors{border-color:#b78556}#changes{margin-top:30px}
+@media(max-width:520px){main{padding:18px 14px 40px}.finding,#changes,.errors{padding:16px}}
+</style></head><body><main><header><div class="eyebrow">AWAITLAB / CODE AUDIT</div>
+<h1>防御代码审查</h1><p>查看依据，再决定如何简化。扫描不导入或执行目标，也不会改写目标源码。</p>
+<div class="summary"><div class="metric"><strong>92</strong>扫描文件</div>
+<div class="metric"><strong>0</strong>路径冗余</div><div class="metric"><strong>0</strong>人工复核</div>
+<div class="metric"><strong>0</strong>扫描错误</div></div><a href="#changes">查看补丁建议 ↓</a></header>
+<section class="decisions"><h2>扫描范围与保留决定</h2><p>忽略表示接入者选择保留，不表示问题已修复。</p><h3>已注明理由的忽略</h3><ul></ul><h3>明确排除的路径</h3><ul><li>examples/defensive_logic_sample.py</li><li>examples/defensive_loop_sample.py</li><li>examples/defensive_patch_sample.py</li><li>examples/defensive_sample.py</li></ul></section><section aria-label="审查发现"><p class="empty">当前扫描范围内未发现规则提示；这不代表所有防御代码均有必要。</p></section>
+<section id="changes"><h2>补丁建议</h2><p class="apply-note">这是待复核的差异，未写入目标。应用后仍需运行目标项目测试。</p>
+<p class="location">补丁相对目录：D:\CodexWork\projects\awaitlab</p><p>本次没有可生成的补丁。需复核项保留原逻辑。</p></section>
+<footer class="scope"><p>分析范围：Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review.</p>
+<p>基于局部语法路径，不推断跨函数、动态反射或业务必要性。人工复核项不表示必须删除。</p></footer>
+</main></body></html>

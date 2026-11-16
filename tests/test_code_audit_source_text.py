@@ -51,9 +51,9 @@ class AuditSourceTextTests(unittest.TestCase):
             report=audit_path(target)
             self.assertTrue(report['findings'][0]['patch_available'])
             patch=root/'review.patch';patch.write_bytes(report['patch'].encode('utf-8'))
-            checked=subprocess.run(['git','apply','--check',str(patch)],cwd=root,capture_output=True,encoding='utf-8')
+            checked=subprocess.run(['git','apply','--check',str(patch)],cwd=report['patch_root'],capture_output=True,encoding='utf-8')
             self.assertEqual(checked.returncode,0,checked.stderr)
-            subprocess.run(['git','apply',str(patch)],cwd=root,capture_output=True,check=True)
+            subprocess.run(['git','apply',str(patch)],cwd=report['patch_root'],capture_output=True,check=True)
             before={};after={};exec(source,before);exec(target.read_bytes(),after)
             self.assertEqual(before['banner'],after['banner'])
 
@@ -62,6 +62,26 @@ class AuditSourceTextTests(unittest.TestCase):
         findings,patched=audit_source(source)
         self.assertFalse(findings[0]['patch_available'])
         self.assertEqual(patched,source)
+
+    def test_git_patch_applies_to_cr_only_and_mixed_line_endings(self):
+        with tempfile.TemporaryDirectory(dir='D:/CodexWork/temp/awaitlab') as directory:
+            root=Path(directory);target=root/'case.py';patch=root/'review.patch'
+            ordinary=fixture(chr(0x2028))
+            mixed=''.join(line+ending for line,ending in zip(ordinary.rstrip('\n').split('\n'),
+                ('\r','\n','\r\n','\r','\n','\r\n')))
+            for source in (ordinary.replace('\n','\r'),ordinary.replace('\n','\r').rstrip('\r'),
+                    mixed,mixed.rstrip('\r\n')):
+                with self.subTest(source=repr(source)):
+                    target.write_bytes(source.encode('utf-8'))
+                    report=audit_path(target);_,expected=audit_source(source)
+                    self.assertTrue(report['findings'][0]['patch_available'])
+                    patch.write_bytes(report['patch'].encode('utf-8'))
+                    result=subprocess.run(['git','apply','--check',str(patch)],cwd=report['patch_root'],capture_output=True)
+                    self.assertEqual(result.returncode,0,result.stderr.decode('utf-8',errors='replace'))
+                    subprocess.run(['git','apply',str(patch)],cwd=report['patch_root'],capture_output=True,check=True)
+                    self.assertEqual(target.read_bytes(),expected.encode('utf-8'))
+                    before={};after={};exec(source,before);exec(target.read_bytes(),after)
+                    self.assertEqual(before['banner'],after['banner'])
 
     def test_nontext_encoding_is_a_source_error_and_other_files_are_still_scanned(self):
         with tempfile.TemporaryDirectory(dir='D:/CodexWork/temp/awaitlab') as directory:

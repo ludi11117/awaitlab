@@ -1,0 +1,12 @@
+{
+  "version": "0.16.0",
+  "fixture": "controlled loop fixture copy; no user project executed",
+  "findings": 2,
+  "patches_apply": true,
+  "audit_did_not_modify_source": true,
+  "before_check_exit": 1,
+  "after_check_exit": 0,
+  "runtime_output_pairs": 800,
+  "all_outputs_equal": true,
+  "scope": "continue and break, loop else, finite values and sequences of length 0 to 3; no general equivalence proof"
+}

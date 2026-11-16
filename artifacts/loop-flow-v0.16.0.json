@@ -1,0 +1,67 @@
+{
+  "kind": "defensive_code_audit",
+  "library_version": "0.16.0",
+  "patch_root": "D:\\CodexWork\\temp\\awaitlab\\loop-flow-kzqnhfeb",
+  "scan_root": "D:\\CodexWork\\temp\\awaitlab\\loop-flow-kzqnhfeb",
+  "source_scope": "worktree",
+  "files_scanned": 1,
+  "sources": {
+    "case.py": {
+      "sha256": "ccfa25ca121d2de374780b9b152c35b7326a06ce696672a152de0db5b38c3ee3",
+      "bytes": 531,
+      "patched_sha256": "aab9d9b8198096c80930412e216eeaf9639164289bacc4ce1da0718b52b5b314"
+    }
+  },
+  "exclude_patterns": [],
+  "excluded_paths": [],
+  "findings": [
+    {
+      "path": "case.py",
+      "line": 9,
+      "column": 9,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "value is None 在当前路径恒为 False",
+      "evidence": "第 7 行：value is not None。赋值、调用、await等语句会清除已有路径事实。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "code": "        if value is None:\n            result.append('unreachable')",
+      "patch_available": true,
+      "related_conditions": [
+        {
+          "name": "value",
+          "singleton": "None",
+          "identity": false,
+          "lines": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "path": "case.py",
+      "line": 20,
+      "column": 9,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "value is not None 在当前路径恒为 True",
+      "evidence": "第 18 行：value is not None。赋值、调用、await等语句会清除已有路径事实。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "code": "        if value is not None:\n            result.append(value)",
+      "patch_available": true,
+      "related_conditions": [
+        {
+          "name": "value",
+          "singleton": "None",
+          "identity": false,
+          "lines": [
+            18
+          ]
+        }
+      ]
+    }
+  ],
+  "ignored_findings": [],
+  "errors": [],
+  "patch": "--- a/case.py\n+++ b/case.py\n@@ -6,8 +6,6 @@\n     for value in values:\n         if value is None:\n             continue\n-        if value is None:\n-            result.append('unreachable')\n         result.append(value)\n     return result\n \n@@ -17,8 +15,7 @@\n     for value in values:\n         if value is None:\n             break\n-        if value is not None:\n-            result.append(value)\n+        result.append(value)\n     else:\n         result.append('exhausted')\n     return result\n",
+  "scope": "Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review."
+}

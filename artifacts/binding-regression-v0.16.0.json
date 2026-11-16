@@ -1,0 +1,57 @@
+{
+  "version": "0.16.0",
+  "baseline_commit": "5c423186fa173a889eac660e7cf5b41889b2d87f",
+  "baseline_source_sha256": "b7325dd87f9d0067ca41748723b76418e1ae2e0716402cd8ec9dccbad0e6ed5e",
+  "current_source_sha256": "8f76d995b4b457c94e8d7f11cae8255a13f1851d493c5e9fdda515e621ff4f76",
+  "cases": [
+    {
+      "name": "explicit_del",
+      "source": "def read(value):\n    del value\n    if value is None and value is not None:\n        return 1\n    return 2\n",
+      "original": {
+        "raised": "UnboundLocalError"
+      },
+      "baseline_patch": {
+        "returned": 2
+      },
+      "current_patch": {
+        "raised": "UnboundLocalError"
+      },
+      "baseline_findings": 1,
+      "current_findings": 0,
+      "current_source_unchanged": true
+    },
+    {
+      "name": "exception_cleanup",
+      "source": "def read(value):\n    try:\n        raise ValueError()\n    except ValueError as value:\n        pass\n    if value is None and value is not None:\n        return 1\n    return 2\n",
+      "original": {
+        "raised": "UnboundLocalError"
+      },
+      "baseline_patch": {
+        "returned": 2
+      },
+      "current_patch": {
+        "raised": "UnboundLocalError"
+      },
+      "baseline_findings": 1,
+      "current_findings": 0,
+      "current_source_unchanged": true
+    },
+    {
+      "name": "nonlocal_del",
+      "source": "def read(value):\n    def clear():\n        nonlocal value\n        del value\n    clear()\n    if value is None and value is not None:\n        return 1\n    return 2\n",
+      "original": {
+        "raised": "UnboundLocalError"
+      },
+      "baseline_patch": {
+        "returned": 2
+      },
+      "current_patch": {
+        "raised": "UnboundLocalError"
+      },
+      "baseline_findings": 1,
+      "current_findings": 0,
+      "current_source_unchanged": true
+    }
+  ],
+  "scope": "Three controlled syntax fixtures; no user project executed. No general Python equivalence proof."
+}

@@ -91,20 +91,26 @@ def split_condition(node,facts):
     return (current,merge_paths(exits)) if isinstance(node.op,ast.And) else (merge_paths(exits),current)
 
 
-def local_names(function):
-    """Names owned by this function; never infer facts about globals/free names."""
-    names={arg.arg for arg in function.args.posonlyargs+function.args.args+function.args.kwonlyargs}
+def function_bindings(function):
+    """Local names and parameters whose bindings are not explicitly cleared."""
+    parameters={arg.arg for arg in function.args.posonlyargs+function.args.args+function.args.kwonlyargs}
     for arg in (function.args.vararg,function.args.kwarg):
-        if arg:names.add(arg.arg)
-    excluded=set()
+        if arg:parameters.add(arg.arg)
+    names=set(parameters);excluded=set();unbound=set()
     def visit(node):
         if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef,ast.ClassDef,ast.Lambda,
-                            ast.ListComp,ast.SetComp,ast.DictComp,ast.GeneratorExp)):return
+                            ast.ListComp,ast.SetComp,ast.DictComp,ast.GeneratorExp)):
+            # A nested closure can clear an outer cell. Same-named inner locals cannot.
+            unbound.update(name for child in ast.walk(node) if isinstance(child,ast.Nonlocal) for name in child.names)
+            return
         if isinstance(node,ast.Name) and isinstance(node.ctx,ast.Store):names.add(node.id)
+        if isinstance(node,ast.Name) and isinstance(node.ctx,ast.Del):unbound.add(node.id)
+        if isinstance(node,ast.ExceptHandler) and node.name is not None:
+            names.add(node.name);unbound.add(node.name)
         if isinstance(node,(ast.Global,ast.Nonlocal)):excluded.update(node.names)
         for child in ast.iter_child_nodes(node):visit(child)
     for statement in function.body:visit(statement)
-    return names-excluded
+    return names-excluded,parameters-unbound-excluded
 
 
 def scope_docstrings(tree):
@@ -195,9 +201,11 @@ class FlowAudit:
                     if facts is None:return None
                     continue
                 # Unknown conditions may execute user code. Discard incoming facts.
-                self.block(node.body,{},locals_,parameters);self.block(node.orelse,{},locals_,parameters)
+                left=self.block(node.body,{},locals_,parameters)
+                right=self.block(node.orelse,{},locals_,parameters)
+                if left is None and right is None:return None
                 facts={}
-            elif isinstance(node,(ast.Return,ast.Raise)):
+            elif isinstance(node,(ast.Return,ast.Raise,ast.Break,ast.Continue)):
                 return None
             elif not isinstance(node,ast.Pass):
                 # Assignment, call, await, loops and context managers are barriers.
@@ -277,10 +285,8 @@ def audit_source(source,filename='<string>'):
     audit=FlowAudit(source,filename)
     for node in ast.walk(tree):
         if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef)):
-            parameters={arg.arg for arg in node.args.posonlyargs+node.args.args+node.args.kwonlyargs}
-            for arg in (node.args.vararg,node.args.kwarg):
-                if arg:parameters.add(arg.arg)
-            audit.block(node.body,{},local_names(node),parameters)
+            locals_,parameters=function_bindings(node)
+            audit.block(node.body,{},locals_,parameters)
         elif isinstance(node,ast.ExceptHandler):
             types=node.type.elts if isinstance(node.type,ast.Tuple) else [node.type]
             broad=node.type is None or any(isinstance(t,ast.Name) and t.id in ('Exception','BaseException') for t in types)
@@ -317,8 +323,10 @@ def audit_source(source,filename='<string>'):
 
 
 def patch_text(source,patched,fromfile,tofile):
+    # Git's diff lines end at LF; Python's physical lines also include lone CR.
     return ''.join(line if line.endswith('\n') else line+'\n\\ No newline at end of file\n'
-        for line in difflib.unified_diff(source_lines(source),source_lines(patched),fromfile=fromfile,tofile=tofile))
+        for line in difflib.unified_diff(io.StringIO(source,newline='\n').readlines(),
+            io.StringIO(patched,newline='\n').readlines(),fromfile=fromfile,tofile=tofile))
 
 
 def worktree_patch(name,source,patched):

@@ -1,5 +1,5 @@
 """AwaitLab: cooperative latency sensitivity and measured A/B experiments."""
-__version__ = '0.15.0'
+__version__ = '0.16.0'
 from .trace import Session, operation, stage
 from .experiment import Arm, Experiment, Settings
 

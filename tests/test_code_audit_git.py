@@ -163,6 +163,15 @@ class GitAuditTests(unittest.TestCase):
         patched=self.git('show',':case.py')
         self.assertIn(b'\r\n',patched);self.assertNotIn(b'        return 1',patched)
 
+    def test_staged_cr_only_patch_is_applied_and_verified(self):
+        source=BAD.replace('\n','\r');path=self.write('case.py',source);self.git('add','case.py')
+        report=self.save_report()
+        self.assertEqual(self.apply(report,check=True),1)
+        self.assertEqual(self.apply(report),1)
+        fixed=self.git('show',':case.py')
+        self.assertNotIn(b'\n',fixed);self.assertNotIn(b'return 1',fixed)
+        self.assertEqual(path.read_bytes(),source.encode())
+
     def test_nonregular_index_entry_is_recorded_without_parsing(self):
         oid=self.git('hash-object','-w','--stdin',input=b'other.py').decode().strip()
         self.git('update-index','--add','--cacheinfo',f'120000,{oid},link.py')

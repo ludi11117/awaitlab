@@ -60,6 +60,8 @@ python -m awaitlab http --before "http://127.0.0.1:8000/old?id={id}" --after "ht
 
 ## 简历表述草稿
 
+0.16可以先打开 artifacts/loop-flow-v0.16.0.html：展示continue后的死检查和break后的恒真检查，再运行 `python benchmarks/loop_flow_check.py`，两个补丁在副本应用后check由1变0，800个示例输出一致。一个更值得深入解释的正确性问题见binding-regression-v0.16.0.json：形参不一定永远已绑定，del、except清理和nonlocal删除都可能使读取抛错，旧版条件简化意外消除了UnboundLocalError。现保留这些读取，并区分同名内层局部变量。可以据此讨论“语法可编译”与“行为保持”的区别，不声称静态规则已证明任意程序等价。
+
 0.15新增一个不需要启动服务的演示：打开 artifacts/git-index-v0.15.0.html，说明“工作区已修好，暂存区却仍会提交重复防御判断”的部分暂存问题。运行 `python benchmarks/git_index_check.py` 会在D盘临时Git仓库复现，并验证扫描不写索引、只核验不写索引、应用保留未暂存编辑、旧报告重用被拒绝。这个受控示例的7个输入输出一致；没有执行使用者项目。算法部分可讲局部路径事实、短路分支合流与事实失效；工程部分可展示20条pass隔开上下文的回归：普通git apply检查通过，整份源码版本核验拒绝。不要将生成补丁描述成证明任意Python程序语义等价。
 
 0.8可以展示“原实现对照也被判支持”之后怎样处理：固定4配置×8次复验，没有为消除异常改seed；计时根因未确认。确定的呈现缺陷用回放锁定，加入显式负面对照角色与质量门控。打开 artifacts/control-role-anomaly-replay-v0.8.0.html，原-7.50%和p=.0121不变，对照显示检出变化，整轮暂停候选推荐；标题注明测后角色注释、未重新测量。这个案例适合解释统计信号、对照作用和业务结论的区别，不应讲成“工具保证没有假阳性”。

@@ -1,4 +1,18 @@
-# 0.15.0 暂存区审查与受控补丁验证
+# 0.16.0 循环路径、未绑定读取及Git换行验证
+
+日期：2026-11-16。示例loop-flow-v0.16.0.json/html/patch，核对loop-flow-check、loop-corpus-check、binding-regression与install-semantics-check-v0.16.0.json均位于artifacts。
+
+- 全套209项单元/集成测试通过，审查专项87项，其中Git集成29项。全套日志在D:/CodexWork/temp/awaitlab/tests-v0.16.0-final.log；新增循环9项、绑定6项及源码/Git换行2项。
+- 修改前循环7项初始回归出现6个失败子项，bindings6项中4项失败，新增CR/混合换行4个子项均失败；对应loop-exits-before、bindings-before、cr-patch-before.log保留在D盘临时目录。测试先验证旧行为，再验证修复。
+- continue/break只终止所在语句序列的延续路径，循环分析不把其终止状态传递为函数退出。未知if两分支均退出时停止分析后续语句；try/finally仍丢弃路径事实，赋值、调用和await继续作为屏障。覆盖嵌套循环、loop else、async for和finally重赋值；循环测试1595次有限输入输出核对一致，不是任意程序等价证明。
+- 三个独立受控反例分别删除形参、在except后清除同名形参、由闭包nonlocal删除形参。冻结0.15审查源码生成的补丁把原本UnboundLocalError变为返回2，当前诊断/补丁均保留原文和异常。binding-regression记录完整夹具、冻结提交/源码SHA和当前源码SHA。参数绑定分析对潜在清除保守处理，并继续允许后续实际读取建立事实；不覆盖动态反射。
+- Python物理行包括CR，Git补丁行以LF分隔；两者现在分别处理。CR-only/混合、含Unicode分隔字符串、带/不带末尾换行的4个工作区补丁通过Git检查与实际应用，结果字节等于建议源码，字符串值保留。CR-only暂存源码另通过版本核验与受控索引应用，工作区不变。
+- 受控循环副本导出2项诊断及补丁，实际Git应用后check从1变0；两个函数、7种值、长度0至3的序列共800次输出核对一致。96个Git列出的Python文件与冻结0.15比较，仅新的循环样例变化（原0项→2项），其余95文件诊断及建议源码一致；没有执行语料目标。整仓排除4个刻意样例后扫描92文件，无当前规则提示/错误。
+- 43项浏览器检查通过，新增循环两项提示/补丁、break/continue上下文、手机宽度和离线无脚本；新截图loop-flow-desktop/mobile.png。历史页面与数据维持原版。
+- wheel内22个源码/资源逐字节一致。独立D盘-S下，22项循环/绑定/换行测试通过，暂存CLI、Unicode空格路径、只读核验、索引应用、过期拒绝及核心恢复2对/孤立任务检查通过。安装记录install-check、install-index-check与install-semantics-check-v0.16.0.json。独立安装初验暴露测试把临时目录误当patch_root的假设，改用报告的实际patch_root后通过；产品源码未为该测试做退让。
+- 本轮没有性能重测或新的加速结论。0.15暂存报告仍保留原版本，不能用新版直接应用旧版报告，需重扫。
+
+## 0.15.0 暂存区审查与受控补丁验证
 
 日期：2026-11-16。样例与记录见 artifacts/git-index-v0.15.0.json/html/patch、git-index-check-v0.15.0.json、install-index-check-v0.15.0.json。
 
