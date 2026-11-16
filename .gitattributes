@@ -11,5 +11,6 @@
 *.patch text eol=lf whitespace=-blank-at-eol,-blank-at-eof
 artifacts/defensive-*.html whitespace=-blank-at-eol
 artifacts/audit-*.html whitespace=-blank-at-eol
+artifacts/git-index-*.html whitespace=-blank-at-eol
 *.cmd text eol=crlf
 *.png binary

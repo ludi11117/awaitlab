@@ -1,0 +1,11 @@
+diff --git "a/case.py" "b/case.py"
+index 1ac199dc2a0e28a5774c8d3975e19663e1a22200..4529876554edee1d251b6e6a68d9c13a844f6c51 100644
+--- "a/case.py"
++++ "b/case.py"
+@@ -1,6 +1,4 @@
+ def read(value):
+     if value is None:
+         return None
+-    if value is None:
+-        return 1
+     return value

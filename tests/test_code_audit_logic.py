@@ -123,12 +123,17 @@ class AuditLogicTests(unittest.TestCase):
         report={'files_scanned':1,'findings':[{'rule':'ALD002','confidence':'needs_review','path':payload,
             'line':1,'column':1,'message':payload,'evidence':payload,'suggestion':payload,'code':payload,
             'patch_available':False}], 'errors':[{'path':payload,'error':payload}],
-            'patch_root':payload,'patch':payload,'scope':payload,'ignored_findings':[],'excluded_paths':[]}
+            'patch_root':payload,'patch':payload,'scope':payload,'ignored_findings':[],'excluded_paths':[],'source_scope':'worktree'}
         html=render_audit_report(report)
         self.assertNotIn(payload,html)
         self.assertIn('&lt;script&gt;',html)
         self.assertIn('未完成的扫描',html)
         self.assertNotIn('<script',html)
+        report['source_scope']='git_index'
+        report['index_snapshot']={'base_head':payload,'selected_blobs':{payload:payload},
+            'skipped_nonregular_paths':[payload],'deleted_python_paths':[payload]}
+        html=render_audit_report(report)
+        self.assertNotIn(payload,html);self.assertIn('&lt;script&gt;',html)
 
     def test_cli_writes_offline_html_without_changing_source(self):
         with tempfile.TemporaryDirectory(dir='D:/CodexWork/temp/awaitlab') as folder:

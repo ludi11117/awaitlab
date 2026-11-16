@@ -1,0 +1,379 @@
+{
+  "kind": "defensive_code_audit",
+  "library_version": "0.15.0",
+  "patch_root": "D:\\CodexWork\\projects\\awaitlab",
+  "scan_root": "D:\\CodexWork\\projects\\awaitlab",
+  "source_scope": "worktree",
+  "files_scanned": 89,
+  "sources": {
+    "awaitlab/__init__.py": {
+      "sha256": "ccea71347f76eb7ab4bfa042b8cb8fbc3725f82465cfacc83699b9bb64d7297f",
+      "bytes": 274
+    },
+    "awaitlab/__main__.py": {
+      "sha256": "19c6a85f2a0d2749e0ca310c9fb9e9f206608d0e050450226c7d74117eebaa95",
+      "bytes": 12490
+    },
+    "awaitlab/asgi.py": {
+      "sha256": "8ed2071ad0f182c52b9decadf92bd12efe64db254f7ab9a1056a96582bd82f3c",
+      "bytes": 2317
+    },
+    "awaitlab/calibration.py": {
+      "sha256": "26329df46ecb657107dfc85463ad39a3317bc7a803262a2cce16a00485acddce",
+      "bytes": 718
+    },
+    "awaitlab/checkpoint.py": {
+      "sha256": "047f932b9ff2ee97f1ced5e2ddaa4a593cc98f5de70f1871cb7258987b8cffdb",
+      "bytes": 2849
+    },
+    "awaitlab/code_audit.py": {
+      "sha256": "b7325dd87f9d0067ca41748723b76418e1ae2e0716402cd8ec9dccbad0e6ed5e",
+      "bytes": 23929
+    },
+    "awaitlab/code_audit_report.py": {
+      "sha256": "15673d0fd8c0f8de55b34446ed313ed86549594dbfc9251925e1b24f7e3b496a",
+      "bytes": 6908
+    },
+    "awaitlab/experiment.py": {
+      "sha256": "dbdedbfc6f0334fa40571f2f2a3db1614909fe470a8f5c9c0f54e3d213c857e9",
+      "bytes": 16483
+    },
+    "awaitlab/git_index.py": {
+      "sha256": "9b569bf3bf6831bd84cefee9f65b0f3c36d4b5453f1e0850478411bae60cde14",
+      "bytes": 6435
+    },
+    "awaitlab/http_workload.py": {
+      "sha256": "8645d1312b3a773b8c5ab5f0833c80f44afdae02440a2b31204573d4376b4d7b",
+      "bytes": 4165
+    },
+    "awaitlab/index_apply.py": {
+      "sha256": "48f7453947b38a3e2fb94a22809480683e79d0ac264fcd19958291149d33e38f",
+      "bytes": 5843
+    },
+    "awaitlab/local_http.py": {
+      "sha256": "f0cf1c5af5bcad3dc029a792a3b0684ae2cdaa1b00a58c2732647be0f1aac7d7",
+      "bytes": 3651
+    },
+    "awaitlab/ownership.py": {
+      "sha256": "c8b6e3169a044db86a2d97fd0acd1823bd82d21a861b38f89a7a978b3439d0ef",
+      "bytes": 946
+    },
+    "awaitlab/report.py": {
+      "sha256": "8ea27eb80d6a9dd34a37d34ac28a4658cdd5d30f814bcb78564355ebd3761430",
+      "bytes": 1047
+    },
+    "awaitlab/scenarios.py": {
+      "sha256": "90b3db36e70912b308881249129b11c7809daabf61a6e2fc7038458ed9a8b9c7",
+      "bytes": 2991
+    },
+    "awaitlab/sqlite_http_workload.py": {
+      "sha256": "a2ea0cd73338f18f595789e3ba3610c4c1ad2a34b3efc85066c89b0cf9b675d1",
+      "bytes": 1375
+    },
+    "awaitlab/sqlite_workload.py": {
+      "sha256": "0a075ed39779bd4c32ff262fc431ecaa7ce6d329d465482a77d5af021d2c64db",
+      "bytes": 6815
+    },
+    "awaitlab/statistics.py": {
+      "sha256": "c82798c34aee884ba1a3615a3d0b4ff4808ec191beb3d5db09b0829ac57f627a",
+      "bytes": 6222
+    },
+    "awaitlab/trace.py": {
+      "sha256": "e6ad64f1b66bc3806dd76972a5c416e50d04d99779060557796e230dfc15c5b5",
+      "bytes": 7086
+    },
+    "benchmarks/audit_policy_check.py": {
+      "sha256": "fd46c0008e4d2248ffade4760fa21eea0162e02ae146657107c8bef105edf650",
+      "bytes": 3372
+    },
+    "benchmarks/audit_validation_cost.py": {
+      "sha256": "03a15debe15fcc17156954396d01dd932c0c2593b100d4d70409822237714e8a",
+      "bytes": 4673
+    },
+    "benchmarks/baseline_v010_trace.py": {
+      "sha256": "4582cd53041eaf75fd1147cc2bc3021221b23405b493d3c83819785ddde66d78",
+      "bytes": 5018
+    },
+    "benchmarks/baseline_v013_code_audit.py": {
+      "sha256": "3d1e5028ba8fda9e14718a355e4dc9259c13062cb71e751c312819d079182918",
+      "bytes": 20637
+    },
+    "benchmarks/baseline_v040_trace.py": {
+      "sha256": "475811534173661dab081c92bcd825b1ebd57a8fa34fdd7dd586eb300b4c316b",
+      "bytes": 5702
+    },
+    "benchmarks/baseline_v060_ownership.py": {
+      "sha256": "8e245d21df3316b15c336d0e639f01a1e4ab2e20e85c57aeb78e42c32fc711c8",
+      "bytes": 890
+    },
+    "benchmarks/baseline_v061_local_http.py": {
+      "sha256": "ef998ac6474e942275159a561d620036bb1c57facd84dc8e4f771b33674b88db",
+      "bytes": 3401
+    },
+    "benchmarks/baseline_v062_experiment.py": {
+      "sha256": "0386de52f093195236b59ed0d88e38bc6b6b07f0482c71a442287674bbed2654",
+      "bytes": 14135
+    },
+    "benchmarks/baseline_v062_trace.py": {
+      "sha256": "4bc4718a05182e789e88d13c13bc79e4c9396b5ea1f9559ac72d58a077eb7a9e",
+      "bytes": 5793
+    },
+    "benchmarks/baseline_v064_statistics.py": {
+      "sha256": "b569058c16e485e30330dc2d71db865e6e0ea5dbd8739bc336b9a2fd053b6ed8",
+      "bytes": 4904
+    },
+    "benchmarks/concurrency_suite.py": {
+      "sha256": "839ed49cf5841ad5f83a1921963cc696105c5ba6b584de87c3a2024d4eace8d1",
+      "bytes": 4792
+    },
+    "benchmarks/customer_lifecycle.py": {
+      "sha256": "64865347477aac059b40a2ce3f1fe1e46f8d22c7a90e2c192808225d781c0b20",
+      "bytes": 2663
+    },
+    "benchmarks/defensive_audit_check.py": {
+      "sha256": "24377762ea664a0526d895efa345e1b775d6d82076e061ef1544bb0cf209f7ac",
+      "bytes": 3174
+    },
+    "benchmarks/defensive_logic_check.py": {
+      "sha256": "e4ff63bc51863d25e0041ba402c0a2f172579b9d54cfb156bba851ff11280da6",
+      "bytes": 3132
+    },
+    "benchmarks/defensive_patch_check.py": {
+      "sha256": "a1e12e4f5c11ef77551dddd57ff43c074c1bfa4e7a5fb05af12a5ed9392d1658",
+      "bytes": 3566
+    },
+    "benchmarks/extended_exact_case.py": {
+      "sha256": "b2141e46dac469b80a076355c7106ddf917e26c2df29d14ccccfdb6dab707b8c",
+      "bytes": 726
+    },
+    "benchmarks/git_index_check.py": {
+      "sha256": "5e80ffde1268603758e9667750af09896a6aabf94f0a73cca7089e2629dcb01a",
+      "bytes": 4905
+    },
+    "benchmarks/http_command_check.py": {
+      "sha256": "efb4b472e75bce77e205bedb4c3533a9adf9deb210e6a72c8523844f723eadf4",
+      "bytes": 3599
+    },
+    "benchmarks/http_setup.py": {
+      "sha256": "bfd23b51fce4c91b03e91262d3aced83bd441a4a106e55be22f889b834f47b96",
+      "bytes": 6848
+    },
+    "benchmarks/inference_resolution.py": {
+      "sha256": "a690d1d6881fb12513fae6d8455ee32169e500f2a6a58436dea1768af929d359",
+      "bytes": 2283
+    },
+    "benchmarks/installed_bundle_check.py": {
+      "sha256": "3a05724957f58b37b7ef3e38deefa19c16b45321140159ac200aa7f2c78c0c77",
+      "bytes": 4684
+    },
+    "benchmarks/integer_tail_validation.py": {
+      "sha256": "bd42e259d993395dfd8c464ccf0e31ec9d650153c7ef6d6aa41bf17319599a55",
+      "bytes": 3736
+    },
+    "benchmarks/negative_control_diagnosis.py": {
+      "sha256": "c9091f5411f24602ea31771e56856650cc14b4c33d080c7d60902041f8803f21",
+      "bytes": 5462
+    },
+    "benchmarks/negative_control_replay.py": {
+      "sha256": "4b448c200fc3f70620534cb7d139e70b26a7ae61eebdc70fdf3bfdf129e67dd7",
+      "bytes": 967
+    },
+    "benchmarks/order_query_check.py": {
+      "sha256": "a5f52fff50162ba2fffe528ca4313ca45f324a249a9a28a90a552dfb46569427",
+      "bytes": 3363
+    },
+    "benchmarks/output_probe.py": {
+      "sha256": "b39850ed27786e7f2e94d605dd2d0d42d1843c14bd208855d5984183f9e5a345",
+      "bytes": 2830
+    },
+    "benchmarks/overhead.py": {
+      "sha256": "d00e70aae09b24605e1a2e67263f6d1e24fe67bdfe7b2ec320b984a2610ff738",
+      "bytes": 2437
+    },
+    "benchmarks/ownership_gc.py": {
+      "sha256": "95152003dfabbbbf84313beab028d0ba45dd7095d66c81f12acd708963c64b26",
+      "bytes": 2950
+    },
+    "benchmarks/paired_overhead.py": {
+      "sha256": "bb03f4a2678b36fc2af67362be5112841c8a1170ad347da291dde7db3a7f0bc2",
+      "bytes": 2480
+    },
+    "benchmarks/plot_concurrency.py": {
+      "sha256": "2db3c07352b01e7e2ac0438a17ad2a72f5daedcc6f55124d6741eab30ac703c8",
+      "bytes": 2642
+    },
+    "benchmarks/plot_http_setup.py": {
+      "sha256": "af4a4943327679062cfbe6105df9fb4c0481f9c81016fe259e70adef1b529512",
+      "bytes": 2336
+    },
+    "benchmarks/plot_randomization.py": {
+      "sha256": "d50bea1dc923eb83af6aaee59a1d8123b4dac8327b7f2cd019a618a7e6510f55",
+      "bytes": 1940
+    },
+    "benchmarks/randomization_cost.py": {
+      "sha256": "be268e873edef1b5a72d0388035c42c963f818ee3fd01b26b624445706f3d6f6",
+      "bytes": 3867
+    },
+    "benchmarks/randomization_memory.py": {
+      "sha256": "dbbb755b8b80c59cc3ad654c0149c2d7cd0dae54540fe06d25fc723b8ff74a8b",
+      "bytes": 2073
+    },
+    "benchmarks/replacement_counter_cost.py": {
+      "sha256": "fa01b1278401417de6dd2828db88a3a7e6661715408d0c8c484585b31601c0ed",
+      "bytes": 3394
+    },
+    "benchmarks/replacement_reach.py": {
+      "sha256": "32ad6ce5cf794c5360ab7984ec168ad5728a8e1eb148381312d128134de69fd2",
+      "bytes": 4166
+    },
+    "benchmarks/replay_control_roles.py": {
+      "sha256": "d8ddc5adb38db4f86a555cc91b68523d46d8cd7c68e0fa7a23883011a6954027",
+      "bytes": 3114
+    },
+    "benchmarks/task_ownership.py": {
+      "sha256": "c0d45b86bd9b1fabd3117d720798442731d236cdcdbd691ad39da037dc240377",
+      "bytes": 3305
+    },
+    "benchmarks/trace_allocation.py": {
+      "sha256": "a556ba7af7cf6148d613e69dffa55f85fb39983348f651c86b0b6a9a4b750f36",
+      "bytes": 4006
+    },
+    "examples/customer_api_case.py": {
+      "sha256": "1f06032d8ab31a51daec3476b8ca206a02a1cdfa44c1b8366d8af74fa5e87404",
+      "bytes": 3237
+    },
+    "examples/events_bundle_case.py": {
+      "sha256": "3fe15a7fbfb5a9e51fb1fe1d20ea3c0f591cb3f2adfdcc77731a17625c214f1e",
+      "bytes": 1629
+    },
+    "examples/fastapi_lab.py": {
+      "sha256": "a705d02e628f71e3f0f85fc5a658d6d784004a863df24d3d38b0f8f1fa052574",
+      "bytes": 2484
+    },
+    "examples/fastapi_tcp.py": {
+      "sha256": "34e969896835bb77d0db418c91a31df6f5c6bf8c85b5ebccf40453fc4188ea1d",
+      "bytes": 2385
+    },
+    "examples/http_service.py": {
+      "sha256": "1de2c0086815aa605a01e5fe6af7de74d16dd1eb83174cb539a05b1d4ba912e6",
+      "bytes": 2648
+    },
+    "examples/order_query_case.py": {
+      "sha256": "ee7aba356193db8a59af35597ee7c5daed5f888aee5e1dd0498aa7ac5ae551fc",
+      "bytes": 4704
+    },
+    "examples/unique_case.py": {
+      "sha256": "5a37ea87b38c8fa38c77a073071cdc044973d80f422be32ba61d16b26a10eb2b",
+      "bytes": 991
+    },
+    "tests/test_asgi_bridge.py": {
+      "sha256": "57a149c98ca17d44e09824a9f3fc222aab03d1c337b82b886a6f13ad4df86e4f",
+      "bytes": 5313
+    },
+    "tests/test_awaitlab.py": {
+      "sha256": "ad3c0bcb6bed31dbbe00eedc0528257fc444dcd4a0a6155caf059c5b4f23f9f4",
+      "bytes": 9845
+    },
+    "tests/test_checkpoint.py": {
+      "sha256": "cd876498a8dc87afdce2c2269678ed1ca70bd5308d241caad49b8afab07a11e1",
+      "bytes": 7139
+    },
+    "tests/test_cli.py": {
+      "sha256": "7b8b63ad05411a234bba26b111950124736034b73e238b642914fc82c87c430e",
+      "bytes": 11568
+    },
+    "tests/test_code_audit.py": {
+      "sha256": "8745c50bc338de5d0c95f16b06458a2f8dbf8f8f7406289642347cf37b32ee76",
+      "bytes": 7743
+    },
+    "tests/test_code_audit_git.py": {
+      "sha256": "64d70e40a0bf3f8e85749c03b735c8bc419f1085934cb28aabfce3f5ce123593",
+      "bytes": 20628
+    },
+    "tests/test_code_audit_logic.py": {
+      "sha256": "504c7526ebeae0471a9fe28adb2f9ff205b76f886131888929beeb9b9ed31117",
+      "bytes": 7534
+    },
+    "tests/test_code_audit_patches.py": {
+      "sha256": "a63e95f71f8535671b82df5c7d5a5868352b6b4c9c211e74977ab8141ba588dc",
+      "bytes": 6358
+    },
+    "tests/test_code_audit_policy.py": {
+      "sha256": "778328ac9ed3e6923d8eae31424c0ee6bbaa85fa68ca816c3e37279061bd34ed",
+      "bytes": 5478
+    },
+    "tests/test_code_audit_source_text.py": {
+      "sha256": "7114ab06014cbef8084dd8689faa2a6b6ea25afecaa17a55576fa12e962593c7",
+      "bytes": 4327
+    },
+    "tests/test_control_roles.py": {
+      "sha256": "17e4eeb0264415f6ff222c9a595a037975e6d99cd2a65b628b1088e8c4df860d",
+      "bytes": 7112
+    },
+    "tests/test_customer_api.py": {
+      "sha256": "dd0f9a08f1809fb50876871f347ef0de62fa50aca799fd9254724af1f848f8cb",
+      "bytes": 3271
+    },
+    "tests/test_evidence.py": {
+      "sha256": "9fa5092dd3d9916e7110127bd0f79e362870c0d663f3e19a9622e4b82af6c2d8",
+      "bytes": 4959
+    },
+    "tests/test_fastapi_integration.py": {
+      "sha256": "0d22b9999c83e7c5642752ff9305f487a38888490ca8955f91e712b6247020d2",
+      "bytes": 1089
+    },
+    "tests/test_http_command.py": {
+      "sha256": "08a6b30a0f26d5be9d23696a4f187db8fb4a56c67e9a82e70b1823d3f1090025",
+      "bytes": 8033
+    },
+    "tests/test_integer_randomization.py": {
+      "sha256": "64d500d73d75c6ca23b4a5a3f56e0a33e939980acbe22f6b9c2161ed36f4c3b9",
+      "bytes": 4977
+    },
+    "tests/test_launchers.py": {
+      "sha256": "3fc7b79d19b88449963f367325b86ae543bc95ffb74ca11cc82b54c546ac470f",
+      "bytes": 6616
+    },
+    "tests/test_local_http.py": {
+      "sha256": "13fb45241e42054163635c88ddc581a684208994bd309aab7b5f8058f96b1e62",
+      "bytes": 10788
+    },
+    "tests/test_order_queries.py": {
+      "sha256": "59c08660b2ad68004e08efbd52d384d91bafb89be1336d2ade8faae4f88a24bb",
+      "bytes": 3304
+    },
+    "tests/test_ownership.py": {
+      "sha256": "6503c7d6b69e802e818d151ac5433e5b15d14934888ca468b2435a181d3efae8",
+      "bytes": 4040
+    },
+    "tests/test_replacement_reach.py": {
+      "sha256": "3d53d0898693d84385fd73ccdfb85a9ec29639db6febe6d90440fb529f97b8d0",
+      "bytes": 3091
+    },
+    "tests/test_report.py": {
+      "sha256": "dedfcd8becd7e1f4c277b89fd1e4336489a6053c609d69a50c97085c798c5d3e",
+      "bytes": 1444
+    },
+    "tests/test_sqlite_workload.py": {
+      "sha256": "aac350bb87373ffb229b048c5be1465d588640896dbf59c94a1a863295d8c48d",
+      "bytes": 3423
+    },
+    "tests/test_trace_lifetime.py": {
+      "sha256": "875b9d07a02503b088ff7403c76bbe88dd468c3c431c0271855f52c19beb1b93",
+      "bytes": 3875
+    }
+  },
+  "exclude_patterns": [
+    "examples/defensive_*.py"
+  ],
+  "excluded_paths": [
+    "examples/defensive_logic_sample.py",
+    "examples/defensive_patch_sample.py",
+    "examples/defensive_sample.py"
+  ],
+  "findings": [],
+  "ignored_findings": [],
+  "errors": [],
+  "patch": "",
+  "scope": "Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review."
+}

@@ -30,6 +30,19 @@ def render_audit_report(report):
     findings=''.join(cards) or f'<p class="empty">{empty}</p>'
     patch_view=(f'<pre class="patch"><code>{escape(report["patch"])}</code></pre>' if report['patch'] else
         '<p>本次没有可生成的补丁。需复核项保留原逻辑。</p>')
+    if report['source_scope']=='git_index':
+        snapshot=report['index_snapshot']
+        rows=''.join(f'<tr><td>{escape(name)}</td><td>{escape(oid)}</td></tr>' for name,oid in snapshot['selected_blobs'].items())
+        omitted=''.join(f'<li>非普通文件：{escape(name)}</li>' for name in snapshot['skipped_nonregular_paths'])
+        omitted+=''.join(f'<li>已暂存删除：{escape(name)}</li>' for name in snapshot['deleted_python_paths'])
+        source_view=(f'<section class="snapshot"><h2>Git 暂存区快照</h2><p>读取准备提交的文件完整内容；不读取未暂存或未跟踪源码，也不把所有提示归因于新增行。</p>'
+            f'<p class="location">基准HEAD：{escape(snapshot["base_head"] or "尚无首次提交")}</p>'
+            f'<div class="scroll"><table><thead><tr><th>文件</th><th>Git blob ID</th></tr></thead><tbody>{rows}</tbody></table></div><ul>{omitted}</ul></section>')
+        apply_note=('复核后使用 python -m awaitlab apply-index 报告.json --check 核验整份暂存源码版本，'
+            '去掉 --check 才应用。需要 audit --output 保存的JSON；单独 git apply --cached --check 不核验整份源码版本。'
+            '工作区不会随之更新，重新 git add 前请核对差异。')
+    else:
+        source_view='';apply_note='这是待复核的差异，未写入目标。应用后仍需运行目标项目测试。'
     return f'''<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'">
@@ -38,10 +51,11 @@ def render_audit_report(report):
 main{{max-width:1040px;margin:auto;padding:32px 24px 64px}}header{{padding:16px 0 24px}}h1{{font-size:clamp(25px,5vw,36px);line-height:1.3}}
 h2{{font-size:19px;line-height:1.5;overflow-wrap:anywhere}}p{{overflow-wrap:anywhere}}a{{color:#11685b}}
 .eyebrow{{color:#397d71;font-size:12px;letter-spacing:.12em}}.summary{{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:20px 0}}
-.metric,.finding,.errors,.decisions,#changes{{background:white;border:1px solid #d5e0e5;border-radius:10px;padding:20px}}
+.metric,.finding,.errors,.decisions,.snapshot,#changes{{background:white;border:1px solid #d5e0e5;border-radius:10px;padding:20px}}
 .metric strong{{display:block;font-size:28px}}.finding{{margin:18px 0}}.labels{{display:flex;gap:8px;flex-wrap:wrap}}
 .labels span{{font-size:12px;border-radius:4px;background:#e7f1ee;padding:3px 8px}}.location,.note,.scope{{color:#526b75}}
 pre{{max-width:100%;overflow-x:auto;padding:16px;background:#eef3f5;border-radius:6px;font-size:13px;line-height:1.65}}
+.scroll{{overflow-x:auto}}table{{width:100%;border-collapse:collapse}}th,td{{padding:10px;text-align:left;border-bottom:1px solid #d5e0e5;overflow-wrap:anywhere}}.snapshot{{margin:18px 0}}
 details p{{white-space:pre-wrap}}summary{{cursor:pointer;color:#216d61}}.errors{{border-color:#b78556}}#changes{{margin-top:30px}}
 @media(max-width:520px){{main{{padding:18px 14px 40px}}.finding,#changes,.errors{{padding:16px}}}}
 </style></head><body><main><header><div class="eyebrow">AWAITLAB / CODE AUDIT</div>
@@ -49,8 +63,8 @@ details p{{white-space:pre-wrap}}summary{{cursor:pointer;color:#216d61}}.errors{
 <div class="summary"><div class="metric"><strong>{report['files_scanned']}</strong>扫描文件</div>
 <div class="metric"><strong>{proven}</strong>路径冗余</div><div class="metric"><strong>{review}</strong>人工复核</div>
 <div class="metric"><strong>{len(report['errors'])}</strong>扫描错误</div></div><a href="#changes">查看补丁建议 ↓</a></header>
-{error_view}{decisions}<section aria-label="审查发现">{findings}</section>
-<section id="changes"><h2>补丁建议</h2><p>这是待复核的差异，未写入目标。应用后仍需运行目标项目测试。</p>
+{error_view}{source_view}{decisions}<section aria-label="审查发现">{findings}</section>
+<section id="changes"><h2>补丁建议</h2><p class="apply-note">{apply_note}</p>
 <p class="location">补丁相对目录：{escape(report['patch_root'])}</p>{patch_view}</section>
 <footer class="scope"><p>分析范围：{escape(report['scope'])}</p>
 <p>基于局部语法路径，不推断跨函数、动态反射或业务必要性。人工复核项不表示必须删除。</p></footer>

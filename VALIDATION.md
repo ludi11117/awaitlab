@@ -1,4 +1,17 @@
-# 0.14.1 源码行边界与切片缓存验证
+# 0.15.0 暂存区审查与受控补丁验证
+
+日期：2026-11-16。样例与记录见 artifacts/git-index-v0.15.0.json/html/patch、git-index-check-v0.15.0.json、install-index-check-v0.15.0.json。
+
+- 全套192项测试通过，审查专项70项，其中28项真实Git临时仓库集成。完整日志在 D:/CodexWork/temp/awaitlab/tests-v0.15.0-final.log。首次全套出现1项linked worktree断言失败：测试把创建worktree前的索引字节作为应用前基线，而Git创建worktree会刷新索引；将基线移到准备完成后，重跑全套通过。
+- 扫描时按捕获HEAD读取cached raw diff，使用一个cat-file --batch进程逐文件读取blob，结束后复查HEAD与差异。未触发clean filter/external diff，不将intent-to-add算作暂存源码；冲突未选任一侧、缺失对象未报干净。未导入/执行目标源码。
+- 关键回归：20条pass将前置身份判断隔在diff上下文外。扫描后反转前置条件并重新暂存，完整index blob头仍不能让普通git apply --cached --check拒绝旧补丁；新命令在只核验与实际应用两种模式均拒绝，原索引字节不变。其他测试包括报告内容/版本被改、已有锁保留、错误结果摘要拒绝及失败回滚。
+- 应用使用活动索引路径的标准.lock，重新审查并核对完整版本，临时索引实际应用后核对条目集合、模式、范围外条目和修改后源码SHA-256，最后原子替换索引。linked worktree、替代索引、split index与intent-to-add、SHA-256仓库通过。HEAD仍是独立Git引用，不声明跨引用事务或对无视Git锁的写入者提供事务隔离；临时应用可能在Git对象库留下未引用对象。
+- 临时演示仓库中，暂存坏代码、工作区已修好时，staged check返回1而普通check返回0；扫描/只核验不改变索引字节。受控应用后staged check返回0、工作区源码保留，旧报告重用返回2；7个受控示例输入前后输出一致。报告路径随临时仓库清理而失效，不能直接应用此演示JSON。
+- 37项离线页面检查通过，包括暂存blob ID、版本核验入口、普通Git上下文检查的限制、手机宽度、无脚本/远程请求。截图git-index-desktop/mobile.png；历史报告维持原版。
+- wheel中22个包内源码/资源逐字节一致，独立D盘-S环境无可选依赖：暂存审查、Unicode/空格路径、只核验、应用、过期拒绝与返回码通过；核心CLI恢复2对且比较数据不变，孤立任务探针仍通过。见install-check-v0.15.0.json和install-index-check-v0.15.0.json。
+- 当前工作区89个Python文件排除3个刻意问题样例后无当前规则提示/错误，记录self-audit-v0.15.0.json/html。含样例的92个文件、12条诊断和修改后源码与冻结0.13基线相同，见audit-validation-equivalence-v0.15.0.json。该结果只覆盖当前规则和该语料，旧性能计时保持原版；本轮没有新增速度收益声明。
+
+## 0.14.1 源码行边界与切片缓存验证
 
 日期：2026-11-15。计时与有限语料核对分别见 artifacts/audit-validation-cost-v0.14.1.json、audit-validation-equivalence-v0.14.1.json。
 

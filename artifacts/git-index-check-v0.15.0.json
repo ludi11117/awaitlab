@@ -1,0 +1,18 @@
+{
+  "version": "0.15.0",
+  "fixture": "temporary Git repository, not user business code",
+  "staged_check_exit": 1,
+  "ordinary_worktree_check_exit": 0,
+  "after_cached_patch_check_exit": 0,
+  "audited_git_blob": "1ac199dc2a0e28a5774c8d3975e19663e1a22200",
+  "scan_did_not_modify_index": true,
+  "scan_did_not_modify_worktree_source": true,
+  "version_check_exit": 0,
+  "version_check_did_not_modify_index": true,
+  "version_checked_apply_exit": 0,
+  "repeated_stale_report_exit": 2,
+  "cached_patch_left_worktree_source_unchanged": true,
+  "differential_inputs": 7,
+  "all_demo_outputs_equal": true,
+  "scope": "Whole staged file review; does not attribute every finding to newly changed lines."
+}

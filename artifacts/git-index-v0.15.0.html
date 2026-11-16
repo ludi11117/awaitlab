@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'">
+<title>AwaitLab · 防御代码审查</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6f7;color:#183641;font:15px/1.7 system-ui,sans-serif}
+main{max-width:1040px;margin:auto;padding:32px 24px 64px}header{padding:16px 0 24px}h1{font-size:clamp(25px,5vw,36px);line-height:1.3}
+h2{font-size:19px;line-height:1.5;overflow-wrap:anywhere}p{overflow-wrap:anywhere}a{color:#11685b}
+.eyebrow{color:#397d71;font-size:12px;letter-spacing:.12em}.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:20px 0}
+.metric,.finding,.errors,.decisions,.snapshot,#changes{background:white;border:1px solid #d5e0e5;border-radius:10px;padding:20px}
+.metric strong{display:block;font-size:28px}.finding{margin:18px 0}.labels{display:flex;gap:8px;flex-wrap:wrap}
+.labels span{font-size:12px;border-radius:4px;background:#e7f1ee;padding:3px 8px}.location,.note,.scope{color:#526b75}
+pre{max-width:100%;overflow-x:auto;padding:16px;background:#eef3f5;border-radius:6px;font-size:13px;line-height:1.65}
+.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:10px;text-align:left;border-bottom:1px solid #d5e0e5;overflow-wrap:anywhere}.snapshot{margin:18px 0}
+details p{white-space:pre-wrap}summary{cursor:pointer;color:#216d61}.errors{border-color:#b78556}#changes{margin-top:30px}
+@media(max-width:520px){main{padding:18px 14px 40px}.finding,#changes,.errors{padding:16px}}
+</style></head><body><main><header><div class="eyebrow">AWAITLAB / CODE AUDIT</div>
+<h1>防御代码审查</h1><p>查看依据，再决定如何简化。扫描不导入或执行目标，也不会改写目标源码。</p>
+<div class="summary"><div class="metric"><strong>1</strong>扫描文件</div>
+<div class="metric"><strong>1</strong>路径冗余</div><div class="metric"><strong>0</strong>人工复核</div>
+<div class="metric"><strong>0</strong>扫描错误</div></div><a href="#changes">查看补丁建议 ↓</a></header>
+<section class="snapshot"><h2>Git 暂存区快照</h2><p>读取准备提交的文件完整内容；不读取未暂存或未跟踪源码，也不把所有提示归因于新增行。</p><p class="location">基准HEAD：82016bf9ab3f85f7c6750ae3755f263592a0d68e</p><div class="scroll"><table><thead><tr><th>文件</th><th>Git blob ID</th></tr></thead><tbody><tr><td>case.py</td><td>1ac199dc2a0e28a5774c8d3975e19663e1a22200</td></tr></tbody></table></div><ul></ul></section><section aria-label="审查发现"><article class="finding">
+<div class="labels"><span>ALD001</span><span>路径确定的冗余</span><span>有补丁建议</span></div>
+<h2>value is None 在当前路径恒为 False</h2><p class="location">case.py:4:5</p>
+<pre class="source"><code>    if value is None:
+        return 1</code></pre>
+<details open><summary>判断依据</summary><p>第 2 行：value is not None。赋值、调用、await等语句会清除已有路径事实。</p></details>
+<p>移除重复条件，保留实际可达分支。</p></article></section>
+<section id="changes"><h2>补丁建议</h2><p class="apply-note">复核后使用 python -m awaitlab apply-index 报告.json --check 核验整份暂存源码版本，去掉 --check 才应用。需要 audit --output 保存的JSON；单独 git apply --cached --check 不核验整份源码版本。工作区不会随之更新，重新 git add 前请核对差异。</p>
+<p class="location">补丁相对目录：D:\CodexWork\temp\awaitlab\awaitlab-staged-demo-af9nz24s</p><pre class="patch"><code>diff --git &quot;a/case.py&quot; &quot;b/case.py&quot;
+index 1ac199dc2a0e28a5774c8d3975e19663e1a22200..4529876554edee1d251b6e6a68d9c13a844f6c51 100644
+--- &quot;a/case.py&quot;
++++ &quot;b/case.py&quot;
+@@ -1,6 +1,4 @@
+ def read(value):
+     if value is None:
+         return None
+-    if value is None:
+-        return 1
+     return value
+</code></pre></section>
+<footer class="scope"><p>分析范围：Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review.</p>
+<p>基于局部语法路径，不推断跨函数、动态反射或业务必要性。人工复核项不表示必须删除。</p></footer>
+</main></body></html>

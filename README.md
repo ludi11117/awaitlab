@@ -8,7 +8,7 @@
 
 求职或复试现场演示见 [DEMO.zh-CN.md](DEMO.zh-CN.md)，包括五分钟操作、技术要点与可核对的简历表述。
 
-## 审查过度防御代码（0.14.1）
+## 审查过度防御代码（0.15.0）
 
 这是面向使用者的新功能：扫描自己的 Python 项目，查看代码位置、路径依据和修改建议，生成可复核的补丁。仅使用标准库，不导入或执行扫描目标，不需要模型 API。先看自带示例：
 
@@ -39,6 +39,27 @@ python -m awaitlab audit D:\CodexWork\projects\your-project --html artifacts/aud
 `--patch` **只生成差异文件，不改写源码**。在报告的 `patch_root` 目录复核后，可对补丁绝对路径执行 `git apply --check ...`，再自行 `git apply ...`。现在支持简单 if/else：保留实际可达分支，将其注释和 if 头行尾注释保留下来。不可达分支若有说明注释，不猜测是否应该删除，改为提示人工处理；elif链、多行条件、行内语句、制表符缩进等仍只报告。
 
 每处候选补丁与此前已接受的修改一起编译检查语法、核对函数/类文档字符串；某处被拒绝，不撤回其他独立有效修改。会改变局部绑定或生成器类型的死分支、多行字符串、非普通 UTF-8 编码等继续保留诊断。原文件变化后应重新扫描，再执行项目测试。
+
+### 提交前：审查真正进入 Git 暂存区的源码
+
+部分暂存时，工作区的代码与准备提交的代码可能不同。进入目标 Git 仓库后运行：
+
+```powershell
+python -m awaitlab audit --staged --check --output artifacts/staged.json --html artifacts/staged.html --patch artifacts/staged.patch
+python -m awaitlab apply-index artifacts/staged.json --check
+# 复核报告后应用；只修改暂存区
+python -m awaitlab apply-index artifacts/staged.json
+git diff --cached
+git diff
+```
+
+`audit --staged` 读取相对扫描开始时 HEAD 有变化的 Python 文件的**完整暂存内容**，不是只分析新增行。不会读取未暂存或未跟踪的源码；删除和非普通文件分别记录，冲突文件报错，intent-to-add 不作为已暂存源码。可指定子目录或单文件，`--exclude` 仍相对扫描目录。普通 `audit` 保持扫描工作区。需要本机 Git；不需要模型或新增 Python 依赖。
+
+JSON 保存原始源码 SHA-256、Git blob ID、基准 HEAD 及暂存差异摘要。`apply-index --check` 重新审查并核对版本和建议内容；去掉 `--check` 后，在 Git 索引锁内重新核对，在 D 盘临时索引应用并核对结果，再替换实际索引。已有锁、扫描错误、报告版本不同、暂存内容变化或结果不一致均拒绝应用；工作区源码保持原样。整个暂存快照的变化都会要求重扫，包括范围外文件。支持首次提交、linked worktree、替代索引、split index 和 SHA-256 仓库；split index 应用后可转为完整索引。
+
+**单独 `git apply --cached --check` 不能代替整份源码版本核验。** 已保留反例：修改位于补丁上下文之外的前置条件后，Git 仍接受旧补丁，新命令会拒绝。Git 的补丁选项说明见[官方文档](https://git-scm.com/docs/git-apply)。暂存修复与工作区编辑仍可能不同；同步修改后再运行目标项目测试，避免直接 `git add` 原文件覆盖暂存修复。此命令不提交代码，也不将 HEAD 检查与索引更新声明为跨引用事务。
+
+可打开[暂存区示例报告](artifacts/git-index-v0.15.0.html)。示例来自临时仓库，路径已失效；在自己的仓库重新生成报告后应用。
 
 追加 `--check` 时：存在未忽略的 ALD001 路径冗余返回 1，**包括无法生成补丁的冗余**；仅有 ALD002 异常复核或带理由忽略的项时返回 0，语法/读取/扫描错误返回 2。分支示例应用三处补丁后仍有一处未忽略 ALD001，返回码继续为 1。默认不加 --check 时只打印报告并返回 0，扫描错误仍为 2。
 

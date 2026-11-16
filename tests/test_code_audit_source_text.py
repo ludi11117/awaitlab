@@ -1,5 +1,6 @@
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -61,6 +62,20 @@ class AuditSourceTextTests(unittest.TestCase):
         findings,patched=audit_source(source)
         self.assertFalse(findings[0]['patch_available'])
         self.assertEqual(patched,source)
+
+    def test_nontext_encoding_is_a_source_error_and_other_files_are_still_scanned(self):
+        with tempfile.TemporaryDirectory(dir='D:/CodexWork/temp/awaitlab') as directory:
+            root=Path(directory)
+            (root/'bad.py').write_bytes(b'# coding: rot_13\nvalue=1\n')
+            (root/'case.py').write_bytes(fixture('normal').encode('utf-8'))
+            report=audit_path(root)
+            self.assertEqual(report['files_scanned'],2)
+            self.assertEqual(len(report['errors']),1);self.assertEqual(len(report['findings']),1)
+            self.assertIn('not a text encoding',report['errors'][0]['error'])
+            result=subprocess.run([sys.executable,'-m','awaitlab','audit',str(root),'--check'],
+                capture_output=True,encoding='utf-8')
+            self.assertEqual(result.returncode,2,result.stderr)
+            self.assertNotIn('Traceback',result.stdout+result.stderr)
 
 
 if __name__=='__main__':unittest.main()

@@ -2,6 +2,7 @@
 import ast
 import difflib
 from fnmatch import fnmatchcase
+import hashlib
 import io
 import json
 import os
@@ -315,6 +316,54 @@ def audit_source(source,filename='<string>'):
     return sorted(audit.findings,key=lambda f:(f['line'],f['column'],f['rule'])),result
 
 
+def patch_text(source,patched,fromfile,tofile):
+    return ''.join(line if line.endswith('\n') else line+'\n\\ No newline at end of file\n'
+        for line in difflib.unified_diff(source_lines(source),source_lines(patched),fromfile=fromfile,tofile=tofile))
+
+
+def worktree_patch(name,source,patched):
+    return patch_text(source,patched,'a/'+name,'b/'+name)
+
+
+class AuditRun:
+    """The same source checks and patch rules for disk files and index blobs."""
+    def __init__(self,root,scan_root,patterns,source_scope):
+        self.patches=[]
+        self.report={'kind':'defensive_code_audit','library_version':__version__,'patch_root':str(root),
+            'scan_root':str(scan_root),'source_scope':source_scope,'files_scanned':0,'sources':{},
+            'exclude_patterns':list(patterns),'excluded_paths':[],'findings':[],'ignored_findings':[],
+            'errors':[],'patch':'','scope':'Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review.'}
+
+    def add_source(self,name,data,*,git_blob=None,patch_builder=worktree_patch):
+        report=self.report;report['files_scanned']+=1
+        identity={'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data)}
+        if git_blob is not None:identity['git_blob']=git_blob
+        report['sources'][name]=identity
+        try:
+            encoding,_=tokenize.detect_encoding(io.BytesIO(data).readline)
+            source=data.decode(encoding)
+        except (SyntaxError,UnicodeError,LookupError) as error:
+            report['errors'].append({'path':name,'error':str(error)})
+            return
+        try:
+            found,patched=audit_source(source,name)
+            if encoding.lower().replace('_','-')!='utf-8':
+                patched=source
+                for item in found:
+                    item['patch_available']=False;item['patch_note']='非普通UTF-8编码，首版仅报告。'
+            if patched!=source:
+                self.patches.append(patch_builder(name,source,patched))
+                identity['patched_sha256']=hashlib.sha256(patched.encode('utf-8')).hexdigest()
+            report['findings'].extend(item for item in found if 'suppression_reason' not in item)
+            report['ignored_findings'].extend(item for item in found if 'suppression_reason' in item)
+        except (SyntaxError,UnicodeError,SuppressionError) as error:
+            report['errors'].append({'path':name,'error':str(error)})
+
+    def finish(self):
+        self.report['patch']=''.join(self.patches)
+        return self.report
+
+
 def audit_path(target,*,exclude=()):
     target=Path(target).resolve()
     if not target.exists():raise ValueError(f'路径不存在：{target}')
@@ -338,36 +387,27 @@ def audit_path(target,*,exclude=()):
                 and not is_excluded(Path(directory)/name,is_dir=True))
             files.extend(Path(directory)/name for name in sorted(names) if name.endswith('.py')
                 and not (Path(directory)/name).is_symlink() and not is_excluded(Path(directory)/name))
-    findings=[];ignored=[];patches=[]
+    run=AuditRun(root,scan_root,patterns,'worktree')
+    run.report['errors']=errors;run.report['excluded_paths']=sorted(excluded)
     for path in files:
         name=path.relative_to(root).as_posix()
         try:
-            with tokenize.open(path) as stream:source=stream.read();encoding=stream.encoding
-            found,patched=audit_source(source,name)
-            if encoding.lower().replace('_','-')!='utf-8':
-                patched=source
-                for item in found:
-                    item['patch_available']=False;item['patch_note']='非普通UTF-8编码，首版仅报告。'
-            if patched!=source:
-                patches.extend(line if line.endswith('\n') else line+'\n\\ No newline at end of file\n'
-                    for line in difflib.unified_diff(source_lines(source),source_lines(patched),
-                        fromfile='a/'+name,tofile='b/'+name))
-            findings.extend(item for item in found if 'suppression_reason' not in item)
-            ignored.extend(item for item in found if 'suppression_reason' in item)
-        except (OSError,SyntaxError,UnicodeError,SuppressionError) as error:
+            run.add_source(name,path.read_bytes())
+        except OSError as error:
+            run.report['files_scanned']+=1
             errors.append({'path':name,'error':str(error)})
-    return {'kind':'defensive_code_audit','library_version':__version__,'patch_root':str(root),'scan_root':str(scan_root),
-        'files_scanned':len(files),'exclude_patterns':list(patterns),'excluded_paths':sorted(excluded),
-        'findings':findings,'ignored_findings':ignored,'errors':errors,'patch':''.join(patches),
-        'scope':'Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review.'}
+    return run.finish()
 
 
-def run_cli(target,output=None,patch=None,check=False,*,html=None,exclude=()):
+def run_cli(target,output=None,patch=None,check=False,*,html=None,exclude=(),staged=False):
     try:
         if output and Path(output).suffix!='.json':raise ValueError('--output 必须以 .json 结尾')
         if patch and Path(patch).suffix!='.patch':raise ValueError('--patch 必须以 .patch 结尾')
         if html and Path(html).suffix!='.html':raise ValueError('--html 必须以 .html 结尾')
-        report=audit_path(target,exclude=exclude)
+        if staged:
+            from .git_index import audit_index
+            report=audit_index(target,exclude=exclude)
+        else:report=audit_path(target,exclude=exclude)
         for item in report['findings']:
             print(f'{item["path"]}:{item["line"]}:{item["column"]} {item["rule"]} [{item["confidence"]}] {item["message"]}')
             print(f'  依据：{item["evidence"]}\n  建议：{item["suggestion"]}')
@@ -385,7 +425,9 @@ def run_cli(target,output=None,patch=None,check=False,*,html=None,exclude=()):
         review=len(report['findings'])-proven
         print(f'扫描 {report["files_scanned"]} 个文件；路径冗余 {proven} 处；人工复核 {review} 处；'
             f'已注明忽略 {len(report["ignored_findings"])} 处；排除路径 {len(report["excluded_paths"])} 个；错误 {len(report["errors"])} 处。')
-        if patch:print(f'补丁：{Path(patch).resolve()}；相对目录：{report["patch_root"]}；未修改目标源码。')
+        if patch:
+            target_note='仅适用于本次暂存区快照；复核后使用 python -m awaitlab apply-index 报告.json（需 --output）' if staged else '未修改目标源码'
+            print(f'补丁：{Path(patch).resolve()}；相对目录：{report["patch_root"]}；{target_note}。')
         return 2 if report['errors'] else int(check and proven>0)
     except (OSError,ValueError) as error:
         print(f'AwaitLab audit: {error}')

@@ -1,0 +1,59 @@
+{
+  "kind": "defensive_code_audit",
+  "library_version": "0.15.0",
+  "patch_root": "D:\\CodexWork\\temp\\awaitlab\\awaitlab-staged-demo-af9nz24s",
+  "scan_root": "D:\\CodexWork\\temp\\awaitlab\\awaitlab-staged-demo-af9nz24s",
+  "source_scope": "git_index",
+  "files_scanned": 1,
+  "sources": {
+    "case.py": {
+      "sha256": "8df3882652fd3183d2cd923c6a1e65c2893817be0568cd1c71bb7466407fb5fc",
+      "bytes": 115,
+      "git_blob": "1ac199dc2a0e28a5774c8d3975e19663e1a22200",
+      "patched_sha256": "608c2b0d4dffb68388527547923311b5156738c6a2d1d61b4414f3197a9ee6bf"
+    }
+  },
+  "exclude_patterns": [],
+  "excluded_paths": [],
+  "findings": [
+    {
+      "path": "case.py",
+      "line": 4,
+      "column": 5,
+      "rule": "ALD001",
+      "confidence": "path_proven",
+      "message": "value is None 在当前路径恒为 False",
+      "evidence": "第 2 行：value is not None。赋值、调用、await等语句会清除已有路径事实。",
+      "suggestion": "移除重复条件，保留实际可达分支。",
+      "code": "    if value is None:\n        return 1",
+      "patch_available": true,
+      "related_conditions": [
+        {
+          "name": "value",
+          "singleton": "None",
+          "identity": false,
+          "lines": [
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "ignored_findings": [],
+  "errors": [],
+  "patch": "diff --git \"a/case.py\" \"b/case.py\"\nindex 1ac199dc2a0e28a5774c8d3975e19663e1a22200..4529876554edee1d251b6e6a68d9c13a844f6c51 100644\n--- \"a/case.py\"\n+++ \"b/case.py\"\n@@ -1,6 +1,4 @@\n def read(value):\n     if value is None:\n         return None\n-    if value is None:\n-        return 1\n     return value\n",
+  "scope": "Python local-name None/True/False identity guards with and/or/not short-circuit paths; facts stop at other statements. No imports/execution, no cross-function proof. Broad silent exceptions require review.",
+  "scan_target": "D:\\CodexWork\\temp\\awaitlab\\awaitlab-staged-demo-af9nz24s",
+  "index_snapshot": {
+    "base_head": "82016bf9ab3f85f7c6750ae3755f263592a0d68e",
+    "diff_sha256": "b267c39731e37320535066ce7c31db0eaf4d6b2da818ded74f9fcbb8bc892080",
+    "index_file": "D:\\CodexWork\\temp\\awaitlab\\awaitlab-staged-demo-af9nz24s\\.git\\index",
+    "selected_blobs": {
+      "case.py": "1ac199dc2a0e28a5774c8d3975e19663e1a22200"
+    },
+    "object_format": "sha1",
+    "skipped_nonregular_paths": [],
+    "deleted_python_paths": [],
+    "scope": "Whole staged Python files differing from captured HEAD; not changed-line attribution. No untracked or unstaged content."
+  }
+}

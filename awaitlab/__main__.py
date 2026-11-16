@@ -33,12 +33,16 @@ def main():
     http.add_argument('--max-response-bytes',type=int,default=1048576,help='Decoded body limit per response (default 1 MiB), not a process-memory bound')
     http.add_argument('--first-id',type=int,default=0)
     audit=commands.add_parser('audit',help='Audit Python defensive code without importing or executing it')
-    audit.add_argument('path',help='Python file or project directory')
+    audit.add_argument('path',nargs='?',default='.',help='Python file or project directory (default current directory)')
+    audit.add_argument('--staged',action='store_true',help='Audit changed staged Python blobs, independently of worktree edits')
     audit.add_argument('--output',help='Save findings, evidence and patch as JSON')
     audit.add_argument('--patch',help='Save a reviewable .patch; target sources are not modified')
     audit.add_argument('--html',help='Save a standalone offline evidence and patch report')
     audit.add_argument('--exclude',action='append',default=[],help='Exclude a scan-root-relative fnmatch pattern; repeatable')
     audit.add_argument('--check',action='store_true',help='Exit 1 for path-proven redundant guards; review-only findings do not fail')
+    apply_index=commands.add_parser('apply-index',help='Verify a staged audit JSON and apply only its reviewed index patch')
+    apply_index.add_argument('report',help='JSON produced by audit --staged --output')
+    apply_index.add_argument('--check',action='store_true',help='Verify full snapshot and patch without modifying the index')
     for command in [demo,custom,http]:
         command.add_argument('--plan',action='store_true',help='Inspect settings and inference resolution without executing the workload; custom modules are still imported')
         command.add_argument('--output',default=None,help='JSON path ending in .json; a sibling standalone HTML is also written')
@@ -46,7 +50,10 @@ def main():
     args=parser.parse_args()
     if args.command=='audit':
         from .code_audit import run_cli
-        raise SystemExit(run_cli(args.path,args.output,args.patch,args.check,html=args.html,exclude=args.exclude))
+        raise SystemExit(run_cli(args.path,args.output,args.patch,args.check,html=args.html,exclude=args.exclude,staged=args.staged))
+    if args.command=='apply-index':
+        from .index_apply import run_cli
+        raise SystemExit(run_cli(args.report,check=args.check))
     if args.command=='demo':
         scenario=SCENARIOS[args.scenario]
         blocks=args.blocks if args.blocks is not None else scenario.get('default_blocks',6)
