@@ -1,0 +1,667 @@
+{
+  "engine_version": "0.17.0",
+  "scope": "Read-only local installed sources; no target imported/executed or changed; findings not labeled ground truth; elapsed times descriptive only",
+  "projects": [
+    {
+      "name": "asyncio",
+      "root": "C:\\Users\\余梓岳\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio",
+      "files_scanned": 33,
+      "findings": [
+        {
+          "path": "__main__.py",
+          "line": 186,
+          "column": 9,
+          "rule": "ALD002",
+          "confidence": "needs_review",
+          "message": "宽泛异常被静默忽略或转成固定结果",
+          "evidence": "except:\r\n            pass",
+          "suggestion": "核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。",
+          "code": "except:\r\n            pass",
+          "patch_available": false
+        }
+      ],
+      "errors": [],
+      "sources": {
+        "__init__.py": {
+          "sha256": "5e7fbe996045d0cfbc0f2c76a8291ee59a595645cd823fe72bbf211dba762b86",
+          "bytes": 1267
+        },
+        "__main__.py": {
+          "sha256": "9299799837c9756fa92f86c6c74d88593cb6c67a6c09a6b6fcaf9088b5dab954",
+          "bytes": 6714
+        },
+        "base_events.py": {
+          "sha256": "91d77016b9455b71e1c8339e38d0a137c3aa62724e752b54ff02b3497efc87cf",
+          "bytes": 83422
+        },
+        "base_futures.py": {
+          "sha256": "0810f0d05a8bb85dfd42fe17a93949b7c425d1e6e2bc21d35eb56a1895923591",
+          "bytes": 2041
+        },
+        "base_subprocess.py": {
+          "sha256": "cf7e845cd41f8dd8b7b1dff7624b2336ee67a683f19d685df3ffe8f8868fd232",
+          "bytes": 10012
+        },
+        "base_tasks.py": {
+          "sha256": "109de315ed020e85261b741987719cfd3888f14bc9dda9c846bda3ecb6b24b4a",
+          "bytes": 2766
+        },
+        "constants.py": {
+          "sha256": "a577b5c92227f378a26048e1985821e973125b42c385a5aa4a44bb92b2c6f26e",
+          "bytes": 1454
+        },
+        "coroutines.py": {
+          "sha256": "0cc38e59c555c22ca601aed90a4065e2b7c56efe8b8ef6a693f4d0426e45d76a",
+          "bytes": 3451
+        },
+        "events.py": {
+          "sha256": "6e867c9f3aae481363b8695db166baa10c3effa667d58feab60671759a52b31e",
+          "bytes": 30695
+        },
+        "exceptions.py": {
+          "sha256": "a49aa2489262c47ee91528550ef464f1139e873dd5f1a3f18c3c099a0145e195",
+          "bytes": 1814
+        },
+        "format_helpers.py": {
+          "sha256": "6c680dbeb3d270b52b610fa2468deeed28bedededa590276cfb88e054a9cbe59",
+          "bytes": 2811
+        },
+        "futures.py": {
+          "sha256": "7649458e9cdf8fe7b868489007ff777b3bc2ac91a48706d7fdee1ead99c77ac5",
+          "bytes": 14614
+        },
+        "locks.py": {
+          "sha256": "9294abb254cd4a86d8740437e6c8da5afcf8b74473ba4b588f2cbf4ae42fb895",
+          "bytes": 21201
+        },
+        "log.py": {
+          "sha256": "72433d0d5a4205b74ef4ff95cd3e1c8d98960a58371e5546698a3a38f231058c",
+          "bytes": 131
+        },
+        "mixins.py": {
+          "sha256": "f5055bbc8622c99f91ef58024d4655209c904ab43f11498adfb6218c127f9946",
+          "bytes": 502
+        },
+        "proactor_events.py": {
+          "sha256": "6f6ec0b800829ca8a664a6e7091cf11bb2cbeb0f5d2b8e1860f3e67c117ad896",
+          "bytes": 34275
+        },
+        "protocols.py": {
+          "sha256": "66038b46a3d99b358166a061b9d5e9486cddb9626d84c34f343640bb0d0eec0a",
+          "bytes": 7173
+        },
+        "queues.py": {
+          "sha256": "72807dcfcae8c2b84297193d8267c910a224f00f3b094288f89a85ba7931eb21",
+          "bytes": 10464
+        },
+        "runners.py": {
+          "sha256": "3628dabf73a3a72e4e5248e4d46ef757cbf687d9b9ff96bb4eb14abd4e65c072",
+          "bytes": 7451
+        },
+        "selector_events.py": {
+          "sha256": "d92036cf72fe780c61f330e3d5eb25da70ae8d81d130f934b5c0f95ecdf14aab",
+          "bytes": 49879
+        },
+        "sslproto.py": {
+          "sha256": "4b824f705e7c6c0a431d8b1154e9c3ca88128b6b37d07a795ad4f013b65d6f18",
+          "bytes": 32798
+        },
+        "staggered.py": {
+          "sha256": "73c8cb1961c6a21fcbf04728b4dc9fd92c4268e2848dbea2d0aa984f6e20abf1",
+          "bytes": 7251
+        },
+        "streams.py": {
+          "sha256": "a45afc8e3e4480879d8e63f7fb567bd77825b453792bc1ca0419c7669d29f366",
+          "bytes": 29273
+        },
+        "subprocess.py": {
+          "sha256": "2c7a0e549992a9731efcf3f1a06fbf734db90b54d9734d2708953b722bbd533c",
+          "bytes": 7966
+        },
+        "taskgroups.py": {
+          "sha256": "eda50d25c060973c5b861457bd703c7f5da22afc6c2e0681f0d5a811f32c798e",
+          "bytes": 10327
+        },
+        "tasks.py": {
+          "sha256": "626785e548c2b3aec5fb025e56323e5790c398d8d715609d125b83f7916af082",
+          "bytes": 40847
+        },
+        "threads.py": {
+          "sha256": "e1b63fb35eddceb83175cacd64e5260da949fc7377ab672c84058e0df27a7d08",
+          "bytes": 820
+        },
+        "timeouts.py": {
+          "sha256": "ea81f9e0c97d9dc19dd0d3dd52dd4479979222093a4faccf18fcbee32f90e757",
+          "bytes": 6251
+        },
+        "transports.py": {
+          "sha256": "db6ba5736db48ad494cd25ef5e5eedfa12148b3fbcb9da1e066a4225f1adf7d5",
+          "bytes": 11145
+        },
+        "trsock.py": {
+          "sha256": "ce72de2afc811493e169b486e60e510fdb99f9170e01f06a9a8ec720d7e75038",
+          "bytes": 2573
+        },
+        "unix_events.py": {
+          "sha256": "24e29ea77b3269cde827d5c146e4cd0f6f2ad10df3c561ce670145a49b4407bd",
+          "bytes": 56703
+        },
+        "windows_events.py": {
+          "sha256": "7230730349898080ec12993522594e0be21ffd9053db1c2b11d7161a155f2a91",
+          "bytes": 33710
+        },
+        "windows_utils.py": {
+          "sha256": "2af1aaa042e4a0ab1d3c06db7aa8fd8b288ab280f5dbee066a4cc3274459bd30",
+          "bytes": 5651
+        }
+      },
+      "elapsed_ms": 270.83
+    },
+    {
+      "name": "httpx",
+      "root": "C:\\Users\\余梓岳\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\httpx",
+      "files_scanned": 23,
+      "findings": [
+        {
+          "path": "_utils.py",
+          "line": 232,
+          "column": 5,
+          "rule": "ALD002",
+          "confidence": "needs_review",
+          "message": "宽泛异常被静默忽略或转成固定结果",
+          "evidence": "except Exception:\n        return False",
+          "suggestion": "核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。",
+          "code": "except Exception:\n        return False",
+          "patch_available": false
+        },
+        {
+          "path": "_utils.py",
+          "line": 240,
+          "column": 5,
+          "rule": "ALD002",
+          "confidence": "needs_review",
+          "message": "宽泛异常被静默忽略或转成固定结果",
+          "evidence": "except Exception:\n        return False",
+          "suggestion": "核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。",
+          "code": "except Exception:\n        return False",
+          "patch_available": false
+        }
+      ],
+      "errors": [],
+      "sources": {
+        "__init__.py": {
+          "sha256": "0ac6997bac998f4ac783adf6d8058a587193315afdb718047c3e4fdff46bcfad",
+          "bytes": 2171
+        },
+        "__version__.py": {
+          "sha256": "2e853261e3974e2786cee3ffeb850bd30c5db718eebbf41b3af13b34e83e22a5",
+          "bytes": 108
+        },
+        "_api.py": {
+          "sha256": "aff660b388c8a5c3c92ea2b975b6d26b2aa8fe254c2856b164277ea0e1f12c4b",
+          "bytes": 11743
+        },
+        "_auth.py": {
+          "sha256": "62bdd0c1a5122b5eeb198c7eee3f85762705233cf863d14557ed45e3eed15d7e",
+          "bytes": 11891
+        },
+        "_client.py": {
+          "sha256": "c43f941baefe58c91e96d00039e1868fe719d91453026d7db1647194563bff8d",
+          "bytes": 65714
+        },
+        "_config.py": {
+          "sha256": "a4fa7653ec2271f70ab05f8a6111352d876dddee84446788a1767c1a3a372d67",
+          "bytes": 8547
+        },
+        "_content.py": {
+          "sha256": "2c61b3ac94d1dcebcde0c6f519554d2d7917247fbaa0a97002db4ef69e70ff28",
+          "bytes": 8161
+        },
+        "_decoders.py": {
+          "sha256": "a74757f08d0d1077b1b37506a784ac66eb62321b17aeb5a5ebe1a7a956f488a3",
+          "bytes": 12041
+        },
+        "_exceptions.py": {
+          "sha256": "6f15bb7f1ce054c01d3536f04f4567ab4e202435b5fe023f1858903ee3328cbd",
+          "bytes": 8527
+        },
+        "_main.py": {
+          "sha256": "0a0f4631a6e24d3fecc1a0df5202118ad4b0c4b44c4b05033a6ecb7521aa940e",
+          "bytes": 15626
+        },
+        "_models.py": {
+          "sha256": "e3ffc6bb2bf580bc6e6428708a6f247d036220e709f5a72b785392babbd97e6b",
+          "bytes": 44700
+        },
+        "_multipart.py": {
+          "sha256": "28e1c465997aa28860f663da2b2caedf8e6aab5ac92e0df94d41b7600cd70776",
+          "bytes": 9843
+        },
+        "_status_codes.py": {
+          "sha256": "0d89fedae7c180c797cb9b3cc77fd307bc2302e00031ec136a43eb9b9ad712c7",
+          "bytes": 5639
+        },
+        "_types.py": {
+          "sha256": "272878d4642aec039ebfc20e58a0c083bcc26ef1c07ee7e65b983f3e24ed12b6",
+          "bytes": 2965
+        },
+        "_urlparse.py": {
+          "sha256": "640987e3b38d7e4c6bae3f8f3d88467a21e36fa0232824be00d58837838bfca6",
+          "bytes": 18546
+        },
+        "_urls.py": {
+          "sha256": "757f7d551d4348e1e9828f40abb3f360ee0529dc6a2a3c32369f20adff1d1cdd",
+          "bytes": 21550
+        },
+        "_utils.py": {
+          "sha256": "fd355ea802afc4990a1ddcfb74579be2cd0b66a41781e1645d281f88704aff5a",
+          "bytes": 8285
+        },
+        "_transports/__init__.py": {
+          "sha256": "19b52805200ea7bcfe97ef63e5884c851dc3308727e8554b863d3bd8edcd9e7a",
+          "bytes": 275
+        },
+        "_transports/asgi.py": {
+          "sha256": "1d17e20d830fb78c101f6805807660e1cfa2dec6e5a3a6cbe464ea7044fec73f",
+          "bytes": 5501
+        },
+        "_transports/base.py": {
+          "sha256": "9194bf54c6d58987c5e7bd29a205022756ee973fb26df2f9d4faacf7292d79b5",
+          "bytes": 2523
+        },
+        "_transports/default.py": {
+          "sha256": "03379a454c95c0271c4f2c8d25ec437f49f57457f3cf2769748420bf0ecf2e79",
+          "bytes": 13983
+        },
+        "_transports/mock.py": {
+          "sha256": "3d3a34779ebb4484d7c46ae48ba90deffebbc300317f088c0dcb972626428c4a",
+          "bytes": 1232
+        },
+        "_transports/wsgi.py": {
+          "sha256": "35c3d7dd76a9fc4c0215958efce692c9036e227098c7540c35b3bc1807a2ea36",
+          "bytes": 4825
+        }
+      },
+      "elapsed_ms": 156.93,
+      "distribution_version": "0.28.1"
+    },
+    {
+      "name": "fastapi",
+      "root": "C:\\Users\\余梓岳\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\fastapi",
+      "files_scanned": 48,
+      "findings": [],
+      "errors": [],
+      "sources": {
+        "__init__.py": {
+          "sha256": "036406d9f615d215ac92794c38c799eee6b498935659ce0335debfd47815d7b9",
+          "bytes": 1081
+        },
+        "__main__.py": {
+          "sha256": "6ca78f5cb74ee12b1548ceabf525682e2724243711d9cd1c4cec5944aab6e984",
+          "bytes": 37
+        },
+        "applications.py": {
+          "sha256": "38dccb19b2a0b0b984c8d7541263842954a37c087cf96b4463aea17873c6183c",
+          "bytes": 183840
+        },
+        "background.py": {
+          "sha256": "4c00f301eb613806aaa55bdc918b934f77383bd3751da150cac1423edd0cb205",
+          "bytes": 1820
+        },
+        "cli.py": {
+          "sha256": "3988596f4351fdd7ae4f9a1fc8f176368341cd90cd38ff126a579fda793e1ea0",
+          "bytes": 418
+        },
+        "concurrency.py": {
+          "sha256": "c4718310e40003a72f1440d7e3aa2adebdadd59778b15beb79a4607481388ee3",
+          "bytes": 1489
+        },
+        "datastructures.py": {
+          "sha256": "5cfba09e88c7738374ede1795e9d534e774fda032fd5f1b893ed0be1576beca7",
+          "bytes": 5321
+        },
+        "encoders.py": {
+          "sha256": "4cc09230eca6435892f6bc25a2185e214dbedfe994d5103feb63ad269137caad",
+          "bytes": 11713
+        },
+        "exception_handlers.py": {
+          "sha256": "615713f19cb4db555861e79c81dca1e581148c420729c2eca5b9127f839f6c92",
+          "bytes": 1275
+        },
+        "exceptions.py": {
+          "sha256": "7d434e051748b142d4d139cef1a3418371e825ec89c57a7d515e83f3062ef652",
+          "bytes": 7453
+        },
+        "logger.py": {
+          "sha256": "23d34d8b7a2ff0072a6ec6c2f709755fe85d22d2a062dd974ebc757fdf59a65e",
+          "bytes": 54
+        },
+        "param_functions.py": {
+          "sha256": "e1f4c2565bc40db010afb82f59890e5fc864b5d97623093e92fe05693cfb3fcc",
+          "bytes": 69596
+        },
+        "params.py": {
+          "sha256": "d5f34d48ae49ecf339170f85e7ff6e3b2b00d8d802fbad666f72e5ac15a9a893",
+          "bytes": 26205
+        },
+        "requests.py": {
+          "sha256": "cdac9ea4a15c89e9c1965bf7b27996236d06934a073552d4e030e1a9705be0b5",
+          "bytes": 142
+        },
+        "responses.py": {
+          "sha256": "04cec9b6267f1b88f667b42f1d4cd5d4ab593e78cea027d7df946a6179590e1d",
+          "bytes": 4144
+        },
+        "routing.py": {
+          "sha256": "7b1ef65fb6b209445dc43be070a23324b7879aef9c6b9f63e6968234b7723b55",
+          "bytes": 255632
+        },
+        "sse.py": {
+          "sha256": "dbb674abc00eec4c4a416290384a5383de22b04fcd55cb87037dfe60bf7e3ebd",
+          "bytes": 7083
+        },
+        "staticfiles.py": {
+          "sha256": "8a2ac622ddec758d90657777ea28ecdc28fe4f416e18575addc77dd2433d224c",
+          "bytes": 69
+        },
+        "templating.py": {
+          "sha256": "e33b2e4d681c8dc11a8a7309140956ebe827b259ba020392d528a20d67e64319",
+          "bytes": 76
+        },
+        "testclient.py": {
+          "sha256": "9c1bda0265fae9895d45e24d6573ce935b1fba8d90ea1b3c6cebc86827a9e8b4",
+          "bytes": 66
+        },
+        "types.py": {
+          "sha256": "836b43f38d815070b60b7fcff0fd3a6a56d0e0c8426fd4726eb4a6a79ace0e05",
+          "bytes": 438
+        },
+        "utils.py": {
+          "sha256": "0d7d15ae73307d5b19c51cfc222b50e36736fbef9f0f398566479131947650ca",
+          "bytes": 4341
+        },
+        "websockets.py": {
+          "sha256": "e35f6e9dc60e6c42991b461cad7b1c7d04182d25a8135d23ab154c7ad19d47df",
+          "bytes": 222
+        },
+        "_compat/__init__.py": {
+          "sha256": "3d8391fbcbc9e6f6b842397cd7415c42625baa6a72c9e40ca19f51f3a09e1365",
+          "bytes": 2095
+        },
+        "_compat/shared.py": {
+          "sha256": "96fd33958e524adf20c7e4c3a472fd34d1b2f507f5e910442b7f8e5dceff2ce4",
+          "bytes": 7323
+        },
+        "_compat/v2.py": {
+          "sha256": "b031b28b588a4855bd2ee27b9f807ad7ed72ad0235347452c2c15144bb8527c9",
+          "bytes": 17601
+        },
+        "dependencies/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "dependencies/models.py": {
+          "sha256": "dc4a46a8003677cf398ebd4435df8f8fc7b56fcd2e1983ed3226239d41dba777",
+          "bytes": 8092
+        },
+        "dependencies/utils.py": {
+          "sha256": "13693375ab95e32424e5434c21f928463634af5ee1261cf3e04031381bdf47d9",
+          "bytes": 39180
+        },
+        "middleware/__init__.py": {
+          "sha256": "a100f188555c7357d825438816fa619caee94d3e6492d99f2f7d905e9045befa",
+          "bytes": 58
+        },
+        "middleware/asyncexitstack.py": {
+          "sha256": "44a1a54291b383718ba2ca9586bc41cbf34267da894bbcd078d1ede58df1fb4d",
+          "bytes": 637
+        },
+        "middleware/cors.py": {
+          "sha256": "ca7c2359066873fbdb873677fd95dc7a8692aec9471473dda0ce76ad7af45945",
+          "bytes": 79
+        },
+        "middleware/gzip.py": {
+          "sha256": "c4ce4f72c1fc425022999c38543bdc9939ea41a9ac95386c7dedc254ddafa1ad",
+          "bytes": 79
+        },
+        "middleware/httpsredirect.py": {
+          "sha256": "acbf1e5cc9e62e28f05641fbff8d34cc7ae2d407a47de05de83eaab3c8b1f79d",
+          "bytes": 115
+        },
+        "middleware/trustedhost.py": {
+          "sha256": "784e57191c466bb739ccf9cc2431a9dc1c5a2f6e64e625509619eff8f9343ecb",
+          "bytes": 109
+        },
+        "middleware/wsgi.py": {
+          "sha256": "6bf14c0e8793c1c76283dc1d006ba6207f36a0315fba3e29c6d4312db030d8db",
+          "bytes": 107
+        },
+        "openapi/__init__.py": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "openapi/constants.py": {
+          "sha256": "69d1b39a2b352f51c9453137909e5f9874bf368abab4863aa56bff485ce81435",
+          "bytes": 153
+        },
+        "openapi/docs.py": {
+          "sha256": "3dc8c7d129feca9f7b3b47b15e29dc1bc7a9b18ec04f2242e7aeb66cad4345aa",
+          "bytes": 12425
+        },
+        "openapi/models.py": {
+          "sha256": "b708c95867fa95c29125981a6427274344de9f584385cc822e06ebeed5c83f7d",
+          "bytes": 14608
+        },
+        "openapi/utils.py": {
+          "sha256": "81dcea2b8784bb1a68426c99c9525f44634b583916a894a3c7d924a72886f527",
+          "bytes": 29347
+        },
+        "security/__init__.py": {
+          "sha256": "6cef29366c6a5515d48df97698e2a25592e7d05a4143ad555185639a9a676c9c",
+          "bytes": 881
+        },
+        "security/api_key.py": {
+          "sha256": "e0234b355012b4eb0c872b47f42e4439410e66bb4b83f2293104bf1dc4433f83",
+          "bytes": 9793
+        },
+        "security/base.py": {
+          "sha256": "765e29bdb0be4718df6d680fb4259df0c554fbb081d92676dab2435d50973ba7",
+          "bytes": 141
+        },
+        "security/http.py": {
+          "sha256": "674c402c3ab080965101a0ece3449aebcac09e317310bf7d50498ee4f2734ca0",
+          "bytes": 13410
+        },
+        "security/oauth2.py": {
+          "sha256": "b12a96e2d6efa07696365778e9361ab6d6b9ae015f8e87782e1c6679d5f3908f",
+          "bytes": 24178
+        },
+        "security/open_id_connect_url.py": {
+          "sha256": "57c58b3c4b04abf5899488cfc093b6bc2a095862eef954edd7e3761fb695f83e",
+          "bytes": 3136
+        },
+        "security/utils.py": {
+          "sha256": "13d608a1ecfe1f6935a012c4771a89122f2c575ba6ba72582a3407bd91b71516",
+          "bytes": 261
+        }
+      },
+      "elapsed_ms": 257.63,
+      "distribution_version": "0.141.1"
+    },
+    {
+      "name": "starlette",
+      "root": "C:\\Users\\余梓岳\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\starlette",
+      "files_scanned": 35,
+      "findings": [],
+      "errors": [],
+      "sources": {
+        "__init__.py": {
+          "sha256": "f048c80bc12be019fc3e112b8b34d7ad95584e06fab47823d342ebac154d6170",
+          "bytes": 22
+        },
+        "_exception_handler.py": {
+          "sha256": "f159bdd797d661ef712e8ff36b9890e56cab02f141bb690410973b5eb793c8e9",
+          "bytes": 2257
+        },
+        "_utils.py": {
+          "sha256": "7cb67fa5195ca7ec0fe33122c9e5ce225edfa3297fcc82f9026e84f9c56583cb",
+          "bytes": 2970
+        },
+        "applications.py": {
+          "sha256": "1119714f44c8f5a39cbb5c9d0209e6fc13e7d5c18015dff3234adb5c52fa84a1",
+          "bytes": 5764
+        },
+        "authentication.py": {
+          "sha256": "6f27545f83ca9d31493d2523f01e64f07c58aab2787b2c8e99af00b60ab0943d",
+          "bytes": 5202
+        },
+        "background.py": {
+          "sha256": "0fe5e952915181406765e035b4783330e82e6dee8809564594e03830bd2ad53f",
+          "bytes": 1122
+        },
+        "concurrency.py": {
+          "sha256": "3e9e245d060ef39716c58ed754db7995c62f8581d4aaec8b82e09e73b84a2a83",
+          "bytes": 1701
+        },
+        "config.py": {
+          "sha256": "195c24a34a464aeb31b901cedf9b4bfcdb7f0292f47e65582f72221c76292d6e",
+          "bytes": 4426
+        },
+        "convertors.py": {
+          "sha256": "175aec7b701a70df6bb1f2674deb839e36cde75affa2e1dcdd62f26248e45ffa",
+          "bytes": 2304
+        },
+        "datastructures.py": {
+          "sha256": "f9e310036299d6a427443ca96ba118e58486e5927cd4c3bac0ffb815626e52cd",
+          "bytes": 23213
+        },
+        "endpoints.py": {
+          "sha256": "b398cf747513ed5cd453263e3b9a9f5c32988a6fb36e1594084f94e53b1a14a4",
+          "bytes": 5271
+        },
+        "exceptions.py": {
+          "sha256": "e3972e3b2a9d3a3249559d9f46ea5f71262f3c32aa8641997a38d7c3570f1971",
+          "bytes": 1478
+        },
+        "formparsers.py": {
+          "sha256": "d3ab813a330a336c45374274483eeb9db30f5617c2fb490830d2864d9d410232",
+          "bytes": 12077
+        },
+        "requests.py": {
+          "sha256": "8691b01ae49ecfa085fe6419343678f73b77c92fc63a411106a77d8e9bf0ac44",
+          "bytes": 12708
+        },
+        "responses.py": {
+          "sha256": "10a5f318bb014296e57d9a3f6ffa51d478e21b07d5bf978597dba2ec9dc21e4a",
+          "bytes": 21943
+        },
+        "routing.py": {
+          "sha256": "a5f6d288a218b8a03299244d0dcb8aa783e1cf045dc9c9d3e9e306b490971a42",
+          "bytes": 30183
+        },
+        "schemas.py": {
+          "sha256": "7c10e5235603285feb91021a96a0554343d0f7ede034687b4ffdfd3b213bad5d",
+          "bytes": 5168
+        },
+        "staticfiles.py": {
+          "sha256": "f063f70ca34df16dd51992113d914f4012038aa37e61a29c34dd84bda30c418c",
+          "bytes": 8786
+        },
+        "status.py": {
+          "sha256": "5d87159fe694e76d93609f012719745949dfe89ff7c814d0cfb4ea8327bc28ee",
+          "bytes": 6430
+        },
+        "templating.py": {
+          "sha256": "cbe013950acd0e82cc66ce61ac7cd00536a9102043afdc0097e6ecf01964e63c",
+          "bytes": 5447
+        },
+        "testclient.py": {
+          "sha256": "4cf49139b46669742733f24c2e6baab0a358f4f1772f775f5f1d03b59aa42d6d",
+          "bytes": 28475
+        },
+        "types.py": {
+          "sha256": "f3bc13bb0175d37e90c51b1ede62f9a8eb92f62e1af7168864ca938d8fa5befa",
+          "bytes": 1041
+        },
+        "websockets.py": {
+          "sha256": "9bae16d45e0974bc3eed3446547a92aa0ade6a69476d525239e210d7b11d1f28",
+          "bytes": 8352
+        },
+        "middleware/__init__.py": {
+          "sha256": "04e4673a3d27d262f5396514b353cb4eed520129af4fc90410303a71bba1b8fa",
+          "bytes": 1349
+        },
+        "middleware/authentication.py": {
+          "sha256": "f914b0c09d29224accd2ffb6229f075d5076e31b52a7b39bcd1dce7d30bcc120",
+          "bytes": 1800
+        },
+        "middleware/base.py": {
+          "sha256": "abdd13dec1d08e1af9912209c8ce07357262f405acb6548d9a8cea4f6fca51cd",
+          "bytes": 10326
+        },
+        "middleware/body_limit.py": {
+          "sha256": "2f5d84bc50bef6bc8efc0ff69e0743a6de96695930840b6a8ae24f87286ac80f",
+          "bytes": 4609
+        },
+        "middleware/cors.py": {
+          "sha256": "8813a95a62b8dc4367c91ef5b78bc7d96c1f096cda24d25d13bb61df1e4283cd",
+          "bytes": 7509
+        },
+        "middleware/errors.py": {
+          "sha256": "519b6dcc05147a326d359a4fb6cd0f5e762057d0b887ca37b160c746437d1028",
+          "bytes": 8101
+        },
+        "middleware/exceptions.py": {
+          "sha256": "ece812522060c074b854c9a9696970db5b8328d0e638cccb559ad60cb0d4a96a",
+          "bytes": 2784
+        },
+        "middleware/gzip.py": {
+          "sha256": "ee28df06ccd3e21eacc9b96471df3da657b8dd6a980601fe842c9cb0ab96b66b",
+          "bytes": 8805
+        },
+        "middleware/httpsredirect.py": {
+          "sha256": "48d4e579a6002c6a084d5ef1c1b89ce2007a55874cf1895e6bfca4722533df58",
+          "bytes": 848
+        },
+        "middleware/sessions.py": {
+          "sha256": "91b4b366130df11da87ddaef31010ccf87b1e311215beb1349fb13290f524866",
+          "bytes": 4778
+        },
+        "middleware/trustedhost.py": {
+          "sha256": "6f22825323e07b9e19e0cce7cae9c3ff60ec31f25cd94b1f5786f60eef966137",
+          "bytes": 2219
+        },
+        "middleware/wsgi.py": {
+          "sha256": "06a5c9a458f2de16ccb8c6b4fe48cb00ab2434f3b4b3b93e4cf4913fecdc80b5",
+          "bytes": 5501
+        }
+      },
+      "elapsed_ms": 164.83,
+      "distribution_version": "1.6.0"
+    }
+  ],
+  "manual_observations": [
+    {
+      "project": "asyncio",
+      "path": "__main__.py",
+      "line": 186,
+      "behavior": "rlcompleter import failure is ignored; no automatic removal recommended"
+    },
+    {
+      "project": "httpx",
+      "path": "_utils.py",
+      "lines": [
+        232,
+        240
+      ],
+      "behavior": "IPv4/IPv6 parsing failure returns False; broad exception scope remains a maintainer review question"
+    }
+  ],
+  "summary": {
+    "files_scanned": 139,
+    "automatic_fix_candidates": 0,
+    "review_only_findings": 3,
+    "errors": 0,
+    "correctness_or_recall_estimated": false
+  }
+}

@@ -1,4 +1,15 @@
-# VS Code扩展0.1.0 接入验证
+# 审查器0.17.0 / VS Code扩展0.2.0 验证
+
+日期：2026-11-16。全套日志D:/CodexWork/temp/awaitlab/tests-v017.log，扩展记录artifacts/vscode-integration-v0.2.0.json、vscode-package-v0.2.0.json；真实语料原始记录real-corpus-v0.17.0.json。
+
+- 全套224项Python测试通过。新增4项选择补丁回归：只改选中位置、空/未命中选择不改其他位置、继续保留语法/文档字符串验证、嵌套选择不删除外层条件；嵌套夹具7个输入前后输出相同。审查API新增关键字fix_lines，不改变默认全文件行为。
+- 安装版扩展18项真实VS Code检查通过。在同一文件放两个冗余条件，单处预览只改第一个函数，应用后第二条诊断保留，一次undo恢复原文；保留整文件选项。另验证未保存预览的Python语言模式、解释器配置错误后恢复。截图vscode-editor-v0.2.0.png和vscode-diff-v0.2.0.png来自真实VS Code窗口。
+- 新增单处选择在点击预览时重新计算，不在每次输入时为每条诊断重复编译全文；既有版本/文本核验继续拒绝过期建议。选择预览复用已隔离Python进程调用，不导入目标。
+- 0.17 wheel的23个源码/资源逐字节匹配。独立D盘-S下选择补丁4项、暂存核验/应用/过期拒绝、核心恢复2对及孤立任务检查通过；安装记录install-check/install-index-check-v0.17.0.json。VSIX约17KB、8个安装文件与包核对，包中审查器与项目源码相同；package.json仅排除VS Code注入的安装元数据。
+- 真实语料为本机已安装asyncio33文件、HTTPX23文件、FastAPI48文件、Starlette35文件，共139个，源码仅只读。发现0项ALD001自动修复候选、3项ALD002人工复核，无扫描错误。人工查看发现其分别为可选rlcompleter导入失败继续运行及IPv4/IPv6解析失败返回False，不自动删除；是否缩小捕获范围仍需维护者判断。没有执行第三方源码、修改依赖或估计准确率/召回率，不能据此宣称广泛实用性已证实。
+- 历史计时与报告保持原版；本轮不作新的性能收益结论。当前完成度是可用的Python编辑器原型，真实安全修复案例仍需要补充。
+
+## VS Code扩展0.1.0 接入验证
 
 日期：2026-11-16。扩展独立版本0.1.0，内置审查器仍为0.16.1。安装包位于artifacts/vscode/awaitlab-0.1.0.vsix，记录vscode-integration-v0.1.0.json及vscode-package-v0.1.0.json，实际VS Code截图vscode-editor-v0.1.0.png。
 

@@ -8,6 +8,7 @@ runTests({
  extensionDevelopmentPath:process.env.AWAITLAB_EXTENSION_PATH||root,extensionTestsPath:path.join(__dirname,'run.cjs'),
  launchArgs:[folder,'--user-data-dir='+folder+'/user','--extensions-dir='+folder+'/extensions',
   '--disable-workspace-trust','--disable-extensions','--disable-gpu','--skip-welcome','--skip-release-notes',
+  '--disable-renderer-backgrounding','--disable-backgrounding-occluded-windows',
   ...(process.env.AWAITLAB_SCREENSHOT?['--remote-debugging-port=9539']:[])],
  extensionTestsEnv:{PYTHONDONTWRITEBYTECODE:'1',TEMP:'D:/CodexWork/temp/awaitlab',TMP:'D:/CodexWork/temp/awaitlab',
   AWAITLAB_SCREENSHOT:process.env.AWAITLAB_SCREENSHOT||''}

@@ -44,6 +44,24 @@ exports.run=async()=>{
  await vscode.workspace.getConfiguration('awaitlab').update('enabled',false,vscode.ConfigurationTarget.Global);
  await vscode.window.showTextDocument(doc);await delay(600);assert.equal(vscode.languages.getDiagnostics(doc.uri).length,0);checks.push('disable setting clears diagnostics');
  await vscode.workspace.getConfiguration('awaitlab').update('enabled',true,vscode.ConfigurationTarget.Global);
+ const pair=await vscode.workspace.openTextDocument({language:'python',content:bad+'\n'+bad.replace('def read','def second')});
+ await vscode.window.showTextDocument(pair);await vscode.commands.executeCommand('awaitlab.audit');
+ items=vscode.languages.getDiagnostics(pair.uri);assert.equal(items.length,2);
+ actions=await vscode.commands.executeCommand('vscode.executeCodeActionProvider',pair.uri,items[0].range);
+ const single=actions.find(action=>action.command?.arguments?.[0]?.lines);assert(single?.isPreferred);
+ assert(actions.some(action=>action.command?.command==='awaitlab.preview'&&!action.command.arguments[0].lines));
+ await vscode.commands.executeCommand(single.command.command,...single.command.arguments);
+ const partial=vscode.window.activeTextEditor.document;assert.equal(partial.languageId,'python');
+ assert(!partial.getText().split('def second')[0].includes('return 1'));
+ assert(partial.getText().split('def second')[1].includes('return 1'));checks.push('single finding preview leaves sibling function unchanged');
+ assert.equal(await vscode.commands.executeCommand('awaitlab.apply'),true);
+ await until(()=>vscode.languages.getDiagnostics(pair.uri).length===1);checks.push('single fix keeps other finding and Python preview highlighting');
+ await vscode.commands.executeCommand('undo');assert.equal(pair.getText(),bad+'\n'+bad.replace('def read','def second'));checks.push('single fix is one undo step');
+ const settings=vscode.workspace.getConfiguration('awaitlab');const previous=settings.inspect('pythonPath').globalValue;
+ await settings.update('pythonPath','D:/CodexWork/temp/awaitlab/missing-python.exe',vscode.ConfigurationTarget.Global);
+ assert.equal(await api.audit(pair),undefined);assert.equal(vscode.languages.getDiagnostics(pair.uri).length,0);
+ await settings.update('pythonPath',previous,vscode.ConfigurationTarget.Global);
+ await vscode.commands.executeCommand('awaitlab.audit');assert.equal(vscode.languages.getDiagnostics(pair.uri).length,2);checks.push('missing interpreter can recover after settings correction');
  await vscode.commands.executeCommand('awaitlab.demo');assert.equal(vscode.window.activeTextEditor.document.uri.scheme,'untitled');
  assert.equal(vscode.languages.getDiagnostics(vscode.window.activeTextEditor.document.uri).length,3);checks.push('onboarding example opens with two fixes and one review');
  if(process.env.AWAITLAB_SCREENSHOT){
@@ -59,9 +77,16 @@ exports.run=async()=>{
   const {chromium}=require('D:/CodexWork/cache/branchforge-browser/node_modules/playwright');
   const browser=await chromium.connectOverCDP('http://127.0.0.1:9539');
   const page=browser.contexts().flatMap(context=>context.pages()).find(page=>page.url().includes('workbench.html'));
-  assert(page);await delay(700);await page.screenshot({path:path.join(__dirname,'../../..','artifacts/vscode-editor-v0.1.0.png')});
-  await browser.close();checks.push('real editor screenshot captured with diagnostics');
+  assert(page);await delay(700);await page.screenshot({path:path.join(__dirname,'../../..','artifacts/vscode-editor-v0.2.0.png')});
+  const current=vscode.window.activeTextEditor.document;
+  const issue=vscode.languages.getDiagnostics(current.uri).find(item=>item.code==='ALD001');
+  const choices=await vscode.commands.executeCommand('vscode.executeCodeActionProvider',current.uri,issue.range);
+  const choice=choices.find(item=>item.command?.arguments?.[0]?.lines);
+  await vscode.commands.executeCommand(choice.command.command,...choice.command.arguments);
+  await vscode.commands.executeCommand('workbench.action.closePanel');
+  await page.bringToFront();await delay(600);await page.screenshot({path:path.join(__dirname,'../../..','artifacts/vscode-diff-v0.2.0.png')});
+  await browser.close();checks.push('real editor and selective diff screenshots captured');
  }
- fs.writeFileSync(path.join(__dirname,'../../..','artifacts/vscode-integration-v0.1.0.json'),JSON.stringify({passed:true,vscode:vscode.version,extensionPath:extension.extensionPath,checks},null,2)+'\n');
+ fs.writeFileSync(path.join(__dirname,'../../..','artifacts/vscode-integration-v0.2.0.json'),JSON.stringify({passed:true,vscode:vscode.version,extensionPath:extension.extensionPath,checks},null,2)+'\n');
  console.log(`AwaitLab: ${checks.length} real VS Code checks passed`);
 };

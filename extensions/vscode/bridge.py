@@ -11,7 +11,7 @@ from awaitlab.code_audit import SuppressionError,audit_source,source_lines
 def analyze(request):
     source=request['text'];name=request['filename'];lines=source_lines(source)
     try:
-        findings,patched=audit_source(source,name)
+        findings,patched=audit_source(source,name,fix_lines=request.get('fixLines'))
         active=[item for item in findings if 'suppression_reason' not in item]
         for item in active:
             line=lines[item['line']-1].rstrip('\r\n')

@@ -26,7 +26,7 @@ function activate(context){
   clearTimeout(timers.get(key));timers.delete(key);
   const job=pending.get(key);pending.delete(key);if(job)job.child.kill();
  }
- async function audit(doc,manual=false){
+ async function audit(doc,manual=false,fixLines){
   if(disposed||!supported(doc)||!config(doc.uri).get('enabled'))return;
   const key=doc.uri.toString();cancel(key);
   const text=doc.getText(),version=doc.version,job={};
@@ -38,14 +38,16 @@ function activate(context){
     });
    // Process startup errors also close stdin; execFile's callback reports the failure.
    job.child.stdin.on('error',()=>{});
-   job.child.stdin.end(JSON.stringify({text,filename:doc.uri.fsPath||'untitled.py'}));
+   job.child.stdin.end(JSON.stringify({text,filename:doc.uri.fsPath||'untitled.py',fixLines}));
   });
   pending.set(key,job);updateStatus();
   try{
    const result=await promise;
    if(disposed||pending.get(key)!==job||doc.isClosed||doc.version!==version)return;
    failures.delete(key);
-   const state={...result,uri:key,text,documentVersion:version,id:++sequence};states.set(key,state);
+   const state={...result,uri:key,text,documentVersion:version,id:++sequence};
+   if(fixLines)return state;
+   states.set(key,state);
    const items=result.findings.map(item=>{
     const range=new vscode.Range(item.line-1,item.character,item.line-1,item.endCharacter);
     const diagnostic=new vscode.Diagnostic(range,`${item.message}\n依据：${item.evidence}\n${item.patch_note||item.suggestion}`,
@@ -78,9 +80,15 @@ function activate(context){
   return states.get(doc.uri.toString())||await audit(doc,true);
  }
  async function preview(arg){
-  const state=await getState(arg);if(!state||state.patched===state.text)return;
+  let state=await getState(arg);if(!state||state.patched===state.text)return;
+  if(arg?.lines){
+   const doc=await vscode.workspace.openTextDocument(vscode.Uri.parse(state.uri));
+   if(doc.version!==state.documentVersion)return;
+   state=await audit(doc,true,arg.lines);if(!state||state.patched===state.text)return;
+  }
   const original=vscode.Uri.parse(state.uri);
-  const uri=vscode.Uri.from({scheme:'awaitlab-preview',path:original.path||'/简化预览.py',query:String(state.id)});
+  const name=original.path||'/简化预览.py';
+  const uri=vscode.Uri.from({scheme:'awaitlab-preview',path:name.endsWith('.py')?name:name+'.py',query:String(state.id)});
   previews.set(uri.toString(),state);
   await vscode.commands.executeCommand('vscode.diff',original,uri,'AwaitLab · 原代码 ↔ 建议简化');
  }
@@ -117,9 +125,16 @@ function activate(context){
   if(!state||state.documentVersion!==doc.version||state.patched===state.text)return [];
   if(!context.diagnostics.some(item=>item.source==='AwaitLab'&&item.code==='ALD001'))return [];
   const count=state.findings.filter(item=>item.patch_available).length;
+  const singles=state.findings.filter(item=>item.patch_available&&context.diagnostics.some(diagnostic=>
+   diagnostic.source==='AwaitLab'&&diagnostic.code==='ALD001'&&diagnostic.range.start.line===item.line-1)).map(item=>{
+    const action=new vscode.CodeAction(`AwaitLab：只预览第 ${item.line} 行这一处简化`,vscode.CodeActionKind.QuickFix);
+    action.isPreferred=true;
+    action.command={command:'awaitlab.preview',title:action.title,arguments:[{uri:state.uri,version:state.documentVersion,lines:[item.line]}]};
+    return action;
+   });
   const action=new vscode.CodeAction(`AwaitLab：预览本文件 ${count} 处可生成的简化`,vscode.CodeActionKind.QuickFix);
   action.command={command:'awaitlab.preview',title:action.title,arguments:[{uri:state.uri,version:state.documentVersion}]};
-  return [action];
+  return [...singles,action];
  }
  vscode.workspace.textDocuments.forEach(schedule);updateStatus();
  return {audit,preview,apply};

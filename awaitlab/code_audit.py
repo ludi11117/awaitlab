@@ -280,7 +280,7 @@ class FlowAudit:
         self.edits.append((start,end,replacement,item))
 
 
-def audit_source(source,filename='<string>'):
+def audit_source(source,filename='<string>',*,fix_lines=None):
     tree=ast.parse(source,filename=filename)
     compile(tree,filename,'exec')
     audit=FlowAudit(source,filename)
@@ -297,7 +297,8 @@ def audit_source(source,filename='<string>'):
                 audit.finding(node,'ALD002','needs_review','宽泛异常被静默忽略或转成固定结果',
                     audit.segment(node),
                     '核实是否为业务合同；可考虑捕获具体异常或向上传播。不会自动删除异常处理。')
-    ordered=sorted(audit.edits,key=lambda e:(e[0],-e[1]))
+    ordered=sorted((edit for edit in audit.edits if fix_lines is None or edit[3]['line'] in fix_lines),
+        key=lambda e:(e[0],-e[1]))
     if not ordered:return sorted(audit.findings,key=lambda f:(f['line'],f['column'],f['rule'])),source
     lines=audit.lines;docstrings=scope_docstrings(tree)
     batch=[];covered=[]

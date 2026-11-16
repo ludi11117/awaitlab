@@ -1,0 +1,10 @@
+{
+  "extension_version": "0.2.0",
+  "engine_version": "0.17.0",
+  "vsix_bytes": 17394,
+  "sha256": "4309ccfd9f684f210525410c19f07c75773e6a8419d0a46ed5c98c617524db7f",
+  "installed_files_equal_package": 8,
+  "manifest_comparison_excludes_vscode_install_metadata": true,
+  "bundled_auditor_matches_repository": true,
+  "runtime_python_dependencies": []
+}

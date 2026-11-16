@@ -17,7 +17,7 @@ if not exist "%AWAITLAB_DEMO%\review_me.py" (
   pause
   exit /b 1
 )
-call "%AWAITLAB_CODE%" --user-data-dir "%AWAITLAB_DATA%" --extensions-dir "%AWAITLAB_EXT%" --install-extension "%AWAITLAB_ROOT%artifacts\vscode\awaitlab-0.1.0.vsix" --force >nul
+call "%AWAITLAB_CODE%" --user-data-dir "%AWAITLAB_DATA%" --extensions-dir "%AWAITLAB_EXT%" --install-extension "%AWAITLAB_ROOT%artifacts\vscode\awaitlab-0.2.0.vsix" --force >nul
 if errorlevel 1 (
   echo 扩展安装失败。请确认本机已安装 VS Code，且安装包存在。
   pause

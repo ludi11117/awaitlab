@@ -1,6 +1,6 @@
 {
   "name": "awaitlab", "displayName": "AwaitLab · 防御代码审查", "publisher": "ludi11117",
-  "version": "0.1.0", "description": "在编辑器中查看 Python 重复防御检查的依据，预览并应用可撤销的简化。",
+  "version": "0.2.0", "description": "在编辑器中查看 Python 重复防御检查的依据，预览并应用可撤销的简化。",
   "license": "UNLICENSED",
   "engines": {"vscode": "^1.85.0"}, "categories": ["Linters"],
   "main": "./src/extension.cjs", "activationEvents": ["onLanguage:python"],

@@ -6,8 +6,8 @@
 
 1. 打开的 `review_me.py` 有两处黄色提示和一处人工复核。稍等自动分析完成，也可以点编辑器右上角盾牌按钮。
 2. 鼠标停在黄色波浪线上看原因，或按 **Ctrl+Shift+M** 打开“问题 / Problems”面板。相关位置可跳到前面的条件。
-3. 把光标放在黄色提示处，按 **Ctrl+.**，选择 **AwaitLab：预览本文件…处可生成的简化**。
-4. 左侧是原代码，右侧是建议。确认后点预览右上角 **✓**。菜单会明确显示这是当前文件的全部可生成简化。
+3. 把光标放在黄色提示处，按 **Ctrl+.**，优先选择 **AwaitLab：只预览第…行这一处简化**；也可以选择整文件预览。
+4. 左侧是原代码，右侧是建议。确认后点预览右上角 **✓**。单处预览只应用该处修改，其他提示保留。
 5. 修改留在编辑器里，**Ctrl+Z** 可以撤销。确认后再保存，并运行你项目的测试。
 
 蓝色ALD002提示需要你判断业务意图，不能一键删除异常处理。代码改动后旧预览会拒绝应用，重新预览即可。
@@ -18,7 +18,7 @@
 
 ## 安装到自己的 VS Code 配置
 
-已有日常VS Code环境，也可以在扩展面板的 `… → 从 VSIX 安装` 中选择 [awaitlab-0.1.0.vsix](artifacts/vscode/awaitlab-0.1.0.vsix)。该安装会使用你现有VS Code的扩展存储位置；本项目启动器使用的D盘配置与之独立。
+已有日常VS Code环境，也可以在扩展面板的 `… → 从 VSIX 安装` 中选择 [awaitlab-0.2.0.vsix](artifacts/vscode/awaitlab-0.2.0.vsix)。该安装会使用你现有VS Code的扩展存储位置；本项目启动器使用的D盘配置与之独立。
 
 启动器固定使用：
 
@@ -48,4 +48,4 @@ node extensions/vscode/test/launch.cjs
 
 测试工具位于 `D:\CodexWork\cache\awaitlab-vscode-tools`，npm缓存位于D盘。其他开发机可设置 `AWAITLAB_VSCODE_TOOLS` 指向装有 `@vscode/test-electron` 的node_modules，以及 `AWAITLAB_CODE_EXE` 指向本机Code可执行文件。使用官方 [VS Code 扩展测试入口](https://code.visualstudio.com/api/working-with-extensions/testing-extension) 和 [VSIX 打包方式](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)。
 
-本版扩展0.1.0内置审查引擎0.16.1；CLI的整仓扫描、排除和暂存区核验仍通过原命令使用。编辑器修复不修改Git暂存区。
+本版扩展0.2.0内置审查引擎0.17.0；CLI的整仓扫描、排除和暂存区核验仍通过原命令使用。编辑器修复不修改Git暂存区。更新后重新双击启动入口打开新窗口，即可加载新版；已有演示副本不覆盖。
