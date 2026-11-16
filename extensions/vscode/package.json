@@ -1,0 +1,26 @@
+{
+  "name": "awaitlab", "displayName": "AwaitLab · 防御代码审查", "publisher": "ludi11117",
+  "version": "0.1.0", "description": "在编辑器中查看 Python 重复防御检查的依据，预览并应用可撤销的简化。",
+  "license": "UNLICENSED",
+  "engines": {"vscode": "^1.85.0"}, "categories": ["Linters"],
+  "main": "./src/extension.cjs", "activationEvents": ["onLanguage:python"],
+  "repository": {"type": "git", "url": "https://github.com/ludi11117/awaitlab"},
+  "capabilities": {"untrustedWorkspaces": {"supported": false}, "virtualWorkspaces": {"supported": false}},
+  "contributes": {
+    "commands": [
+      {"command": "awaitlab.audit", "title": "AwaitLab: 审查当前 Python 文件", "icon": "$(shield)"},
+      {"command": "awaitlab.preview", "title": "AwaitLab: 预览当前文件的简化", "icon": "$(diff)"},
+      {"command": "awaitlab.apply", "title": "AwaitLab: 应用当前文件的简化（可撤销）", "icon": "$(check)"},
+      {"command": "awaitlab.demo", "title": "AwaitLab: 打开上手示例"},
+      {"command": "awaitlab.log", "title": "AwaitLab: 查看运行日志"}
+    ],
+    "menus": {"editor/title": [
+      {"command": "awaitlab.audit", "when": "editorLangId == python && resourceScheme != awaitlab-preview", "group": "navigation"},
+      {"command": "awaitlab.apply", "when": "resourceScheme == awaitlab-preview", "group": "navigation"}
+    ]},
+    "configuration": {"title": "AwaitLab", "properties": {
+      "awaitlab.enabled": {"type": "boolean", "default": true, "description": "打开和编辑 Python 文件时自动审查。"},
+      "awaitlab.pythonPath": {"type": "string", "default": "python", "scope": "machine", "description": "Python 3.10+ 可执行文件路径。无需安装 AwaitLab 包；路径含空格时无需加引号。"}
+    }}
+  }
+}

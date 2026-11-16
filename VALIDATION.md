@@ -1,4 +1,15 @@
-# 0.16.1 审查产物保存验证
+# VS Code扩展0.1.0 接入验证
+
+日期：2026-11-16。扩展独立版本0.1.0，内置审查器仍为0.16.1。安装包位于artifacts/vscode/awaitlab-0.1.0.vsix，记录vscode-integration-v0.1.0.json及vscode-package-v0.1.0.json，实际VS Code截图vscode-editor-v0.1.0.png。
+
+- 已安装VSIX在本机VS Code 1.139.1 Extension Host中通过14项检查：未保存缓冲区诊断、前置条件跳转、Ctrl+.动作、原生diff不改源、应用不保存、一次undo、过期预览拒绝、人工复核无自动修复、Unicode/emoji范围、语法错误、自动更新、开关清理、上手示例及真实界面截图。使用安装目录中的扩展执行测试，非仅mock API。安装后的复验定位到等待用户关闭旧预览通知的问题，已改为提示后立即返回，不阻塞应用命令。
+- Python全套219项测试通过，新增桥接6项；其后另通过1项真实cmd启动回归，覆盖中文空格路径、演示副本创建、D盘TEMP、安装参数、独立配置和扩展目录。日志tests-vscode-v0.1.0.log位于D盘。Windows入口工作文件统一CRLF，修复初次LF版本在cmd下的解析问题。
+- 桥接通过隔离模式Python进程读stdin里的编辑器文本，不读取/执行同名磁盘文件。覆盖结构化语法错误、带理由忽略/错误忽略、CRLF及UTF-16坐标。诊断随打开和编辑触发，过期进程取消、旧版本结果丢弃；未作整仓扫描。
+- VSIX约17KB，无Node运行时依赖或额外pip依赖。8个安装文件与包核对（package.json仅排除VS Code注入的安装元数据），内置审查器和原源码逐字节一致，摘要见package记录。构建/测试工具仅位于D盘缓存，未发布到Marketplace。
+- 一键入口使用D盘扩展和独立用户配置，并打开演示副本；保留用户已有演示文件。沿用C盘既有VS Code应用程序，并未迁移应用或改动原用户配置。安装到现有其他VS Code环境的可选方式另见VSCODE.zh-CN.md。
+- 本轮未改变Python审查算法或HTML布局；原213项测试包含在本次219项中，历史性能/浏览器记录维持原版，不作新的性能收益声明。
+
+## 0.16.1 审查产物保存验证
 
 日期：2026-11-16。全套日志D:/CodexWork/temp/awaitlab/tests-v0.16.1.log；安装记录artifacts/install-check、install-index-check、install-semantics-check-v0.16.1.json。
 

@@ -5,6 +5,8 @@ __pycache__/
 artifacts/*.log
 build/
 dist/
+extensions/vscode/engine/
+artifacts/vscode-demo/
 artifacts/wheels/
 artifacts/*.checkpoint.json
 artifacts/*.checkpoint.json.tmp

@@ -1,0 +1,4 @@
+test/**
+build_engine.py
+**/__pycache__/**
+*.vsix

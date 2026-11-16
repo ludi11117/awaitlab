@@ -1,0 +1,67 @@
+const vscode=require('vscode'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const checks=[];
+const bad='def read(value):\n    if value is None:\n        return None\n    if value is None:\n        return 1\n    return value\n';
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function until(check){for(let i=0;i<100;i++){if(await check())return;await delay(100);}throw Error('Timed out waiting for editor diagnostics');}
+exports.run=async()=>{
+ const extension=vscode.extensions.getExtension('ludi11117.awaitlab');assert(extension);const api=await extension.activate();
+ const doc=await vscode.workspace.openTextDocument({language:'python',content:bad});await vscode.window.showTextDocument(doc);
+ await vscode.commands.executeCommand('awaitlab.audit');
+ let items=vscode.languages.getDiagnostics(doc.uri);assert.equal(items.length,1);assert.equal(items[0].code,'ALD001');checks.push('unsaved buffer produces real diagnostics');
+ assert.equal(items[0].relatedInformation[0].location.range.start.line,1);checks.push('evidence links to prior guard');
+ let actions=await vscode.commands.executeCommand('vscode.executeCodeActionProvider',doc.uri,items[0].range);
+ const action=actions.find(a=>a.command?.command==='awaitlab.preview');assert(action);checks.push('Ctrl+. offers preview');
+ const original=doc.getText();await vscode.commands.executeCommand(action.command.command,...action.command.arguments);
+ const preview=vscode.window.activeTextEditor.document;assert.equal(preview.uri.scheme,'awaitlab-preview');
+ assert(!preview.getText().includes('return 1'));assert.equal(doc.getText(),original);checks.push('native diff preview does not modify buffer');
+ assert.equal(await vscode.commands.executeCommand('awaitlab.apply'),true);
+ await until(()=>vscode.languages.getDiagnostics(doc.uri).length===0);
+ assert(!doc.getText().includes('return 1'));assert(doc.isDirty);checks.push('apply changes buffer without saving');
+ await vscode.commands.executeCommand('undo');assert.equal(doc.getText(),original);checks.push('one undo restores original buffer');
+ await vscode.commands.executeCommand('awaitlab.audit');await vscode.commands.executeCommand('awaitlab.preview');
+ const stale=vscode.window.activeTextEditor.document;
+ const edit=new vscode.WorkspaceEdit();edit.insert(doc.uri,new vscode.Position(0,0),'# changed after preview\n');await vscode.workspace.applyEdit(edit);
+ await vscode.window.showTextDocument(stale);
+ assert.equal(await vscode.commands.executeCommand('awaitlab.apply'),false);
+ assert(doc.getText().includes('return 1'));checks.push('stale preview cannot apply to changed source');
+ const review=await vscode.workspace.openTextDocument({language:'python',content:'def optional(loader):\n    try:\n        return loader()\n    except Exception:\n        return None\n'});
+ await vscode.window.showTextDocument(review);await vscode.commands.executeCommand('awaitlab.audit');
+ items=vscode.languages.getDiagnostics(review.uri);assert.equal(items[0].code,'ALD002');assert.equal(items[0].severity,vscode.DiagnosticSeverity.Information);
+ actions=await vscode.commands.executeCommand('vscode.executeCodeActionProvider',review.uri,items[0].range);
+ assert(!actions.some(a=>a.command?.command==='awaitlab.preview'));checks.push('review-only exception has no automatic fix');
+ const chinese=await vscode.workspace.openTextDocument({language:'python',content:'def 读取(参数):\n    if 参数 is None:\n        return None\n    if 参数 is None:  # 🙂\n        return 1\n    return 参数\n'});
+ await vscode.window.showTextDocument(chinese);await vscode.commands.executeCommand('awaitlab.audit');
+ assert.equal(vscode.languages.getDiagnostics(chinese.uri)[0].range.start.character,4);
+ assert.equal(vscode.languages.getDiagnostics(chinese.uri)[0].range.end.character,chinese.lineAt(3).text.length);checks.push('Unicode and emoji ranges use editor UTF-16 positions');
+ const broken=await vscode.workspace.openTextDocument({language:'python',content:'def broken(:\n'});
+ await vscode.window.showTextDocument(broken);await vscode.commands.executeCommand('awaitlab.audit');
+ assert.equal(vscode.languages.getDiagnostics(broken.uri)[0].severity,vscode.DiagnosticSeverity.Error);checks.push('syntax errors become editor errors');
+ const live=await vscode.workspace.openTextDocument({language:'python',content:bad});await vscode.window.showTextDocument(live);
+ await until(()=>vscode.languages.getDiagnostics(live.uri).length===1);
+ const replacement=new vscode.WorkspaceEdit();replacement.replace(live.uri,new vscode.Range(0,0,live.lineCount,0),'def read(value):\n    return value\n');
+ await vscode.workspace.applyEdit(replacement);await until(()=>vscode.languages.getDiagnostics(live.uri).length===0);await delay(800);
+ assert.equal(vscode.languages.getDiagnostics(live.uri).length,0);checks.push('automatic edits discard obsolete diagnostics');
+ await vscode.workspace.getConfiguration('awaitlab').update('enabled',false,vscode.ConfigurationTarget.Global);
+ await vscode.window.showTextDocument(doc);await delay(600);assert.equal(vscode.languages.getDiagnostics(doc.uri).length,0);checks.push('disable setting clears diagnostics');
+ await vscode.workspace.getConfiguration('awaitlab').update('enabled',true,vscode.ConfigurationTarget.Global);
+ await vscode.commands.executeCommand('awaitlab.demo');assert.equal(vscode.window.activeTextEditor.document.uri.scheme,'untitled');
+ assert.equal(vscode.languages.getDiagnostics(vscode.window.activeTextEditor.document.uri).length,3);checks.push('onboarding example opens with two fixes and one review');
+ if(process.env.AWAITLAB_SCREENSHOT){
+  const demoText=vscode.window.activeTextEditor.document.getText();
+  const clear=new vscode.WorkspaceEdit();
+  for(const doc of vscode.workspace.textDocuments){if(doc.uri.scheme==='untitled')clear.replace(doc.uri,new vscode.Range(0,0,doc.lineCount,0),'');}
+  await vscode.workspace.applyEdit(clear);
+  const file=vscode.Uri.file('D:/CodexWork/temp/awaitlab/vscode-test/review_me.py');
+  await vscode.workspace.fs.writeFile(file,Buffer.from(demoText,'utf8'));
+  await vscode.window.showTextDocument(await vscode.workspace.openTextDocument(file));await vscode.commands.executeCommand('awaitlab.audit');
+  await vscode.commands.executeCommand('notifications.clearAll');
+  for(const command of ['workbench.action.closeSidebar','workbench.action.closeAuxiliaryBar','workbench.actions.view.problems'])await vscode.commands.executeCommand(command);
+  const {chromium}=require('D:/CodexWork/cache/branchforge-browser/node_modules/playwright');
+  const browser=await chromium.connectOverCDP('http://127.0.0.1:9539');
+  const page=browser.contexts().flatMap(context=>context.pages()).find(page=>page.url().includes('workbench.html'));
+  assert(page);await delay(700);await page.screenshot({path:path.join(__dirname,'../../..','artifacts/vscode-editor-v0.1.0.png')});
+  await browser.close();checks.push('real editor screenshot captured with diagnostics');
+ }
+ fs.writeFileSync(path.join(__dirname,'../../..','artifacts/vscode-integration-v0.1.0.json'),JSON.stringify({passed:true,vscode:vscode.version,extensionPath:extension.extensionPath,checks},null,2)+'\n');
+ console.log(`AwaitLab: ${checks.length} real VS Code checks passed`);
+};

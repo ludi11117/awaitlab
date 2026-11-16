@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "vscode": "1.139.1",
+  "extensionPath": "D:\\CodexWork\\cache\\awaitlab-vscode-extensions\\ludi11117.awaitlab-0.1.0",
+  "checks": [
+    "unsaved buffer produces real diagnostics",
+    "evidence links to prior guard",
+    "Ctrl+. offers preview",
+    "native diff preview does not modify buffer",
+    "apply changes buffer without saving",
+    "one undo restores original buffer",
+    "stale preview cannot apply to changed source",
+    "review-only exception has no automatic fix",
+    "Unicode and emoji ranges use editor UTF-16 positions",
+    "syntax errors become editor errors",
+    "automatic edits discard obsolete diagnostics",
+    "disable setting clears diagnostics",
+    "onboarding example opens with two fixes and one review",
+    "real editor screenshot captured with diagnostics"
+  ]
+}
